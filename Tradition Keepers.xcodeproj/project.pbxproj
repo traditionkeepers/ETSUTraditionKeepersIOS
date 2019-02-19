@@ -14,11 +14,8 @@
 		216A1626220E203B00342707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 216A1624220E203B00342707 /* LaunchScreen.storyboard */; };
 		216A1631220E203B00342707 /* Tradition_KeepersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1630220E203B00342707 /* Tradition_KeepersTests.swift */; };
 		216A163C220E203B00342707 /* Tradition_KeepersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */; };
-		216A164A220F97BE00342707 /* MainEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1649220F97BE00342707 /* MainEventTableViewController.swift */; };
-		216A164C220FB70500342707 /* MainEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A164B220FB70500342707 /* MainEventTableViewCell.swift */; };
-		216A164E220FB85900342707 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A164D220FB85900342707 /* Event.swift */; };
-		216A1653220FCC6D00342707 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1652220FCC6D00342707 /* User.swift */; };
 		216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1655220FCE2E00342707 /* LoginViewController.swift */; };
+		21DF5D3522149B90007DCAB0 /* CategoryView in Resources */ = {isa = PBXBuildFile; fileRef = 21DF5D3422149B90007DCAB0 /* CategoryView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,11 +49,8 @@
 		216A1637220E203B00342707 /* Tradition KeepersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tradition KeepersUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradition_KeepersUITests.swift; sourceTree = "<group>"; };
 		216A163D220E203B00342707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		216A1649220F97BE00342707 /* MainEventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEventTableViewController.swift; sourceTree = "<group>"; };
-		216A164B220FB70500342707 /* MainEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEventTableViewCell.swift; sourceTree = "<group>"; };
-		216A164D220FB85900342707 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		216A1652220FCC6D00342707 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		216A1655220FCE2E00342707 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		21DF5D3422149B90007DCAB0 /* CategoryView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CategoryView; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +104,7 @@
 				216A161C220E203900342707 /* Main.storyboard */,
 				216A1624220E203B00342707 /* LaunchScreen.storyboard */,
 				216A1654220FCDBA00342707 /* Login View */,
-				216A164F220FCC1800342707 /* Main Event Table View */,
-				216A1650220FCC2900342707 /* Model Classes */,
+				21DF5D3422149B90007DCAB0 /* CategoryView */,
 				216A1651220FCC3C00342707 /* Stuff */,
 			);
 			path = "Tradition Keepers";
@@ -133,24 +126,6 @@
 				216A163D220E203B00342707 /* Info.plist */,
 			);
 			path = "Tradition KeepersUITests";
-			sourceTree = "<group>";
-		};
-		216A164F220FCC1800342707 /* Main Event Table View */ = {
-			isa = PBXGroup;
-			children = (
-				216A1649220F97BE00342707 /* MainEventTableViewController.swift */,
-				216A164B220FB70500342707 /* MainEventTableViewCell.swift */,
-			);
-			path = "Main Event Table View";
-			sourceTree = "<group>";
-		};
-		216A1650220FCC2900342707 /* Model Classes */ = {
-			isa = PBXGroup;
-			children = (
-				216A164D220FB85900342707 /* Event.swift */,
-				216A1652220FCC6D00342707 /* User.swift */,
-			);
-			path = "Model Classes";
 			sourceTree = "<group>";
 		};
 		216A1651220FCC3C00342707 /* Stuff */ = {
@@ -277,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				216A1626220E203B00342707 /* LaunchScreen.storyboard in Resources */,
+				21DF5D3522149B90007DCAB0 /* CategoryView in Resources */,
 				216A1623220E203B00342707 /* Assets.xcassets in Resources */,
 				216A161E220E203900342707 /* Main.storyboard in Resources */,
 			);
@@ -304,12 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
-				216A164A220F97BE00342707 /* MainEventTableViewController.swift in Sources */,
-				216A164C220FB70500342707 /* MainEventTableViewCell.swift in Sources */,
-				216A1653220FCC6D00342707 /* User.swift in Sources */,
 				216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
-				216A164E220FB85900342707 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
