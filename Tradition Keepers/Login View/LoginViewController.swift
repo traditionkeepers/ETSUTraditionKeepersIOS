@@ -71,11 +71,11 @@ class LoginViewController: UIViewController {
                         vc.currentUser = currentUser
                         vc.store = self.store
                 }
-                case "newUser":
-                    if let vc = segue.destination as? UINavigationController {
-                        vc.currentUser = currentUser
-                        vc.store = self.store
-                }
+                //case "newUser":
+                //if let vc = segue.destination as? UINavigationController {
+                        // vc.currentUser = currentUser
+                        // vc.store = self.store
+                //}
                 
                 default: break
             }
