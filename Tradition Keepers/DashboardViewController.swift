@@ -12,6 +12,7 @@ import Firebase
 class DashboardViewController: UIViewController {
     
     var db: Firestore!
+    var userInfo: DocumentSnapshot!
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
@@ -24,9 +25,24 @@ class DashboardViewController: UIViewController {
         
         Firestore.firestore().settings = settings
         db = Firestore.firestore()
+        
+        if let currentUser = Auth.auth().currentUser {
+            let docref = db.collection("users").document(currentUser.uid)
+            docref.getDocument() { (document, error) in
+                if let document = document {
+                    self.userInfo = document
+                    self.fillData()
+                } else {
+                    print(error?.localizedDescription ?? "An error occured")
+                }
+            }
+        }
     }
     
-
+    func fillData() {
+        usernameLabel.text = "Welcome, \(userInfo.get("first") as? String ?? "") \(userInfo.get("last") as? String ?? "")"
+        idLabel.text = Auth.auth().currentUser?.uid
+    }
     /*
     // MARK: - Navigation
 

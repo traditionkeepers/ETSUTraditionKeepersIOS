@@ -16,27 +16,15 @@ class LoginViewController: UIViewController {
         let enteredEmail = emailField.text! + "@etsu.edu"
         let enteredPassword = passwordField.text!
         
-        if loadUser(email: enteredEmail, password: enteredPassword) {
-            performSegue(withIdentifier: "login", sender: nil)
-        } else {
-            performSegue(withIdentifier: "newUser", sender: nil)
-        }
-    }
-    
-    func loadUser(email: String, password: String) -> Bool {
-        // Cheack if user ETSU credentials correct
-        let valid_auth = false
-        
-        if valid_auth {
-            
-        } else {
-            // Check if user in Firebase
-            Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
-                guard let strongSelf = self else { return }
+        Auth.auth().signIn(withEmail: enteredEmail, password: enteredPassword) { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                self.performSegue(withIdentifier: "newUser", sender: nil)
+            } else if let user = user {
+                print(user.user.uid)
+                self.performSegue(withIdentifier: "login", sender: nil)
             }
-            return true
         }
-        return false
     }
     
     override func viewDidLoad() {
@@ -50,23 +38,17 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let identifier = segue.identifier {
-            switch identifier {
-                case "login":
-                    if let vc = segue.destination as? NavTabBarController {
-                        vc.currentUser = currentUser
-                }
-                //case "newUser":
-                //if let vc = segue.destination as? UINavigationController {
-                        // vc.currentUser = currentUser
-                        // vc.store = self.store
-                //}
-                
-                default: break
-            }
+        if let vc = segue.destination as? NewUserViewController {
+            vc._email = emailField.text! + "@etsu.edu"
+            vc._password = passwordField.text!
         }
     }
-
+    
+    @IBAction func unwindToLogin(unwindSegue: UIStoryboardSegue) {
+        emailField.text = ""
+        passwordField.text = ""
+    }
+    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
 }
