@@ -21,6 +21,9 @@
 		21B8C97D2224441C0037B1C5 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C97B2224441C0037B1C5 /* User+CoreDataProperties.swift */; };
 		21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */; };
 		21B8C983222444720037B1C5 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C982222444720037B1C5 /* NavTabBarController.swift */; };
+		21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */; };
+		21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */; };
+		21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC81223B40EB00844CDF /* ProfileViewController.swift */; };
 		21DF5D3522149B90007DCAB0 /* CategoryView in Resources */ = {isa = PBXBuildFile; fileRef = 21DF5D3422149B90007DCAB0 /* CategoryView */; };
 		21FB3F0022243DE5005DCEF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21FB3EFF22243DE5005DCEF7 /* GoogleService-Info.plist */; };
 		5DBC924EF3F416B342579341 /* Pods_Tradition_KeepersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1121B7AB89A56F7D3ADB2A /* Pods_Tradition_KeepersTests.framework */; };
@@ -66,6 +69,9 @@
 		21B8C97B2224441C0037B1C5 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		21B8C982222444720037B1C5 /* NavTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
+		21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
+		21DABC81223B40EB00844CDF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		21DF5D3422149B90007DCAB0 /* CategoryView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CategoryView; sourceTree = "<group>"; };
 		21FB3EFF22243DE5005DCEF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2244324DF98B6D4A624B79F2 /* Pods-Tradition KeepersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition KeepersTests.debug.xcconfig"; path = "Target Support Files/Pods-Tradition KeepersTests/Pods-Tradition KeepersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -138,8 +144,9 @@
 				216A1654220FCDBA00342707 /* Login View */,
 				21DF5D3422149B90007DCAB0 /* CategoryView */,
 				21B8C981222444720037B1C5 /* Tab Controller */,
+				21DABC7B223AFA7000844CDF /* ProfileView */,
 				216A1651220FCC3C00342707 /* Stuff */,
-				21587F8422249ABE003DE3E7 /* DashboardViewController.swift */,
+				21DABC7C223AFAAA00844CDF /* Dashboard */,
 			);
 			path = "Tradition Keepers";
 			sourceTree = "<group>";
@@ -199,6 +206,24 @@
 				21B8C982222444720037B1C5 /* NavTabBarController.swift */,
 			);
 			path = "Tab Controller";
+			sourceTree = "<group>";
+		};
+		21DABC7B223AFA7000844CDF /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				21DABC81223B40EB00844CDF /* ProfileViewController.swift */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		21DABC7C223AFAAA00844CDF /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				21587F8422249ABE003DE3E7 /* DashboardViewController.swift */,
+				21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */,
+				21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		296DF8C02F69D23D43B84F0F /* Frameworks */ = {
@@ -468,9 +493,12 @@
 			files = (
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
 				21587F8522249ABE003DE3E7 /* DashboardViewController.swift in Sources */,
+				21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */,
 				21B8C983222444720037B1C5 /* NavTabBarController.swift in Sources */,
 				216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */,
 				21B8C97D2224441C0037B1C5 /* User+CoreDataProperties.swift in Sources */,
+				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
+				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
 				21B8C979222444110037B1C5 /* PersistContainer.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
 				21B8C97C2224441C0037B1C5 /* User+CoreDataClass.swift in Sources */,

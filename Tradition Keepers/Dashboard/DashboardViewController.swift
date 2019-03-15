@@ -13,9 +13,9 @@ class DashboardViewController: UIViewController {
     
     var db: Firestore!
     var userInfo: DocumentSnapshot!
-    
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var idLabel: UILabel!
+
+    @IBOutlet weak var usernameButton: UIButton!
+    @IBOutlet weak var progressButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -40,8 +40,8 @@ class DashboardViewController: UIViewController {
     }
     
     func fillData() {
-        usernameLabel.text = "Welcome, \(userInfo.get("first") as? String ?? "") \(userInfo.get("last") as? String ?? "")"
-        idLabel.text = Auth.auth().currentUser?.uid
+        usernameButton.setTitle("Welcome, \(userInfo.get("first") as? String ?? "") \(userInfo.get("last") as? String ?? "")", for: UIControl.State.normal)
+        progressButton.setTitle("Progress: \(Auth.auth().currentUser?.uid ?? "XXX")%", for: UIControl.State.normal)
     }
     /*
     // MARK: - Navigation
