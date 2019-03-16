@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class NavTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -24,7 +24,6 @@ class NavTabBarController: UITabBarController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
-     }
-     */
-    
+    }
+    */
 }

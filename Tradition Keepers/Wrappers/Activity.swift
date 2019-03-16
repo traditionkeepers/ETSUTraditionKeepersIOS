@@ -21,6 +21,14 @@ class Activity {
         status = .none
     }
     
+    init(fromDoc doc: DocumentSnapshot) {
+        data = ActivityData()
+        data.name = doc.data()!["name"] as! String
+        data.instruction = doc.data()?["instruction"] as! String
+        data.category = doc.data()?["category"] as! String
+        status = .none
+    }
+    
     init(data: ActivityData, withStatus status: ActivityStatus = .none) {
         self.data = data
         self.status = status

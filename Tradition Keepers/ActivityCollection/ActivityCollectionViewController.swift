@@ -26,6 +26,8 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
         }
     }
     
+    var currentUser: User!
+
     private var selectedCategory: String!
     
     var categories: [String] = [] {
@@ -83,6 +85,7 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
         case "ShowCategoryDetail":
             if let vc = segue.destination as? CategoryViewController {
                 vc.selectedCategory = self.selectedCategory
+                vc.currentUser = self.currentUser
             }
         default:
             break

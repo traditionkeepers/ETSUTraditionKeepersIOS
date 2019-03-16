@@ -17,61 +17,34 @@ class User {
         }
     }
     
-    static var dataDoc: DocumentSnapshot? {
-        get {
-            var doc: DocumentSnapshot?
-            if let currentUser = Auth.auth().currentUser {
-                let docref = db.collection("users").document(currentUser.uid)
-                docref.getDocument { (document, error) in
-                    if let document = document, document.exists {
-                        doc = document
-                    } else {
-                        print(error?.localizedDescription ?? "An error occured")
-                    }
-                }
-            }
-            return doc
-        }
+    var data: UserData
+    
+    init() {
+        data = UserData()
+        data.first = "first"
+        data.last = "last"
+        data.uid = Auth.auth().currentUser?.uid ?? ""
+        data.permission = .user
     }
     
-    static var first: String {
-        get {
-            if let doc = dataDoc {
-                return doc.get("first") as? String ?? ""
-            }
-            return ""
-        }
+    init(fromDoc doc: DocumentSnapshot) {
+        data = UserData()
+        data.first = doc.get("first") as? String ?? ""
+        data.last = doc.get("last") as? String ?? ""
+        data.uid = Auth.auth().currentUser?.uid ?? ""
+        data.permission = .user
     }
-    
-    static var last: String {
-        get {
-            if let doc = dataDoc {
-                return doc.get("last") as? String ?? ""
-            }
-            return ""
-        }
-    }
-    
-    static var uid: String {
-        get {
-            if let user = Auth.auth().currentUser {
-                return user.uid
-            }
-            return ""
-        }
-    }
-    
-    static var completedActivities: QuerySnapshot? {
-        get {
-            var docs: QuerySnapshot?
-            db.collection("completed_activities").whereField("uid", isEqualTo: uid).getDocuments(completion: { (QuerySnapshot, err) in
-                if let err = err {
-                    print("Error retreiving documents: \(err)")
-                } else {
-                    docs = QuerySnapshot
-                }
-            })
-            return docs
-        }
-    }
+}
+
+struct UserData {
+    var first = "",
+    last = "",
+    uid = "",
+    permission: UserPermission = .user
+}
+
+enum UserPermission {
+    case user
+    case staff
+    case admin
 }

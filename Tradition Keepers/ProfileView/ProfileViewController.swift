@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         ["Event 3", "Event 3 Description", "10/10/10"]
     ]
     
+    var currentUser: User!
+    
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var ProgressLabel: UILabel!
     
@@ -29,8 +31,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserNameLabel.text = "\(User.first) \(User.last)"
-        ProgressLabel.text = "Progress: \(User.uid)%"
+        UserNameLabel.text = "\(currentUser.data.first) \(currentUser.data.last)"
+        ProgressLabel.text = "Progress: \(currentUser.data.uid)%"
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -124,7 +126,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                //vc.activity
+                vc.currentUser = self.currentUser
             }
         
         default:

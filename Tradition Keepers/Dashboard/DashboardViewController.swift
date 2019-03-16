@@ -14,6 +14,7 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var progressButton: UIButton!
     
+    var currentUser: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +22,8 @@ class DashboardViewController: UIViewController {
     }
     
     func fillData() {
-        usernameButton.setTitle("Welcome, \(User.first) \(User.last)", for: UIControl.State.normal)
-        progressButton.setTitle("Progress: \(User.uid)%", for: UIControl.State.normal)
+        usernameButton.setTitle("Welcome, \(currentUser.data.first) \(currentUser.data.last)", for: UIControl.State.normal)
+        progressButton.setTitle("Progress: \(currentUser.data.uid)%", for: UIControl.State.normal)
     }
     /*
     // MARK: - Navigation

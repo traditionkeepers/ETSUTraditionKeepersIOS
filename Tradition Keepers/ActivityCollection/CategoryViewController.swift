@@ -23,22 +23,28 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    private var selectedActivityIndex: Int!
+    
+    var currentUser: User!
+    var completedActivities: [Activity] = []
+    
     @IBOutlet weak var CategoryNameLabel: UILabel!
     @IBOutlet weak var ProgressLabel: UILabel!
     @IBOutlet weak var ActivityTable: UITableView!
-    
+    @IBOutlet weak var AddActivityButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         CategoryNameLabel.text = selectedCategory
-        ProgressLabel.text = "Progress: \(User.uid)%"
+        ProgressLabel.text = "Progress: \(currentUser.data.uid)%"
         FetchData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        if currentUser.data.permission == .admin {
+            self.navigationItem.rightBarButtonItem = self.editButtonItem
+        }
     }
     
     // MARK: - Firebase
@@ -50,11 +56,19 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             } else {
                 self.allActivities.removeAll()
                 for doc in QuerySnapshot!.documents {
-                    let activity = Activity()
-                    activity.data.name = doc.data()["name"] as! String
-                    activity.data.instruction = doc.data()["instruction"] as! String
-                    activity.data.category = doc.data()["category"] as! String
-                    self.allActivities.append(activity)
+                    self.allActivities.append(Activity(fromDoc: doc))
+                }
+            }
+        })
+    }
+    
+    func CompletedActivities() {
+        Activity.db.collection("completed_activities").whereField("uid", isEqualTo: currentUser.data.uid).getDocuments(completion: { (QuerySnapshot, err) in
+            if let err = err {
+                print("Error retreiving documents: \(err)")
+            } else {
+                for activity in QuerySnapshot!.documents {
+                    self.completedActivities.append(Activity(fromDoc: activity))
                 }
             }
         })
@@ -101,26 +115,23 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
     }
     
-    /*
      // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
+     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
      }
-     */
+
     
-    /*
      // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
      }
-     }
-     */
-    
+
     /*
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -145,9 +156,15 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                //vc.activity
+                vc.currentUser = self.currentUser
+                vc.selectedActivity = allActivities[selectedActivityIndex]
             }
-            
+        case "NewActivity":
+            if let nc = segue.destination as? UINavigationController {
+                let vc = nc.topViewController as! ActivityDetailViewController
+                vc.currentUser = self.currentUser
+                vc.selectedActivity = Activity()
+            }
         default:
             break;
         }
