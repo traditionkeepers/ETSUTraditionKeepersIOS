@@ -1,25 +1,21 @@
 //
-//  ActivityTableViewCell.swift
+//  MapTableViewCell.swift
 //  Tradition Keepers
 //
-//  Created by Ryan Thally on 3/14/19.
+//  Created by Ryan Thally on 3/15/19.
 //  Copyright © 2019 East Tennessee State Univeristy. All rights reserved.
 //
 
 import UIKit
+import MapKit
 
-class ActivityTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var AvtivityImage: UIImageView!
-    @IBOutlet weak var NameText: UITextField!
-    @IBOutlet weak var AdditionalText: UITextField!
-    @IBOutlet weak var CompleteButton: UIButton!
-    
+class MapTableViewCell: UITableViewCell {
+    @IBOutlet weak var LocationText: UITextField!
+    @IBOutlet weak var MapView: MKMapView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        sizeToFit()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,4 +23,5 @@ class ActivityTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
 }

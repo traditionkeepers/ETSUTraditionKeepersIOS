@@ -9,34 +9,55 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var sectionHeaders = [
         "General Activities",
         "Extra Activities"
     ]
     
-    var completedActivities = [
-        ["Event 1", "Event 1 Description", "12/12/12"],
-        ["Event 2", "Event 2 Description", "11/11/11"],
-        ["Event 3", "Event 3 Description", "10/10/10"]
-    ]
+    var selectedCategory: String!
+    var allActivities: [Activity] = [] {
+        didSet {
+            ActivityTable.reloadData()
+        }
+    }
     
-    @IBOutlet weak var UserNameLabel: UILabel!
+    @IBOutlet weak var CategoryNameLabel: UILabel!
     @IBOutlet weak var ProgressLabel: UILabel!
+    @IBOutlet weak var ActivityTable: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserNameLabel.text = "\(User.first) \(User.last)"
+        CategoryNameLabel.text = selectedCategory
         ProgressLabel.text = "Progress: \(User.uid)%"
-        
+        FetchData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    // MARK: - Firebase
+    func FetchData() {
+        Activity.db.collection("activities").whereField("category", isEqualTo: selectedCategory).getDocuments(completion: { (QuerySnapshot
+            , err) in
+            if let err = err {
+                print("Error retreiving documents: \(err)")
+            } else {
+                self.allActivities.removeAll()
+                for doc in QuerySnapshot!.documents {
+                    let activity = Activity()
+                    activity.data.name = doc.data()["name"] as! String
+                    activity.data.instruction = doc.data()["instruction"] as! String
+                    activity.data.category = doc.data()["category"] as! String
+                    self.allActivities.append(activity)
+                }
+            }
+        })
     }
     
     // MARK: - Table view data source
@@ -49,9 +70,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {
-            return completedActivities.count
+            return allActivities.count
         } else if section == 1 {
-            return completedActivities.count
+            return allActivities.count
         } else {
             return 0
         }
@@ -59,9 +80,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameText.text = completedActivities[indexPath.row][0]
-        cell.AdditionalText.text = completedActivities[indexPath.row][1]
-        cell.CompleteButton.setTitle(completedActivities[indexPath.row][2], for: UIControl.State.normal)
+        cell.NameText.text = allActivities[indexPath.row].data.name
+        cell.AdditionalText.text = allActivities[indexPath.row].data.instruction
+        cell.CompleteButton.setTitle(allActivities[indexPath.row].status.rawValue, for: UIControl.State.normal)
         cell.CompleteButton.isEnabled = false
         // Configure the cell...
         
@@ -126,7 +147,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if let vc = segue.destination as? ActivityDetailViewController {
                 //vc.activity
             }
-        
+            
         default:
             break;
         }

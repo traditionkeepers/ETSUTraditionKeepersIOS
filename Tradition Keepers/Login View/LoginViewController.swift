@@ -20,8 +20,7 @@ class LoginViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
                 self.performSegue(withIdentifier: "newUser", sender: nil)
-            } else if let user = user {
-                print(user.user.uid)
+            } else if user != nil {
                 self.performSegue(withIdentifier: "login", sender: nil)
             }
         }

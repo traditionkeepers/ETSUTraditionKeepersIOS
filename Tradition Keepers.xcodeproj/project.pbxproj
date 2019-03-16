@@ -16,15 +16,19 @@
 		216A1631220E203B00342707 /* Tradition_KeepersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1630220E203B00342707 /* Tradition_KeepersTests.swift */; };
 		216A163C220E203B00342707 /* Tradition_KeepersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */; };
 		216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1655220FCE2E00342707 /* LoginViewController.swift */; };
-		21B8C979222444110037B1C5 /* PersistContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C978222444110037B1C5 /* PersistContainer.swift */; };
-		21B8C97C2224441C0037B1C5 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C97A2224441C0037B1C5 /* User+CoreDataClass.swift */; };
-		21B8C97D2224441C0037B1C5 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C97B2224441C0037B1C5 /* User+CoreDataProperties.swift */; };
+		217652B8223C8D6D006886E8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217652B7223C8D6D006886E8 /* Activity.swift */; };
+		2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */; };
+		2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A67A223BEE2900037C0F /* MapTableViewCell.swift */; };
+		2199A67D223BEED100037C0F /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A67C223BEED100037C0F /* ActivityDetailViewController.swift */; };
+		2199A680223C100900037C0F /* ActivityCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A67F223C100900037C0F /* ActivityCollectionViewController.swift */; };
+		2199A682223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A681223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift */; };
+		2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A683223C40CF00037C0F /* CategoryViewController.swift */; };
+		2199A686223C75D500037C0F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A685223C75D500037C0F /* User.swift */; };
 		21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */; };
 		21B8C983222444720037B1C5 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C982222444720037B1C5 /* NavTabBarController.swift */; };
 		21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */; };
 		21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */; };
 		21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC81223B40EB00844CDF /* ProfileViewController.swift */; };
-		21DF5D3522149B90007DCAB0 /* CategoryView in Resources */ = {isa = PBXBuildFile; fileRef = 21DF5D3422149B90007DCAB0 /* CategoryView */; };
 		21FB3F0022243DE5005DCEF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21FB3EFF22243DE5005DCEF7 /* GoogleService-Info.plist */; };
 		5DBC924EF3F416B342579341 /* Pods_Tradition_KeepersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1121B7AB89A56F7D3ADB2A /* Pods_Tradition_KeepersTests.framework */; };
 		73CAB282991311005B3EC8F1 /* Pods_Tradition_KeepersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8316737D819E520B6072977 /* Pods_Tradition_KeepersUITests.framework */; };
@@ -64,15 +68,19 @@
 		216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradition_KeepersUITests.swift; sourceTree = "<group>"; };
 		216A163D220E203B00342707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216A1655220FCE2E00342707 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		21B8C978222444110037B1C5 /* PersistContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistContainer.swift; sourceTree = "<group>"; };
-		21B8C97A2224441C0037B1C5 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		21B8C97B2224441C0037B1C5 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		217652B7223C8D6D006886E8 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsTableViewCell.swift; sourceTree = "<group>"; };
+		2199A67A223BEE2900037C0F /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
+		2199A67C223BEED100037C0F /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
+		2199A67F223C100900037C0F /* ActivityCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewController.swift; sourceTree = "<group>"; };
+		2199A681223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		2199A683223C40CF00037C0F /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		2199A685223C75D500037C0F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		21B8C982222444720037B1C5 /* NavTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
 		21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		21DABC81223B40EB00844CDF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		21DF5D3422149B90007DCAB0 /* CategoryView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CategoryView; sourceTree = "<group>"; };
 		21FB3EFF22243DE5005DCEF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2244324DF98B6D4A624B79F2 /* Pods-Tradition KeepersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition KeepersTests.debug.xcconfig"; path = "Target Support Files/Pods-Tradition KeepersTests/Pods-Tradition KeepersTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4E86EFED80C8EFD09DEF2C16 /* Pods-Tradition KeepersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition KeepersTests.release.xcconfig"; path = "Target Support Files/Pods-Tradition KeepersTests/Pods-Tradition KeepersTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,15 +146,16 @@
 		216A1617220E203900342707 /* Tradition Keepers */ = {
 			isa = PBXGroup;
 			children = (
+				217652B6223C8D50006886E8 /* Wrappers */,
 				216A161C220E203900342707 /* Main.storyboard */,
 				216A1624220E203B00342707 /* LaunchScreen.storyboard */,
-				21B8C97E2224443D0037B1C5 /* Core Data */,
 				216A1654220FCDBA00342707 /* Login View */,
-				21DF5D3422149B90007DCAB0 /* CategoryView */,
 				21B8C981222444720037B1C5 /* Tab Controller */,
-				21DABC7B223AFA7000844CDF /* ProfileView */,
-				216A1651220FCC3C00342707 /* Stuff */,
 				21DABC7C223AFAAA00844CDF /* Dashboard */,
+				21DABC7B223AFA7000844CDF /* ProfileView */,
+				2199A67E223C0FDF00037C0F /* ActivityCollection */,
+				2199A677223BEDE900037C0F /* Activity View */,
+				216A1651220FCC3C00342707 /* Stuff */,
 			);
 			path = "Tradition Keepers";
 			sourceTree = "<group>";
@@ -190,14 +199,33 @@
 			path = "Login View";
 			sourceTree = "<group>";
 		};
-		21B8C97E2224443D0037B1C5 /* Core Data */ = {
+		217652B6223C8D50006886E8 /* Wrappers */ = {
 			isa = PBXGroup;
 			children = (
-				21B8C978222444110037B1C5 /* PersistContainer.swift */,
-				21B8C97A2224441C0037B1C5 /* User+CoreDataClass.swift */,
-				21B8C97B2224441C0037B1C5 /* User+CoreDataProperties.swift */,
+				2199A685223C75D500037C0F /* User.swift */,
+				217652B7223C8D6D006886E8 /* Activity.swift */,
 			);
-			path = "Core Data";
+			path = Wrappers;
+			sourceTree = "<group>";
+		};
+		2199A677223BEDE900037C0F /* Activity View */ = {
+			isa = PBXGroup;
+			children = (
+				2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */,
+				2199A67A223BEE2900037C0F /* MapTableViewCell.swift */,
+				2199A67C223BEED100037C0F /* ActivityDetailViewController.swift */,
+			);
+			path = "Activity View";
+			sourceTree = "<group>";
+		};
+		2199A67E223C0FDF00037C0F /* ActivityCollection */ = {
+			isa = PBXGroup;
+			children = (
+				2199A67F223C100900037C0F /* ActivityCollectionViewController.swift */,
+				2199A681223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift */,
+				2199A683223C40CF00037C0F /* CategoryViewController.swift */,
+			);
+			path = ActivityCollection;
 			sourceTree = "<group>";
 		};
 		21B8C981222444720037B1C5 /* Tab Controller */ = {
@@ -358,7 +386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				216A1626220E203B00342707 /* LaunchScreen.storyboard in Resources */,
-				21DF5D3522149B90007DCAB0 /* CategoryView in Resources */,
 				21FB3F0022243DE5005DCEF7 /* GoogleService-Info.plist in Resources */,
 				216A1623220E203B00342707 /* Assets.xcassets in Resources */,
 				216A161E220E203900342707 /* Main.storyboard in Resources */,
@@ -491,17 +518,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				217652B8223C8D6D006886E8 /* Activity.swift in Sources */,
+				2199A67D223BEED100037C0F /* ActivityDetailViewController.swift in Sources */,
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
 				21587F8522249ABE003DE3E7 /* DashboardViewController.swift in Sources */,
 				21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */,
+				2199A686223C75D500037C0F /* User.swift in Sources */,
 				21B8C983222444720037B1C5 /* NavTabBarController.swift in Sources */,
 				216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */,
-				21B8C97D2224441C0037B1C5 /* User+CoreDataProperties.swift in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
 				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
-				21B8C979222444110037B1C5 /* PersistContainer.swift in Sources */,
+				2199A680223C100900037C0F /* ActivityCollectionViewController.swift in Sources */,
+				2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */,
+				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
-				21B8C97C2224441C0037B1C5 /* User+CoreDataClass.swift in Sources */,
+				2199A682223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift in Sources */,
+				2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */,
 				21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,8 +9,6 @@
 import UIKit
 
 class NavTabBarController: UITabBarController {
-    var store: PersistContainer!
-    var currentUser: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()

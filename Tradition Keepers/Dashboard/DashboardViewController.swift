@@ -11,9 +11,6 @@ import Firebase
 
 class DashboardViewController: UIViewController {
     
-    var db: Firestore!
-    var userInfo: DocumentSnapshot!
-
     @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var progressButton: UIButton!
     
@@ -21,27 +18,11 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let settings = FirestoreSettings()
-        
-        Firestore.firestore().settings = settings
-        db = Firestore.firestore()
-        
-        if let currentUser = Auth.auth().currentUser {
-            let docref = db.collection("users").document(currentUser.uid)
-            docref.getDocument() { (document, error) in
-                if let document = document {
-                    self.userInfo = document
-                    self.fillData()
-                } else {
-                    print(error?.localizedDescription ?? "An error occured")
-                }
-            }
-        }
     }
     
     func fillData() {
-        usernameButton.setTitle("Welcome, \(userInfo.get("first") as? String ?? "") \(userInfo.get("last") as? String ?? "")", for: UIControl.State.normal)
-        progressButton.setTitle("Progress: \(Auth.auth().currentUser?.uid ?? "XXX")%", for: UIControl.State.normal)
+        usernameButton.setTitle("Welcome, \(User.first) \(User.last)", for: UIControl.State.normal)
+        progressButton.setTitle("Progress: \(User.uid)%", for: UIControl.State.normal)
     }
     /*
     // MARK: - Navigation

@@ -10,11 +10,6 @@ import UIKit
 import Firebase
 
 class DashboardTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var db: Firestore!
-    var userInfo: DocumentSnapshot!
-    
-    
     var nearbyActivities = [
         ["Event 1", "Event 1 Description"],
         ["Event 2", "Event 2 Description"],
@@ -26,24 +21,6 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let settings = FirestoreSettings()
-        
-        Firestore.firestore().settings = settings
-        db = Firestore.firestore()
-        
-        if let currentUser = Auth.auth().currentUser {
-            let docref = db.collection("users").document(currentUser.uid)
-            docref.getDocument() { (document, error) in
-                if let document = document {
-                    self.userInfo = document
-                    self.fillData()
-                } else {
-                    print(error?.localizedDescription ?? "An error occured")
-                }
-            }
-        }
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -52,16 +29,17 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func fillData() {
-        usernameButton.setTitle("Welcome, \(userInfo.get("first") as? String ?? "") \(userInfo.get("last") as? String ?? "")", for: UIControl.State.normal)
-        progressButton.setTitle("Progress: \(Auth.auth().currentUser?.uid ?? "XXX")%", for: UIControl.State.normal)
+        usernameButton.setTitle("Welcome, \(User.first) \(User.last)", for: UIControl.State.normal)
+        progressButton.setTitle("Progress: \(User.uid)%", for: UIControl.State.normal)
+        print("Successfully configured button text!")
     }
     
     @IBAction func pressedUserButton(_ sender: Any) {
@@ -83,13 +61,17 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameLabel.text = nearbyActivities[indexPath.row][0]
-        cell.DescriptionLabel.text = nearbyActivities[indexPath.row][1]
+        cell.NameText.text = nearbyActivities[indexPath.row][0]
+        cell.AdditionalText.text = nearbyActivities[indexPath.row][1]
          // Configure the cell...
         
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -131,8 +113,17 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let vc = segue.destination as? ProfileViewController {
-            vc.userInfo = self.userInfo
+        switch segue.identifier {
+        case "ShowActivityDetail":
+            if let vc = segue.destination as? ActivityDetailViewController {
+                //vc.activity
+            }
+        case "ShowUserDetail":
+            if let vc = segue.destination as? ProfileViewController {
+                
+            }
+        default:
+            break
         }
     }
 }
