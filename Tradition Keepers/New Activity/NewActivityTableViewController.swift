@@ -26,7 +26,7 @@ class NewActivityTableViewController: UITableViewController {
     
     @IBAction func UnwindToNewActivity(unwindSegue: UIStoryboardSegue) {
         if let vc = unwindSegue.source as? CategoryTableViewController {
-            workingActivity?.data["category"] = vc.selectedCategory
+            workingActivity?.activity_data["category"] = vc.selectedCategory
         }
     }
     
@@ -39,9 +39,9 @@ class NewActivityTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         if let activity = workingActivity {
-            TitleTextField.text = activity.data["title"] as? String
-            CategoryLabel.text = activity.data["category"] as? String
-            setTextBoxText(text: activity.data["instruction"] as! String)
+            TitleTextField.text = activity.activity_data["title"] as? String
+            CategoryLabel.text = activity.activity_data["category"] as? String
+            setTextBoxText(text: activity.activity_data["instruction"] as! String)
         }
         
     }
@@ -58,9 +58,9 @@ class NewActivityTableViewController: UITableViewController {
     
     @IBAction func DoneEditing(_ sender: Any) {
         if let tb = sender as? UITextField {
-            workingActivity?.data["title"] = tb.text ?? ""
+            workingActivity?.activity_data["title"] = tb.text ?? ""
         } else if let tb = sender as? UITextView {
-            workingActivity?.data["instruction"] = tb.text
+            workingActivity?.activity_data["instruction"] = tb.text
         }
     }
     
@@ -90,7 +90,7 @@ extension NewActivityTableViewController: UITextViewDelegate {
             textView.text = "User Instruction"
             textView.textColor = UIColor.lightGray
         } else {
-            workingActivity?.data["instruction"] = textView.text
+            workingActivity?.activity_data["instruction"] = textView.text
         }
     }
 }
@@ -100,7 +100,7 @@ extension NewActivityTableViewController {
     
     func UpdateDatabase(activity: Activity) {
         if let id = activity.id {
-            Activity.db.collection("activities").document(id).setData(activity.data) { err in
+            Activity.db.collection("activities").document(id).setData(activity.activity_data) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -108,7 +108,7 @@ extension NewActivityTableViewController {
                 }
             }
         } else {
-            Activity.db.collection("activities").document().setData(activity.data) { err in
+            Activity.db.collection("activities").document().setData(activity.activity_data) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -118,7 +118,7 @@ extension NewActivityTableViewController {
         }
         
         
-        let category = activity.data["category"] as! String
+        let category = activity.activity_data["category"] as! String
         Activity.db.collection("categories").document( category.lowercased() ).setData([
             "name": category,
             "count": 0

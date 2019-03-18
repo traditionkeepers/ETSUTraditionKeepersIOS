@@ -14,16 +14,26 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     var currentUser: User!
     var selectedCategory: String!
     private var selectedActivityIndex: Int!
+    private var DateFormat = DateFormatter()
     
     private var allActivities: [Activity] = [] {
         didSet {
+            for act in completedActivities {
+                if let index = allActivities.firstIndex(of: act), index >= 0 {
+                    allActivities[index] = act
+                }
+            }
             ActivityTable.reloadData()
         }
     }
     
     private var completedActivities: [Activity] = [] {
         didSet {
-            
+            for act in completedActivities {
+                if let index = allActivities.firstIndex(of: act), index >= 0 {
+                    allActivities[index] = act
+                }
+            }
         }
     }
     
@@ -34,14 +44,27 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        DateFormat.dateStyle = .short
+        DateFormat.timeStyle = .none
+        DateFormat.locale = Locale(identifier: "en_US")
+        
         CategoryNameLabel.text = selectedCategory
         ProgressLabel.text = "Progress: \(currentUser.data.uid)%"
-        FetchData()
+        FetchAllActivitiesForSelectedCategory()
+        FetchCompletedActivitiesForSelectedCategory()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         if currentUser.data.permission == .admin {
             self.navigationItem.rightBarButtonItem = self.editButtonItem
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectionIndexPath = ActivityTable.indexPathForSelectedRow {
+            ActivityTable.deselectRow(at: selectionIndexPath, animated: animated)
         }
     }
     
@@ -85,8 +108,8 @@ extension CategoryViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameLabel.text = allActivities[indexPath.row].data["name"] as? String
-        cell.SecondaryLabel.text = allActivities[indexPath.row].data["instruction"] as? String
+        cell.NameLabel.text = allActivities[indexPath.row].activity_data["title"] as? String
+        cell.SecondaryLabel.text = allActivities[indexPath.row].activity_data["instruction"] as? String
         
         let status = allActivities[indexPath.row].status
         switch status {
@@ -98,10 +121,14 @@ extension CategoryViewController {
             }
         case .pending:
             cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
-            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU GOLD"), for: .normal)
-        case .verified:
-            cell.CompleteButton.setTitle(allActivities[indexPath.row].data["date"] as? String, for: .normal)
             cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
+            cell.CompleteButtonPressed = nil
+        case .verified:
+            if let date = allActivities[indexPath.row].completion_data["date"] as? Timestamp {
+                cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: .normal)
+                cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
+                cell.CompleteButtonPressed = nil
+            }
         }
         
         // Configure the cell...
@@ -124,7 +151,9 @@ extension CategoryViewController {
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
             self.allActivities[row].status = .pending
-            self.allActivities[row].data["date"] = Timestamp(date: Date())
+            self.allActivities[row].completion_data["user_id"] = User.uid
+            self.allActivities[row].completion_data["activity_ref"] = Activity.db.document("activities/\(self.allActivities[row].id ?? "")")
+            self.allActivities[row].completion_data["date"] = Timestamp(date: Date())
             self.UpdateDatabase(activity: self.allActivities[row])
         }
         
@@ -132,6 +161,7 @@ extension CategoryViewController {
         alert.addAction(submit)
         self.present(alert, animated: true, completion: nil)
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedActivityIndex = indexPath.row
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
@@ -159,7 +189,7 @@ extension CategoryViewController {
 extension CategoryViewController {
     
     /// Fetches the activities in the current category
-    func FetchData() {
+    func FetchAllActivitiesForSelectedCategory() {
         var activities: [Activity] = []
         if selectedCategory == "All Activities" {
             Activity.db.collection("activities").order(by: "title").getDocuments(completion: { (QuerySnapshot
@@ -191,9 +221,9 @@ extension CategoryViewController {
     
     
     /// Fetches the activities completd by the current user
-    func CompletedActivities() {
+    func FetchCompletedActivitiesForSelectedCategory() {
         var compActivities: [Activity] = []
-        Activity.db.collection("completed_activities").whereField("uid", isEqualTo: currentUser.data.uid).getDocuments(completion: { (QuerySnapshot, err) in
+        Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.data.uid).getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {

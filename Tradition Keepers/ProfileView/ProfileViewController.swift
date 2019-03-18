@@ -17,6 +17,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     var currentUser: User!
+    private var selectedActivityIndex: Int!
+    
+    private var DateFormat = DateFormatter()
     
     @IBOutlet weak var TableView: UITableView!
     @IBOutlet weak var UserNameLabel: UILabel!
@@ -25,6 +28,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DateFormat.dateStyle = .short
+        DateFormat.timeStyle = .none
+        DateFormat.locale = Locale(identifier: "en_US")
         
         GetUserActivities()
         UserNameLabel.text = "\(currentUser.data.first) \(currentUser.data.last)"
@@ -45,16 +52,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameLabel.text = completedActivities[indexPath.row].data["title"] as? String
-        cell.SecondaryLabel.text = completedActivities[indexPath.row].data["instruction"] as? String
-        cell.CompleteButton.setTitle(completedActivities[indexPath.row].data["date"] as? String, for: UIControl.State.normal)
-        cell.CompleteButton.isEnabled = false
+        cell.NameLabel.text = completedActivities[indexPath.row].activity_data["title"] as? String
+        cell.SecondaryLabel.text = completedActivities[indexPath.row].activity_data["instruction"] as? String
+        if let date = completedActivities[indexPath.row].activity_data["date"] as? Timestamp {
+            cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: UIControl.State.normal)
+        }
+        
         // Configure the cell...
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedActivityIndex = indexPath.row
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
     }
     
@@ -68,6 +78,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
                 vc.currentUser = self.currentUser
+                vc.selectedActivity = completedActivities[selectedActivityIndex]
             }
         
         default:
@@ -89,6 +100,7 @@ extension ProfileViewController {
                 for doc in QuerySnapshot!.documents {
                     compActivities.append(Activity(fromDoc: doc))
                 }
+                print(compActivities)
                 self.completedActivities = compActivities
             }
         })
