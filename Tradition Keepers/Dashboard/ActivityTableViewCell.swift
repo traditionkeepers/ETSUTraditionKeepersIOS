@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class ActivityTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var AvtivityImage: UIImageView!
-    @IBOutlet weak var NameText: UITextField!
-    @IBOutlet weak var AdditionalText: UITextField!
-    @IBOutlet weak var CompleteButton: UIButton!
     
+    @IBOutlet weak var NameLabel: UILabel!
+    @IBOutlet weak var SecondaryLabel: UILabel!
+    @IBOutlet weak var CategoryImage: UIImageView!
+    @IBOutlet weak var CompleteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,4 +27,10 @@ class ActivityTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func CompleteButtonPressed(_ sender: Any) {
+        CompleteButtonPressed?(self)
+    }
+    
+    var CompleteButtonPressed : ((UITableViewCell) -> Void)?
 }

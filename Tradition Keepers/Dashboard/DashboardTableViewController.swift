@@ -10,13 +10,16 @@ import UIKit
 import Firebase
 
 class DashboardTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var nearbyActivities = [
-        ["Event 1", "Event 1 Description"],
-        ["Event 2", "Event 2 Description"],
-        ["Event 3", "Event 3 Description"]
-    ]
     
-    var currentUser: User = User() {
+    
+    private var topThree: [Activity]? {
+        didSet {
+            TopThreeTable.reloadData()
+        }
+    }
+    private var selectedIndex: Int!
+    
+    private var currentUser: User = User() {
         didSet {
             let tabs = self.tabBarController?.viewControllers ?? []
             for tab in tabs {
@@ -34,29 +37,20 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
+    @IBOutlet weak var TopThreeTable: UITableView!
     @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var progressButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         GetUserData()
+        GetTopThree()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    func GetUserData() {
-        let docref = Activity.db.collection("users").document(currentUser.data.uid)
-        docref.getDocument(completion: { (document, error) in
-            if let document = document, document.exists {
-                self.currentUser = User(fromDoc: document)
-            } else {
-                print("Error fetching user doc! \(String(describing: error))")
-            }
-        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +75,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
                 vc.currentUser = self.currentUser
+                vc.selectedActivity = topThree?[selectedIndex]
             }
         case "ShowUserDetail":
             if let vc = segue.destination as? ProfileViewController {
@@ -101,20 +96,49 @@ extension DashboardTableViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return nearbyActivities.count
+        return topThree?.count ?? 0
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameText.text = nearbyActivities[indexPath.row][0]
-        cell.AdditionalText.text = nearbyActivities[indexPath.row][1]
+        cell.NameLabel.text = topThree?[indexPath.row].data["title"] as? String
+        cell.SecondaryLabel.text = topThree?[indexPath.row].data["instruction"] as? String
         // Configure the cell...
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
+    }
+}
+
+// MARK: Firebase
+extension DashboardTableViewController {
+    func GetUserData() {
+        let docref = Activity.db.collection("users").document(currentUser.data.uid)
+        docref.getDocument(completion: { (document, error) in
+            if let document = document, document.exists {
+                self.currentUser = User(fromDoc: document)
+            } else {
+                print("Error fetching user doc! \(String(describing: error))")
+            }
+        })
+    }
+    
+    func GetTopThree() {
+        var activities :[Activity] = []
+        Activity.db.collection("activities").limit(to: 3).getDocuments(completion: { (QuerySnapshot, err) in
+            if let err = err {
+                print("Error retreiving documents: \(err)")
+            } else {
+                for doc in QuerySnapshot!.documents {
+                    activities.append(Activity(fromDoc: doc))
+                }
+                self.topThree = activities
+            }
+        })
     }
 }

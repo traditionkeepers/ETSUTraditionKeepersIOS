@@ -17,6 +17,10 @@ class User {
         }
     }
     
+    static var uid: String {
+        return Auth.auth().currentUser?.uid ?? ""
+    }
+    
     var data: UserData
     
     init() {
@@ -31,7 +35,7 @@ class User {
         data = UserData()
         data.first = doc.get("first") as? String ?? ""
         data.last = doc.get("last") as? String ?? ""
-        data.uid = Auth.auth().currentUser?.uid ?? ""
+        data.uid = User.uid
         data.permission = .user
     }
 }

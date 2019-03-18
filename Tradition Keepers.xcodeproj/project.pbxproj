@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21587F8522249ABE003DE3E7 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21587F8422249ABE003DE3E7 /* DashboardViewController.swift */; };
 		216A1619220E203900342707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1618220E203900342707 /* AppDelegate.swift */; };
 		216A161E220E203900342707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 216A161C220E203900342707 /* Main.storyboard */; };
 		216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 216A161F220E203900342707 /* Tradition_Keepers.xcdatamodeld */; };
@@ -16,6 +15,10 @@
 		216A1631220E203B00342707 /* Tradition_KeepersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1630220E203B00342707 /* Tradition_KeepersTests.swift */; };
 		216A163C220E203B00342707 /* Tradition_KeepersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */; };
 		216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1655220FCE2E00342707 /* LoginViewController.swift */; };
+		216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */; };
+		216F3385223ED1A000E7B989 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3384223ED1A000E7B989 /* CategoryTableViewController.swift */; };
+		216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */; };
+		216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */; };
 		217652B8223C8D6D006886E8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217652B7223C8D6D006886E8 /* Activity.swift */; };
 		2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */; };
 		2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A67A223BEE2900037C0F /* MapTableViewCell.swift */; };
@@ -53,7 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		21587F8422249ABE003DE3E7 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		216A1615220E203900342707 /* Tradition Keepers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradition Keepers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216A1618220E203900342707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		216A161D220E203900342707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +70,10 @@
 		216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradition_KeepersUITests.swift; sourceTree = "<group>"; };
 		216A163D220E203B00342707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216A1655220FCE2E00342707 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityTableViewController.swift; sourceTree = "<group>"; };
+		216F3384223ED1A000E7B989 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapper.swift; sourceTree = "<group>"; };
 		217652B7223C8D6D006886E8 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		2199A67A223BEE2900037C0F /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 		216A1617220E203900342707 /* Tradition Keepers */ = {
 			isa = PBXGroup;
 			children = (
+				216F3381223ECB3700E7B989 /* New Activity */,
 				217652B6223C8D50006886E8 /* Wrappers */,
 				216A161C220E203900342707 /* Main.storyboard */,
 				216A1624220E203B00342707 /* LaunchScreen.storyboard */,
@@ -199,11 +206,22 @@
 			path = "Login View";
 			sourceTree = "<group>";
 		};
+		216F3381223ECB3700E7B989 /* New Activity */ = {
+			isa = PBXGroup;
+			children = (
+				216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */,
+				216F3384223ED1A000E7B989 /* CategoryTableViewController.swift */,
+				216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */,
+			);
+			path = "New Activity";
+			sourceTree = "<group>";
+		};
 		217652B6223C8D50006886E8 /* Wrappers */ = {
 			isa = PBXGroup;
 			children = (
 				2199A685223C75D500037C0F /* User.swift */,
 				217652B7223C8D6D006886E8 /* Activity.swift */,
+				216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */,
 			);
 			path = Wrappers;
 			sourceTree = "<group>";
@@ -247,7 +265,6 @@
 		21DABC7C223AFAAA00844CDF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				21587F8422249ABE003DE3E7 /* DashboardViewController.swift */,
 				21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */,
 				21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */,
 			);
@@ -521,17 +538,20 @@
 				217652B8223C8D6D006886E8 /* Activity.swift in Sources */,
 				2199A67D223BEED100037C0F /* ActivityDetailViewController.swift in Sources */,
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
-				21587F8522249ABE003DE3E7 /* DashboardViewController.swift in Sources */,
 				21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */,
+				216F3385223ED1A000E7B989 /* CategoryTableViewController.swift in Sources */,
 				2199A686223C75D500037C0F /* User.swift in Sources */,
 				21B8C983222444720037B1C5 /* NavTabBarController.swift in Sources */,
+				216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */,
 				216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
 				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
 				2199A680223C100900037C0F /* ActivityCollectionViewController.swift in Sources */,
 				2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */,
 				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
+				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
+				216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */,
 				2199A682223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift in Sources */,
 				2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */,
 				21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */,

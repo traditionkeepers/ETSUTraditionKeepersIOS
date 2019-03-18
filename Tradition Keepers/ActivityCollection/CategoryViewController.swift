@@ -11,27 +11,25 @@ import Firebase
 
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var sectionHeaders = [
-        "General Activities",
-        "Extra Activities"
-    ]
-    
+    var currentUser: User!
     var selectedCategory: String!
-    var allActivities: [Activity] = [] {
+    private var selectedActivityIndex: Int!
+    
+    private var allActivities: [Activity] = [] {
         didSet {
             ActivityTable.reloadData()
         }
     }
     
-    private var selectedActivityIndex: Int!
-    
-    var currentUser: User!
-    var completedActivities: [Activity] = []
+    private var completedActivities: [Activity] = [] {
+        didSet {
+            
+        }
+    }
     
     @IBOutlet weak var CategoryNameLabel: UILabel!
     @IBOutlet weak var ProgressLabel: UILabel!
     @IBOutlet weak var ActivityTable: UITableView!
-    @IBOutlet weak var AddActivityButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,106 +45,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // MARK: - Firebase
-    func FetchData() {
-        Activity.db.collection("activities").whereField("category", isEqualTo: selectedCategory).getDocuments(completion: { (QuerySnapshot
-            , err) in
-            if let err = err {
-                print("Error retreiving documents: \(err)")
-            } else {
-                self.allActivities.removeAll()
-                for doc in QuerySnapshot!.documents {
-                    self.allActivities.append(Activity(fromDoc: doc))
-                }
-            }
-        })
-    }
-    
-    func CompletedActivities() {
-        Activity.db.collection("completed_activities").whereField("uid", isEqualTo: currentUser.data.uid).getDocuments(completion: { (QuerySnapshot, err) in
-            if let err = err {
-                print("Error retreiving documents: \(err)")
-            } else {
-                for activity in QuerySnapshot!.documents {
-                    self.completedActivities.append(Activity(fromDoc: activity))
-                }
-            }
-        })
-    }
-    
-    // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return sectionHeaders.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return allActivities.count
-        } else if section == 1 {
-            return allActivities.count
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameText.text = allActivities[indexPath.row].data.name
-        cell.AdditionalText.text = allActivities[indexPath.row].data.instruction
-        cell.CompleteButton.setTitle(allActivities[indexPath.row].status.rawValue, for: UIControl.State.normal)
-        cell.CompleteButton.isEnabled = false
-        // Configure the cell...
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section < sectionHeaders.count {
-            return sectionHeaders[section]
-        } else {
-            return ""
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
-    }
-    
-     // Override to support conditional editing of the table view.
-     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-     }
-
-    
-     // Override to support editing the table view.
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-     }
-
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -161,7 +59,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             }
         case "NewActivity":
             if let nc = segue.destination as? UINavigationController {
-                let vc = nc.topViewController as! ActivityDetailViewController
+                let vc = nc.topViewController as! NewActivityTableViewController
                 vc.currentUser = self.currentUser
                 vc.selectedActivity = Activity()
             }
@@ -170,4 +68,152 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+}
+
+// MARK: - Table view data source
+extension CategoryViewController {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return allActivities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
+        cell.NameLabel.text = allActivities[indexPath.row].data["name"] as? String
+        cell.SecondaryLabel.text = allActivities[indexPath.row].data["instruction"] as? String
+        
+        let status = allActivities[indexPath.row].status
+        switch status {
+        case .none:
+            cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
+            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU GOLD"), for: .normal)
+            cell.CompleteButtonPressed = { (cell) in
+                self.ShowAlertForRow(row: indexPath.row)
+            }
+        case .pending:
+            cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
+            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU GOLD"), for: .normal)
+        case .verified:
+            cell.CompleteButton.setTitle(allActivities[indexPath.row].data["date"] as? String, for: .normal)
+            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
+        }
+        
+        // Configure the cell...
+        
+        return cell
+    }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section < sectionHeaders.count {
+//            return sectionHeaders[section]
+//        } else {
+//            return ""
+//        }
+//    }
+    
+    func ShowAlertForRow(row: Int) {
+        print("Complete Button Pressed")
+        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+        }
+        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
+            self.allActivities[row].status = .pending
+            self.allActivities[row].data["date"] = Timestamp(date: Date())
+            self.UpdateDatabase(activity: self.allActivities[row])
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(submit)
+        self.present(alert, animated: true, completion: nil)
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedActivityIndex = indexPath.row
+        performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
+    }
+    
+    // Override to support conditional editing of the table view.
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    
+    
+    // Override to support editing the table view.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+}
+
+// MARK: - Firebase
+extension CategoryViewController {
+    
+    /// Fetches the activities in the current category
+    func FetchData() {
+        var activities: [Activity] = []
+        if selectedCategory == "All Activities" {
+            Activity.db.collection("activities").order(by: "title").getDocuments(completion: { (QuerySnapshot
+                , err) in
+                if let err = err {
+                    print("Error retreiving documents: \(err)")
+                } else {
+                    for doc in QuerySnapshot!.documents {
+                        activities.append(Activity(fromDoc: doc))
+                    }
+                    self.allActivities = activities
+                }
+            })
+        } else {
+            Activity.db.collection("activities").whereField("category", isEqualTo: selectedCategory).getDocuments(completion: { (QuerySnapshot
+                , err) in
+                if let err = err {
+                    print("Error retreiving documents: \(err)")
+                } else {
+                    for doc in QuerySnapshot!.documents {
+                        activities.append(Activity(fromDoc: doc))
+                    }
+                    self.allActivities = activities
+                }
+            })
+        }
+        
+    }
+    
+    
+    /// Fetches the activities completd by the current user
+    func CompletedActivities() {
+        var compActivities: [Activity] = []
+        Activity.db.collection("completed_activities").whereField("uid", isEqualTo: currentUser.data.uid).getDocuments(completion: { (QuerySnapshot, err) in
+            if let err = err {
+                print("Error retreiving documents: \(err)")
+            } else {
+                for activity in QuerySnapshot!.documents {
+                    compActivities.append(Activity(fromDoc: activity))
+                }
+                self.completedActivities = compActivities
+            }
+        })
+    }
+    
+    func UpdateDatabase(activity: Activity) {
+        if activity.id != nil {
+            Activity.db.collection("completed_activities").document().setData(activity.completed) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Activity successfully added to database!")
+                }
+            }
+        }
+    }
 }

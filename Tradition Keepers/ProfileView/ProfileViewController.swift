@@ -11,19 +11,14 @@ import Firebase
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var sectionHeaders = [
-        "General Activities",
-        "Extra Activities"
-    ]
-    
-    var completedActivities = [
-        ["Event 1", "Event 1 Description", "12/12/12"],
-        ["Event 2", "Event 2 Description", "11/11/11"],
-        ["Event 3", "Event 3 Description", "10/10/10"]
-    ]
-    
+    private var completedActivities: [Activity] = [] {
+        didSet {
+            TableView.reloadData()
+        }
+    }
     var currentUser: User!
     
+    @IBOutlet weak var TableView: UITableView!
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var ProgressLabel: UILabel!
     
@@ -31,91 +26,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GetUserActivities()
         UserNameLabel.text = "\(currentUser.data.first) \(currentUser.data.last)"
         ProgressLabel.text = "Progress: \(currentUser.data.uid)%"
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return sectionHeaders.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return completedActivities.count
-        } else if section == 1 {
-            return completedActivities.count
-        } else {
-            return 0
-        }
+        return completedActivities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameText.text = completedActivities[indexPath.row][0]
-        cell.AdditionalText.text = completedActivities[indexPath.row][1]
-        cell.CompleteButton.setTitle(completedActivities[indexPath.row][2], for: UIControl.State.normal)
+        cell.NameLabel.text = completedActivities[indexPath.row].data["title"] as? String
+        cell.SecondaryLabel.text = completedActivities[indexPath.row].data["instruction"] as? String
+        cell.CompleteButton.setTitle(completedActivities[indexPath.row].data["date"] as? String, for: UIControl.State.normal)
         cell.CompleteButton.isEnabled = false
         // Configure the cell...
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section < sectionHeaders.count {
-            return sectionHeaders[section]
-        } else {
-            return ""
-        }
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
     }
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     // MARK: - Navigation
     
@@ -134,4 +75,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+}
+
+// MARK: Firebase
+extension ProfileViewController {
+    func GetUserActivities() {
+        var compActivities : [Activity] = []
+        let docref = Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.data.uid).order(by: "date", descending: true)
+        docref.getDocuments(completion: { (QuerySnapshot, error) in
+            if let error = error {
+                print("Error retreiving documents: \(error.localizedDescription)")
+            } else {
+                for doc in QuerySnapshot!.documents {
+                    compActivities.append(Activity(fromDoc: doc))
+                }
+                self.completedActivities = compActivities
+            }
+        })
+    }
 }

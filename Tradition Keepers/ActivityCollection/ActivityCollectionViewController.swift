@@ -27,11 +27,11 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
     }
     
     var currentUser: User!
-
-    private var selectedCategory: String!
+    private var selectedCategory: String?
     
     var categories: [String] = [] {
         didSet {
+            Activity.categories = categories
             CategoryCollectionView?.reloadData()
         }
     }
@@ -44,7 +44,6 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
                 print("Error retreiving documents: \(err)")
             } else {
                 self.categories.removeAll()
-                self.categories.append("All Activities")
                 for doc in QuerySnapshot!.documents {
                     self.categories.append(doc.data()["name"] as! String)
                 }
@@ -101,37 +100,48 @@ extension ActivityCollectionViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count
+        return categories.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! ActivityCategoryCollectionViewCell
-        cell.CategoryLabel.text = categories[indexPath.item]
+        if indexPath.item == 0 {
+            cell.CategoryLabel.text = "All Activities"
+        } else {
+            cell.CategoryLabel.text = categories[indexPath.item - 1]
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isEditing {
-            let actionSheet = UIAlertController(title: "Options", message: "Please choose an option for \(categories[indexPath.item])", preferredStyle: .actionSheet)
-            let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                let prompt = UIAlertController(title: "Confirm Deletion?", message: "Are you sure you want to delete \(self.categories[indexPath.item])? This operation cannot be undone!", preferredStyle: .alert)
-                let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                
+            if indexPath.item > 0 {
+                let actionSheet = UIAlertController(title: "Options", message: "Please choose an option for \(categories[indexPath.item - 1])", preferredStyle: .actionSheet)
                 let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                    print("Item Deleted")
+                    let prompt = UIAlertController(title: "Confirm Deletion?", message: "Are you sure you want to delete \(self.categories[indexPath.item])? This operation cannot be undone!", preferredStyle: .alert)
+                    let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    
+                    let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                        print("Item Deleted")
+                    })
+                    
+                    prompt.addAction(cancelButton)
+                    prompt.addAction(deleteButton)
+                    self.navigationController!.present(prompt, animated: true, completion: nil)
                 })
-                
-                prompt.addAction(cancelButton)
-                prompt.addAction(deleteButton)
-                self.navigationController!.present(prompt, animated: true, completion: nil)
-            })
-            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            actionSheet.addAction(cancelButton)
-            actionSheet.addAction(deleteButton)
-            present(actionSheet, animated: true, completion: nil)
+                let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                actionSheet.addAction(cancelButton)
+                actionSheet.addAction(deleteButton)
+                present(actionSheet, animated: true, completion: nil)
+            }
         } else {
-            selectedCategory = self.categories[indexPath.item]
+            if indexPath.item == 0 {
+                selectedCategory = "All Activities"
+            } else {
+                selectedCategory = self.categories[indexPath.item - 1]
+            }
             performSegue(withIdentifier: "ShowCategoryDetail", sender: nil)
+            
         }
     }
 }
