@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210AA94422451C7700172102 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210AA94322451C7700172102 /* SettingsViewController.swift */; };
+		210AA9462245258F00172102 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210AA9452245258F00172102 /* Dashboard.storyboard */; };
+		210AA948224525A800172102 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210AA947224525A800172102 /* UserProfile.storyboard */; };
+		215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E4E2522491B770001D3F2 /* NavTabBarController.swift */; };
 		216A1619220E203900342707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1618220E203900342707 /* AppDelegate.swift */; };
-		216A161E220E203900342707 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 216A161C220E203900342707 /* Main.storyboard */; };
 		216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 216A161F220E203900342707 /* Tradition_Keepers.xcdatamodeld */; };
 		216A1623220E203B00342707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216A1622220E203B00342707 /* Assets.xcassets */; };
 		216A1626220E203B00342707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 216A1624220E203B00342707 /* LaunchScreen.storyboard */; };
@@ -19,6 +22,11 @@
 		216F3385223ED1A000E7B989 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3384223ED1A000E7B989 /* CategoryTableViewController.swift */; };
 		216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */; };
 		216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */; };
+		2173761A22428F2C006279D2 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2173761922428F2C006279D2 /* Login.storyboard */; };
+		2173761D22428FB2006279D2 /* NewActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2173761C22428FB2006279D2 /* NewActivity.storyboard */; };
+		2173761F22428FD6006279D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2173761E22428FD6006279D2 /* Main.storyboard */; };
+		217376252242C7B7006279D2 /* Traditions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 217376242242C7B7006279D2 /* Traditions.storyboard */; };
+		217376272242C822006279D2 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 217376262242C822006279D2 /* About.storyboard */; };
 		217652B8223C8D6D006886E8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217652B7223C8D6D006886E8 /* Activity.swift */; };
 		2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */; };
 		2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A67A223BEE2900037C0F /* MapTableViewCell.swift */; };
@@ -28,11 +36,11 @@
 		2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A683223C40CF00037C0F /* CategoryViewController.swift */; };
 		2199A686223C75D500037C0F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A685223C75D500037C0F /* User.swift */; };
 		21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */; };
-		21B8C983222444720037B1C5 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C982222444720037B1C5 /* NavTabBarController.swift */; };
+		21C3335F22491F0500454CC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21C3335E22491F0500454CC1 /* GoogleService-Info.plist */; };
+		21C33361224925F700454CC1 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21C33360224925F700454CC1 /* Settings.storyboard */; };
 		21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */; };
 		21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */; };
 		21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC81223B40EB00844CDF /* ProfileViewController.swift */; };
-		21FB3F0022243DE5005DCEF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21FB3EFF22243DE5005DCEF7 /* GoogleService-Info.plist */; };
 		5DBC924EF3F416B342579341 /* Pods_Tradition_KeepersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1121B7AB89A56F7D3ADB2A /* Pods_Tradition_KeepersTests.framework */; };
 		73CAB282991311005B3EC8F1 /* Pods_Tradition_KeepersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8316737D819E520B6072977 /* Pods_Tradition_KeepersUITests.framework */; };
 		BCF3290CA7A36187B014DF55 /* Pods_Tradition_Keepers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D6A8DA6F2AF748DD83E3DB /* Pods_Tradition_Keepers.framework */; };
@@ -56,9 +64,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		210AA94322451C7700172102 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		210AA9452245258F00172102 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		210AA947224525A800172102 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		215E4E2522491B770001D3F2 /* NavTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
 		216A1615220E203900342707 /* Tradition Keepers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradition Keepers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216A1618220E203900342707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		216A161D220E203900342707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		216A1620220E203900342707 /* Tradition_Keepers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tradition_Keepers.xcdatamodel; sourceTree = "<group>"; };
 		216A1622220E203B00342707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		216A1625220E203B00342707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +85,11 @@
 		216F3384223ED1A000E7B989 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapper.swift; sourceTree = "<group>"; };
+		2173761922428F2C006279D2 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		2173761C22428FB2006279D2 /* NewActivity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewActivity.storyboard; sourceTree = "<group>"; };
+		2173761E22428FD6006279D2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		217376242242C7B7006279D2 /* Traditions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Traditions.storyboard; sourceTree = "<group>"; };
+		217376262242C822006279D2 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		217652B7223C8D6D006886E8 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		2199A67A223BEE2900037C0F /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -83,11 +99,11 @@
 		2199A683223C40CF00037C0F /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		2199A685223C75D500037C0F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
-		21B8C982222444720037B1C5 /* NavTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
+		21C3335E22491F0500454CC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		21C33360224925F700454CC1 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		21DABC81223B40EB00844CDF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		21FB3EFF22243DE5005DCEF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2244324DF98B6D4A624B79F2 /* Pods-Tradition KeepersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition KeepersTests.debug.xcconfig"; path = "Target Support Files/Pods-Tradition KeepersTests/Pods-Tradition KeepersTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4E86EFED80C8EFD09DEF2C16 /* Pods-Tradition KeepersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition KeepersTests.release.xcconfig"; path = "Target Support Files/Pods-Tradition KeepersTests/Pods-Tradition KeepersTests.release.xcconfig"; sourceTree = "<group>"; };
 		55D14E1E7BBC2E38FD0987A1 /* Pods-Tradition Keepers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition Keepers.debug.xcconfig"; path = "Target Support Files/Pods-Tradition Keepers/Pods-Tradition Keepers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,10 +168,9 @@
 		216A1617220E203900342707 /* Tradition Keepers */ = {
 			isa = PBXGroup;
 			children = (
+				2173761622428CA2006279D2 /* Storyboards */,
 				216F3381223ECB3700E7B989 /* New Activity */,
 				217652B6223C8D50006886E8 /* Wrappers */,
-				216A161C220E203900342707 /* Main.storyboard */,
-				216A1624220E203B00342707 /* LaunchScreen.storyboard */,
 				216A1654220FCDBA00342707 /* Login View */,
 				21B8C981222444720037B1C5 /* Tab Controller */,
 				21DABC7C223AFAAA00844CDF /* Dashboard */,
@@ -163,6 +178,7 @@
 				2199A67E223C0FDF00037C0F /* ActivityCollection */,
 				2199A677223BEDE900037C0F /* Activity View */,
 				216A1651220FCC3C00342707 /* Stuff */,
+				210AA94322451C7700172102 /* SettingsViewController.swift */,
 			);
 			path = "Tradition Keepers";
 			sourceTree = "<group>";
@@ -188,11 +204,11 @@
 		216A1651220FCC3C00342707 /* Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				21C3335E22491F0500454CC1 /* GoogleService-Info.plist */,
 				216A1618220E203900342707 /* AppDelegate.swift */,
 				216A1622220E203B00342707 /* Assets.xcassets */,
 				216A1627220E203B00342707 /* Info.plist */,
 				216A161F220E203900342707 /* Tradition_Keepers.xcdatamodeld */,
-				21FB3EFF22243DE5005DCEF7 /* GoogleService-Info.plist */,
 			);
 			path = Stuff;
 			sourceTree = "<group>";
@@ -214,6 +230,22 @@
 				216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */,
 			);
 			path = "New Activity";
+			sourceTree = "<group>";
+		};
+		2173761622428CA2006279D2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				210AA947224525A800172102 /* UserProfile.storyboard */,
+				210AA9452245258F00172102 /* Dashboard.storyboard */,
+				217376242242C7B7006279D2 /* Traditions.storyboard */,
+				2173761C22428FB2006279D2 /* NewActivity.storyboard */,
+				2173761922428F2C006279D2 /* Login.storyboard */,
+				216A1624220E203B00342707 /* LaunchScreen.storyboard */,
+				2173761E22428FD6006279D2 /* Main.storyboard */,
+				21C33360224925F700454CC1 /* Settings.storyboard */,
+				217376262242C822006279D2 /* About.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		217652B6223C8D50006886E8 /* Wrappers */ = {
@@ -249,7 +281,7 @@
 		21B8C981222444720037B1C5 /* Tab Controller */ = {
 			isa = PBXGroup;
 			children = (
-				21B8C982222444720037B1C5 /* NavTabBarController.swift */,
+				215E4E2522491B770001D3F2 /* NavTabBarController.swift */,
 			);
 			path = "Tab Controller";
 			sourceTree = "<group>";
@@ -402,10 +434,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2173761F22428FD6006279D2 /* Main.storyboard in Resources */,
+				210AA9462245258F00172102 /* Dashboard.storyboard in Resources */,
+				21C33361224925F700454CC1 /* Settings.storyboard in Resources */,
 				216A1626220E203B00342707 /* LaunchScreen.storyboard in Resources */,
-				21FB3F0022243DE5005DCEF7 /* GoogleService-Info.plist in Resources */,
+				2173761D22428FB2006279D2 /* NewActivity.storyboard in Resources */,
 				216A1623220E203B00342707 /* Assets.xcassets in Resources */,
-				216A161E220E203900342707 /* Main.storyboard in Resources */,
+				217376272242C822006279D2 /* About.storyboard in Resources */,
+				217376252242C7B7006279D2 /* Traditions.storyboard in Resources */,
+				21C3335F22491F0500454CC1 /* GoogleService-Info.plist in Resources */,
+				2173761A22428F2C006279D2 /* Login.storyboard in Resources */,
+				210AA948224525A800172102 /* UserProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,9 +579,10 @@
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
 				21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */,
 				216F3385223ED1A000E7B989 /* CategoryTableViewController.swift in Sources */,
+				215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */,
 				2199A686223C75D500037C0F /* User.swift in Sources */,
-				21B8C983222444720037B1C5 /* NavTabBarController.swift in Sources */,
 				216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */,
+				210AA94422451C7700172102 /* SettingsViewController.swift in Sources */,
 				216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
 				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
@@ -590,14 +630,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		216A161C220E203900342707 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				216A161D220E203900342707 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		216A1624220E203B00342707 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

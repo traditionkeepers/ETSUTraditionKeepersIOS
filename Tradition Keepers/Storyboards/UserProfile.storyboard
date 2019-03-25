@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vsa-B9-iWC">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Your Profile-->
+        <scene sceneID="viZ-or-yRi">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-Vsa-B9-iWC" id="Vsa-B9-iWC" customClass="ProfileViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PQB-8q-bAx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YDY-E0-K5y">
+                                <rect key="frame" x="20" y="26" width="335" height="635"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UvD-Tm-be8">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="54"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eK7-bD-sPW">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="36"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <color key="textColor" name="ETSU WHITE"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress: XXX%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYQ-Uz-aFO">
+                                                <rect key="frame" x="0.0" y="38" width="335" height="16"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <color key="textColor" name="ETSU WHITE"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="sWU-fA-IqJ">
+                                        <rect key="frame" x="0.0" y="62" width="335" height="573"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActivityCompletedCell" rowHeight="80" id="X7e-Fb-nqi" customClass="ActivityTableViewCell" customModule="Tradition_Keepers" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="55.5" width="335" height="80"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ActivityCell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X7e-Fb-nqi" id="f5k-e4-6f7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="79.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yp0-kx-pDP">
+                                                            <rect key="frame" x="0.0" y="6" width="374" height="67.5"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffi-Cg-kQi">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="67.5" height="67.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="Ffi-Cg-kQi" secondAttribute="height" multiplier="1:1" id="4pW-je-wlx"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q28-49-SRp">
+                                                                    <rect key="frame" x="75.5" y="13.5" width="169.5" height="40.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3Y-zi-WH0">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="169.5" height="21.5"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUe-ij-Si0">
+                                                                            <rect key="frame" x="0.0" y="22.5" width="169.5" height="18"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alg-Ho-YbJ">
+                                                                    <rect key="frame" x="253" y="17" width="121" height="34"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                    <state key="normal" title="12/12/12">
+                                                                        <color key="titleColor" name="ETSU WHITE"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="CompleteActivity:" destination="X7e-Fb-nqi" eventType="touchUpInside" id="yDq-gs-gwj"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="yp0-kx-pDP" secondAttribute="trailing" id="3uN-vp-Pqi"/>
+                                                        <constraint firstItem="yp0-kx-pDP" firstAttribute="top" secondItem="f5k-e4-6f7" secondAttribute="top" constant="6" id="KYJ-kb-n8x"/>
+                                                        <constraint firstAttribute="bottom" secondItem="yp0-kx-pDP" secondAttribute="bottom" constant="6" id="MKo-wr-sZS"/>
+                                                        <constraint firstItem="yp0-kx-pDP" firstAttribute="leading" secondItem="f5k-e4-6f7" secondAttribute="leading" id="jZM-gr-tR0"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="CategoryImage" destination="Ffi-Cg-kQi" id="sJU-uL-aeh"/>
+                                                    <outlet property="CompleteButton" destination="alg-Ho-YbJ" id="yyv-34-PaA"/>
+                                                    <outlet property="NameLabel" destination="T3Y-zi-WH0" id="Vj7-Hb-nfZ"/>
+                                                    <outlet property="SecondaryLabel" destination="YUe-ij-Si0" id="fmU-Sd-F38"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Vsa-B9-iWC" id="Vcv-lK-8dH"/>
+                                            <outlet property="delegate" destination="Vsa-B9-iWC" id="1VS-dp-C3g"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="YDY-E0-K5y" firstAttribute="top" secondItem="TFP-Vn-R7M" secondAttribute="top" constant="6" id="FMa-nI-VA8"/>
+                            <constraint firstItem="YDY-E0-K5y" firstAttribute="leading" secondItem="TFP-Vn-R7M" secondAttribute="leading" constant="20" id="Pma-zz-8gd"/>
+                            <constraint firstItem="TFP-Vn-R7M" firstAttribute="trailing" secondItem="YDY-E0-K5y" secondAttribute="trailing" constant="20" id="cPN-jL-pcL"/>
+                            <constraint firstItem="TFP-Vn-R7M" firstAttribute="bottom" secondItem="YDY-E0-K5y" secondAttribute="bottom" constant="6" id="uXq-52-kpj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TFP-Vn-R7M"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Your Profile" id="iSS-3s-fUc"/>
+                    <connections>
+                        <outlet property="ProgressLabel" destination="iYQ-Uz-aFO" id="4wh-8a-kxR"/>
+                        <outlet property="TableView" destination="sWU-fA-IqJ" id="CZY-oM-HTw"/>
+                        <outlet property="UserNameLabel" destination="eK7-bD-sPW" id="Sp3-NU-FIe"/>
+                        <segue destination="OgS-VQ-HbX" kind="show" identifier="ShowActivityDetail" id="sQq-VJ-niZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I0N-2i-3Fm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6799" y="-899"/>
+        </scene>
+        <!--ActivityDetailView-->
+        <scene sceneID="6eO-Wk-lC2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Traditions" referencedIdentifier="ActivityDetailView" id="OgS-VQ-HbX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xnZ-Wq-K2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7685" y="-900"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU WHITE">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

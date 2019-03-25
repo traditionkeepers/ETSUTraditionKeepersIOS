@@ -16,7 +16,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             TableView.reloadData()
         }
     }
-    var currentUser: User!
+    
+    private var currentUser = User.currentUser
     private var selectedActivityIndex: Int!
     
     private var DateFormat = DateFormatter()
@@ -77,7 +78,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.currentUser = self.currentUser
                 vc.selectedActivity = completedActivities[selectedActivityIndex]
             }
         

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DXC-MV-k0U">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Traditions-->
+        <scene sceneID="DNK-7e-npR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Traditions" id="UaL-3z-hnZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nNh-i1-cLH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1684" y="-435.38230884557726"/>
+        </scene>
+        <!--UserProfile-->
+        <scene sceneID="aE1-Me-Kql">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserProfile" id="NKg-Jw-38I" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sxD-R3-JeS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1679.2" y="-533.43328335832086"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="hld-5M-gWU">
+            <objects>
+                <viewController title="Settings" id="beN-lb-2sF" customClass="SettingsViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EkY-OU-Cty">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZDS-yY-zHe" userLabel="Container Stack View">
+                                <rect key="frame" x="0.0" y="84" width="375" height="360.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="z2E-iy-1XJ" userLabel="Logo Stack View">
+                                        <rect key="frame" x="76" y="0.0" width="223.5" height="178.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ETSU LOGOLayer 1" translatesAutoresizingMaskIntoConstraints="NO" id="PC0-Z0-A4O">
+                                                <rect key="frame" x="44.5" y="0.0" width="134" height="134.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="PC0-Z0-A4O" secondAttribute="height" multiplier="1:1" id="zmy-0i-fto"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tradition Keepers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6F7-KB-0NA">
+                                                <rect key="frame" x="0.0" y="142.5" width="223.5" height="36"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <color key="textColor" name="ETSU GOLD"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zz5-zH-Ihk" userLabel="Filler Space">
+                                        <rect key="frame" x="132.5" y="186.5" width="110" height="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="kcY-fN-eUm"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZPF-IF-sHU" userLabel="Button Stack View">
+                                        <rect key="frame" x="151.5" y="208.5" width="72" height="152"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOk-uN-j39">
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="32"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <state key="normal" title="Login">
+                                                    <color key="titleColor" name="ETSU GOLD"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="LoginProfileButtonPressed:" destination="beN-lb-2sF" eventType="touchUpInside" id="fHx-C0-1k1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpq-Ma-zEX">
+                                                <rect key="frame" x="0.0" y="40" width="72" height="32"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <state key="normal" title="Traditions">
+                                                    <color key="titleColor" name="ETSU GOLD"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="UaL-3z-hnZ" kind="show" id="AKB-cq-BY0"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvI-xZ-jet">
+                                                <rect key="frame" x="0.0" y="80" width="72" height="32"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <state key="normal" title="About">
+                                                    <color key="titleColor" name="ETSU GOLD"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="LTx-1K-NLl" kind="show" id="KZc-Qt-pRm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sx2-dN-er8">
+                                                <rect key="frame" x="0.0" y="120" width="72" height="32"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <state key="normal" title="Logout">
+                                                    <color key="titleColor" name="ETSU GOLD"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="LogoutButtonPressed:" destination="beN-lb-2sF" eventType="touchUpInside" id="Uvr-NA-sqY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="ZDS-yY-zHe" firstAttribute="leading" secondItem="FQp-jR-eTe" secondAttribute="leading" id="NJN-3y-AhY"/>
+                            <constraint firstItem="FQp-jR-eTe" firstAttribute="bottom" secondItem="ZDS-yY-zHe" secondAttribute="bottom" multiplier="1.5" id="iLb-kJ-uyy"/>
+                            <constraint firstItem="PC0-Z0-A4O" firstAttribute="height" relation="lessThanOrEqual" secondItem="EkY-OU-Cty" secondAttribute="height" multiplier="0.2" constant="1" id="js6-1Q-ero"/>
+                            <constraint firstItem="ZDS-yY-zHe" firstAttribute="width" secondItem="EkY-OU-Cty" secondAttribute="width" id="l6T-Lc-yqL"/>
+                            <constraint firstItem="ZDS-yY-zHe" firstAttribute="centerX" secondItem="FQp-jR-eTe" secondAttribute="centerX" id="p3d-tp-LdS"/>
+                            <constraint firstItem="ZDS-yY-zHe" firstAttribute="top" secondItem="FQp-jR-eTe" secondAttribute="top" constant="20" id="pYA-GZ-c1W"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FQp-jR-eTe"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oaW-Jx-hJN"/>
+                    <connections>
+                        <outlet property="LoginProfileButton" destination="uOk-uN-j39" id="KT0-ch-LzK"/>
+                        <outlet property="LogoutButton" destination="sx2-dN-er8" id="Vhg-8A-unU"/>
+                        <outlet property="TraditionsButton" destination="Gpq-Ma-zEX" id="q5S-dI-iha"/>
+                        <segue destination="aDX-Qg-Uhr" kind="presentation" identifier="Login" id="Tde-vs-5rY"/>
+                        <segue destination="NKg-Jw-38I" kind="show" identifier="Profile" id="m7t-IY-Uwn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iOA-Qz-nem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2490.4000000000001" y="-453.82308845577217"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="1eT-nj-keA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="aDX-Qg-Uhr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gaw-ub-esb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1708" y="-494.75262368815595"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="b1m-kb-B4Z">
+            <objects>
+                <viewControllerPlaceholder storyboardName="About" id="LTx-1K-NLl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FHT-LE-CFF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1704.8" y="-393.10344827586209"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="gku-Al-73A">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DXC-MV-k0U" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" id="S6V-n1-udz"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6WL-yJ-VaA">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="beN-lb-2sF" kind="relationship" relationship="rootViewController" id="R7m-TU-P4U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AAX-8F-37b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3429.5999999999999" y="-453.82308845577217"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ETSU LOGOLayer 1" width="521" height="576"/>
+        <namedColor name="ETSU GOLD">
+            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

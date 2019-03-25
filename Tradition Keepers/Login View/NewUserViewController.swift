@@ -50,7 +50,8 @@ class NewUserViewController: UIViewController {
                 ref?.setData( [
                     "first": self.firstNameField.text!,
                     "last": self.lastNameField.text!,
-                    "eNumber": self.eNumberField.text!
+                    "eNumber": self.eNumberField.text!,
+                    "permission": "user"
                 ]) { err in
                     if let err = err {
                         let user = Auth.auth().currentUser

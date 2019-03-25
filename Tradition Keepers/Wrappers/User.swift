@@ -21,14 +21,24 @@ class User {
         return Auth.auth().currentUser?.uid ?? ""
     }
     
+    static var currentUser = User() {
+        didSet {
+            print("User set! - \(User.permission)")
+        }
+    }
+    static var permission: UserPermission {
+        get {
+            return currentUser.data.permission
+        }
+    }
+    
     var data: UserData
     
     init() {
         data = UserData()
-        data.first = "first"
-        data.last = "last"
-        data.uid = Auth.auth().currentUser?.uid ?? ""
-        data.permission = .user
+        data.first = ""
+        data.last = "Guest"
+        data.permission = .none
     }
     
     init(fromDoc doc: DocumentSnapshot) {
@@ -36,7 +46,14 @@ class User {
         data.first = doc.get("first") as? String ?? ""
         data.last = doc.get("last") as? String ?? ""
         data.uid = User.uid
-        data.permission = .user
+        
+        let permission = doc.get("permission") as? String ?? ""
+        switch permission {
+            case "user": data.permission = .user
+            case "staff": data.permission = .staff
+            case "admin": data.permission = .admin
+            default: data.permission = .none
+        }
     }
 }
 
@@ -44,10 +61,11 @@ struct UserData {
     var first = "",
     last = "",
     uid = "",
-    permission: UserPermission = .user
+    permission: UserPermission = .none
 }
 
 enum UserPermission {
+    case none
     case user
     case staff
     case admin

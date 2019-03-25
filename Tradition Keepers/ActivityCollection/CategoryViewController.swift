@@ -11,7 +11,7 @@ import Firebase
 
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var currentUser: User!
+    private let currentUser = User.currentUser
     var selectedCategory: String!
     private var selectedActivityIndex: Int!
     private var DateFormat = DateFormatter()
@@ -77,13 +77,11 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.currentUser = self.currentUser
                 vc.selectedActivity = allActivities[selectedActivityIndex]
             }
         case "NewActivity":
             if let nc = segue.destination as? UINavigationController {
                 let vc = nc.topViewController as! NewActivityTableViewController
-                vc.currentUser = self.currentUser
                 vc.selectedActivity = Activity()
             }
         default:

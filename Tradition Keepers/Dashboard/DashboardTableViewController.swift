@@ -19,24 +19,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     private var selectedIndex: Int!
     private var DateFormat = DateFormatter()
-    
-    private var currentUser: User = User() {
-        didSet {
-            let tabs = self.tabBarController?.viewControllers ?? []
-            for tab in tabs {
-                if let nc = tab as? UINavigationController {
-                    if let vc = nc.topViewController as? ActivityCollectionViewController {
-                        vc.currentUser = self.currentUser
-                        print("Found Collection")
-                    }
-                } else {
-                    print("Found Something Else")
-                }
-            }
-            usernameButton.setTitle("Welcome, \(currentUser.data.first) \(currentUser.data.last)", for: UIControl.State.normal)
-            progressButton.setTitle("Progress: \(currentUser.data.uid)%", for: UIControl.State.normal)
-        }
-    }
+    private var currentUser = User.currentUser
     
     @IBOutlet weak var TopThreeTable: UITableView!
     @IBOutlet weak var usernameButton: UIButton!
@@ -48,8 +31,10 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         DateFormat.timeStyle = .none
         DateFormat.locale = Locale(identifier: "en_US")
         
-        GetUserData()
-        GetTopThree()
+        if User.permission != .none {
+            GetUserData()
+            GetTopThree()
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -60,8 +45,9 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
+        usernameButton.setTitle("Welcome, \(currentUser.data.first)", for: .normal)
+        progressButton.setTitle(User.uid, for: .normal)
         if let selectionIndexPath = TopThreeTable.indexPathForSelectedRow {
             TopThreeTable.deselectRow(at: selectionIndexPath, animated: animated)
         }
@@ -85,12 +71,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.currentUser = self.currentUser
                 vc.selectedActivity = topThree?[selectedIndex]
-            }
-        case "ShowUserDetail":
-            if let vc = segue.destination as? ProfileViewController {
-                vc.currentUser = self.currentUser
             }
         default:
             break

@@ -10,7 +10,11 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-    var currentUser: User!
+    var user: User! {
+        didSet {
+            User.currentUser = user
+        }
+    }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         let enteredEmail = emailField.text! + "@etsu.edu"
@@ -21,14 +25,11 @@ class LoginViewController: UIViewController {
                 print(error.localizedDescription)
                 self.performSegue(withIdentifier: "newUser", sender: nil)
             } else if user != nil {
-                self.performSegue(withIdentifier: "login", sender: nil)
+                self.GetUserData()
+                self.dismiss(animated: true, completion: nil)
             }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
     
     // MARK: - Navigation
@@ -43,6 +44,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func dismissView(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func unwindToLogin(unwindSegue: UIStoryboardSegue) {
         emailField.text = ""
         passwordField.text = ""
@@ -50,4 +55,19 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+}
+
+extension LoginViewController {
+    func GetUserData() {
+        print("Fetching User Data")
+        let docref = Activity.db.collection("users").document(User.uid)
+        docref.getDocument(completion: { (document, error) in
+            if let document = document, document.exists {
+                print("User Found!")
+                self.user = User(fromDoc: document)
+            } else {
+                print("Error fetching user doc! \(String(describing: error))")
+            }
+        })
+    }
 }

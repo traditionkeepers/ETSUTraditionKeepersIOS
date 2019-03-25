@@ -12,7 +12,7 @@ import Firebase
 class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var TableView: UITableView!
-    var currentUser: User!
+    private let currentUser = User.currentUser
     var selectedActivity: Activity!
     private var DateFormat = DateFormatter()
     

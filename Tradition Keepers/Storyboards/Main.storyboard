@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7YP-lH-RPh">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Dashboard-->
+        <scene sceneID="QFx-zI-HhU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="vwW-di-i4d" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ftZ-5w-fNB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8F9-cL-6tM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1054" y="-502"/>
+        </scene>
+        <!--Traditions-->
+        <scene sceneID="ERH-YC-T74">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Traditions" id="7vp-Rh-fgs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="cwT-qa-bdC"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjj-QP-i7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1057" y="-453"/>
+        </scene>
+        <!--Nav Tab Bar Controller-->
+        <scene sceneID="wjN-vn-VgG">
+            <objects>
+                <tabBarController id="7YP-lH-RPh" customClass="NavTabBarController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oFd-rq-6eb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vwW-di-i4d" kind="relationship" relationship="viewControllers" id="uzi-Bw-E15"/>
+                        <segue destination="7vp-Rh-fgs" kind="relationship" relationship="viewControllers" id="iVo-Vs-hQR"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F6k-y6-5n9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1762" y="-451"/>
+        </scene>
+    </scenes>
+</document>

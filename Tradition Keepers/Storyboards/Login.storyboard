@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hge-Ro-W8W">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login Screen-->
+        <scene sceneID="8P5-cK-lpE">
+            <objects>
+                <viewController title="Login Screen" id="hge-Ro-W8W" customClass="LoginViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uv1-Em-lJ3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="0fs-5T-Kdv">
+                                <rect key="frame" x="0.0" y="64" width="414" height="510.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xmT-wi-6Vr">
+                                        <rect key="frame" x="95.5" y="0.0" width="223.5" height="235.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ETSU LOGOLayer 1" translatesAutoresizingMaskIntoConstraints="NO" id="Bng-sr-ftv">
+                                                <rect key="frame" x="21.5" y="0.0" width="180" height="180"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Bng-sr-ftv" secondAttribute="height" multiplier="1:1" id="dA0-wl-ed1"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tradition Keepers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyS-Hp-C72">
+                                                <rect key="frame" x="0.0" y="188" width="223.5" height="47.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <color key="textColor" name="ETSU GOLD"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y2g-K4-39v">
+                                        <rect key="frame" x="57" y="275.5" width="300" height="235"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="EX4-Lx-fIQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETSU Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5W-S9-dHY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" name="ETSU WHITE"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETSU Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XJm-jT-LVB">
+                                                        <rect key="frame" x="0.0" y="30" width="300" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="XJm-jT-LVB" firstAttribute="leading" secondItem="EX4-Lx-fIQ" secondAttribute="leading" id="Fam-z8-Ht6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="XJm-jT-LVB" secondAttribute="trailing" id="GKQ-oT-P8g"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="VlI-up-oYF"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="VH7-Oz-141">
+                                                <rect key="frame" x="0.0" y="60" width="300" height="60"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1J7-ZY-YcB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="74" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" name="ETSU WHITE"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETSU Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yS1-sH-XrT">
+                                                        <rect key="frame" x="0.0" y="30" width="300" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="yS1-sH-XrT" secondAttribute="trailing" id="dTZ-sF-8RU"/>
+                                                    <constraint firstItem="yS1-sH-XrT" firstAttribute="leading" secondItem="VH7-Oz-141" secondAttribute="leading" id="nfG-Dq-m0n"/>
+                                                </constraints>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1O-1L-UeI">
+                                                <rect key="frame" x="0.0" y="120" width="300" height="115"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <state key="normal" title="Login">
+                                                    <color key="titleColor" name="ETSU GOLD"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="loginButtonTapped:" destination="hge-Ro-W8W" eventType="touchUpInside" id="mzy-xl-mEV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zf9-tU-ALB">
+                                <rect key="frame" x="106" y="812" width="202" height="30"/>
+                                <state key="normal" title="Continue Without Registering">
+                                    <color key="titleColor" name="ETSU GOLD"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissView:" destination="hge-Ro-W8W" eventType="touchUpInside" id="sBh-Wd-7H3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="0fs-5T-Kdv" firstAttribute="width" secondItem="uv1-Em-lJ3" secondAttribute="width" id="BB8-OY-AhX"/>
+                            <constraint firstItem="0fs-5T-Kdv" firstAttribute="leading" secondItem="VDp-lA-ekb" secondAttribute="leading" id="Hme-AM-g4v"/>
+                            <constraint firstItem="0fs-5T-Kdv" firstAttribute="centerX" secondItem="VDp-lA-ekb" secondAttribute="centerX" id="QIy-px-Gh9"/>
+                            <constraint firstItem="Bng-sr-ftv" firstAttribute="height" relation="lessThanOrEqual" secondItem="uv1-Em-lJ3" secondAttribute="height" multiplier="0.2" constant="1" id="dcI-JU-Jdc"/>
+                            <constraint firstItem="VDp-lA-ekb" firstAttribute="bottom" secondItem="zf9-tU-ALB" secondAttribute="bottom" constant="20" id="gaI-G5-MjQ"/>
+                            <constraint firstItem="0fs-5T-Kdv" firstAttribute="top" secondItem="VDp-lA-ekb" secondAttribute="top" constant="20" id="rfR-Gk-lhO"/>
+                            <constraint firstItem="VDp-lA-ekb" firstAttribute="bottom" secondItem="0fs-5T-Kdv" secondAttribute="bottom" multiplier="1.5" id="rmT-fe-NSM"/>
+                            <constraint firstItem="zf9-tU-ALB" firstAttribute="centerX" secondItem="VDp-lA-ekb" secondAttribute="centerX" id="wsc-T7-FkI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VDp-lA-ekb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hYK-Ca-bEK"/>
+                    <connections>
+                        <outlet property="emailField" destination="XJm-jT-LVB" id="ULD-dJ-0Jc"/>
+                        <outlet property="passwordField" destination="yS1-sH-XrT" id="iGf-RC-afl"/>
+                        <segue destination="nE7-zv-ROu" kind="presentation" identifier="newUser" id="OZq-eC-zQy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2t3-JQ-gz2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1666.6666666666667" y="133.92857142857142"/>
+        </scene>
+        <!--New User-->
+        <scene sceneID="WRg-vA-jBq">
+            <objects>
+                <viewController id="nE7-zv-ROu" customClass="NewUserViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xO4-MP-6ZC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Kje-T6-6y7">
+                                <rect key="frame" x="20" y="246" width="374" height="264.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bXA-X7-PhV">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="58.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8A-94-YMm">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="ETSU WHITE"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kHu-v8-vsS">
+                                                <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uWQ-A1-Uub">
+                                        <rect key="frame" x="0.0" y="77.5" width="374" height="58.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9XV-Kr-tvI">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="ETSU WHITE"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vml-6S-toO">
+                                                <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="m0o-xp-Dm2">
+                                        <rect key="frame" x="0.0" y="155" width="374" height="58.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gg-ki-8H3">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="ETSU WHITE"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09j-me-Zom">
+                                                <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wu-d3-mAv">
+                                        <rect key="frame" x="0.0" y="232.5" width="374" height="32"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" name="ETSU GOLD"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="NewUserAndLogin:" destination="nE7-zv-ROu" eventType="touchUpInside" id="iLe-3h-PIv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete Your Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Don-dK-x2G">
+                                <rect key="frame" x="68" y="108" width="278" height="36"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <color key="textColor" name="ETSU GOLD"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqW-Be-bQD">
+                                <rect key="frame" x="134.5" y="810" width="145" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <state key="normal" title="Already Registered?">
+                                    <color key="titleColor" name="ETSU GOLD"/>
+                                </state>
+                                <connections>
+                                    <segue destination="5Dm-Ph-WzV" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithUnwindSegue:" id="JMc-8z-Ny8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="Don-dK-x2G" firstAttribute="top" secondItem="11y-c4-KeV" secondAttribute="top" constant="64" id="1aG-T0-t2v"/>
+                            <constraint firstItem="Kje-T6-6y7" firstAttribute="centerX" secondItem="11y-c4-KeV" secondAttribute="centerX" id="HEe-5Q-6cn"/>
+                            <constraint firstItem="KqW-Be-bQD" firstAttribute="bottom" secondItem="11y-c4-KeV" secondAttribute="bottom" constant="-20" id="NUN-ma-IRl"/>
+                            <constraint firstItem="KqW-Be-bQD" firstAttribute="centerX" secondItem="11y-c4-KeV" secondAttribute="centerX" id="hB5-i8-c1k"/>
+                            <constraint firstItem="11y-c4-KeV" firstAttribute="trailing" secondItem="Kje-T6-6y7" secondAttribute="trailing" constant="20" id="hJQ-KV-QFl"/>
+                            <constraint firstItem="Kje-T6-6y7" firstAttribute="leading" secondItem="11y-c4-KeV" secondAttribute="leading" constant="20" id="qaX-Tx-57p"/>
+                            <constraint firstItem="Kje-T6-6y7" firstAttribute="centerY" secondItem="11y-c4-KeV" secondAttribute="centerY" constant="-75" id="rMk-Fo-60l"/>
+                            <constraint firstItem="Don-dK-x2G" firstAttribute="centerX" secondItem="11y-c4-KeV" secondAttribute="centerX" id="tHT-ID-UfJ"/>
+                            <constraint firstItem="Kje-T6-6y7" firstAttribute="centerX" secondItem="11y-c4-KeV" secondAttribute="centerX" id="wUr-io-fJW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="11y-c4-KeV"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New User" id="e49-gF-Zds">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="km1-Dd-C22"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="qWu-GN-s4a"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="eNumberField" destination="09j-me-Zom" id="jcG-4s-kGx"/>
+                        <outlet property="firstNameField" destination="kHu-v8-vsS" id="z3Q-Rd-oo9"/>
+                        <outlet property="lastNameField" destination="Vml-6S-toO" id="voG-4x-yoX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mC8-LV-10X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5Dm-Ph-WzV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2757" y="134"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ETSU LOGOLayer 1" width="521" height="576"/>
+        <namedColor name="ETSU GOLD">
+            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU WHITE">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
