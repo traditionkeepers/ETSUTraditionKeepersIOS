@@ -13,7 +13,7 @@ FAQ:
  
 <h3>2) Do not "Clean Build Folder"!!!</h3>
 <ul>
-  <li>If you do, run "pod install" again to regenerate workspace</li>
+  <li>If you do, close Xcode run "pod install" again to regenerate workspace</li>
 </ul>
   
  
