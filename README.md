@@ -1,8 +1,7 @@
 # ETSUTraditionKeepersIOS
 Development for Tradition Keepers on an IOS platform
 
-FAQ:
-
+<h2>FAQ:</h2>
 <h3>Initial Steps before building...</h3>
 <ol>
   <li>Ensuere "cocoapods" is installed. - "sudo gem install cocoapods"</li>
