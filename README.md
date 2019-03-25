@@ -21,7 +21,7 @@ Development for Tradition Keepers on an IOS platform
   <li>From the menu bar: Xcode -> Preferences -> Accounts -> +</li>
 </ul>
 
-<h3>Do not "Clean Build Folder"!!!</h3>
+<h3>Do not "Clean Build Folder"</h3>
 <ul>
   <li>If you do, close Xcode run "pod install" again to regenerate workspace</li>
 </ul>
