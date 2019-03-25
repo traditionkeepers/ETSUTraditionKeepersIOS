@@ -12,6 +12,7 @@ Development for Tradition Keepers on an IOS platform
  
 <h3>Open the <em>Workspace</em> file, not Project file</h3>
 <ul>
+  <li>File extension: .xcworkspace</li>
   <li>Opening the project will not link Firebase assets</li>
 </ul>
 
