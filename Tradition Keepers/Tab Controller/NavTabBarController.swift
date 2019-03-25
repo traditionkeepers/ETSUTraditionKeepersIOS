@@ -11,6 +11,7 @@ import UIKit
 class NavTabBarController: UITabBarController {
     
     private var initialLoad = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -36,11 +36,14 @@ class SettingsViewController: UIViewController {
             LoginProfileButton?.setTitle("Login", for: .normal)
             TraditionsButton.isHidden = false
             LogoutButton.isHidden = true
+            tabBarController?.tabBar.isHidden = true
             
         default:
             LoginProfileButton.setTitle("Profile", for: .normal)
             TraditionsButton.isHidden = true
             LogoutButton.isHidden = false
+            tabBarController?.tabBar.isHidden = false
+            tabBarController?.tabBar.reloadInputViews()
         }
     }
     
@@ -53,6 +56,7 @@ class SettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         showNavBar = false
         navigationController?.isNavigationBarHidden = !showNavBar
+        setupView()
     }
     
     

@@ -9,32 +9,24 @@
 import UIKit
 import Firebase
 
+/// Class for managing the Login View Controller
 class LoginViewController: UIViewController {
-    var user: User! {
+    
+    /// Local property containing the current User object
+    private var user: User! {
         didSet {
             User.currentUser = user
         }
     }
     
-    @IBAction func loginButtonTapped(_ sender: UIButton) {
-        let enteredEmail = emailField.text! + "@etsu.edu"
-        let enteredPassword = passwordField.text!
-        
-        Auth.auth().signIn(withEmail: enteredEmail, password: enteredPassword) { (user, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                self.performSegue(withIdentifier: "newUser", sender: nil)
-            } else if user != nil {
-                self.GetUserData()
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-        
-    }
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    /// Configures the destination view controllers when a segue is triggered
+    ///
+    /// - Parameters:
+    ///   - segue: The triggered segue
+    ///   - sender: The object that called the segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -44,21 +36,55 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func dismissView(_ sender: Any) {
+    // MARK: - Outlets
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
+    // MARK: - Actions
+    
+    /// Action to be completed when the Login button is tapped.
+    /// Authenticates the credentials with Firebase server
+    ///
+    /// - Parameter sender: the Button object that triggered the action
+    @IBAction func LoginButtonTapped(_ sender: UIButton) {
+        let enteredEmail = emailField.text! + "@etsu.edu"
+        let enteredPassword = passwordField.text!
+        
+        Auth.auth().signIn(withEmail: enteredEmail, password: enteredPassword) { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                self.performSegue(withIdentifier: "newUser", sender: sender)
+            } else if user != nil {
+                self.FetchUserData()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    
+    /// Dismisses the modal view when user presses designated button.
+    ///
+    /// - Parameter sender: The object that triggered the action.
+    @IBAction func DismissView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func unwindToLogin(unwindSegue: UIStoryboardSegue) {
+    
+    /// Segue to allow unwinding from another view controller.
+    /// Resets the text fields.
+    ///
+    /// - Parameter unwindSegue: The segue that triggered the action.
+    @IBAction func UnwindToLogin(unwindSegue: UIStoryboardSegue) {
         emailField.text = ""
         passwordField.text = ""
     }
-    
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
 }
 
+// MARK: - Firebase
 extension LoginViewController {
-    func GetUserData() {
+    
+    /// Fetches the current user"s information from the database.
+    func FetchUserData() {
         print("Fetching User Data")
         let docref = Activity.db.collection("users").document(User.uid)
         docref.getDocument(completion: { (document, error) in
