@@ -50,15 +50,13 @@ class LoginViewController: UIViewController {
         let enteredEmail = emailField.text! + "@etsu.edu"
         let enteredPassword = passwordField.text!
         
-        Auth.auth().signIn(withEmail: enteredEmail, password: enteredPassword) { (user, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                self.performSegue(withIdentifier: "newUser", sender: sender)
-            } else if user != nil {
-                self.FetchUserData()
+        User.LogIn(username: enteredEmail, password: enteredPassword, completion: { complete in
+            if complete {
                 self.dismiss(animated: true, completion: nil)
+            } else {
+                self.performSegue(withIdentifier: "New User", sender: nil)
             }
-        }
+        })
     }
     
     
@@ -77,23 +75,5 @@ class LoginViewController: UIViewController {
     @IBAction func UnwindToLogin(unwindSegue: UIStoryboardSegue) {
         emailField.text = ""
         passwordField.text = ""
-    }
-}
-
-// MARK: - Firebase
-extension LoginViewController {
-    
-    /// Fetches the current user"s information from the database.
-    func FetchUserData() {
-        print("Fetching User Data")
-        let docref = Activity.db.collection("users").document(User.uid)
-        docref.getDocument(completion: { (document, error) in
-            if let document = document, document.exists {
-                print("User Found!")
-                self.user = User(fromDoc: document)
-            } else {
-                print("Error fetching user doc! \(String(describing: error))")
-            }
-        })
     }
 }

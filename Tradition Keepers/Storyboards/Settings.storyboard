@@ -26,7 +26,7 @@
                 <viewControllerPlaceholder storyboardName="UserProfile" id="NKg-Jw-38I" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxD-R3-JeS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1679.2" y="-533.43328335832086"/>
+            <point key="canvasLocation" x="-1684" y="-588"/>
         </scene>
         <!--Settings-->
         <scene sceneID="hld-5M-gWU">
@@ -126,7 +126,7 @@
                         <outlet property="LoginProfileButton" destination="uOk-uN-j39" id="KT0-ch-LzK"/>
                         <outlet property="LogoutButton" destination="sx2-dN-er8" id="Vhg-8A-unU"/>
                         <outlet property="TraditionsButton" destination="Gpq-Ma-zEX" id="q5S-dI-iha"/>
-                        <segue destination="aDX-Qg-Uhr" kind="presentation" identifier="Login" id="Tde-vs-5rY"/>
+                        <segue destination="aDX-Qg-Uhr" kind="presentation" identifier="Login" modalPresentationStyle="formSheet" id="Tde-vs-5rY"/>
                         <segue destination="NKg-Jw-38I" kind="show" identifier="Profile" id="m7t-IY-Uwn"/>
                     </connections>
                 </viewController>
@@ -140,7 +140,7 @@
                 <viewControllerPlaceholder storyboardName="Login" id="aDX-Qg-Uhr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaw-ub-esb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1708" y="-494.75262368815595"/>
+            <point key="canvasLocation" x="-1708" y="-485"/>
         </scene>
         <!--About-->
         <scene sceneID="b1m-kb-B4Z">

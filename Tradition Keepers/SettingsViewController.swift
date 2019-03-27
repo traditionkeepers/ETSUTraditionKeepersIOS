@@ -12,6 +12,10 @@ import Firebase
 /// View Controller for the Settings View
 class SettingsViewController: UIViewController {
     
+    func currentUserChanged(user: User) {
+        setupView()
+        print("Reloading View")
+    }
     
     /// Determines if the Navigation Bar is visible
     private var showNavBar = false
@@ -31,19 +35,21 @@ class SettingsViewController: UIViewController {
     
     /// Configures the view for the current user's permissions
     private func setupView() {
+        print("Updating Settings")
         switch User.permission {
         case .none:
             LoginProfileButton?.setTitle("Login", for: .normal)
             TraditionsButton.isHidden = false
             LogoutButton.isHidden = true
-            tabBarController?.tabBar.isHidden = true
             
         default:
             LoginProfileButton.setTitle("Profile", for: .normal)
             TraditionsButton.isHidden = true
             LogoutButton.isHidden = false
-            tabBarController?.tabBar.isHidden = false
-            tabBarController?.tabBar.reloadInputViews()
+        }
+        
+        if let tc = self.tabBarController as? NavTabBarController {
+            tc.updateTabs()
         }
     }
     
@@ -55,8 +61,11 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showNavBar = false
-        navigationController?.isNavigationBarHidden = !showNavBar
-        setupView()
+        navigationController?.setNavigationBarHidden(!showNavBar, animated: animated)
+        
+        User.onUpdate = { user in
+            self.setupView()
+        }
     }
     
     
@@ -76,7 +85,8 @@ class SettingsViewController: UIViewController {
     ///
     /// - Parameter sender: The object that triggered the action
     @IBAction func LogoutButtonPressed(_ sender: Any) {
-        // Logout Code
+        print("Logging Out")
+        User.LogOut()
     }
     
     
