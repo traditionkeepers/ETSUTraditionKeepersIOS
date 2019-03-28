@@ -25,7 +25,7 @@ class NewActivityTableViewController: UITableViewController {
     @IBOutlet weak var InstructionsTextBox: UITextView!
     
     @IBAction func UnwindToNewActivity(unwindSegue: UIStoryboardSegue) {
-        if let vc = unwindSegue.source as? CategoryTableViewController {
+        if let vc = unwindSegue.source as? NewCategoryTableViewController {
             workingActivity?.activity_data["category"] = vc.selectedCategory
         }
     }
@@ -120,8 +120,7 @@ extension NewActivityTableViewController {
         
         let category = activity.activity_data["category"] as! String
         Activity.db.collection("categories").document( category.lowercased() ).setData([
-            "name": category,
-            "count": 0
+            "title": category
         ]) {err in
             if let err = err {
                 print("Error writing document: \(err.localizedDescription)")

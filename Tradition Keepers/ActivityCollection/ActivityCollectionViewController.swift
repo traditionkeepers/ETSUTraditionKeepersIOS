@@ -29,7 +29,7 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
     private let currentUser = User.currentUser
     private var selectedCategory: String?
     
-    var categories: [String] = [] {
+    var categories: [Category] = [] {
         didSet {
             Activity.categories = categories
             CategoryCollectionView?.reloadData()
@@ -45,7 +45,7 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
             } else {
                 self.categories.removeAll()
                 for doc in QuerySnapshot!.documents {
-                    self.categories.append(doc.data()["name"] as! String)
+                    self.categories.append(Category(fromDoc: doc))
                 }
                 print(self.categories)
             }
@@ -107,7 +107,7 @@ extension ActivityCollectionViewController {
         if indexPath.item == 0 {
             cell.CategoryLabel.text = "All Activities"
         } else {
-            cell.CategoryLabel.text = categories[indexPath.item - 1]
+            cell.CategoryLabel.text = categories[indexPath.item - 1].name
         }
         return cell
     }
@@ -137,7 +137,7 @@ extension ActivityCollectionViewController {
             if indexPath.item == 0 {
                 selectedCategory = "All Activities"
             } else {
-                selectedCategory = self.categories[indexPath.item - 1]
+                selectedCategory = self.categories[indexPath.item - 1].name
             }
             performSegue(withIdentifier: "ShowCategoryDetail", sender: nil)
             

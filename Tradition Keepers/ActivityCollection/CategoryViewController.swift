@@ -11,36 +11,51 @@ import Firebase
 
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private let currentUser = User.currentUser
-    var selectedCategory: String!
-    private var selectedActivityIndex: Int!
-    private var DateFormat = DateFormatter()
-    
-    private var allActivities: [Activity] = [] {
-        didSet {
-            for act in completedActivities {
-                if let index = allActivities.firstIndex(of: act), index >= 0 {
-                    allActivities[index] = act
-                }
-            }
-            ActivityTable.reloadData()
-        }
-    }
-    
-    private var completedActivities: [Activity] = [] {
-        didSet {
-            for act in completedActivities {
-                if let index = allActivities.firstIndex(of: act), index >= 0 {
-                    allActivities[index] = act
-                }
-            }
-        }
-    }
-    
-    @IBOutlet weak var CategoryNameLabel: UILabel!
-    @IBOutlet weak var ProgressLabel: UILabel!
+    // MARK: - Outlets
+    @IBOutlet weak var SortSelector: UISegmentedControl!
     @IBOutlet weak var ActivityTable: UITableView!
     
+    // MARK: - Actions
+    
+    // MARK: - Properties
+    private enum SortBy {
+        case category
+        case alphebetical
+        case timeline
+    }
+    
+    private var categories: [Category] = Category.Categories
+
+    private let currentUser = User.currentUser
+    var selectedCategory: String!
+    private var selectedActivityIndex: IndexPath!
+    private var DateFormat = DateFormatter()
+    
+    private var allActivities: [String:[Activity]] = [:] {
+        didSet {
+            for cat in completedActivities.keys {
+                for act in completedActivities[cat]! {
+                    if let index = allActivities[cat]!.firstIndex(of: act), index >= 0 {
+                        allActivities[cat]![index] = act
+                    }
+                }
+            }
+        }
+    }
+    
+    private var completedActivities: [String:[Activity]] = [:] {
+        didSet {
+            for cat in completedActivities.keys {
+                for act in completedActivities[cat]! {
+                    if let index = allActivities[cat]!.firstIndex(of: act), index >= 0 {
+                        allActivities[cat]![index] = act
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,10 +63,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         DateFormat.timeStyle = .none
         DateFormat.locale = Locale(identifier: "en_US")
         
-        CategoryNameLabel.text = selectedCategory
-        ProgressLabel.text = "Progress: \(currentUser.data.uid)%"
-        FetchAllActivitiesForSelectedCategory()
-        FetchCompletedActivitiesForSelectedCategory()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -63,8 +74,13 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Clear Selection
         if let selectionIndexPath = ActivityTable.indexPathForSelectedRow {
             ActivityTable.deselectRow(at: selectionIndexPath, animated: animated)
+        }
+        
+        for category in categories {
+            FetchAllActivitiesForCategory(category.name)
         }
     }
     
@@ -77,7 +93,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.selectedActivity = allActivities[selectedActivityIndex]
+                vc.selectedActivity = allActivities[categories[selectedActivityIndex.section].name]![selectedActivityIndex.row]
             }
         case "NewActivity":
             if let nc = segue.destination as? UINavigationController {
@@ -96,40 +112,43 @@ extension CategoryViewController {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return categories.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return allActivities.count
+        return categories[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameLabel.text = allActivities[indexPath.row].activity_data["title"] as? String
-        cell.SecondaryLabel.text = allActivities[indexPath.row].activity_data["instruction"] as? String
         
-        let status = allActivities[indexPath.row].status
-        switch status {
-        case .none:
-            cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
-            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU GOLD"), for: .normal)
-            cell.CompleteButtonPressed = { (cell) in
-                self.ShowAlertForRow(row: indexPath.row)
-            }
-        case .pending:
-            cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
-            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
-            cell.CompleteButtonPressed = nil
-        case .verified:
-            if let date = allActivities[indexPath.row].completion_data["date"] as? Timestamp {
-                cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: .normal)
+        cell.NameLabel.text = allActivities[categories[indexPath.section].name]![indexPath.row].activity_data["title"] as? String
+        cell.SecondaryLabel.text = allActivities[categories[indexPath.section].name]![indexPath.row].activity_data["instruction"] as? String
+        
+        if User.permission != .user {
+            cell.CompleteButton.isHidden = true
+        } else {
+            let status = allActivities[categories[indexPath.section].name]![indexPath.row].status
+            switch status {
+            case .none:
+                cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
+                cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU GOLD"), for: .normal)
+                cell.CompleteButtonPressed = { (cell) in
+                    self.ShowAlertForSelection(indexPath)
+                }
+            case .pending:
+                cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
                 cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
                 cell.CompleteButtonPressed = nil
+            case .verified:
+                if let date = allActivities[categories[indexPath.section].name]![indexPath.row].completion_data["date"] as? Timestamp {
+                    cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: .normal)
+                    cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
+                    cell.CompleteButtonPressed = nil
+                }
             }
         }
-        
-        // Configure the cell...
         
         return cell
     }
@@ -142,17 +161,17 @@ extension CategoryViewController {
 //        }
 //    }
     
-    func ShowAlertForRow(row: Int) {
+    func ShowAlertForSelection(_ indexPath: IndexPath) {
         print("Complete Button Pressed")
         let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.allActivities[row].status = .pending
-            self.allActivities[row].completion_data["user_id"] = User.uid
-            self.allActivities[row].completion_data["activity_ref"] = Activity.db.document("activities/\(self.allActivities[row].id ?? "")")
-            self.allActivities[row].completion_data["date"] = Timestamp(date: Date())
-            self.UpdateDatabase(activity: self.allActivities[row])
+            self.allActivities[self.categories[indexPath.section].name]![indexPath.row].status = .pending
+            self.allActivities[self.categories[indexPath.section].name]![indexPath.row].completion_data["user_id"] = User.uid
+            self.allActivities[self.categories[indexPath.section].name]![indexPath.row].completion_data["activity_ref"] = Activity.db.document("activities/\(self.allActivities[self.categories[indexPath.section].name]![indexPath.row].id ?? "")")
+            self.allActivities[self.categories[indexPath.section].name]![indexPath.row].completion_data["date"] = Timestamp(date: Date())
+            self.UpdateDatabase(activity: self.allActivities[self.categories[indexPath.section].name]![indexPath.row])
         }
         
         alert.addAction(cancel)
@@ -161,7 +180,7 @@ extension CategoryViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedActivityIndex = indexPath.row
+        selectedActivityIndex = indexPath
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
     }
     
@@ -186,40 +205,70 @@ extension CategoryViewController {
 // MARK: - Firebase
 extension CategoryViewController {
     
-    /// Fetches the activities in the current category
-    func FetchAllActivitiesForSelectedCategory() {
+    
+    /// Fetches all category information from Firestore.
+    func FetchCategories() {
+        var tempCategories:[Category] = []
+        Activity.db.collection("categories").order(by: "title").getDocuments(completion: { (QuerySnapshot, err) in
+            if let err = err {
+                print("Error retreiving documents: \(err)")
+            } else {
+                self.categories.removeAll()
+                for doc in QuerySnapshot!.documents {
+                    tempCategories.append(Category(fromDoc: doc))
+                }
+                Category.Categories = tempCategories
+            }
+        })
+    }
+    
+    func FetchAllActivitiesByTitle() {
         var activities: [Activity] = []
-        if selectedCategory == "All Activities" {
-            Activity.db.collection("activities").order(by: "title").getDocuments(completion: { (QuerySnapshot
-                , err) in
-                if let err = err {
-                    print("Error retreiving documents: \(err)")
-                } else {
-                    for doc in QuerySnapshot!.documents {
-                        activities.append(Activity(fromDoc: doc))
-                    }
-                    self.allActivities = activities
+        Activity.db.collection("activities").order(by: "title").getDocuments(completion: { (QuerySnapshot
+            , err) in
+            if let err = err {
+                print("Error retreiving documents: \(err)")
+            } else {
+                for doc in QuerySnapshot!.documents {
+                    activities.append(Activity(fromDoc: doc))
                 }
-            })
-        } else {
-            Activity.db.collection("activities").whereField("category", isEqualTo: selectedCategory).getDocuments(completion: { (QuerySnapshot
-                , err) in
-                if let err = err {
-                    print("Error retreiving documents: \(err)")
-                } else {
-                    for doc in QuerySnapshot!.documents {
-                        activities.append(Activity(fromDoc: doc))
-                    }
-                    self.allActivities = activities
+            }
+        })
+    }
+    
+    func FetchAllActivitiesByCategory() {
+        var activities: [Activity] = []
+        Activity.db.collection("activities").order(by: "category").order(by: "title").getDocuments(completion: { (QuerySnapshot
+            , err) in
+            if let err = err {
+                print("Error retreiving documents: \(err)")
+            } else {
+                for doc in QuerySnapshot!.documents {
+                    activities.append(Activity(fromDoc: doc))
                 }
-            })
-        }
-        
+            }
+        })
+    }
+    
+    /// Fetches the activities in the current category
+    func FetchAllActivitiesForCategory(_ category: String = "General") {
+        var activities: [Activity] = []
+        Activity.db.collection("activities").whereField("category", isEqualTo: category).getDocuments(completion: { (QuerySnapshot
+            , err) in
+            if let err = err {
+                print("Error retreiving documents: \(err)")
+            } else {
+                for doc in QuerySnapshot!.documents {
+                    activities.append(Activity(fromDoc: doc))
+                }
+                self.allActivities[category] = activities
+            }
+        })
     }
     
     
     /// Fetches the activities completd by the current user
-    func FetchCompletedActivitiesForSelectedCategory() {
+    func FetchCompletedActivitiesForCategory(_ category: String = "General") {
         var compActivities: [Activity] = []
         Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.data.uid).getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
@@ -228,7 +277,7 @@ extension CategoryViewController {
                 for activity in QuerySnapshot!.documents {
                     compActivities.append(Activity(fromDoc: activity))
                 }
-                self.completedActivities = compActivities
+                self.completedActivities[category] = compActivities
             }
         })
     }

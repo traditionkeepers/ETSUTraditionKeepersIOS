@@ -31,11 +31,6 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         DateFormat.timeStyle = .none
         DateFormat.locale = Locale(identifier: "en_US")
         
-        if User.permission != .none {
-            GetUserData()
-            GetTopThree()
-        }
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -43,14 +38,18 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    func SetupView(_ animated: Bool = false) {
         usernameButton.setTitle("Welcome, \(currentUser.data.first)", for: .normal)
         progressButton.setTitle(User.uid, for: .normal)
         if let selectionIndexPath = TopThreeTable.indexPathForSelectedRow {
             TopThreeTable.deselectRow(at: selectionIndexPath, animated: animated)
         }
+        GetTopThree()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        SetupView(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -156,17 +155,6 @@ extension DashboardTableViewController {
                 }
             }
         }
-    }
-    
-    func GetUserData() {
-        let docref = Activity.db.collection("users").document(currentUser.data.uid)
-        docref.getDocument(completion: { (document, error) in
-            if let document = document, document.exists {
-                self.currentUser = User(fromDoc: document)
-            } else {
-                print("Error fetching user doc! \(String(describing: error))")
-            }
-        })
     }
     
     func GetTopThree() {

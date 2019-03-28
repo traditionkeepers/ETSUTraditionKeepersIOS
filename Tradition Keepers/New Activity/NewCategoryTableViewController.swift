@@ -9,14 +9,14 @@
 
 import UIKit
 
-class CategoryTableViewController: UITableViewController {
+class NewCategoryTableViewController: UITableViewController {
     
-    var categories: [String] = [] {
+    var categories: [Category] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-    var selectedCategory: String?
+    var selectedCategory: Category?
     
     @IBAction func AddNewCategory(_ sender: Any) {
         let alert = UIAlertController(title: "New Category", message: "Enter the name of the new category.", preferredStyle: .alert)
@@ -26,7 +26,7 @@ class CategoryTableViewController: UITableViewController {
         let submit = UIAlertAction(title: "Submit", style: .default) { (nil) in
             if let text = alert.textFields?[0].text {
                 if text.count > 0 {
-                    self.categories.append(text)
+                    self.categories.append(Category(withName: text))
                     self.categories.sort()
                     self.tableView.reloadData()
                 }
@@ -66,7 +66,8 @@ class CategoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
-        cell.title.text = categories[indexPath.row]
+        cell.Title.text = categories[indexPath.row].name
+        cell.Detail.text = categories[indexPath.row].count.description
         return cell
     }
     
@@ -78,15 +79,15 @@ class CategoryTableViewController: UITableViewController {
 }
 
 // MARK: - Firebase
-extension CategoryTableViewController {
+extension NewCategoryTableViewController {
     func FetchCategories() {
-        var temp_categories: [String] = []
+        var temp_categories: [Category] = []
         Activity.db.collection("categories").getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
                 for doc in QuerySnapshot!.documents {
-                    temp_categories.append(doc.data()["name"] as! String)
+                    temp_categories.append(Category(fromDoc: doc))
                 }
                 self.categories = temp_categories
             }

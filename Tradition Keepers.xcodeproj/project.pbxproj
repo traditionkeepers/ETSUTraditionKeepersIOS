@@ -10,16 +10,17 @@
 		210AA94422451C7700172102 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210AA94322451C7700172102 /* SettingsViewController.swift */; };
 		210AA9462245258F00172102 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210AA9452245258F00172102 /* Dashboard.storyboard */; };
 		210AA948224525A800172102 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210AA947224525A800172102 /* UserProfile.storyboard */; };
+		211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */; };
+		211745F2224D17B700BEA0C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745F1224D17B700BEA0C8 /* Category.swift */; };
 		215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E4E2522491B770001D3F2 /* NavTabBarController.swift */; };
 		216A1619220E203900342707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1618220E203900342707 /* AppDelegate.swift */; };
-		216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 216A161F220E203900342707 /* Tradition_Keepers.xcdatamodeld */; };
 		216A1623220E203B00342707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216A1622220E203B00342707 /* Assets.xcassets */; };
 		216A1626220E203B00342707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 216A1624220E203B00342707 /* LaunchScreen.storyboard */; };
 		216A1631220E203B00342707 /* Tradition_KeepersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1630220E203B00342707 /* Tradition_KeepersTests.swift */; };
 		216A163C220E203B00342707 /* Tradition_KeepersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */; };
 		216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1655220FCE2E00342707 /* LoginViewController.swift */; };
 		216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */; };
-		216F3385223ED1A000E7B989 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3384223ED1A000E7B989 /* CategoryTableViewController.swift */; };
+		216F3385223ED1A000E7B989 /* NewCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */; };
 		216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */; };
 		216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */; };
 		2173761A22428F2C006279D2 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2173761922428F2C006279D2 /* Login.storyboard */; };
@@ -67,10 +68,11 @@
 		210AA94322451C7700172102 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		210AA9452245258F00172102 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		210AA947224525A800172102 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		211745F1224D17B700BEA0C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		215E4E2522491B770001D3F2 /* NavTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
 		216A1615220E203900342707 /* Tradition Keepers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradition Keepers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216A1618220E203900342707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		216A1620220E203900342707 /* Tradition_Keepers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tradition_Keepers.xcdatamodel; sourceTree = "<group>"; };
 		216A1622220E203B00342707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		216A1625220E203B00342707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		216A1627220E203B00342707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		216A163D220E203B00342707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216A1655220FCE2E00342707 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityTableViewController.swift; sourceTree = "<group>"; };
-		216F3384223ED1A000E7B989 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryTableViewController.swift; sourceTree = "<group>"; };
 		216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapper.swift; sourceTree = "<group>"; };
 		2173761922428F2C006279D2 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -208,7 +210,6 @@
 				216A1618220E203900342707 /* AppDelegate.swift */,
 				216A1622220E203B00342707 /* Assets.xcassets */,
 				216A1627220E203B00342707 /* Info.plist */,
-				216A161F220E203900342707 /* Tradition_Keepers.xcdatamodeld */,
 			);
 			path = Stuff;
 			sourceTree = "<group>";
@@ -226,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */,
-				216F3384223ED1A000E7B989 /* CategoryTableViewController.swift */,
+				216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */,
 				216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */,
 			);
 			path = "New Activity";
@@ -254,6 +255,7 @@
 				2199A685223C75D500037C0F /* User.swift */,
 				217652B7223C8D6D006886E8 /* Activity.swift */,
 				216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */,
+				211745F1224D17B700BEA0C8 /* Category.swift */,
 			);
 			path = Wrappers;
 			sourceTree = "<group>";
@@ -274,6 +276,7 @@
 				2199A67F223C100900037C0F /* ActivityCollectionViewController.swift */,
 				2199A681223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift */,
 				2199A683223C40CF00037C0F /* CategoryViewController.swift */,
+				211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */,
 			);
 			path = ActivityCollection;
 			sourceTree = "<group>";
@@ -398,13 +401,16 @@
 				TargetAttributes = {
 					216A1614220E203900342707 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					216A162B220E203B00342707 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 216A1614220E203900342707;
 					};
 					216A1636220E203B00342707 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 216A1614220E203900342707;
 					};
 				};
@@ -578,17 +584,18 @@
 				2199A67D223BEED100037C0F /* ActivityDetailViewController.swift in Sources */,
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
 				21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */,
-				216F3385223ED1A000E7B989 /* CategoryTableViewController.swift in Sources */,
+				216F3385223ED1A000E7B989 /* NewCategoryTableViewController.swift in Sources */,
 				215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */,
 				2199A686223C75D500037C0F /* User.swift in Sources */,
 				216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */,
 				210AA94422451C7700172102 /* SettingsViewController.swift in Sources */,
-				216A1621220E203900342707 /* Tradition_Keepers.xcdatamodeld in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
 				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
 				2199A680223C100900037C0F /* ActivityCollectionViewController.swift in Sources */,
 				2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */,
+				211745F2224D17B700BEA0C8 /* Category.swift in Sources */,
 				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
+				211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */,
 				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
 				216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */,
@@ -766,14 +773,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3L9HWP3QN;
 				INFOPLIST_FILE = "$(SRCROOT)/Tradition Keepers/Stuff/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.etsu.Tradition-Keepers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -787,14 +794,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3L9HWP3QN;
 				INFOPLIST_FILE = "$(SRCROOT)/Tradition Keepers/Stuff/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.etsu.Tradition-Keepers";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -815,7 +822,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.etsu.Tradition-KeepersTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tradition Keepers.app/Tradition Keepers";
 			};
@@ -837,7 +844,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.etsu.Tradition-KeepersTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tradition Keepers.app/Tradition Keepers";
 			};
@@ -858,7 +865,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.etsu.Tradition-KeepersUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Tradition Keepers";
 			};
@@ -879,7 +886,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.etsu.Tradition-KeepersUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Tradition Keepers";
 			};
@@ -925,19 +932,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		216A161F220E203900342707 /* Tradition_Keepers.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				216A1620220E203900342707 /* Tradition_Keepers.xcdatamodel */,
-			);
-			currentVersion = 216A1620220E203900342707 /* Tradition_Keepers.xcdatamodel */;
-			path = Tradition_Keepers.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 216A160D220E203900342707 /* Project object */;
 }
