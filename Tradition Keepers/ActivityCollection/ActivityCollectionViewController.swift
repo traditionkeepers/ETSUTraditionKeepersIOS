@@ -27,13 +27,16 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
     }
     
     private let currentUser = User.currentUser
-    private var selectedCategory: String?
+    private var selectedCategory: Category?
     
-    var categories: [Category] = [] {
+    var categories = Category.Categories {
         didSet {
-            Activity.categories = categories
             CategoryCollectionView?.reloadData()
         }
+    }
+    
+    var categoryTitles: [String] {
+        return categories.keys.sorted()
     }
     
     /// Gets all catagories in the database
@@ -45,7 +48,8 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
             } else {
                 self.categories.removeAll()
                 for doc in QuerySnapshot!.documents {
-                    self.categories.append(Category(fromDoc: doc))
+                    let newCategory = Category(fromDoc: doc)
+                    Category.Categories[newCategory.name] = newCategory
                 }
                 print(self.categories)
             }
@@ -83,7 +87,7 @@ class ActivityCollectionViewController: UIViewController, UICollectionViewDelega
         switch segue.identifier {
         case "ShowCategoryDetail":
             if let vc = segue.destination as? CategoryViewController {
-                vc.selectedCategory = self.selectedCategory
+//                vc.selectedCategory = self.selectedCategory
             }
         default:
             break
@@ -107,7 +111,7 @@ extension ActivityCollectionViewController {
         if indexPath.item == 0 {
             cell.CategoryLabel.text = "All Activities"
         } else {
-            cell.CategoryLabel.text = categories[indexPath.item - 1].name
+            cell.CategoryLabel.text = categoryTitles[indexPath.item - 1]
         }
         return cell
     }
@@ -115,9 +119,9 @@ extension ActivityCollectionViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isEditing {
             if indexPath.item > 0 {
-                let actionSheet = UIAlertController(title: "Options", message: "Please choose an option for \(categories[indexPath.item - 1])", preferredStyle: .actionSheet)
+                let actionSheet = UIAlertController(title: "Options", message: "Please choose an option for \(categoryTitles[indexPath.item - 1])", preferredStyle: .actionSheet)
                 let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                    let prompt = UIAlertController(title: "Confirm Deletion?", message: "Are you sure you want to delete \(self.categories[indexPath.item])? This operation cannot be undone!", preferredStyle: .alert)
+                    let prompt = UIAlertController(title: "Confirm Deletion?", message: "Are you sure you want to delete \(self.categoryTitles[indexPath.item])? This operation cannot be undone!", preferredStyle: .alert)
                     let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                     
                     let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
@@ -135,9 +139,9 @@ extension ActivityCollectionViewController {
             }
         } else {
             if indexPath.item == 0 {
-                selectedCategory = "All Activities"
+//                selectedCategory = "All Activities"
             } else {
-                selectedCategory = self.categories[indexPath.item - 1].name
+//                selectedCategory = self.categories[indexPath.item - 1].name
             }
             performSegue(withIdentifier: "ShowCategoryDetail", sender: nil)
             

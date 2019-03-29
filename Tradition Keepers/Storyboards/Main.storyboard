@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7YP-lH-RPh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7YP-lH-RPh">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,11 +23,12 @@
         <scene sceneID="ERH-YC-T74">
             <objects>
                 <viewControllerPlaceholder storyboardName="Traditions" id="7vp-Rh-fgs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="cwT-qa-bdC"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="KVn-HR-UCT"/>
+                    <navigationItem key="navigationItem" id="mvN-Hy-TKR"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjj-QP-i7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1057" y="-453"/>
+            <point key="canvasLocation" x="-1051" y="-389"/>
         </scene>
         <!--Nav Tab Bar Controller-->
         <scene sceneID="wjN-vn-VgG">
@@ -40,12 +41,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="vwW-di-i4d" kind="relationship" relationship="viewControllers" id="uzi-Bw-E15"/>
-                        <segue destination="7vp-Rh-fgs" kind="relationship" relationship="viewControllers" id="iVo-Vs-hQR"/>
+                        <segue destination="7vp-Rh-fgs" kind="relationship" relationship="viewControllers" id="qQw-mS-b80"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6k-y6-5n9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1762" y="-451"/>
+            <point key="canvasLocation" x="-1772" y="-451"/>
         </scene>
     </scenes>
 </document>

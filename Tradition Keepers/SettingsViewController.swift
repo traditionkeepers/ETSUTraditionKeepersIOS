@@ -12,11 +12,6 @@ import Firebase
 /// View Controller for the Settings View
 class SettingsViewController: UIViewController {
     
-    func currentUserChanged(user: User) {
-        setupView()
-        print("Reloading View")
-    }
-    
     /// Determines if the Navigation Bar is visible
     private var showNavBar = false
     
@@ -65,6 +60,9 @@ class SettingsViewController: UIViewController {
         
         User.onUpdate = { user in
             self.setupView()
+            if User.permission != .none {
+                self.tabBarController?.selectedIndex = 0
+            }
         }
     }
     

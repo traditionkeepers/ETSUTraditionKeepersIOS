@@ -9,27 +9,29 @@
 import UIKit
 
 class NewActivityTableViewController: UITableViewController {
-    
+    // MARK: - Properties
     var currentUser: User!
+    private var workingActivity = Activity()
     var selectedActivity: Activity! {
         didSet {
             workingActivity = selectedActivity
         }
     }
     
-    private var workingActivity: Activity?
-    
+    // MARK: - Outlets
     @IBOutlet weak var TitleTextField: UITextField!
     @IBOutlet weak var LocationLabel: UILabel!
     @IBOutlet weak var CategoryLabel: UILabel!
     @IBOutlet weak var InstructionsTextBox: UITextView!
     
+    // MARK: - Actions
     @IBAction func UnwindToNewActivity(unwindSegue: UIStoryboardSegue) {
         if let vc = unwindSegue.source as? NewCategoryTableViewController {
-            workingActivity?.activity_data["category"] = vc.selectedCategory
+            workingActivity.activity_data["category"] = vc.selectedCategory?.name
         }
     }
     
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,12 +40,9 @@ class NewActivityTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let activity = workingActivity {
-            TitleTextField.text = activity.activity_data["title"] as? String
-            CategoryLabel.text = activity.activity_data["category"] as? String
-            setTextBoxText(text: activity.activity_data["instruction"] as! String)
-        }
-        
+        TitleTextField.text = workingActivity.activity_data["title"] as? String
+        CategoryLabel.text = workingActivity.activity_data["category"] as? String
+        setTextBoxText(text: workingActivity.activity_data["instruction"] as! String)
     }
     
     @IBAction func CancelButtonPressed(_ sender: Any) {
@@ -58,9 +57,9 @@ class NewActivityTableViewController: UITableViewController {
     
     @IBAction func DoneEditing(_ sender: Any) {
         if let tb = sender as? UITextField {
-            workingActivity?.activity_data["title"] = tb.text ?? ""
+            workingActivity.activity_data["title"] = tb.text ?? ""
         } else if let tb = sender as? UITextView {
-            workingActivity?.activity_data["instruction"] = tb.text
+            workingActivity.activity_data["instruction"] = tb.text
         }
     }
     
@@ -90,7 +89,7 @@ extension NewActivityTableViewController: UITextViewDelegate {
             textView.text = "User Instruction"
             textView.textColor = UIColor.lightGray
         } else {
-            workingActivity?.activity_data["instruction"] = textView.text
+            workingActivity.activity_data["instruction"] = textView.text
         }
     }
 }

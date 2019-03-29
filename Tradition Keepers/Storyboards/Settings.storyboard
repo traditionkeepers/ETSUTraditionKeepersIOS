@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DXC-MV-k0U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DXC-MV-k0U">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -39,7 +39,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZDS-yY-zHe" userLabel="Container Stack View">
                                 <rect key="frame" x="0.0" y="84" width="375" height="360.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="z2E-iy-1XJ" userLabel="Logo Stack View">
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="z2E-iy-1XJ" userLabel="Logo Stack View">
                                         <rect key="frame" x="76" y="0.0" width="223.5" height="178.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ETSU LOGOLayer 1" translatesAutoresizingMaskIntoConstraints="NO" id="PC0-Z0-A4O">
@@ -62,7 +62,7 @@
                                             <constraint firstAttribute="height" constant="10" id="kcY-fN-eUm"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZPF-IF-sHU" userLabel="Button Stack View">
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZPF-IF-sHU" userLabel="Button Stack View">
                                         <rect key="frame" x="151.5" y="208.5" width="72" height="152"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOk-uN-j39">
@@ -82,7 +82,7 @@
                                                     <color key="titleColor" name="ETSU GOLD"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="UaL-3z-hnZ" kind="show" id="AKB-cq-BY0"/>
+                                                    <segue destination="UaL-3z-hnZ" kind="showDetail" id="AKB-cq-BY0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvI-xZ-jet">
@@ -126,7 +126,7 @@
                         <outlet property="LoginProfileButton" destination="uOk-uN-j39" id="KT0-ch-LzK"/>
                         <outlet property="LogoutButton" destination="sx2-dN-er8" id="Vhg-8A-unU"/>
                         <outlet property="TraditionsButton" destination="Gpq-Ma-zEX" id="q5S-dI-iha"/>
-                        <segue destination="aDX-Qg-Uhr" kind="presentation" identifier="Login" modalPresentationStyle="formSheet" id="Tde-vs-5rY"/>
+                        <segue destination="aDX-Qg-Uhr" kind="presentation" identifier="Login" modalPresentationStyle="fullScreen" id="Tde-vs-5rY"/>
                         <segue destination="NKg-Jw-38I" kind="show" identifier="Profile" id="m7t-IY-Uwn"/>
                     </connections>
                 </viewController>

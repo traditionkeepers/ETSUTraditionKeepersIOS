@@ -11,11 +11,16 @@ import UIKit
 
 class NewCategoryTableViewController: UITableViewController {
     
-    var categories: [Category] = [] {
+    var categories = Category.Categories {
         didSet {
             tableView.reloadData()
         }
     }
+    
+    var categoryTitles: [String] {
+        return categories.keys.sorted()
+    }
+    
     var selectedCategory: Category?
     
     @IBAction func AddNewCategory(_ sender: Any) {
@@ -26,9 +31,8 @@ class NewCategoryTableViewController: UITableViewController {
         let submit = UIAlertAction(title: "Submit", style: .default) { (nil) in
             if let text = alert.textFields?[0].text {
                 if text.count > 0 {
-                    self.categories.append(Category(withName: text))
-                    self.categories.sort()
-                    self.tableView.reloadData()
+                    let newCategory = Category(withName: text)
+                    self.categories[newCategory.name] = newCategory
                 }
             }
         }
@@ -66,14 +70,16 @@ class NewCategoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
-        cell.Title.text = categories[indexPath.row].name
-        cell.Detail.text = categories[indexPath.row].count.description
+        if let category = categories[categoryTitles[indexPath.row]] {
+            cell.Title.text = category.name
+            cell.Detail.text = category.count.description
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCategory = categories[indexPath.row]
-        Activity.categories = categories
+        selectedCategory = categories[categoryTitles[indexPath.row]]!
+        Category.Categories = categories
         performSegue(withIdentifier: "unwindToNewActivity", sender: nil)
     }
 }
@@ -81,15 +87,16 @@ class NewCategoryTableViewController: UITableViewController {
 // MARK: - Firebase
 extension NewCategoryTableViewController {
     func FetchCategories() {
-        var temp_categories: [Category] = []
+        var temp_categories: [String:Category] = [:]
         Activity.db.collection("categories").getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
                 for doc in QuerySnapshot!.documents {
-                    temp_categories.append(Category(fromDoc: doc))
+                    let newCategory = Category(fromDoc: doc)
+                    temp_categories[newCategory.name] = newCategory
                 }
-                self.categories = temp_categories
+                Category.Categories = temp_categories
             }
         })
     }

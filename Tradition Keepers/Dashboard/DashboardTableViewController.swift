@@ -19,7 +19,6 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     private var selectedIndex: Int!
     private var DateFormat = DateFormatter()
-    private var currentUser = User.currentUser
     
     @IBOutlet weak var TopThreeTable: UITableView!
     @IBOutlet weak var usernameButton: UIButton!
@@ -39,7 +38,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func SetupView(_ animated: Bool = false) {
-        usernameButton.setTitle("Welcome, \(currentUser.data.first)", for: .normal)
+        usernameButton.setTitle("Welcome, \(User.currentUser.data.first)", for: .normal)
         progressButton.setTitle(User.uid, for: .normal)
         if let selectionIndexPath = TopThreeTable.indexPathForSelectedRow {
             TopThreeTable.deselectRow(at: selectionIndexPath, animated: animated)

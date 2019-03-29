@@ -10,8 +10,8 @@ import Foundation
 import Firebase
 
 class Category: Equatable, Comparable {
-    static var onUpdate: ((_ categories: [Category])-> ())?
-    static var Categories: [Category] = [] {
+    static var onUpdate: ((_ categories: [String:Category])-> ())?
+    static var Categories: [String:Category] = [:] {
         didSet {
             onUpdate?(Categories)
         }
@@ -31,7 +31,7 @@ class Category: Equatable, Comparable {
     
     init(fromDoc: DocumentSnapshot) {
         name = fromDoc.get("title") as! String
-        count = fromDoc.get("count") as! Int
+        count = fromDoc.get("count") as? Int ?? 0
     }
     
     init(withName: String, ofCount: Int = 0) {

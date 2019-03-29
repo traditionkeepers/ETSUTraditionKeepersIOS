@@ -41,6 +41,7 @@ class User {
     static func LogOut() {
         do {
             try Auth.auth().signOut()
+            currentUser = User()
         } catch let signOutError as NSError {
             print("Error signing out: \(signOutError)")
         }

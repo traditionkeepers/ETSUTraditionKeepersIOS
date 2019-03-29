@@ -9,49 +9,118 @@
 import UIKit
 import Firebase
 
+
+
+/// View Controller for managing the display of Activities in the specified category
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Outlets
+    @IBOutlet var BackButton: UIBarButtonItem!
     @IBOutlet weak var SortSelector: UISegmentedControl!
     @IBOutlet weak var ActivityTable: UITableView!
     
     // MARK: - Actions
+    @IBAction func BackPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+
+    
+    @IBAction func SortByChanged(_ sender: Any) {
+        if SortSelector.selectedSegmentIndex == 0 {
+            sort = .category
+        } else if SortSelector.selectedSegmentIndex == 1 {
+            sort = .alphebetical
+        }
+        
+        ActivityTable.reloadData()
+    }
+    
+    @IBAction func UnwindToActivities(unwindSegue: UIStoryboardSegue) {
+        
+    }
     
     // MARK: - Properties
+    
+    /// Enumertaion for the table sort order.
+    ///
+    /// - category: Sort table by activity category (A -> Z).
+    /// - alphebetical: Sort table by activity name (A- > Z).
+    /// - timeline: Sort table by order of activities.
     private enum SortBy {
         case category
         case alphebetical
         case timeline
     }
     
-    private var categories: [Category] = Category.Categories
-
-    private let currentUser = User.currentUser
-    var selectedCategory: String!
-    private var selectedActivityIndex: IndexPath!
-    private var DateFormat = DateFormatter()
+    /// Enumerated value for the table sort order.
+    private var sort = SortBy.category
     
-    private var allActivities: [String:[Activity]] = [:] {
+    private var categories = Category.Categories {
         didSet {
-            for cat in completedActivities.keys {
-                for act in completedActivities[cat]! {
-                    if let index = allActivities[cat]!.firstIndex(of: act), index >= 0 {
-                        allActivities[cat]![index] = act
-                    }
-                }
+            for category in categories.keys {
+                self.FetchAllActivitiesForCategory(category)
             }
+            print(self.allActivities.count)
         }
     }
     
+    /// Gets the title of each category from category dictionary keys.
+    private var categoryTitles: [String] {
+        return categories.keys.sorted()
+    }
+    
+    /// The currently logged in user.
+    private let currentUser = User.currentUser
+    
+    /// The IndexPath selected from the table.
+    var selectedActivityIndex: IndexPath!
+    
+    /// The currently selected category for display.
+    var selectedCateogy: Category!
+    
+    /// Formats activity date parameter for display.
+    private var DateFormat = DateFormatter()
+    
+    /// Dictionary of all activities, grouped by category name.
+    private var allActivities: [String:[Activity]] = [:] {
+        didSet {
+            ActivityTable.reloadData()
+        }
+    }
+    
+    /// Collection of activities from allActivities arranged as a single array.
+    private var activityArray: [Activity] {
+        var actArray: [Activity] = []
+        for category in allActivities {
+            actArray.append(contentsOf: category.value)
+        }
+        actArray.sort()
+        return actArray
+    }
+    
+    /// Collection of all unique activity title first letters.
+    private var activityStartingLetters: [Character] {
+        return activityLetterCounts.keys.sorted()
+    }
+    
+    /// Dictionary of all unique activity title first letter counts, grouped by letter value
+    private var activityLetterCounts: [Character:Int] {
+        var characters: [Character:Int] = [:]
+        for activity in activityArray {
+            let char = activity.activity_data["title"]! as! String
+            if !char.isEmpty {
+                let first = char.first!
+                characters[first] = (characters[first] ?? 0) + 1
+            }
+        }
+        return characters
+    }
+    
+    /// Dictionary of user completed activities fetched from server.
     private var completedActivities: [String:[Activity]] = [:] {
         didSet {
-            for cat in completedActivities.keys {
-                for act in completedActivities[cat]! {
-                    if let index = allActivities[cat]!.firstIndex(of: act), index >= 0 {
-                        allActivities[cat]![index] = act
-                    }
-                }
-            }
+            ActivityTable.reloadData()
         }
     }
     
@@ -63,25 +132,50 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         DateFormat.timeStyle = .none
         DateFormat.locale = Locale(identifier: "en_US")
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        if currentUser.data.permission == .admin {
-            self.navigationItem.rightBarButtonItem = self.editButtonItem
+        if User.permission == .admin || User.permission == .staff {
+            print("Admin mode")
+            self.navigationItem.rightBarButtonItems?.insert(self.editButtonItem, at: 0)
         }
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        PrepareView()
+    }
+    
+    func PrepareView() {
         // Clear Selection
         if let selectionIndexPath = ActivityTable.indexPathForSelectedRow {
-            ActivityTable.deselectRow(at: selectionIndexPath, animated: animated)
+            ActivityTable.deselectRow(at: selectionIndexPath, animated: true)
         }
         
-        for category in categories {
-            FetchAllActivitiesForCategory(category.name)
+        switch User.permission {
+        case .none:
+            navigationItem.leftBarButtonItem = self.BackButton
+        case .user:
+            navigationItem.leftBarButtonItem = nil
+        default:
+            navigationItem.leftBarButtonItem = nil
         }
+        
+        if selectedCateogy != nil {
+            self.title = selectedCateogy.name
+        } else {
+            self.title = "All Traditions"
+        }
+        
+        Category.onUpdate = { categories in
+            self.categories = categories
+        }
+        
+        FetchCategories()
+    }
+    
+    @IBAction func backAction() -> Void {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Navigation
@@ -93,8 +187,15 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.selectedActivity = allActivities[categories[selectedActivityIndex.section].name]![selectedActivityIndex.row]
+                if selectedCateogy != nil {
+                    let category = selectedCateogy.name
+                    vc.selectedActivity = allActivities[category]![selectedActivityIndex.row]
+                } else {
+                    let category = categoryTitles[selectedActivityIndex.section]
+                    vc.selectedActivity = allActivities[category]![selectedActivityIndex.row]
+                }
             }
+            
         case "NewActivity":
             if let nc = segue.destination as? UINavigationController {
                 let vc = nc.topViewController as! NewActivityTableViewController
@@ -112,24 +213,116 @@ extension CategoryViewController {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return categories.count
+        switch sort {
+        case .category:
+            if selectedCateogy != nil {
+                return 1
+            } else {
+                return categories.count
+            }
+        default:
+            if selectedCateogy != nil {
+                return 1
+            } else {
+                return activityStartingLetters.count
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return categories[section].count
+        switch sort {
+        case .category:
+            if selectedCateogy != nil {
+                let section = selectedCateogy.name
+                return categories[section]?.count ?? 0
+            } else {
+                let section = categoryTitles[section]
+                return categories[section]?.count ?? 0
+            }
+            
+        default:
+            let char = activityStartingLetters[section]
+            return activityLetterCounts[char] ?? 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch sort {
+        case .category:
+            if selectedCateogy != nil {
+                return selectedCateogy.name
+            } else {
+                if categories.count > section {
+                    let category = categoryTitles[section]
+                    return category
+                } else {
+                    return "None"
+                }
+            }
+            
+        default:
+            return "\(activityStartingLetters[section])"
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityTableViewCell
         
-        cell.NameLabel.text = allActivities[categories[indexPath.section].name]![indexPath.row].activity_data["title"] as? String
-        cell.SecondaryLabel.text = allActivities[categories[indexPath.section].name]![indexPath.row].activity_data["instruction"] as? String
+        var cat: String!
+        var activity: Activity!
+        
+        switch sort {
+        case .category:
+            if selectedCateogy != nil {
+                cat = selectedCateogy.name
+            } else {
+                cat = categoryTitles[indexPath.section]
+            }
+            
+            activity = allActivities[cat]![indexPath.row]
+            if completedActivities[cat]?.contains(activity) ?? false {
+                activity = completedActivities[cat]![indexPath.row]
+            } else {
+                activity = allActivities[cat]![indexPath.row]
+            }
+            
+        case .alphebetical:
+            if selectedCateogy != nil {
+                cat = selectedCateogy.name
+                activity = allActivities[cat]![indexPath.row]
+                if completedActivities[cat]?.contains(activity) ?? false {
+                    activity = completedActivities[cat]![indexPath.row]
+                } else {
+                    activity = allActivities[cat]![indexPath.row]
+                }
+            } else {
+                let letter = activityStartingLetters[indexPath.section]
+                var index = 0
+                for l in activityStartingLetters {
+                    let value = activityLetterCounts[l] ?? 0
+                    if l == letter {
+                        index += indexPath.row
+                        break
+                    } else {
+                        index += value
+                    }
+                }
+                activity = activityArray[index]
+            }
+            
+            
+        default:
+            activity = activityArray[indexPath.row]
+        }
+        
+        cell.NameLabel.text = activity.activity_data["title"] as? String
+        cell.SecondaryLabel.text = activity.activity_data["instruction"] as? String
         
         if User.permission != .user {
             cell.CompleteButton.isHidden = true
         } else {
-            let status = allActivities[categories[indexPath.section].name]![indexPath.row].status
+            let status = activity.status
             switch status {
             case .none:
                 cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
@@ -137,12 +330,14 @@ extension CategoryViewController {
                 cell.CompleteButtonPressed = { (cell) in
                     self.ShowAlertForSelection(indexPath)
                 }
+                
             case .pending:
                 cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
                 cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
                 cell.CompleteButtonPressed = nil
+                
             case .verified:
-                if let date = allActivities[categories[indexPath.section].name]![indexPath.row].completion_data["date"] as? Timestamp {
+                if let date = activity.completion_data["date"] as? Timestamp {
                     cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: .normal)
                     cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
                     cell.CompleteButtonPressed = nil
@@ -153,13 +348,21 @@ extension CategoryViewController {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if section < sectionHeaders.count {
-//            return sectionHeaders[section]
-//        } else {
-//            return ""
-//        }
-//    }
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        ActivityTable.setEditing(editing, animated: animated)
+        self.navigationController?.setToolbarHidden(!editing, animated: true)
+    }
+    
+     // Override to support editing the table view.
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+         if editingStyle == .delete {
+             // Delete the row from the data source
+             tableView.deleteRows(at: [indexPath], with: .fade)
+         } else if editingStyle == .insert {
+         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+         }
+     }
     
     func ShowAlertForSelection(_ indexPath: IndexPath) {
         print("Complete Button Pressed")
@@ -167,11 +370,12 @@ extension CategoryViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.allActivities[self.categories[indexPath.section].name]![indexPath.row].status = .pending
-            self.allActivities[self.categories[indexPath.section].name]![indexPath.row].completion_data["user_id"] = User.uid
-            self.allActivities[self.categories[indexPath.section].name]![indexPath.row].completion_data["activity_ref"] = Activity.db.document("activities/\(self.allActivities[self.categories[indexPath.section].name]![indexPath.row].id ?? "")")
-            self.allActivities[self.categories[indexPath.section].name]![indexPath.row].completion_data["date"] = Timestamp(date: Date())
-            self.UpdateDatabase(activity: self.allActivities[self.categories[indexPath.section].name]![indexPath.row])
+            let activity = self.allActivities[self.categoryTitles[indexPath.section]]![indexPath.row]
+            activity.status = .pending
+            activity.completion_data["user_id"] = User.uid
+            activity.completion_data["activity_ref"] = Activity.db.document("activities/\(activity.id ?? "")")
+            activity.completion_data["date"] = Timestamp(date: Date())
+            self.UpdateDatabase(activity: activity)
         }
         
         alert.addAction(cancel)
@@ -189,33 +393,22 @@ extension CategoryViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    
-    
-    // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
 }
 
 // MARK: - Firebase
 extension CategoryViewController {
     
-    
     /// Fetches all category information from Firestore.
     func FetchCategories() {
-        var tempCategories:[Category] = []
+        var tempCategories:[String:Category] = [:]
         Activity.db.collection("categories").order(by: "title").getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
                 self.categories.removeAll()
                 for doc in QuerySnapshot!.documents {
-                    tempCategories.append(Category(fromDoc: doc))
+                    let new = Category(fromDoc: doc)
+                    tempCategories[new.name] = new
                 }
                 Category.Categories = tempCategories
             }
@@ -261,6 +454,7 @@ extension CategoryViewController {
                 for doc in QuerySnapshot!.documents {
                     activities.append(Activity(fromDoc: doc))
                 }
+                Category.Categories[category]?.count = activities.count
                 self.allActivities[category] = activities
             }
         })

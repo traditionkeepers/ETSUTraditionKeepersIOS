@@ -30,10 +30,8 @@ class Activity: Equatable, Comparable {
     
     
     /// Creates a new activity with default parameters.
-    init()
-    {
+    init() {
         status = .none
-        
         activity_data = [
             "title": "",
             "instruction": "",
@@ -46,7 +44,6 @@ class Activity: Equatable, Comparable {
             "user_id": ""
         // "activity_ref": DocumentReference
         ]
-        
     }
     
     

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hge-Ro-W8W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hge-Ro-W8W">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -13,23 +17,23 @@
             <objects>
                 <viewController title="Login Screen" id="hge-Ro-W8W" customClass="LoginViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uv1-Em-lJ3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="0fs-5T-Kdv">
-                                <rect key="frame" x="0.0" y="40" width="600" height="360"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="510.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xmT-wi-6Vr">
-                                        <rect key="frame" x="188.5" y="0.0" width="223.5" height="160"/>
+                                        <rect key="frame" x="95.5" y="0.0" width="223.5" height="235.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ETSU LOGOLayer 1" translatesAutoresizingMaskIntoConstraints="NO" id="Bng-sr-ftv">
-                                                <rect key="frame" x="51" y="0.0" width="121" height="121"/>
+                                                <rect key="frame" x="21.5" y="0.0" width="180" height="180"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Bng-sr-ftv" secondAttribute="height" multiplier="1:1" id="dA0-wl-ed1"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tradition Keepers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyS-Hp-C72">
-                                                <rect key="frame" x="0.0" y="129" width="223.5" height="31"/>
+                                                <rect key="frame" x="0.0" y="188" width="223.5" height="47.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                 <color key="textColor" name="ETSU GOLD"/>
                                                 <nil key="highlightedColor"/>
@@ -37,7 +41,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y2g-K4-39v">
-                                        <rect key="frame" x="150" y="200" width="300" height="160"/>
+                                        <rect key="frame" x="57" y="275.5" width="300" height="235"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="EX4-Lx-fIQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -83,7 +87,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1O-1L-UeI">
-                                                <rect key="frame" x="0.0" y="120" width="300" height="40"/>
+                                                <rect key="frame" x="0.0" y="120" width="300" height="115"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" name="ETSU GOLD"/>
@@ -97,7 +101,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zf9-tU-ALB">
-                                <rect key="frame" x="199" y="550" width="202" height="30"/>
+                                <rect key="frame" x="106" y="812" width="202" height="30"/>
                                 <state key="normal" title="Continue Without Registering">
                                     <color key="titleColor" name="ETSU GOLD"/>
                                 </state>
@@ -123,7 +127,7 @@
                     <connections>
                         <outlet property="emailField" destination="XJm-jT-LVB" id="ULD-dJ-0Jc"/>
                         <outlet property="passwordField" destination="yS1-sH-XrT" id="iGf-RC-afl"/>
-                        <segue destination="nE7-zv-ROu" kind="presentation" identifier="newUser" id="OZq-eC-zQy"/>
+                        <segue destination="nE7-zv-ROu" kind="presentation" identifier="New User" id="OZq-eC-zQy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2t3-JQ-gz2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,23 +139,23 @@
             <objects>
                 <viewController id="nE7-zv-ROu" customClass="NewUserViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xO4-MP-6ZC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Kje-T6-6y7">
-                                <rect key="frame" x="20" y="103" width="560" height="264.5"/>
+                                <rect key="frame" x="20" y="246" width="374" height="264.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bXA-X7-PhV">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="58.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8A-94-YMm">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="ETSU WHITE"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kHu-v8-vsS">
-                                                <rect key="frame" x="0.0" y="28.5" width="560" height="30"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -159,16 +163,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uWQ-A1-Uub">
-                                        <rect key="frame" x="0.0" y="77.5" width="560" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="77.5" width="374" height="58.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9XV-Kr-tvI">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="ETSU WHITE"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vml-6S-toO">
-                                                <rect key="frame" x="0.0" y="28.5" width="560" height="30"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -176,16 +180,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="m0o-xp-Dm2">
-                                        <rect key="frame" x="0.0" y="155" width="560" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="155" width="374" height="58.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gg-ki-8H3">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="ETSU WHITE"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09j-me-Zom">
-                                                <rect key="frame" x="0.0" y="28.5" width="560" height="30"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -193,7 +197,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wu-d3-mAv">
-                                        <rect key="frame" x="0.0" y="232.5" width="560" height="32"/>
+                                        <rect key="frame" x="0.0" y="232.5" width="374" height="32"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                         <state key="normal" title="Submit">
                                             <color key="titleColor" name="ETSU GOLD"/>
@@ -205,19 +209,19 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete Your Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Don-dK-x2G">
-                                <rect key="frame" x="161" y="84" width="278" height="36"/>
+                                <rect key="frame" x="68" y="108" width="278" height="36"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <color key="textColor" name="ETSU GOLD"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqW-Be-bQD">
-                                <rect key="frame" x="227.5" y="548" width="145" height="32"/>
+                                <rect key="frame" x="134.5" y="810" width="145" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <state key="normal" title="Already Registered?">
                                     <color key="titleColor" name="ETSU GOLD"/>
                                 </state>
                                 <connections>
-                                    <segue destination="5Dm-Ph-WzV" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithUnwindSegue:" id="JMc-8z-Ny8"/>
+                                    <segue destination="5Dm-Ph-WzV" kind="unwind" identifier="unwindToLogin" unwindAction="UnwindToLoginWithUnwindSegue:" id="JMc-8z-Ny8"/>
                                 </connections>
                             </button>
                         </subviews>
