@@ -24,8 +24,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         dismiss(animated: true, completion: nil)
     }
     
-
-    
     @IBAction func SortByChanged(_ sender: Any) {
         if SortSelector.selectedSegmentIndex == 0 {
             sort = .category
@@ -50,25 +48,34 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     private enum SortBy {
         case category
         case alphebetical
-        case timeline
     }
     
     /// Enumerated value for the table sort order.
-    private var sort = SortBy.category
+    private var sort = SortBy.category {
+        didSet {
+            switch sort {
+            case .alphebetical:
+                FetchAllActivitiesByTitle()
+            case .category:
+                categories = Category.Categories
+            }
+        }
+    }
     
     private var categories = Category.Categories {
         didSet {
             for category in categories.keys {
                 self.FetchAllActivitiesForCategory(category)
             }
-            print(self.allActivities.count)
         }
     }
     
-    /// Gets the title of each category from category dictionary keys.
-    private var categoryTitles: [String] {
-        return categories.keys.sorted()
+    private var FilteredTitles: [String] {
+        return FilteredData.keys.sorted()
     }
+    private var FilteredData: [String:[Activity]]
+    
+    private var AllActivities: [String:[Activity]]
     
     /// The currently logged in user.
     private let currentUser = User.currentUser
@@ -81,41 +88,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     /// Formats activity date parameter for display.
     private var DateFormat = DateFormatter()
-    
-    /// Dictionary of all activities, grouped by category name.
-    private var allActivities: [String:[Activity]] = [:] {
-        didSet {
-            ActivityTable.reloadData()
-        }
-    }
-    
-    /// Collection of activities from allActivities arranged as a single array.
-    private var activityArray: [Activity] {
-        var actArray: [Activity] = []
-        for category in allActivities {
-            actArray.append(contentsOf: category.value)
-        }
-        actArray.sort()
-        return actArray
-    }
-    
-    /// Collection of all unique activity title first letters.
-    private var activityStartingLetters: [Character] {
-        return activityLetterCounts.keys.sorted()
-    }
-    
-    /// Dictionary of all unique activity title first letter counts, grouped by letter value
-    private var activityLetterCounts: [Character:Int] {
-        var characters: [Character:Int] = [:]
-        for activity in activityArray {
-            let char = activity.activity_data["title"]! as! String
-            if !char.isEmpty {
-                let first = char.first!
-                characters[first] = (characters[first] ?? 0) + 1
-            }
-        }
-        return characters
-    }
     
     /// Dictionary of user completed activities fetched from server.
     private var completedActivities: [String:[Activity]] = [:] {
