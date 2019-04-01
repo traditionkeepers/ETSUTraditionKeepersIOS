@@ -73,9 +73,10 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     private var FilteredTitles: [String] {
         return FilteredData.keys.sorted()
     }
-    private var FilteredData: [String:[Activity]]
+    private var FilteredData: [String:[Activity]]!
     
-    private var AllActivities: [String:[Activity]]
+    private var AllActivities: [String:[Activity]]!
+    
     
     /// The currently logged in user.
     private let currentUser = User.currentUser
@@ -394,10 +395,14 @@ extension CategoryViewController {
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
+                var names: [String] = []
                 for doc in QuerySnapshot!.documents {
                     activities.append(Activity(fromDoc: doc))
+                    names.append(activities.last?.activity_data["title"] as! String)
                 }
-            }
+                
+                self.AllActivities = Dictionary(<#T##keysAndValues: Sequence##Sequence#>, uniquingKeysWith: <#T##(_, _) throws -> _#>)
+            
         })
     }
     
