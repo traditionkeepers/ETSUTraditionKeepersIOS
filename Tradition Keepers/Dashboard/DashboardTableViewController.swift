@@ -8,15 +8,26 @@
 
 import UIKit
 import Firebase
+import AVFoundation
 
 class DashboardTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var captureSession = AVCaptureSession()
+    var backCamera: AVCaptureDevice!
+    var frontCamera: AVCaptureDevice!
+    var currentCamera: AVCaptureDevice!
+    
+    var photoOutput: AVCapturePhotoOutput!
+    
+    var camaraPreviewLayer: AVCaptureVideoPreviewLayer!
     
     private var topThree: [Activity]? {
         didSet {
             TopThreeTable.reloadData()
         }
     }
+    
+    
     private var selectedIndex: Int!
     private var DateFormat = DateFormatter()
     
@@ -29,13 +40,65 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         DateFormat.dateStyle = .short
         DateFormat.timeStyle = .none
         DateFormat.locale = Locale(identifier: "en_US")
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    func setupCaptureSession() {
+        captureSession.sessionPreset = AVCaptureSession.Preset.photo
+    }
+    
+    func setupDevice() {
+        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+        let devices = deviceDiscoverySession.devices
+        
+        for device in devices {
+            if device.position == AVCaptureDevice.Position.back {
+                backCamera = device
+            } else if device.position == AVCaptureDevice.Position.front {
+                frontCamera = device
+            }
+        }
+        currentCamera = backCamera
+    }
+    
+    func setupInputOutput() {
+        do {
+            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
+            captureSession.addInput(captureDeviceInput)
+            photoOutput = AVCapturePhotoOutput()
+            photoOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
+            captureSession.addOutput(photoOutput)
+        } catch {
+            print(error)
+            return
+        }
+    }
+    
+    func setupPreviewLayer() {
+        camaraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        camaraPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        camaraPreviewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+        camaraPreviewLayer.frame = self.view.frame
+        self.view.layer.insertSublayer(camaraPreviewLayer, at: 0)
+        
+    }
+    
+    func startRunningCaptureSession() {
+        captureSession.startRunning()
+    }
+    
+    /* @IBAction func cameraButton_TouchUpInside(_ sender: Any)  {
+     let settings = AVCapturePhotoSettings()
+     photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+     }
+     
+     extension ViewController: AVCapturePhotoCaptureDelegate {
+     
+     }*/
     
     func SetupView(_ animated: Bool = false) {
         usernameButton.setTitle("Welcome, \(User.currentUser.data.first)", for: .normal)
@@ -61,7 +124,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -128,6 +191,16 @@ extension DashboardTableViewController {
 extension DashboardTableViewController {
     func ShowAlertForRow(row: Int) {
         print("Complete Button Pressed")
+        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+        let devices = deviceDiscoverySession.devices
+        
+        setupCaptureSession()
+        setupDevice()
+        if (devices.count > 0) {
+            setupInputOutput()
+            setupPreviewLayer()
+            startRunningCaptureSession()
+        }
         let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
