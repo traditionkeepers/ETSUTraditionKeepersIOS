@@ -13,7 +13,6 @@ class ActivityTableViewCell: UITableViewCell {
     
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var SecondaryLabel: UILabel!
-    @IBOutlet weak var CategoryImage: UIImageView!
     @IBOutlet weak var CompleteButton: UIButton!
     
     override func awakeFromNib() {

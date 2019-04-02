@@ -37,7 +37,7 @@
                                                     <action selector="pressedUserButton:" destination="xYT-w6-0Ll" eventType="touchUpInside" id="hat-M0-hvF"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPp-iK-3NB">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPp-iK-3NB">
                                                 <rect key="frame" x="0.0" y="48" width="374" height="30"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <state key="normal" title="Progress: XXX%">
@@ -60,26 +60,20 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="79.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3Io-YX-bRd">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3Io-YX-bRd">
                                                             <rect key="frame" x="0.0" y="6" width="374" height="67.5"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TKm-Zr-9TA">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="67.5" height="67.5"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="TKm-Zr-9TA" secondAttribute="height" multiplier="1:1" id="bCG-9Y-EOE"/>
-                                                                    </constraints>
-                                                                </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FEN-gJ-bct">
-                                                                    <rect key="frame" x="75.5" y="13.5" width="161.5" height="40.5"/>
+                                                                    <rect key="frame" x="0.0" y="13.5" width="287" height="40.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yr6-0L-Tkd">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="161.5" height="21.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="287" height="21.5"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                             <color key="textColor" name="ETSU WHITE"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbI-lX-XtF">
-                                                                            <rect key="frame" x="0.0" y="22.5" width="161.5" height="18"/>
+                                                                            <rect key="frame" x="0.0" y="22.5" width="287" height="18"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                             <color key="textColor" name="ETSU WHITE"/>
                                                                             <nil key="highlightedColor"/>
@@ -87,7 +81,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEY-Zv-VkU">
-                                                                    <rect key="frame" x="245" y="17" width="129" height="34"/>
+                                                                    <rect key="frame" x="295" y="17" width="79" height="34"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <state key="normal" title="Complete">
                                                                         <color key="titleColor" name="ETSU GOLD"/>
@@ -108,7 +102,6 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <outlet property="CategoryImage" destination="TKm-Zr-9TA" id="KPC-nh-IpT"/>
                                                     <outlet property="CompleteButton" destination="GEY-Zv-VkU" id="KeP-5W-Etj"/>
                                                     <outlet property="NameLabel" destination="yr6-0L-Tkd" id="coO-MA-k2q"/>
                                                     <outlet property="SecondaryLabel" destination="dbI-lX-XtF" id="0Z2-ab-C9k"/>

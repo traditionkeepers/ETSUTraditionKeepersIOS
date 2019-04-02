@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vsa-B9-iWC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vsa-B9-iWC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -51,26 +51,20 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="79.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yp0-kx-pDP">
-                                                            <rect key="frame" x="0.0" y="6" width="374" height="67.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yp0-kx-pDP">
+                                                            <rect key="frame" x="0.0" y="6" width="335" height="67.5"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffi-Cg-kQi">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="67.5" height="67.5"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="Ffi-Cg-kQi" secondAttribute="height" multiplier="1:1" id="4pW-je-wlx"/>
-                                                                    </constraints>
-                                                                </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q28-49-SRp">
-                                                                    <rect key="frame" x="75.5" y="13.5" width="169.5" height="40.5"/>
+                                                                    <rect key="frame" x="0.0" y="13.5" width="260" height="40.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3Y-zi-WH0">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="169.5" height="21.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="260" height="21.5"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                             <color key="textColor" name="ETSU WHITE"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUe-ij-Si0">
-                                                                            <rect key="frame" x="0.0" y="22.5" width="169.5" height="18"/>
+                                                                            <rect key="frame" x="0.0" y="22.5" width="260" height="18"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                             <color key="textColor" name="ETSU WHITE"/>
                                                                             <nil key="highlightedColor"/>
@@ -78,7 +72,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alg-Ho-YbJ">
-                                                                    <rect key="frame" x="253" y="17" width="121" height="34"/>
+                                                                    <rect key="frame" x="268" y="17" width="67" height="34"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <state key="normal" title="12/12/12">
                                                                         <color key="titleColor" name="ETSU WHITE"/>
@@ -99,7 +93,6 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <outlet property="CategoryImage" destination="Ffi-Cg-kQi" id="sJU-uL-aeh"/>
                                                     <outlet property="CompleteButton" destination="alg-Ho-YbJ" id="yyv-34-PaA"/>
                                                     <outlet property="NameLabel" destination="T3Y-zi-WH0" id="Vj7-Hb-nfZ"/>
                                                     <outlet property="SecondaryLabel" destination="YUe-ij-Si0" id="fmU-Sd-F38"/>
