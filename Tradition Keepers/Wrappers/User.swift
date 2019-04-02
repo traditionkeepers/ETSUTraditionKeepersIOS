@@ -20,16 +20,18 @@ class User {
         }
     }
     
-    static func LogIn(username: String, password: String, completion: @escaping (_ success: Bool) -> Void) {
+    static func LogIn(username: String, password: String, completion: @escaping (_ success: Error?) -> Void) {
         Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
-                completion(false)
+                completion(error)
             } else if user != nil {
-                completion(true)
-                self.FetchUserData(completion: {success in
-                    if !success {
+                self.FetchUserData(completion: {error in
+                    if let error = error {
+                        completion(error)
                         print("Failure fetching data")
+                    } else {
+                        completion(nil)
                     }
                 })
             }
@@ -49,17 +51,17 @@ class User {
         
     }
     
-    static func FetchUserData(completion: @escaping (_ success: Bool) -> Void) {
+    static func FetchUserData(completion: @escaping (_ error: Error?) -> Void) {
         print("Fetching User Data")
         let docref = ref.document(User.uid)
         docref.getDocument(completion: { (document, error) in
             if let document = document, document.exists {
                 print("User Found!")
                 currentUser = User(fromDoc: document)
-                completion(true)
+                completion(nil)
             } else {
                 print("Error fetching user doc! \(String(describing: error))")
-                completion(false)
+                completion(error)
             }
         })
     }

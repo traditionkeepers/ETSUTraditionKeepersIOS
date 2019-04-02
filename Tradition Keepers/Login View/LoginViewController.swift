@@ -50,11 +50,18 @@ class LoginViewController: UIViewController {
         let enteredEmail = emailField.text! + "@etsu.edu"
         let enteredPassword = passwordField.text!
         
-        User.LogIn(username: enteredEmail, password: enteredPassword, completion: { complete in
-            if complete {
-                self.dismiss(animated: true, completion: nil)
+        User.LogIn(username: enteredEmail, password: enteredPassword, completion: { error in
+            if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                print(error.debugDescription)
+                switch errorCode {
+                case .wrongPassword:
+                    //Show Alert
+                    break
+                default:
+                    self.performSegue(withIdentifier: "New User", sender: nil)
+                }
             } else {
-                self.performSegue(withIdentifier: "New User", sender: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         })
     }
