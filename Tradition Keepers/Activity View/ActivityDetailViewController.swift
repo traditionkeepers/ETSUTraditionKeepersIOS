@@ -57,6 +57,8 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailMapCell") as! MapTableViewCell
+            
+            //Show the User's Location
             cell.MapView.showsUserLocation = true
             
             //Check if Location Services are Enabled
@@ -82,7 +84,9 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
             func locationManager( manager: CLLocationManager, didUpdateLocations
                 locations: [CLLocation]) {
                 
-                let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+                let coordinate = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+                
+                let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
                 
                 cell.MapView.setRegion(region, animated: true)
             }
