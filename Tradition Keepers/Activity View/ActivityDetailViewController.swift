@@ -92,6 +92,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
                 
                 cell.MapView.setRegion(region, animated: true)
             }
+            
             func locationManager(_ manager: CLLocationManager, didFailWithError error:
                 Error) {
                 print("Unable to Access Location")
