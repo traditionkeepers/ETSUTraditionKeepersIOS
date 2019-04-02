@@ -81,7 +81,9 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             //CLLocationManager Delegates
-            func locationManager( manager: CLLocationManager, didUpdateLocations
+            
+            //THIS NEVER GETS CALLED! :(
+            func locationManager(_ manager: CLLocationManager, didUpdateLocations
                 locations: [CLLocation]) {
                 
                 let coordinate = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
@@ -90,7 +92,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
                 
                 cell.MapView.setRegion(region, animated: true)
             }
-            func locationManager( manager: CLLocationManager, didFailWithError error:
+            func locationManager(_ manager: CLLocationManager, didFailWithError error:
                 Error) {
                 print("Unable to Access Location")
             }

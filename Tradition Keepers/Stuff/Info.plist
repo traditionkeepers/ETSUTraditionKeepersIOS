@@ -42,6 +42,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Tradition Keeper needs access to you location. </string>
+	<string>Tradition Keeper needs access to your location. </string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Tradition Keeper needs access to your location.</string>
 </dict>
 </plist>
