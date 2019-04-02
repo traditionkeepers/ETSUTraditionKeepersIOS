@@ -12,7 +12,7 @@ import Firebase
 class DashboardTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    private var topThree: [Activity]? {
+    private var topThree: [Activity] = [] {
         didSet {
             TopThreeTable.reloadData()
         }
@@ -69,7 +69,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.selectedActivity = topThree?[selectedIndex]
+                vc.selectedActivity = topThree[selectedIndex]
             }
         default:
             break
@@ -86,16 +86,16 @@ extension DashboardTableViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return topThree?.count ?? 0
+        return topThree.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameLabel.text = topThree?[indexPath.row].activity_data["title"] as? String
-        cell.SecondaryLabel.text = topThree?[indexPath.row].activity_data["instruction"] as? String
+        cell.NameLabel.text = topThree[indexPath.row].title
+        cell.SecondaryLabel.text = topThree[indexPath.row].instruction
         
-        let status = topThree?[indexPath.row].status ?? .none
+        let status = topThree[indexPath.row].completion.status
         switch status {
         case .none:
             cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
@@ -108,11 +108,10 @@ extension DashboardTableViewController {
             cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
             cell.CompleteButtonPressed = nil
         case .verified:
-            if let date = topThree?[indexPath.row].completion_data["date"] as? Timestamp {
-                cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: .normal)
-                cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
-                cell.CompleteButtonPressed = nil
-            }
+            let date = topThree[indexPath.row].completion.date
+            cell.CompleteButton.setTitle(DateFormat.string(from: date), for: .normal)
+            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
+            cell.CompleteButtonPressed = nil
         }
         
         return cell
@@ -132,11 +131,11 @@ extension DashboardTableViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.topThree?[row].status = .pending
-            self.topThree?[row].completion_data["user_id"] = User.uid
-            self.topThree?[row].completion_data["activity_ref"] = Activity.db.document("activities/\(self.topThree?[row].id ?? "")")
-            self.topThree?[row].completion_data["date"] = Timestamp(date: Date())
-            self.UpdateDatabase(activity: self.topThree![row])
+            self.topThree[row].completion.status = .pending
+            self.topThree[row].completion.user_id = User.uid
+            self.topThree[row].completion.activity_ref = Activity.db.document("activities/\(self.topThree[row].id ?? "")")
+            self.topThree[row].completion.date = Date()
+            self.UpdateDatabase(activity: self.topThree[row])
         }
         
         alert.addAction(cancel)
@@ -146,7 +145,7 @@ extension DashboardTableViewController {
     
     func UpdateDatabase(activity: Activity) {
         if activity.id != nil {
-            Activity.db.collection("completed_activities").document().setData(activity.completed) { err in
+            Activity.db.collection("completed_activities").document().setData(activity.Completed) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {

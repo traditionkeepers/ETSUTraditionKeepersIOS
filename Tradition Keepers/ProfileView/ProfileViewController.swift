@@ -53,13 +53,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCompletedCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameLabel.text = completedActivities[indexPath.row].activity_data["title"] as? String
-        cell.SecondaryLabel.text = completedActivities[indexPath.row].activity_data["instruction"] as? String
-        if let date = completedActivities[indexPath.row].activity_data["date"] as? Timestamp {
-            cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: UIControl.State.normal)
-        }
-        
-        // Configure the cell...
+        cell.NameLabel.text = completedActivities[indexPath.row].title
+        cell.SecondaryLabel.text = completedActivities[indexPath.row].instruction
+        let date = completedActivities[indexPath.row].date
+        cell.CompleteButton.setTitle(DateFormat.string(from: date), for: UIControl.State.normal)
         
         return cell
     }

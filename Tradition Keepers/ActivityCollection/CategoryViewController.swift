@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 
-
 /// View Controller for managing the display of Activities in the specified category
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -30,8 +29,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         } else if SortSelector.selectedSegmentIndex == 1 {
             sort = .alphebetical
         }
-        
-        ActivityTable.reloadData()
     }
     
     @IBAction func UnwindToActivities(unwindSegue: UIStoryboardSegue) {
@@ -55,7 +52,11 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         didSet {
             switch sort {
             case .alphebetical:
-                FetchAllActivitiesByTitle()
+                if selectedCateogy == nil {
+                    FetchAllActivitiesByTitle()
+                } else {
+                    FetchAllActivitiesForCategory(selectedCateogy.name)
+                }
             case .category:
                 categories = Category.Categories
             }
@@ -64,18 +65,26 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     private var categories = Category.Categories {
         didSet {
-            for category in categories.keys {
-                self.FetchAllActivitiesForCategory(category)
-            }
+            FetchAllActivitiesByCategory()
         }
     }
     
     private var FilteredTitles: [String] {
         return FilteredData.keys.sorted()
     }
-    private var FilteredData: [String:[Activity]]!
+    private var FilteredData: [String:[Activity]] = [:] {
+        didSet {
+            ActivityTable.reloadData()
+        }
+    }
     
-    private var AllActivities: [String:[Activity]]!
+    private var AllActivities: [String:[Activity]] = [:] {
+        didSet
+        {
+            FilteredData = AllActivities
+            print(AllActivities)
+        }
+    }
     
     
     /// The currently logged in user.
@@ -91,7 +100,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     private var DateFormat = DateFormatter()
     
     /// Dictionary of user completed activities fetched from server.
-    private var completedActivities: [String:[Activity]] = [:] {
+    private var completedActivities: [Activity] = [] {
         didSet {
             ActivityTable.reloadData()
         }
@@ -136,15 +145,16 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         
         if selectedCateogy != nil {
             self.title = selectedCateogy.name
+            self.SortSelector.isHidden = true
+            self.sort = .alphebetical
         } else {
             self.title = "All Traditions"
+            self.SortSelector.isHidden = false
+            Category.onUpdate = { categories in
+                self.categories = categories
+            }
+            FetchCategories()
         }
-        
-        Category.onUpdate = { categories in
-            self.categories = categories
-        }
-        
-        FetchCategories()
     }
     
     @IBAction func backAction() -> Void {
@@ -160,12 +170,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                if selectedCateogy != nil {
-                    let category = selectedCateogy.name
-                    vc.selectedActivity = allActivities[category]![selectedActivityIndex.row]
-                } else {
-                    let category = categoryTitles[selectedActivityIndex.section]
-                    vc.selectedActivity = allActivities[category]![selectedActivityIndex.row]
+                if let data = FilteredData[FilteredTitles[selectedActivityIndex.section]] {
+                    vc.selectedActivity = data[selectedActivityIndex.row]
                 }
             }
             
@@ -186,116 +192,40 @@ extension CategoryViewController {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        switch sort {
-        case .category:
-            if selectedCateogy != nil {
-                return 1
-            } else {
-                return categories.count
-            }
-        default:
-            if selectedCateogy != nil {
-                return 1
-            } else {
-                return activityStartingLetters.count
-            }
-        }
+        return FilteredTitles.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        switch sort {
-        case .category:
-            if selectedCateogy != nil {
-                let section = selectedCateogy.name
-                return categories[section]?.count ?? 0
-            } else {
-                let section = categoryTitles[section]
-                return categories[section]?.count ?? 0
-            }
-            
-        default:
-            let char = activityStartingLetters[section]
-            return activityLetterCounts[char] ?? 0
-        }
+        let key = FilteredTitles[section]
+        return FilteredData[key]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch sort {
-        case .category:
-            if selectedCateogy != nil {
-                return selectedCateogy.name
-            } else {
-                if categories.count > section {
-                    let category = categoryTitles[section]
-                    return category
-                } else {
-                    return "None"
-                }
-            }
-            
-        default:
-            return "\(activityStartingLetters[section])"
+        if selectedCateogy != nil {
+            return ""
+        } else {
+            return FilteredTitles[section]
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityTableViewCell
         
-        var cat: String!
-        var activity: Activity!
+        let key = FilteredTitles[indexPath.section]
         
-        switch sort {
-        case .category:
-            if selectedCateogy != nil {
-                cat = selectedCateogy.name
-            } else {
-                cat = categoryTitles[indexPath.section]
-            }
-            
-            activity = allActivities[cat]![indexPath.row]
-            if completedActivities[cat]?.contains(activity) ?? false {
-                activity = completedActivities[cat]![indexPath.row]
-            } else {
-                activity = allActivities[cat]![indexPath.row]
-            }
-            
-        case .alphebetical:
-            if selectedCateogy != nil {
-                cat = selectedCateogy.name
-                activity = allActivities[cat]![indexPath.row]
-                if completedActivities[cat]?.contains(activity) ?? false {
-                    activity = completedActivities[cat]![indexPath.row]
-                } else {
-                    activity = allActivities[cat]![indexPath.row]
-                }
-            } else {
-                let letter = activityStartingLetters[indexPath.section]
-                var index = 0
-                for l in activityStartingLetters {
-                    let value = activityLetterCounts[l] ?? 0
-                    if l == letter {
-                        index += indexPath.row
-                        break
-                    } else {
-                        index += value
-                    }
-                }
-                activity = activityArray[index]
-            }
-            
-            
-        default:
-            activity = activityArray[indexPath.row]
+        guard let activity = FilteredData[key]?[indexPath.row] else {
+            return cell
         }
         
-        cell.NameLabel.text = activity.activity_data["title"] as? String
-        cell.SecondaryLabel.text = activity.activity_data["instruction"] as? String
+        cell.NameLabel.text = activity.title
+        cell.SecondaryLabel.text = activity.instruction
         
         if User.permission != .user {
             cell.CompleteButton.isHidden = true
         } else {
-            let status = activity.status
+            let status = activity.completion.status
+            
             switch status {
             case .none:
                 cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
@@ -310,11 +240,9 @@ extension CategoryViewController {
                 cell.CompleteButtonPressed = nil
                 
             case .verified:
-                if let date = activity.completion_data["date"] as? Timestamp {
-                    cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: .normal)
-                    cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
-                    cell.CompleteButtonPressed = nil
-                }
+                cell.CompleteButton.setTitle(DateFormat.string(from: activity.completion.date), for: .normal)
+                cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
+                cell.CompleteButtonPressed = nil
             }
         }
         
@@ -343,11 +271,11 @@ extension CategoryViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            let activity = self.allActivities[self.categoryTitles[indexPath.section]]![indexPath.row]
-            activity.status = .pending
-            activity.completion_data["user_id"] = User.uid
-            activity.completion_data["activity_ref"] = Activity.db.document("activities/\(activity.id ?? "")")
-            activity.completion_data["date"] = Timestamp(date: Date())
+            let activity = self.FilteredData[self.FilteredTitles[indexPath.section]]![indexPath.row]
+            activity.completion.status = .pending
+            activity.completion.user_id = User.uid
+            activity.completion.activity_ref = Activity.db.document("activities/\(String(describing: activity.id))")
+            activity.completion.date = Date()
             self.UpdateDatabase(activity: activity)
         }
         
@@ -388,27 +316,27 @@ extension CategoryViewController {
         })
     }
     
+    
+    /// Fetches all activities, grouped by first title character.
     func FetchAllActivitiesByTitle() {
         var activities: [Activity] = []
-        Activity.db.collection("activities").order(by: "title").getDocuments(completion: { (QuerySnapshot
-            , err) in
+        Activity.db.collection("activities").order(by: "title").getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
-                var names: [String] = []
                 for doc in QuerySnapshot!.documents {
                     activities.append(Activity(fromDoc: doc))
-                    names.append(activities.last?.activity_data["title"] as! String)
                 }
-                
-                self.AllActivities = Dictionary(<#T##keysAndValues: Sequence##Sequence#>, uniquingKeysWith: <#T##(_, _) throws -> _#>)
-            
+                self.AllActivities = Dictionary(grouping: activities, by: { $0.title.first?.description ?? "" })
+            }
         })
     }
     
+    
+    /// Fetches all activities, grouped by category.
     func FetchAllActivitiesByCategory() {
         var activities: [Activity] = []
-        Activity.db.collection("activities").order(by: "category").order(by: "title").getDocuments(completion: { (QuerySnapshot
+        Activity.db.collection("activities").order(by: "category").getDocuments(completion: { (QuerySnapshot
             , err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
@@ -416,30 +344,39 @@ extension CategoryViewController {
                 for doc in QuerySnapshot!.documents {
                     activities.append(Activity(fromDoc: doc))
                 }
+                activities.sort(by: {
+                    if $0.category == $1.category {
+                        return $0.title < $1.title
+                    } else {
+                        return $0.category < $1.category
+                    }
+                })
+                self.AllActivities = Dictionary(grouping: activities, by: { $0.category })
             }
         })
     }
     
-    /// Fetches the activities in the current category
+    
+    /// Fetches all activities in the specified category.
+    ///
+    /// - Parameter category: The desired category to fetch
     func FetchAllActivitiesForCategory(_ category: String = "General") {
         var activities: [Activity] = []
-        Activity.db.collection("activities").whereField("category", isEqualTo: category).getDocuments(completion: { (QuerySnapshot
-            , err) in
+        Activity.db.collection("activities").whereField("category", isEqualTo: category).getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
                 for doc in QuerySnapshot!.documents {
                     activities.append(Activity(fromDoc: doc))
                 }
-                Category.Categories[category]?.count = activities.count
-                self.allActivities[category] = activities
+                self.AllActivities = [category: activities]
             }
         })
     }
     
     
-    /// Fetches the activities completd by the current user
-    func FetchCompletedActivitiesForCategory(_ category: String = "General") {
+    /// Fetches all activities completed by the user
+    func FetchCompletedActivities() {
         var compActivities: [Activity] = []
         Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.data.uid).getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
@@ -448,14 +385,18 @@ extension CategoryViewController {
                 for activity in QuerySnapshot!.documents {
                     compActivities.append(Activity(fromDoc: activity))
                 }
-                self.completedActivities[category] = compActivities
+                self.completedActivities = compActivities
             }
         })
     }
     
+    
+    /// Updates the database with a new completed activity.
+    ///
+    /// - Parameter activity: The activity object to upload.
     func UpdateDatabase(activity: Activity) {
-        if activity.id != nil {
-            Activity.db.collection("completed_activities").document().setData(activity.completed) { err in
+        if activity.id != "" {
+            Activity.db.collection("completed_activities").document().setData(activity.Completed) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {

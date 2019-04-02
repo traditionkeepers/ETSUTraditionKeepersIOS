@@ -22,7 +22,7 @@ class CategoryTableViewController: UITableViewController {
     
     private var sectionHeader:[String] = [
         "",
-        "All Categories"
+        ""
     ]
     
     @IBAction func DonePressed(_ sender: Any) {

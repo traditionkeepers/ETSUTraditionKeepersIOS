@@ -24,9 +24,9 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailCell") as! ActivityTableViewCell
-            cell.NameLabel.text = selectedActivity.activity_data["title"] as? String
-            cell.SecondaryLabel.text = selectedActivity.activity_data["category"] as? String
-            let status = selectedActivity.status
+            cell.NameLabel.text = selectedActivity.title
+            cell.SecondaryLabel.text = selectedActivity.category
+            let status = selectedActivity.completion.status
             switch status {
             case .none:
                 cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
@@ -39,16 +39,15 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
                 cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
                 cell.CompleteButtonPressed = nil
             case .verified:
-                if let date = selectedActivity.completion_data["date"] as? Timestamp {
-                    cell.CompleteButton.setTitle(DateFormat.string(from: date.dateValue()), for: .normal)
-                    cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
-                    cell.CompleteButtonPressed = nil
-                }
+                let date = selectedActivity.completion.date
+                cell.CompleteButton.setTitle(DateFormat.string(from: date), for: .normal)
+                cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
+                cell.CompleteButtonPressed = nil
             }
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailInstructionCell") as! InstructionsTableViewCell
-            cell.InstructionText.text = selectedActivity.activity_data["instruction"] as? String
+            cell.InstructionText.text = selectedActivity.instruction
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailMapCell") as! MapTableViewCell
@@ -81,10 +80,10 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.selectedActivity.status = .pending
-            self.selectedActivity.completion_data["user_id"] = User.uid
-            self.selectedActivity.completion_data["activity_ref"] = Activity.db.document("activities/\(self.selectedActivity.id ?? "")")
-            self.selectedActivity.completion_data["date"] = Timestamp(date: Date())
+            self.selectedActivity.completion.status = .pending
+            self.selectedActivity.completion.user_id = User.uid
+            self.selectedActivity.completion.activity_ref = Activity.db.document("activities/\(self.selectedActivity.id ?? "")")
+            self.selectedActivity.completion.date = Date()
             self.UpdateDatabase(activity: self.selectedActivity)
         }
         
@@ -95,7 +94,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
     
     func UpdateDatabase(activity: Activity) {
         if activity.id != nil {
-            Activity.db.collection("completed_activities").document().setData(activity.completed) { err in
+            Activity.db.collection("completed_activities").document().setData(activity.Completed) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {

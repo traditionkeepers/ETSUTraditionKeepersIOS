@@ -8,42 +8,71 @@
 
 import Foundation
 import Firebase
-
+import MapKit
 
 /// Class for containg information relating to Activities.
 class Activity: Equatable, Comparable {
+    
+    struct CompletionData {
+        var status: ActivityStatus = .none
+        var user_id: String = ""
+        var date: Date = Date()
+        var activity_ref: DocumentReference?
+    }
+    
     static var db = User.db
     
-    var activity_data: [String: Any] = [:]
-    var completion_data: [String: Any] = [:]
-    var status: ActivityStatus
     var id: String?
+    var title: String
+    var instruction: String
+    var category: String
+    var date: Date
+    var location: MKMapPoint
+    var completion: CompletionData
     
     
     /// Returns a dictionary containing the parameters for an activty in the completion table.
-    var completed: [String: Any] {
-        var temp = completion_data
-        temp["status"] = status.rawValue
-        temp["activity_info"] = activity_data
-        return temp
+    var Completed: [String: Any] {
+        
+        let ActivityData: [String:Any] = [
+            "title": title
+        ]
+        
+        let CompletionData: [String:Any] = [
+            "user_id": User.uid,
+            "status": completion.status.rawValue,
+            "date": Timestamp(date: completion.date),
+            "activity_ref": completion.activity_ref ?? "",
+            "activity_data": ActivityData
+        ]
+        
+        return CompletionData
+    }
+    
+    
+    /// Returns a Dictionary containing the parameters for any activity in the activity table.
+    var Info: [String:Any] {
+        let ActivityData: [String: Any] = [
+            "title": title,
+            "instruction": instruction,
+            "date": Timestamp(date: date),
+            "category": category,
+            "location": GeoPoint(latitude: location.y, longitude: location.x)
+            
+        ]
+        
+        return ActivityData
     }
     
     
     /// Creates a new activity with default parameters.
     init() {
-        status = .none
-        activity_data = [
-            "title": "",
-            "instruction": "",
-            "category": "",
-            "date": Timestamp(date: Date())
-        ]
-        
-        completion_data = [
-            "date": Timestamp(),
-            "user_id": ""
-        // "activity_ref": DocumentReference
-        ]
+        title = ""
+        instruction = ""
+        category = ""
+        date = Date()
+        location = MKMapPoint()
+        completion = CompletionData()
     }
     
     
@@ -51,50 +80,66 @@ class Activity: Equatable, Comparable {
     ///
     /// - Parameter doc: The document fetched from Firestore.
     init(fromDoc doc: DocumentSnapshot) {
-        // Check if document is completed
-        if doc.data()?["status"] != nil {
+        self.completion = CompletionData()
+        let data = doc.data()!
+        
+        // Check if activity is completed
+        if let status = data["status"] as? String {
             // Set status field
-            switch doc.data()?["status"] as? String {
+            switch status {
             case "Pending":
-                self.status = .pending
+                self.completion.status = .pending
             case "Verified":
-                self.status = .verified
+                self.completion.status = .verified
             default:
-                self.status = .none
+                self.completion.status = .none
             }
             
             // Set Date field
-            self.completion_data["date"] = doc.data()?["date"] as? Timestamp
-            self.completion_data["user_id"] = doc.data()?["user_id"] as? String
-            self.completion_data["activity_ref"] = doc.data()?["activity_ref"] as! DocumentReference
+            self.completion.date = (data["date"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: TimeInterval(exactly: 0.0)!)
+            self.completion.user_id = data["user_id"] as? String ?? ""
+            self.completion.activity_ref = data["activity_ref"] as? DocumentReference
+            self.id = doc.documentID
+            
+            let activity_data = data["activity_data"] as! [String: Any]
+            title = activity_data["title"] as? String ?? ""
+            instruction = activity_data["instruction"] as? String ?? ""
+            category = activity_data["category"] as? String ?? ""
+            date = (activity_data["date"] as? Timestamp)?.dateValue() ?? Date()
+            let geo = activity_data["location"] as? GeoPoint
+            location = MKMapPoint(x: geo?.longitude ?? -82.346314, y: geo?.latitude ?? 36.323675)
+        } else {
+            let data = doc.data()!
+            
+            title = data["title"] as? String ?? ""
+            instruction = data["instruction"] as? String ?? ""
+            category = data["category"] as? String ?? ""
+            date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
+            let geo = data["location"] as? GeoPoint
+            location = MKMapPoint(x: geo?.longitude ?? -82.346314, y: geo?.latitude ?? 36.323675)
             
             self.id = doc.documentID
-            if let activity_data = doc.data()?["activity_info"] as? [String: Any] {
-                self.activity_data = activity_data
-            }
-        } else {
-            if let data = doc.data() {
-                activity_data = data
-            }
-            self.id = doc.documentID
-            self.status = .none
         }
     }
     
     
     /// Creates a new activity from the input fields.
     ///
-    /// - Parameters:
+    /// - Parameters:s
     ///   - data: A dictionary of values for the activity's parameters.
     ///   - status: Enumerated value describing current status.
     init(data: [String:Any], withStatus status: ActivityStatus = .none) {
-        self.activity_data = data
-        completion_data = [
-            "date": Timestamp(),
-            "user_id": ""
-            // "activity_ref": DocumentReference
-        ]
-        self.status = status
+        title = data["title"] as? String ?? ""
+        instruction = data["instruction"] as? String ?? ""
+        date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
+        category = data["category"] as? String ?? ""
+        let geo = data["location"] as? GeoPoint
+        location = MKMapPoint(x: geo?.longitude ?? -82.346314, y: geo?.latitude ?? 36.323675)
+        
+        self.completion = CompletionData()
+        self.completion.date = Date()
+        self.completion.user_id = ""
+        self.completion.status = status
     }
     
     
@@ -108,10 +153,10 @@ class Activity: Equatable, Comparable {
         var lPath = "activities/\(lhs.id ?? "")"
         var rPath = "activities/\(rhs.id ?? "")"
         
-        if let left = lhs.completion_data["activity_ref"] as? DocumentReference {
+        if let left = lhs.completion.activity_ref{
             lPath = left.path
         }
-        if let right = rhs.completion_data["activity_ref"] as? DocumentReference {
+        if let right = rhs.completion.activity_ref{
             rPath = right.path
         }
         
