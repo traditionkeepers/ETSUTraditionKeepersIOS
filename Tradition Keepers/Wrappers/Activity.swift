@@ -186,7 +186,6 @@ class Activity: Equatable, Comparable {
     }
 }
 
-
 /// Enumerated values for an activity's status
 ///
 /// - none: Activity has not been submitted for completion. Contains Raw value "Complete".

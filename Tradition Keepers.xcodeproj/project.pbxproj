@@ -16,6 +16,8 @@
 		2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A6802254312700AC0474 /* InstructionsViewController.swift */; };
 		2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A68322543B8200AC0474 /* LocationViewController.swift */; };
 		2138A686225441C900AC0474 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A685225441C900AC0474 /* CameraViewController.swift */; };
+		2138A688225456BD00AC0474 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A687225456BD00AC0474 /* NewLocationViewController.swift */; };
+		2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A6892254679A00AC0474 /* LocationMapViewController.swift */; };
 		215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E4E2522491B770001D3F2 /* NavTabBarController.swift */; };
 		216A1619220E203900342707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1618220E203900342707 /* AppDelegate.swift */; };
 		216A1623220E203B00342707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216A1622220E203B00342707 /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 		2138A6802254312700AC0474 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		2138A68322543B8200AC0474 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2138A685225441C900AC0474 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		2138A687225456BD00AC0474 /* NewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
+		2138A6892254679A00AC0474 /* LocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewController.swift; sourceTree = "<group>"; };
 		215E4E2522491B770001D3F2 /* NavTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
 		216A1615220E203900342707 /* Tradition Keepers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradition Keepers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216A1618220E203900342707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -248,6 +252,8 @@
 				216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */,
 				216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */,
 				216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */,
+				2138A687225456BD00AC0474 /* NewLocationViewController.swift */,
+				2138A6892254679A00AC0474 /* LocationMapViewController.swift */,
 			);
 			path = "New Activity";
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				216F3385223ED1A000E7B989 /* NewCategoryTableViewController.swift in Sources */,
 				215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */,
 				2199A686223C75D500037C0F /* User.swift in Sources */,
+				2138A688225456BD00AC0474 /* NewLocationViewController.swift in Sources */,
 				216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */,
 				210AA94422451C7700172102 /* SettingsViewController.swift in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
@@ -620,6 +627,7 @@
 				2138A686225441C900AC0474 /* CameraViewController.swift in Sources */,
 				211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */,
 				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
+				2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
 				216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */,
 				2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */,

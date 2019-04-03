@@ -11,12 +11,9 @@ import Firebase
 import MapKit
 import CoreLocation
 
-class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var TableView: UITableView!
-    
-    //Create the Location Manager
-    var locationManager = CLLocationManager()
     
     private let currentUser = User.currentUser
     var selectedActivity: Activity!

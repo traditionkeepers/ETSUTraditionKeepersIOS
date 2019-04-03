@@ -175,7 +175,11 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="d2R-Ar-K5s"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="tIi-tj-8gv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="X5R-EF-64L"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="X5R-EF-64L">
+                            <connections>
+                                <segue destination="2bk-LC-h5v" kind="presentation" identifier="EditActivity" id="fIN-w6-XcR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -185,6 +189,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rG-Ku-nbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="11626" y="550"/>
+        </scene>
+        <!--NewActivity-->
+        <scene sceneID="lRG-O7-7AF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewActivity" id="2bk-LC-h5v" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MaR-fP-RCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12280" y="550"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="YI3-1H-Heh">

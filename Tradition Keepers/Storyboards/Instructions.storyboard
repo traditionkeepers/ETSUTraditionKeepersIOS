@@ -92,25 +92,25 @@
                                 <rect key="frame" x="20" y="64" width="374" height="457.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Permission" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i09-03-zN1">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="184"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="123.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <color key="textColor" name="ETSU WHITE"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will also need ot allow camera permissions to submit traditions. This Feature is not yet implemented." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcD-pn-gKz">
-                                        <rect key="frame" x="0.0" y="192" width="374" height="104.5"/>
+                                        <rect key="frame" x="0.0" y="131.5" width="374" height="221"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <color key="textColor" name="ETSU WHITE"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4B-cM-3FK">
-                                        <rect key="frame" x="0.0" y="304.5" width="374" height="153"/>
+                                        <rect key="frame" x="0.0" y="360.5" width="374" height="97"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <state key="normal" title="Let's Go!">
+                                        <state key="normal" title="Enable">
                                             <color key="titleColor" name="ETSU GOLD"/>
                                         </state>
                                         <connections>
-                                            <action selector="SkipPressed:" destination="Gd2-5S-vOp" eventType="touchUpInside" id="6yc-y8-7z7"/>
+                                            <action selector="EnablePressed:" destination="Gd2-5S-vOp" eventType="touchUpInside" id="rDD-Nh-frf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -141,6 +141,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jPS-Qz-fUX"/>
                     </view>
+                    <connections>
+                        <outlet property="EnableButton" destination="k4B-cM-3FK" id="AAQ-p8-RFM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKY-2a-9or" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

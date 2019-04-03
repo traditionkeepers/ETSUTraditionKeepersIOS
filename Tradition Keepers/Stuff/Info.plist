@@ -47,5 +47,7 @@
 	<string>Tradition Keeper needs access to your location.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Tradition Keeper needs access to your location.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Tradition Keeper needs access to your camera to submit traditions.</string>
 </dict>
 </plist>

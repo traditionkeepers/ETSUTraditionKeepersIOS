@@ -7,20 +7,42 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CameraViewController: UIViewController {
-
+    
+    @IBOutlet var EnableButton: UIButton!
     @IBAction func SkipPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func EnablePressed(_ sender: Any) {
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        getAuthStatus()
     }
     
-
+    func getAuthStatus() {
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch cameraAuthorizationStatus {
+        case .notDetermined: requestCameraPermission()
+        default:
+            EnableButton.setTitle("Let's Go!", for: .normal)
+        }
+    }
+    
+    func requestCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { accessGranted in
+        
+        })
+    }
+    
     /*
     // MARK: - Navigation
 

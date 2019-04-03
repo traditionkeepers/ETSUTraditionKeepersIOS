@@ -267,21 +267,30 @@ extension CategoryViewController {
     
     func ShowAlertForSelection(_ indexPath: IndexPath) {
         print("Complete Button Pressed")
-        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
-        }
-        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            let activity = self.FilteredData[self.FilteredTitles[indexPath.section]]![indexPath.row]
-            activity.completion.status = .pending
-            activity.completion.user_id = User.uid
-            activity.completion.activity_ref = Activity.db.document("activities/\(String(describing: activity.id))")
-            activity.completion.date = Date()
-            self.UpdateDatabase(activity: activity)
-        }
         
-        alert.addAction(cancel)
-        alert.addAction(submit)
-        self.present(alert, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let photoPicker = UIImagePickerController()
+            photoPicker.delegate = self
+            photoPicker.sourceType = .camera
+            
+            self.present(photoPicker, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+            }
+            let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
+                let activity = self.FilteredData[self.FilteredTitles[indexPath.section]]![indexPath.row]
+                activity.completion.status = .pending
+                activity.completion.user_id = User.uid
+                activity.completion.activity_ref = Activity.db.document("activities/\(String(describing: activity.id))")
+                activity.completion.date = Date()
+                self.UpdateDatabase(activity: activity)
+            }
+            
+            alert.addAction(cancel)
+            alert.addAction(submit)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -293,6 +302,15 @@ extension CategoryViewController {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
+    }
+}
+
+extension CategoryViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            print("Got Image")
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
 

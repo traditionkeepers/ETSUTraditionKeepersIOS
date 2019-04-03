@@ -17,6 +17,7 @@ class NewActivityTableViewController: UITableViewController {
             workingActivity = selectedActivity
         }
     }
+    var location: Location?
     
     // MARK: - Outlets
     @IBOutlet weak var TitleTextField: UITextField!
@@ -28,6 +29,11 @@ class NewActivityTableViewController: UITableViewController {
     @IBAction func UnwindToNewActivity(unwindSegue: UIStoryboardSegue) {
         if let vc = unwindSegue.source as? NewCategoryTableViewController {
             workingActivity.category = vc.selectedCategory?.name ?? "Generic"
+        }
+        
+        if let vc = unwindSegue.source as? NewLocationViewController {
+            self.location = vc.selectedLocation
+            print(self.location)
         }
     }
     
@@ -41,6 +47,7 @@ class NewActivityTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         TitleTextField.text = workingActivity.title
+        LocationLabel.text = location?.name
         CategoryLabel.text = workingActivity.category
         setTextBoxText(text: workingActivity.instruction)
     }
