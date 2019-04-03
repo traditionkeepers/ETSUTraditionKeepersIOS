@@ -114,12 +114,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         DateFormat.timeStyle = .none
         DateFormat.locale = Locale(identifier: "en_US")
         
-        if User.permission == .admin || User.permission == .staff {
-            print("Admin mode")
-            self.navigationItem.rightBarButtonItems?.insert(self.editButtonItem, at: 0)
-        }
-        self.navigationController?.setToolbarHidden(true, animated: false)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,11 +131,19 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         switch User.permission {
         case .none:
             navigationItem.leftBarButtonItem = self.BackButton
+            
         case .user:
             navigationItem.leftBarButtonItem = nil
-        default:
+            
+        case .staff, .admin:
+            print("Admin mode")
+            if !(self.navigationItem.rightBarButtonItems?.contains(self.editButtonItem) ?? true) {
+                self.navigationItem.rightBarButtonItems?.insert(self.editButtonItem, at: 0)
+            }
             navigationItem.leftBarButtonItem = nil
         }
+        
+        self.navigationController?.setToolbarHidden(true, animated: false)
         
         if selectedCateogy != nil {
             self.title = selectedCateogy.name

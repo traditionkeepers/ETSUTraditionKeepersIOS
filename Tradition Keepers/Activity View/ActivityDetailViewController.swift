@@ -81,8 +81,18 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        PrepareView()
         TableView.reloadData()
         
+    }
+    
+    func PrepareView() {
+        switch User.permission {
+        case .staff, .admin:
+            print("Admin mode")
+        default:
+            navigationItem.rightBarButtonItem = nil
+        }
     }
     
     func ShowAlertForRow(row: Int) {
