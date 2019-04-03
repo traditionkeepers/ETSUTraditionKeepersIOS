@@ -27,9 +27,9 @@ class NavTabBarController: UITabBarController {
         let traditions = UIStoryboard(name: "Traditions", bundle: .main).instantiateInitialViewController()!
         traditions.tabBarItem = UITabBarItem(title: "Traditions", image: nil, tag: 1)
         
-//        let usb = UIStoryboard(name: "Users", bundle: .main)
-//        let users = usb.instantiateInitialViewController()
-//        users?.tabBarItem = UITabBarItem(title: "Users", image: nil, tag: 2)
+        let usb = UIStoryboard(name: "Users", bundle: .main)
+        let users = usb.instantiateInitialViewController()!
+        users.tabBarItem = UITabBarItem(title: "Users", image: nil, tag: 2)
 //
 //        let subsb = UIStoryboard(name: "Submissions", bundle: .main)
 //        let submissions = subsb.instantiateInitialViewController()
@@ -41,8 +41,8 @@ class NavTabBarController: UITabBarController {
         
         tabs[.none] = [settings]
         tabs[.user] = [dashboard, traditions, settings]
-        tabs[.staff] = [dashboard, traditions, settings]
-        tabs[.admin] = [dashboard, traditions, settings]
+        tabs[.staff] = [dashboard, traditions, users, settings]
+        tabs[.admin] = [dashboard, traditions, users, settings]
         
 //        tabs?[.staff] = [dashboard!, tradition!, users!, submissions!, settings!]
 //        tabs?[.admin] = [dashboard!, tradition!, users!, submissions!, settings!]

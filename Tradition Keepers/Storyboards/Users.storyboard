@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IM5-TT-OXZ">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="HfZ-z7-gad">
+            <objects>
+                <viewController id="jQL-hm-kgP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="47j-qg-xrR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b4u-fM-Xyr">
+                                <rect key="frame" x="0.0" y="64" width="414" height="778"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7f-Cf-v8z">
+                                        <rect key="frame" x="117.5" y="0.0" width="179" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="yOc-g0-UqM"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="Alphabetical"/>
+                                            <segment title="Permission"/>
+                                        </segments>
+                                        <color key="tintColor" name="ETSU GOLD"/>
+                                    </segmentedControl>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-mT-LlF">
+                                        <rect key="frame" x="0.0" y="36" width="414" height="742"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="jQL-hm-kgP" id="6qn-cV-kVR"/>
+                                            <outlet property="delegate" destination="jQL-hm-kgP" id="9fL-vp-11j"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="bGF-AS-6qE" firstAttribute="trailing" secondItem="b4u-fM-Xyr" secondAttribute="trailing" id="EPe-eD-1dB"/>
+                            <constraint firstItem="b4u-fM-Xyr" firstAttribute="leading" secondItem="bGF-AS-6qE" secondAttribute="leading" id="YH8-2N-CDW"/>
+                            <constraint firstItem="bGF-AS-6qE" firstAttribute="bottom" secondItem="b4u-fM-Xyr" secondAttribute="bottom" constant="20" id="h8Z-aN-v8s"/>
+                            <constraint firstItem="b4u-fM-Xyr" firstAttribute="top" secondItem="bGF-AS-6qE" secondAttribute="top" constant="20" id="yf9-NX-CrA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bGF-AS-6qE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xfr-VO-zbc"/>
+                    <connections>
+                        <segue destination="XoK-92-e7n" kind="show" id="so6-EW-6qm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nVG-jp-BIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-99" y="-521"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DzD-mq-Iea">
+            <objects>
+                <navigationController id="IM5-TT-OXZ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fOi-73-M8R">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jQL-hm-kgP" kind="show" id="hgz-gH-za6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VF8-kb-bVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1081" y="-521"/>
+        </scene>
+        <!--UserProfile-->
+        <scene sceneID="hp1-0y-xWn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserProfile" id="XoK-92-e7n" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0E3-G8-cUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="685" y="-522"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="ETSU GOLD">
+            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
