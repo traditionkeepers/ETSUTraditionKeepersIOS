@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hYZ-m7-Oi8">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Location View Controller-->
+        <scene sceneID="zzo-Pq-ZbT">
+            <objects>
+                <viewController storyboardIdentifier="sbLocation" id="hYZ-m7-Oi8" customClass="LocationViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cC3-yA-72x">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dPa-5o-9al">
+                                <rect key="frame" x="20" y="64" width="374" height="457.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Services" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peg-N8-LdJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="184"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <color key="textColor" name="ETSU WHITE"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before you begin, you will need to allow location services in order to find traditions closest to you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ3-xB-UWF">
+                                        <rect key="frame" x="0.0" y="192" width="374" height="104.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" name="ETSU WHITE"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqU-Ua-Yjo">
+                                        <rect key="frame" x="0.0" y="304.5" width="374" height="153"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="Enable">
+                                            <color key="titleColor" name="ETSU GOLD"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="EnableButtonPressed:" destination="hYZ-m7-Oi8" eventType="touchUpInside" id="XKW-Yc-yTf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMm-Cq-0ci">
+                                <rect key="frame" x="20" y="782" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="it2-YL-9dt"/>
+                                </constraints>
+                                <state key="normal" title="Skip">
+                                    <color key="titleColor" name="ETSU GOLD"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Gd2-5S-vOp" kind="show" identifier="nextPermission" id="pFf-70-Lbk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="sMm-Cq-0ci" firstAttribute="top" secondItem="dPa-5o-9al" secondAttribute="bottom" multiplier="1.5" id="63C-Lz-C0Z"/>
+                            <constraint firstItem="u5q-eg-cMk" firstAttribute="trailing" secondItem="sMm-Cq-0ci" secondAttribute="trailing" constant="20" id="LBU-br-eqo"/>
+                            <constraint firstItem="dPa-5o-9al" firstAttribute="top" secondItem="u5q-eg-cMk" secondAttribute="top" constant="20" id="M6C-d2-6Su"/>
+                            <constraint firstItem="u5q-eg-cMk" firstAttribute="bottom" secondItem="sMm-Cq-0ci" secondAttribute="bottom" constant="20" id="ees-y6-1Mi"/>
+                            <constraint firstItem="sMm-Cq-0ci" firstAttribute="leading" secondItem="u5q-eg-cMk" secondAttribute="leading" constant="20" id="mdt-cV-xtr"/>
+                            <constraint firstItem="dPa-5o-9al" firstAttribute="leading" secondItem="u5q-eg-cMk" secondAttribute="leading" constant="20" id="tAJ-Jh-Ce1"/>
+                            <constraint firstItem="u5q-eg-cMk" firstAttribute="trailing" secondItem="dPa-5o-9al" secondAttribute="trailing" constant="20" id="ybc-h7-oXU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="u5q-eg-cMk"/>
+                    </view>
+                    <connections>
+                        <outlet property="EnableButton" destination="iqU-Ua-Yjo" id="u21-nS-BEo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vNC-SK-UwC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-597.10144927536237" y="389.73214285714283"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="aOz-0y-Uxy">
+            <objects>
+                <viewController storyboardIdentifier="sbCamera" id="Gd2-5S-vOp" customClass="CameraViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="riV-kQ-mPh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SB1-8w-94s">
+                                <rect key="frame" x="20" y="64" width="374" height="457.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Permission" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i09-03-zN1">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="184"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <color key="textColor" name="ETSU WHITE"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will also need ot allow camera permissions to submit traditions. This Feature is not yet implemented." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcD-pn-gKz">
+                                        <rect key="frame" x="0.0" y="192" width="374" height="104.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" name="ETSU WHITE"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4B-cM-3FK">
+                                        <rect key="frame" x="0.0" y="304.5" width="374" height="153"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="Let's Go!">
+                                            <color key="titleColor" name="ETSU GOLD"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SkipPressed:" destination="Gd2-5S-vOp" eventType="touchUpInside" id="6yc-y8-7z7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNj-Sm-rgC">
+                                <rect key="frame" x="20" y="782" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="VBX-3X-TCQ"/>
+                                </constraints>
+                                <state key="normal" title="Skip">
+                                    <color key="titleColor" name="ETSU GOLD"/>
+                                </state>
+                                <connections>
+                                    <action selector="SkipPressed:" destination="Gd2-5S-vOp" eventType="touchUpInside" id="nUx-NB-wlQ"/>
+                                    <action selector="SkipPressed:" destination="hYZ-m7-Oi8" eventType="touchUpInside" id="owq-F7-1zP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="SB1-8w-94s" firstAttribute="leading" secondItem="jPS-Qz-fUX" secondAttribute="leading" constant="20" id="BXu-wp-cUp"/>
+                            <constraint firstItem="jPS-Qz-fUX" firstAttribute="bottom" secondItem="BNj-Sm-rgC" secondAttribute="bottom" constant="20" id="Hhn-G1-22h"/>
+                            <constraint firstItem="jPS-Qz-fUX" firstAttribute="trailing" secondItem="BNj-Sm-rgC" secondAttribute="trailing" constant="20" id="Y9n-fv-6ZO"/>
+                            <constraint firstItem="BNj-Sm-rgC" firstAttribute="leading" secondItem="jPS-Qz-fUX" secondAttribute="leading" constant="20" id="byt-OA-QVP"/>
+                            <constraint firstItem="jPS-Qz-fUX" firstAttribute="trailing" secondItem="SB1-8w-94s" secondAttribute="trailing" constant="20" id="eP2-XZ-W52"/>
+                            <constraint firstItem="SB1-8w-94s" firstAttribute="top" secondItem="jPS-Qz-fUX" secondAttribute="top" constant="20" id="pyQ-zK-kur"/>
+                            <constraint firstItem="BNj-Sm-rgC" firstAttribute="top" secondItem="SB1-8w-94s" secondAttribute="bottom" multiplier="1.5" id="tE2-5z-OGc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jPS-Qz-fUX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iKY-2a-9or" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="277" y="390"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="ETSU GOLD">
+            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU WHITE">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

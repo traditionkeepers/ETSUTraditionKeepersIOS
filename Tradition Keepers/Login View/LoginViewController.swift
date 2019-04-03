@@ -51,17 +51,19 @@ class LoginViewController: UIViewController {
         let enteredPassword = passwordField.text!
         
         User.LogIn(username: enteredEmail, password: enteredPassword, completion: { error in
-            if let errorCode = AuthErrorCode(rawValue: error!._code) {
-                print(error.debugDescription)
-                switch errorCode {
-                case .wrongPassword:
-                    //Show Alert
-                    break
-                default:
-                    self.performSegue(withIdentifier: "New User", sender: nil)
+            if let _error = error {
+                if let errorCode = AuthErrorCode(rawValue: _error._code) {
+                    print(error.debugDescription)
+                    switch errorCode {
+                    case .wrongPassword:
+                        //Show Alert
+                        break
+                    default:
+                        self.performSegue(withIdentifier: "New User", sender: nil)
+                    }
                 }
             } else {
-                self.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: "Instructions", sender: nil)
             }
         })
     }

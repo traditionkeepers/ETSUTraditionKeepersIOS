@@ -12,6 +12,10 @@
 		210AA948224525A800172102 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210AA947224525A800172102 /* UserProfile.storyboard */; };
 		211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */; };
 		211745F2224D17B700BEA0C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745F1224D17B700BEA0C8 /* Category.swift */; };
+		2138A67F22542EF700AC0474 /* Instructions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2138A67E22542EF700AC0474 /* Instructions.storyboard */; };
+		2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A6802254312700AC0474 /* InstructionsViewController.swift */; };
+		2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A68322543B8200AC0474 /* LocationViewController.swift */; };
+		2138A686225441C900AC0474 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A685225441C900AC0474 /* CameraViewController.swift */; };
 		215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E4E2522491B770001D3F2 /* NavTabBarController.swift */; };
 		216A1619220E203900342707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1618220E203900342707 /* AppDelegate.swift */; };
 		216A1623220E203B00342707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216A1622220E203B00342707 /* Assets.xcassets */; };
@@ -70,6 +74,10 @@
 		210AA947224525A800172102 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		211745F1224D17B700BEA0C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		2138A67E22542EF700AC0474 /* Instructions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Instructions.storyboard; sourceTree = "<group>"; };
+		2138A6802254312700AC0474 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		2138A68322543B8200AC0474 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		2138A685225441C900AC0474 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		215E4E2522491B770001D3F2 /* NavTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
 		216A1615220E203900342707 /* Tradition Keepers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradition Keepers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216A1618220E203900342707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +153,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2138A6822254312C00AC0474 /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				2138A6802254312700AC0474 /* InstructionsViewController.swift */,
+				2138A68322543B8200AC0474 /* LocationViewController.swift */,
+				2138A685225441C900AC0474 /* CameraViewController.swift */,
+			);
+			path = Instructions;
+			sourceTree = "<group>";
+		};
 		216A160C220E203900342707 = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +199,7 @@
 				2199A677223BEDE900037C0F /* Activity View */,
 				216A1651220FCC3C00342707 /* Stuff */,
 				210AA94322451C7700172102 /* SettingsViewController.swift */,
+				2138A6822254312C00AC0474 /* Instructions */,
 			);
 			path = "Tradition Keepers";
 			sourceTree = "<group>";
@@ -245,6 +264,7 @@
 				2173761E22428FD6006279D2 /* Main.storyboard */,
 				21C33360224925F700454CC1 /* Settings.storyboard */,
 				217376262242C822006279D2 /* About.storyboard */,
+				2138A67E22542EF700AC0474 /* Instructions.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -447,6 +467,7 @@
 				2173761D22428FB2006279D2 /* NewActivity.storyboard in Resources */,
 				216A1623220E203B00342707 /* Assets.xcassets in Resources */,
 				217376272242C822006279D2 /* About.storyboard in Resources */,
+				2138A67F22542EF700AC0474 /* Instructions.storyboard in Resources */,
 				217376252242C7B7006279D2 /* Traditions.storyboard in Resources */,
 				21C3335F22491F0500454CC1 /* GoogleService-Info.plist in Resources */,
 				2173761A22428F2C006279D2 /* Login.storyboard in Resources */,
@@ -595,10 +616,13 @@
 				2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */,
 				211745F2224D17B700BEA0C8 /* Category.swift in Sources */,
 				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
+				2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */,
+				2138A686225441C900AC0474 /* CameraViewController.swift in Sources */,
 				211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */,
 				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
 				216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */,
+				2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */,
 				2199A682223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift in Sources */,
 				2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */,
 				21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */,

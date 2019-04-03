@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xYT-w6-0Ll">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nPI-i6-neh">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,13 +21,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ULm-Ol-RON">
-                                <rect key="frame" x="20" y="50" width="374" height="806"/>
+                                <rect key="frame" x="20" y="94" width="374" height="762"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="onu-Ja-fmt">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="78"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="58.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pX0-I6-k8W">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="36"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                 <state key="normal" title="Welcome, User Name">
@@ -38,7 +38,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPp-iK-3NB">
-                                                <rect key="frame" x="0.0" y="48" width="374" height="30"/>
+                                                <rect key="frame" x="0.0" y="36" width="374" height="22.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <state key="normal" title="Progress: XXX%">
                                                     <color key="titleColor" name="ETSU WHITE"/>
@@ -50,7 +50,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="RHZ-An-t84">
-                                        <rect key="frame" x="0.0" y="86" width="374" height="720"/>
+                                        <rect key="frame" x="0.0" y="66.5" width="374" height="695.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActivityCell" rowHeight="80" id="aBd-Da-56X" customClass="ActivityTableViewCell" customModule="Tradition_Keepers" customModuleProvider="target">
@@ -138,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTA-F0-XBT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5781" y="-899"/>
+            <point key="canvasLocation" x="6689.8550724637689" y="-899.33035714285711"/>
         </scene>
         <!--ActivityDetailView-->
         <scene sceneID="6eO-Wk-lC2">
@@ -146,7 +146,7 @@
                 <viewControllerPlaceholder storyboardName="Traditions" referencedIdentifier="ActivityDetailView" id="OgS-VQ-HbX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnZ-Wq-K2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6745" y="-854"/>
+            <point key="canvasLocation" x="7655.0724637681169" y="-854.46428571428567"/>
         </scene>
         <!--UserProfile-->
         <scene sceneID="ugV-cN-Yhr">
@@ -154,7 +154,25 @@
                 <viewControllerPlaceholder storyboardName="UserProfile" id="i6K-VO-3yU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaE-hE-0HA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6714" y="-899"/>
+            <point key="canvasLocation" x="7623.9130434782619" y="-899.33035714285711"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QQK-Au-uat">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nPI-i6-neh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DGH-TI-9gy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xYT-w6-0Ll" kind="relationship" relationship="rootViewController" id="r6d-dV-vwO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L5A-QL-eRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5779.7101449275369" y="-899.33035714285711"/>
         </scene>
     </scenes>
     <resources>

@@ -57,45 +57,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailMapCell") as! MapTableViewCell
-            
-            //Show the User's Location
-            cell.MapView.showsUserLocation = true
-            
-            //Check if Location Services are Enabled
-            if CLLocationManager.locationServicesEnabled() == true {
-                if CLLocationManager.authorizationStatus() == .restricted ||
-                    CLLocationManager.authorizationStatus() == .denied ||
-                    CLLocationManager.authorizationStatus() == .notDetermined {
-                    
-                    //Request Location
-                    locationManager.requestWhenInUseAuthorization()
-                }
-                
-                //Set Accuracy and Delegates
-                locationManager.desiredAccuracy = 1.0
-                locationManager.delegate = self
-                locationManager.startUpdatingLocation()
-                
-            } else {
-                print("Please Enable Location Services")
-            }
-            
-            //CLLocationManager Delegates
-            
-            //THIS NEVER GETS CALLED! :(
-            func locationManager(_ manager: CLLocationManager, didUpdateLocations
-                locations: [CLLocation]) {
-                
-                let coordinate = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-                
-                let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-                
-                cell.MapView.setRegion(region, animated: true)
-            }
-            func locationManager(_ manager: CLLocationManager, didFailWithError error:
-                Error) {
-                print("Unable to Access Location")
-            }
+            cell.Configure(location: selectedActivity.location)
             
             return cell
         default:
@@ -161,6 +123,10 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
     }
+    
+}
 
-
+// MARK: - MapKit
+extension ActivityDetailViewController {
+    
 }
