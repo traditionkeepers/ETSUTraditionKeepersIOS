@@ -50,6 +50,7 @@ class LocationMapViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        Configure()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,11 +60,13 @@ class LocationMapViewController: UIViewController {
             return
         }
         
-        print("Adding")
-        rootVC.allLocations.append(Location(name: MapPin!.title ?? "", coordinate: MapPin!.point))
+        if MapPin != nil {
+            print("Adding")
+            rootVC.allLocations.append(Location(name: MapPin!.title ?? "", coordinate: MapPin!.point))
+        }
     }
     
-    func Configure(location: MKMapPoint) {
+    func Configure() {
         centerMapOnLocation(location: initialLocation)
     }
     
@@ -87,8 +90,8 @@ class LocationMapViewController: UIViewController {
 class LocationPin: NSObject, MKAnnotation {
     var title: String?
     var coordinate: CLLocationCoordinate2D
-    var point: MKMapPoint {
-        return MKMapPoint(x: coordinate.longitude, y: coordinate.latitude)
+    var point: CLLocation {
+        return CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
     init(title: String, coordinate: CLLocationCoordinate2D) {
         self.title = title

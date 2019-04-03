@@ -26,7 +26,7 @@ class MapTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func Configure(location: MKMapPoint) {
+    func Configure() {
         initialLocation = CLLocation(latitude: MapPin.coordinate.latitude, longitude: MapPin.coordinate.longitude)
         centerMapOnLocation(location: initialLocation)
         MapView.addAnnotation(MapPin)

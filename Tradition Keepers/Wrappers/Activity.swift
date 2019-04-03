@@ -8,7 +8,7 @@
 
 import Foundation
 import Firebase
-import MapKit
+import CoreLocation
 
 /// Class for containg information relating to Activities.
 class Activity: Equatable, Comparable {
@@ -27,7 +27,7 @@ class Activity: Equatable, Comparable {
     var instruction: String
     var category: String
     var date: Date
-    var location: MKMapPoint
+    var location: Location
     var completion: CompletionData
     
     
@@ -57,8 +57,8 @@ class Activity: Equatable, Comparable {
             "instruction": instruction,
             "date": Timestamp(date: date),
             "category": category,
-            "location": GeoPoint(latitude: location.y, longitude: location.x)
-            
+            "location_name": location.name,
+            "location": location.point
         ]
         
         return ActivityData
@@ -71,7 +71,7 @@ class Activity: Equatable, Comparable {
         instruction = ""
         category = ""
         date = Date()
-        location = MKMapPoint()
+        location = Location()
         completion = CompletionData()
     }
     
@@ -107,7 +107,9 @@ class Activity: Equatable, Comparable {
             category = activity_data["category"] as? String ?? ""
             date = (activity_data["date"] as? Timestamp)?.dateValue() ?? Date()
             let geo = activity_data["location"] as? GeoPoint
-            location = MKMapPoint(x: geo?.longitude ?? -82.346314, y: geo?.latitude ?? 36.323675)
+            let name = data["location_name"] as? String ?? ""
+            location = Location(name: name, latitude: geo?.longitude, longitude: geo?.latitude)
+            
         } else {
             let data = doc.data()!
             
@@ -115,8 +117,12 @@ class Activity: Equatable, Comparable {
             instruction = data["instruction"] as? String ?? ""
             category = data["category"] as? String ?? ""
             date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
-            let geo = data["location"] as? GeoPoint
-            location = MKMapPoint(x: geo?.longitude ?? -82.346314, y: geo?.latitude ?? 36.323675)
+            if let geo = data["location"] as? GeoPoint {
+                let name = data["location_name"] as? String ?? ""
+                location = Location(name: name, latitude: geo.longitude, longitude: geo.latitude)
+            } else {
+                location = Location()
+            }
             
             self.id = doc.documentID
         }
@@ -133,8 +139,13 @@ class Activity: Equatable, Comparable {
         instruction = data["instruction"] as? String ?? ""
         date = (data["date"] as? Timestamp)?.dateValue() ?? Date()
         category = data["category"] as? String ?? ""
-        let geo = data["location"] as? GeoPoint
-        location = MKMapPoint(x: geo?.longitude ?? -82.346314, y: geo?.latitude ?? 36.323675)
+        if let geo = data["location"] as? GeoPoint {
+            let name = data["location_name"] as? String ?? ""
+            location = Location(name: name, latitude: geo.longitude, longitude: geo.latitude)
+        } else {
+            location = Location()
+        }
+        
         
         self.completion = CompletionData()
         self.completion.date = Date()
@@ -195,4 +206,45 @@ enum ActivityStatus: String {
     case none = "Complete"
     case pending = "Pending"
     case verified = "Verified"
+}
+
+class Location {
+    var name: String
+    var coordinate: CLLocation
+    var id: String {
+        return name.lowercased().replacingOccurrences(of: " ", with: "")
+    }
+    
+    var latitude: Double {
+        return coordinate.coordinate.latitude
+    }
+    
+    var longitude: Double {
+        return coordinate.coordinate.longitude
+    }
+    
+    var point: GeoPoint {
+        return GeoPoint(latitude: latitude, longitude: longitude)
+    }
+    
+    init() {
+        self.name = "Not Set"
+        self.coordinate  = CLLocation(latitude: 36.323675, longitude: -82.346314)
+    }
+    
+    init(fromDoc doc: DocumentSnapshot) {
+        self.name = doc.get("title") as? String ?? "Not Set"
+        let geo = doc.get("coordinate") as! GeoPoint
+        self.coordinate = CLLocation(latitude: geo.latitude, longitude: geo.longitude)
+    }
+    
+    init(name: String, coordinate: CLLocation) {
+        self.name = name
+        self.coordinate = coordinate
+    }
+    
+    init(name: String, latitude: Double?, longitude: Double?) {
+        self.name = name
+        self.coordinate = CLLocation(latitude: longitude ?? -82.346314, longitude: latitude ?? 36.323675)
+    }
 }

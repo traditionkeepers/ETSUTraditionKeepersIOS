@@ -55,7 +55,8 @@
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                             <connections>
-                                                                <action selector="DoneEditing:" destination="lbk-7f-Nbd" eventType="editingDidEnd" id="Dci-bJ-Lgh"/>
+                                                                <action selector="TitleDidBeginEditing:" destination="lbk-7f-Nbd" eventType="editingDidBegin" id="9fS-3j-fbA"/>
+                                                                <action selector="TitleDidEndEditing:" destination="lbk-7f-Nbd" eventType="editingDidEnd" id="V4A-pZ-ev7"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>

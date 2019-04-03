@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+import Firebase
 
 class NewActivityTableViewController: UITableViewController {
     // MARK: - Properties
@@ -33,7 +35,47 @@ class NewActivityTableViewController: UITableViewController {
         
         if let vc = unwindSegue.source as? NewLocationViewController {
             self.location = vc.selectedLocation
-            print(self.location)
+            if let point = self.location {
+                self.workingActivity.location = point
+            }
+            print(self.location ?? "")
+        }
+    }
+    
+    @IBAction func CancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func SaveButtonPressed(_ sender: Any)
+    {
+        TitleDidEndEditing(TitleTextField)
+        textViewDidEndEditing(InstructionsTextBox)
+        
+        selectedActivity = workingActivity
+        UpdateDatabase(activity: selectedActivity)
+        dismiss(animated: true, completion: nil)
+    }
+    @IBAction func TitleDidBeginEditing(_ sender: Any) {
+        guard let textField = sender as? UITextField else {
+            return
+        }
+        
+        if textField.textColor == UIColor.lightGray {
+            textField.text = nil
+            textField.textColor = UIColor.black
+        }
+        
+    }
+    
+    @IBAction func TitleDidEndEditing(_ sender: Any) {
+        guard let textField = sender as? UITextField else {
+            return
+        }
+        if textField.text?.isEmpty ?? true {
+            textField.text = "Title"
+            textField.textColor = UIColor.lightGray
+        } else {
+            workingActivity.title = textField.text ?? ""
         }
     }
     
@@ -43,34 +85,34 @@ class NewActivityTableViewController: UITableViewController {
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         TitleTextField.text = workingActivity.title
-        LocationLabel.text = location?.name
+        setLocationText(text: workingActivity.location.name)
         CategoryLabel.text = workingActivity.category
-        setTextBoxText(text: workingActivity.instruction)
+        setInstructionText(text: workingActivity.instruction)
     }
     
-    @IBAction func CancelButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func SaveButtonPressed(_ sender: Any) {
-        selectedActivity = workingActivity
-        UpdateDatabase(activity: selectedActivity)
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func DoneEditing(_ sender: Any) {
-        if let tb = sender as? UITextField {
-            workingActivity.title = tb.text ?? ""
-        } else if let tb = sender as? UITextView {
-            workingActivity.instruction = tb.text
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nc = segue.destination as? UINavigationController {
+            if let vc = nc.topViewController as? NewLocationViewController {
+                vc.selectedLocation = location
+            }
         }
     }
     
-    func setTextBoxText(text: String) {
+    func setLocationText(text: String) {
+        if text == "" {
+            LocationLabel.text = "Location"
+            LocationLabel.textColor = UIColor.lightGray
+        } else {
+            LocationLabel.text = text
+            LocationLabel.textColor = nil
+        }
+    }
+    
+    func setInstructionText(text: String) {
         if text == "" {
             InstructionsTextBox.text = "User Instructions"
             InstructionsTextBox.textColor = UIColor.lightGray
@@ -123,7 +165,6 @@ extension NewActivityTableViewController {
             }
         }
         
-        
         let category = activity.category
         Activity.db.collection("categories").document( category.lowercased() ).setData([
             "title": category
@@ -132,6 +173,19 @@ extension NewActivityTableViewController {
                 print("Error writing document: \(err.localizedDescription)")
             } else {
                 print("Successfully add category")
+            }
+        }
+        
+        if let location = location {
+            Activity.db.collection("locations").document(location.id).setData([
+                "title": location.name,
+                "coordinate": location.point
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err.localizedDescription)")
+                } else {
+                    print("Successfully add location")
+                }
             }
         }
     }

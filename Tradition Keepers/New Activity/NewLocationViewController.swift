@@ -19,12 +19,18 @@ class NewLocationViewController: UIViewController, UITableViewDataSource, UITabl
     var selectedLocation: Location?
     var searchResults: [Location] = [] {
         didSet {
+            searchResults.sort { $0.name < $1.name }
             TableView.reloadData()
         }
     }
+    
     var allLocations: [Location] = [] {
         didSet {
-            searchResults = allLocations
+            if selectedLocation != nil {
+                searchResults = allLocations + [selectedLocation] as! [Location]
+            } else {
+                searchResults = allLocations
+            }
         }
     }
     
@@ -90,19 +96,11 @@ extension NewLocationViewController {
                 print("Error retreiving documents: \(err)")
             } else {
                 for doc in QuerySnapshot!.documents {
-                    let name = doc.get("title") as! String
-                    let geo = doc.get("coordinate") as! GeoPoint
-                    let coordinate = MKMapPoint(x: geo.longitude, y: geo.latitude)
-                    let newLocation = Location(name: name, coordinate: coordinate)
+                    let newLocation = Location(fromDoc: doc)
                     tempLocations.append(newLocation)
                 }
                 self.allLocations = tempLocations
             }
         })
     }
-}
-
-struct Location {
-    var name: String
-    var coordinate: MKMapPoint
 }

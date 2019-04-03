@@ -193,8 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				2173761622428CA2006279D2 /* Storyboards */,
-				216F3381223ECB3700E7B989 /* New Activity */,
 				217652B6223C8D50006886E8 /* Wrappers */,
+				216F3381223ECB3700E7B989 /* New Activity */,
 				216A1654220FCDBA00342707 /* Login View */,
 				21B8C981222444720037B1C5 /* Tab Controller */,
 				21DABC7C223AFAAA00844CDF /* Dashboard */,
