@@ -191,16 +191,17 @@ extension DashboardTableViewController {
 extension DashboardTableViewController {
     func ShowAlertForRow(row: Int) {
         print("Complete Button Pressed")
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-        let devices = deviceDiscoverySession.devices
+//        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+//        let devices = deviceDiscoverySession.devices
+//
+//        setupCaptureSession()
+//        setupDevice()
+//        if (devices.count > 0) {
+//            setupInputOutput()
+//            setupPreviewLayer()
+//            startRunningCaptureSession()
+//        }
         
-        setupCaptureSession()
-        setupDevice()
-        if (devices.count > 0) {
-            setupInputOutput()
-            setupPreviewLayer()
-            startRunningCaptureSession()
-        }
         let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
