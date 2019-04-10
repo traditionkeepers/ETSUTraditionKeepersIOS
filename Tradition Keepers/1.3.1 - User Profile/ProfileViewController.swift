@@ -35,8 +35,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         DateFormat.locale = Locale(identifier: "en_US")
         
         GetUserActivities()
-        UserNameLabel.text = "\(currentUser.data.first) \(currentUser.data.last)"
-        ProgressLabel.text = "Progress: \(currentUser.data.uid)%"
+        UserNameLabel.text = currentUser.name_FL
+        ProgressLabel.text = "Progress: \(currentUser.uid)%"
     }
     
     // MARK: - Table view data source
@@ -89,7 +89,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 extension ProfileViewController {
     func GetUserActivities() {
         var compActivities : [Activity] = []
-        let docref = Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.data.uid).order(by: "date", descending: true)
+        let docref = Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.uid).order(by: "date", descending: true)
         docref.getDocuments(completion: { (QuerySnapshot, error) in
             if let error = error {
                 print("Error retreiving documents: \(error.localizedDescription)")

@@ -80,45 +80,57 @@ class User {
     
     static var permission: UserPermission {
         get {
-            return currentUser.data.permission
+            return currentUser.permission
         }
     }
     
-    var data: UserData
+    var datas: [String: Any] {
+        let data = [
+            "first": first,
+            "last": last,
+            "permission": permission.rawValue
+        ]
+        return data
+    }
+    
+    var uid: String
+    var first: String
+    var last: String
+    var permission: UserPermission
+    
+    var name_FL: String {
+        return first + " " + last
+    }
+    
+    var name_LF: String {
+        return last + ", " + first
+    }
     
     init() {
-        data = UserData()
-        data.first = ""
-        data.last = "Guest"
-        data.permission = .none
+        uid = ""
+        first = ""
+        last = "Guest"
+        permission = .none
     }
     
     init(fromDoc doc: DocumentSnapshot) {
-        data = UserData()
-        data.first = doc.get("first") as? String ?? ""
-        data.last = doc.get("last") as? String ?? ""
-        data.uid = User.uid
+        first = doc.get("first") as? String ?? ""
+        last = doc.get("last") as? String ?? "Guest"
+        uid = User.uid
         
-        let permission = doc.get("permission") as? String ?? ""
-        switch permission {
-        case "user": data.permission = .user
-        case "staff": data.permission = .staff
-        case "admin": data.permission = .admin
-        default: data.permission = .none
+        let _permission = doc.get("permission") as? String ?? "none"
+        switch _permission {
+        case "user": permission = .user
+        case "staff": permission = .staff
+        case "admin": permission = .admin
+        default: permission = .none
         }
     }
 }
 
-struct UserData {
-    var first = "",
-    last = "",
-    uid = "",
-    permission: UserPermission = .none
-}
-
-enum UserPermission {
-    case none
-    case user
-    case staff
-    case admin
+enum UserPermission: String {
+    case none = "none"
+    case user = "user"
+    case staff = "staff"
+    case admin = "admin"
 }

@@ -400,7 +400,7 @@ extension CategoryViewController {
     /// Fetches all activities completed by the user
     func FetchCompletedActivities() {
         var compActivities: [Activity] = []
-        Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.data.uid).getDocuments(completion: { (QuerySnapshot, err) in
+        Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.uid).getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {

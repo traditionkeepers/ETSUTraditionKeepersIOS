@@ -51,7 +51,7 @@
 		21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC81223B40EB00844CDF /* ProfileViewController.swift */; };
 		5DBC924EF3F416B342579341 /* Pods_Tradition_KeepersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1121B7AB89A56F7D3ADB2A /* Pods_Tradition_KeepersTests.framework */; };
 		73CAB282991311005B3EC8F1 /* Pods_Tradition_KeepersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8316737D819E520B6072977 /* Pods_Tradition_KeepersUITests.framework */; };
-		BCF3290CA7A36187B014DF55 /* Pods_Tradition_Keepers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D6A8DA6F2AF748DD83E3DB /* Pods_Tradition_Keepers.framework */; };
+		BCF3290CA7A36187B014DF55 /* Pods_Tradition_Keepers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D6A8DA6F2AF748DD83E3DB /* Pods_Tradition_Keepers.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -856,7 +856,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3L9HWP3QN;
-				INFOPLIST_FILE = "$(SRCROOT)/Tradition Keepers/Stuff/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Tradition Keepers/Miscalenous/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -877,7 +877,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3L9HWP3QN;
-				INFOPLIST_FILE = "$(SRCROOT)/Tradition Keepers/Stuff/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Tradition Keepers/Miscalenous/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

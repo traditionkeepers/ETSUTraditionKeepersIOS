@@ -50,7 +50,9 @@ extension UsersTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as UITableViewCell
-        cell.textLabel?.text = filteredUsers[indexPath.row]
+        cell.textLabel?.text = filteredUsers[indexPath.row].name_FL
+        
+        return cell
     }
 }
 

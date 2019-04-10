@@ -48,7 +48,7 @@ class NewActivityTableViewController: UITableViewController {
     
     @IBAction func SaveButtonPressed(_ sender: Any)
     {
-        TitleDidEndEditing(TitleTextField)
+        TitleDidEndEditing(TitleTextField!)
         textViewDidEndEditing(InstructionsTextBox)
         
         selectedActivity = workingActivity

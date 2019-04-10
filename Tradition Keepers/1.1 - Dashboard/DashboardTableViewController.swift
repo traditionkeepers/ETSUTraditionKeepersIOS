@@ -101,7 +101,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
      }*/
     
     func SetupView(_ animated: Bool = false) {
-        usernameButton.setTitle("Welcome, \(User.currentUser.data.first)", for: .normal)
+        usernameButton.setTitle("Welcome, \(User.currentUser.first)", for: .normal)
         progressButton.setTitle(User.uid, for: .normal)
         if let selectionIndexPath = TopThreeTable.indexPathForSelectedRow {
             TopThreeTable.deselectRow(at: selectionIndexPath, animated: animated)
