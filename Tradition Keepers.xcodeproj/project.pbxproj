@@ -14,6 +14,7 @@
 		210AA948224525A800172102 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210AA947224525A800172102 /* UserProfile.storyboard */; };
 		211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */; };
 		211745F2224D17B700BEA0C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745F1224D17B700BEA0C8 /* Category.swift */; };
+		212BFAC0225E50E000BDF9DA /* Submit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212BFABF225E50E000BDF9DA /* Submit.swift */; };
 		2138A67F22542EF700AC0474 /* Instructions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2138A67E22542EF700AC0474 /* Instructions.storyboard */; };
 		2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A6802254312700AC0474 /* InstructionsViewController.swift */; };
 		2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A68322543B8200AC0474 /* LocationViewController.swift */; };
@@ -78,6 +79,7 @@
 		210AA947224525A800172102 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		211745F1224D17B700BEA0C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		212BFABF225E50E000BDF9DA /* Submit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submit.swift; sourceTree = "<group>"; };
 		2138A67E22542EF700AC0474 /* Instructions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Instructions.storyboard; sourceTree = "<group>"; };
 		2138A6802254312700AC0474 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		2138A68322543B8200AC0474 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				217652B7223C8D6D006886E8 /* Activity.swift */,
 				216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */,
 				211745F1224D17B700BEA0C8 /* Category.swift */,
+				212BFABF225E50E000BDF9DA /* Submit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				210AA94422451C7700172102 /* SettingsViewController.swift in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
 				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
+				212BFAC0225E50E000BDF9DA /* Submit.swift in Sources */,
 				2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */,
 				211745F2224D17B700BEA0C8 /* Category.swift in Sources */,
 				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
