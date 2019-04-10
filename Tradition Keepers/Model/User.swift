@@ -9,7 +9,15 @@
 import Foundation
 import Firebase
 
-class User {
+class User: FireBaseManager {
+    func Push() {
+        <#code#>
+    }
+    
+    func Fetch() {
+        <#code#>
+    }
+    
     static let ref = Activity.db.collection("users")
     
     static var onUpdate: ((_ user: User)-> ())?
@@ -40,20 +48,19 @@ class User {
         currentUser = User()
     }
     
-    static func LogOut() {
+    func LogOut() {
         do {
             try Auth.auth().signOut()
-            currentUser = User()
+            User.currentUser = User()
         } catch let signOutError as NSError {
             print("Error signing out: \(signOutError)")
+            User.currentUser = User()
         }
-        
-        
     }
     
-    static func FetchUserData(completion: @escaping (_ error: Error?) -> Void) {
+    func FetchUserData(completion: @escaping (_ error: Error?) -> Void) {
         print("Fetching User Data")
-        let docref = ref.document(User.uid)
+        let docref = ref.document(uid)
         docref.getDocument(completion: { (document, error) in
             if let document = document, document.exists {
                 print("User Found!")

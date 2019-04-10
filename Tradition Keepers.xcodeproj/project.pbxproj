@@ -31,7 +31,7 @@
 		216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */; };
 		216F3385223ED1A000E7B989 /* NewCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */; };
 		216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */; };
-		216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */; };
+		216F3389223F14FB00E7B989 /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3388223F14FB00E7B989 /* FireBaseManager.swift */; };
 		2173761A22428F2C006279D2 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2173761922428F2C006279D2 /* Login.storyboard */; };
 		2173761D22428FB2006279D2 /* NewActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2173761C22428FB2006279D2 /* NewActivity.storyboard */; };
 		2173761F22428FD6006279D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2173761E22428FD6006279D2 /* Main.storyboard */; };
@@ -102,7 +102,7 @@
 		216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityTableViewController.swift; sourceTree = "<group>"; };
 		216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryTableViewController.swift; sourceTree = "<group>"; };
 		216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
-		216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWrapper.swift; sourceTree = "<group>"; };
+		216F3388223F14FB00E7B989 /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
 		2173761922428F2C006279D2 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		2173761C22428FB2006279D2 /* NewActivity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewActivity.storyboard; sourceTree = "<group>"; };
 		2173761E22428FD6006279D2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -254,11 +254,11 @@
 				21B8C981222444720037B1C5 /* 1 - Tab Bar */,
 				21DABC7C223AFAAA00844CDF /* 1.1 - Dashboard */,
 				2199A67E223C0FDF00037C0F /* 1.2 - Traditions */,
-				210787BA22552ADE008E46C2 /* 1.3 - Users */,
-				212BFABE225E4FB700BDF9DA /* 1.5 - Settings */,
 				2199A677223BEDE900037C0F /* 1.2.1 - Activity Detail */,
 				216F3381223ECB3700E7B989 /* 1.2.2 - New Activity */,
+				210787BA22552ADE008E46C2 /* 1.3 - Users */,
 				21DABC7B223AFA7000844CDF /* 1.3.1 - User Profile */,
+				212BFABE225E4FB700BDF9DA /* 1.5 - Settings */,
 				216A1654220FCDBA00342707 /* 1.5.1 -  Login */,
 				2138A6822254312C00AC0474 /* 1.5.1.1 - Instructions */,
 				216A1651220FCC3C00342707 /* Miscalenous */,
@@ -331,7 +331,7 @@
 			children = (
 				2199A685223C75D500037C0F /* User.swift */,
 				217652B7223C8D6D006886E8 /* Activity.swift */,
-				216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */,
+				216F3388223F14FB00E7B989 /* FireBaseManager.swift */,
 				211745F1224D17B700BEA0C8 /* Category.swift */,
 			);
 			path = Model;
@@ -681,7 +681,7 @@
 				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
 				2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
-				216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */,
+				216F3389223F14FB00E7B989 /* FireBaseManager.swift in Sources */,
 				2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */,
 				2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */,
 				210787BC22552B16008E46C2 /* UsersTableViewController.swift in Sources */,
