@@ -40,8 +40,6 @@
 		2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */; };
 		2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A67A223BEE2900037C0F /* MapTableViewCell.swift */; };
 		2199A67D223BEED100037C0F /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A67C223BEED100037C0F /* ActivityDetailViewController.swift */; };
-		2199A680223C100900037C0F /* ActivityCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A67F223C100900037C0F /* ActivityCollectionViewController.swift */; };
-		2199A682223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A681223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift */; };
 		2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A683223C40CF00037C0F /* CategoryViewController.swift */; };
 		2199A686223C75D500037C0F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2199A685223C75D500037C0F /* User.swift */; };
 		21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */; };
@@ -112,8 +110,6 @@
 		2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		2199A67A223BEE2900037C0F /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		2199A67C223BEED100037C0F /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
-		2199A67F223C100900037C0F /* ActivityCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewController.swift; sourceTree = "<group>"; };
-		2199A681223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2199A683223C40CF00037C0F /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		2199A685223C75D500037C0F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +165,33 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
+		212F529222569AE50072E9B4 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */,
+				216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		212F529322569B0A0072E9B4 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				2138A687225456BD00AC0474 /* NewLocationViewController.swift */,
+				2138A6892254679A00AC0474 /* LocationMapViewController.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		212F529422569D050072E9B4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */,
+				2199A67A223BEE2900037C0F /* MapTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2138A6822254312C00AC0474 /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,14 +228,14 @@
 			isa = PBXGroup;
 			children = (
 				2173761622428CA2006279D2 /* Storyboards */,
-				217652B6223C8D50006886E8 /* Wrappers */,
+				217652B6223C8D50006886E8 /* Model */,
+				216A1654220FCDBA00342707 /* Login */,
 				216F3381223ECB3700E7B989 /* New Activity */,
-				216A1654220FCDBA00342707 /* Login View */,
-				21B8C981222444720037B1C5 /* Tab Controller */,
+				21B8C981222444720037B1C5 /* Tab Bar */,
 				21DABC7C223AFAAA00844CDF /* Dashboard */,
-				21DABC7B223AFA7000844CDF /* ProfileView */,
-				2199A67E223C0FDF00037C0F /* ActivityCollection */,
-				2199A677223BEDE900037C0F /* Activity View */,
+				21DABC7B223AFA7000844CDF /* User Profile */,
+				2199A67E223C0FDF00037C0F /* Traditions */,
+				2199A677223BEDE900037C0F /* Activity Detail */,
 				216A1651220FCC3C00342707 /* Stuff */,
 				210AA94322451C7700172102 /* SettingsViewController.swift */,
 				210787BA22552ADE008E46C2 /* Users */,
@@ -250,23 +273,23 @@
 			path = Stuff;
 			sourceTree = "<group>";
 		};
-		216A1654220FCDBA00342707 /* Login View */ = {
+		216A1654220FCDBA00342707 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				2173761922428F2C006279D2 /* Login.storyboard */,
 				216A1655220FCE2E00342707 /* LoginViewController.swift */,
 				21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */,
 			);
-			path = "Login View";
+			path = Login;
 			sourceTree = "<group>";
 		};
 		216F3381223ECB3700E7B989 /* New Activity */ = {
 			isa = PBXGroup;
 			children = (
+				2173761C22428FB2006279D2 /* NewActivity.storyboard */,
 				216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */,
-				216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */,
-				216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */,
-				2138A687225456BD00AC0474 /* NewLocationViewController.swift */,
-				2138A6892254679A00AC0474 /* LocationMapViewController.swift */,
+				212F529222569AE50072E9B4 /* Category */,
+				212F529322569B0A0072E9B4 /* Location */,
 			);
 			path = "New Activity";
 			sourceTree = "<group>";
@@ -274,11 +297,6 @@
 		2173761622428CA2006279D2 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				210AA947224525A800172102 /* UserProfile.storyboard */,
-				210AA9452245258F00172102 /* Dashboard.storyboard */,
-				217376242242C7B7006279D2 /* Traditions.storyboard */,
-				2173761C22428FB2006279D2 /* NewActivity.storyboard */,
-				2173761922428F2C006279D2 /* Login.storyboard */,
 				216A1624220E203B00342707 /* LaunchScreen.storyboard */,
 				2173761E22428FD6006279D2 /* Main.storyboard */,
 				21C33360224925F700454CC1 /* Settings.storyboard */,
@@ -289,7 +307,7 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		217652B6223C8D50006886E8 /* Wrappers */ = {
+		217652B6223C8D50006886E8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				2199A685223C75D500037C0F /* User.swift */,
@@ -297,49 +315,49 @@
 				216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */,
 				211745F1224D17B700BEA0C8 /* Category.swift */,
 			);
-			path = Wrappers;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		2199A677223BEDE900037C0F /* Activity View */ = {
+		2199A677223BEDE900037C0F /* Activity Detail */ = {
 			isa = PBXGroup;
 			children = (
-				2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */,
-				2199A67A223BEE2900037C0F /* MapTableViewCell.swift */,
 				2199A67C223BEED100037C0F /* ActivityDetailViewController.swift */,
+				212F529422569D050072E9B4 /* Views */,
 			);
-			path = "Activity View";
+			path = "Activity Detail";
 			sourceTree = "<group>";
 		};
-		2199A67E223C0FDF00037C0F /* ActivityCollection */ = {
+		2199A67E223C0FDF00037C0F /* Traditions */ = {
 			isa = PBXGroup;
 			children = (
-				2199A67F223C100900037C0F /* ActivityCollectionViewController.swift */,
-				2199A681223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift */,
+				217376242242C7B7006279D2 /* Traditions.storyboard */,
 				2199A683223C40CF00037C0F /* CategoryViewController.swift */,
 				211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */,
 			);
-			path = ActivityCollection;
+			path = Traditions;
 			sourceTree = "<group>";
 		};
-		21B8C981222444720037B1C5 /* Tab Controller */ = {
+		21B8C981222444720037B1C5 /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
 				215E4E2522491B770001D3F2 /* NavTabBarController.swift */,
 			);
-			path = "Tab Controller";
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
-		21DABC7B223AFA7000844CDF /* ProfileView */ = {
+		21DABC7B223AFA7000844CDF /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
+				210AA947224525A800172102 /* UserProfile.storyboard */,
 				21DABC81223B40EB00844CDF /* ProfileViewController.swift */,
 			);
-			path = ProfileView;
+			path = "User Profile";
 			sourceTree = "<group>";
 		};
 		21DABC7C223AFAAA00844CDF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				210AA9452245258F00172102 /* Dashboard.storyboard */,
 				21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */,
 				21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */,
 			);
@@ -380,7 +398,7 @@
 				216A1611220E203900342707 /* Sources */,
 				216A1612220E203900342707 /* Frameworks */,
 				216A1613220E203900342707 /* Resources */,
-				AFF37DF13D60B43F1A5397A2 /* [CP] Embed Pods Frameworks */,
+				721BA2F1A1A81864E54FF8DE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -557,29 +575,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		90164D95763F33CB9679B7ED /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Tradition KeepersUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AFF37DF13D60B43F1A5397A2 /* [CP] Embed Pods Frameworks */ = {
+		721BA2F1A1A81864E54FF8DE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -615,6 +611,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tradition Keepers/Pods-Tradition Keepers-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		90164D95763F33CB9679B7ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tradition KeepersUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -634,7 +652,6 @@
 				210AA94422451C7700172102 /* SettingsViewController.swift in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
 				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
-				2199A680223C100900037C0F /* ActivityCollectionViewController.swift in Sources */,
 				2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */,
 				211745F2224D17B700BEA0C8 /* Category.swift in Sources */,
 				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
@@ -646,7 +663,6 @@
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
 				216F3389223F14FB00E7B989 /* FirebaseWrapper.swift in Sources */,
 				2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */,
-				2199A682223C114B00037C0F /* ActivityCategoryCollectionViewCell.swift in Sources */,
 				2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */,
 				210787BC22552B16008E46C2 /* UsersTableViewController.swift in Sources */,
 				21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */,

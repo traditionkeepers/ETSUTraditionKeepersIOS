@@ -101,10 +101,10 @@ class User {
         
         let permission = doc.get("permission") as? String ?? ""
         switch permission {
-            case "user": data.permission = .user
-            case "staff": data.permission = .staff
-            case "admin": data.permission = .admin
-            default: data.permission = .none
+        case "user": data.permission = .user
+        case "staff": data.permission = .staff
+        case "admin": data.permission = .admin
+        default: data.permission = .none
         }
     }
 }
