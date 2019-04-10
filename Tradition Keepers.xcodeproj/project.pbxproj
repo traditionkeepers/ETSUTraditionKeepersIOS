@@ -157,12 +157,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		210787BA22552ADE008E46C2 /* Users */ = {
+		210787BA22552ADE008E46C2 /* 1.3 - Users */ = {
 			isa = PBXGroup;
 			children = (
+				210787B822552595008E46C2 /* Users.storyboard */,
 				210787BB22552B16008E46C2 /* UsersTableViewController.swift */,
 			);
-			path = Users;
+			path = "1.3 - Users";
+			sourceTree = "<group>";
+		};
+		212BFABE225E4FB700BDF9DA /* 1.5 - Settings */ = {
+			isa = PBXGroup;
+			children = (
+				21C33360224925F700454CC1 /* Settings.storyboard */,
+				210AA94322451C7700172102 /* SettingsViewController.swift */,
+			);
+			path = "1.5 - Settings";
 			sourceTree = "<group>";
 		};
 		212F529222569AE50072E9B4 /* Category */ = {
@@ -192,14 +202,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2138A6822254312C00AC0474 /* Instructions */ = {
+		2138A6822254312C00AC0474 /* 1.5.1.1 - Instructions */ = {
 			isa = PBXGroup;
 			children = (
+				2138A67E22542EF700AC0474 /* Instructions.storyboard */,
 				2138A6802254312700AC0474 /* InstructionsViewController.swift */,
 				2138A68322543B8200AC0474 /* LocationViewController.swift */,
 				2138A685225441C900AC0474 /* CameraViewController.swift */,
 			);
-			path = Instructions;
+			path = "1.5.1.1 - Instructions";
 			sourceTree = "<group>";
 		};
 		216A160C220E203900342707 = {
@@ -229,17 +240,17 @@
 			children = (
 				2173761622428CA2006279D2 /* Storyboards */,
 				217652B6223C8D50006886E8 /* Model */,
-				216A1654220FCDBA00342707 /* Login */,
-				216F3381223ECB3700E7B989 /* New Activity */,
-				21B8C981222444720037B1C5 /* Tab Bar */,
-				21DABC7C223AFAAA00844CDF /* Dashboard */,
-				21DABC7B223AFA7000844CDF /* User Profile */,
-				2199A67E223C0FDF00037C0F /* Traditions */,
-				2199A677223BEDE900037C0F /* Activity Detail */,
-				216A1651220FCC3C00342707 /* Stuff */,
-				210AA94322451C7700172102 /* SettingsViewController.swift */,
-				210787BA22552ADE008E46C2 /* Users */,
-				2138A6822254312C00AC0474 /* Instructions */,
+				21B8C981222444720037B1C5 /* 1 - Tab Bar */,
+				21DABC7C223AFAAA00844CDF /* 1.1 - Dashboard */,
+				2199A67E223C0FDF00037C0F /* 1.2 - Traditions */,
+				210787BA22552ADE008E46C2 /* 1.3 - Users */,
+				212BFABE225E4FB700BDF9DA /* 1.5 - Settings */,
+				2199A677223BEDE900037C0F /* 1.2.1 - Activity Detail */,
+				216F3381223ECB3700E7B989 /* 1.2.2 - New Activity */,
+				21DABC7B223AFA7000844CDF /* 1.3.1 - User Profile */,
+				216A1654220FCDBA00342707 /* 1.5.1 -  Login */,
+				2138A6822254312C00AC0474 /* 1.5.1.1 - Instructions */,
+				216A1651220FCC3C00342707 /* Miscalenous */,
 			);
 			path = "Tradition Keepers";
 			sourceTree = "<group>";
@@ -262,7 +273,7 @@
 			path = "Tradition KeepersUITests";
 			sourceTree = "<group>";
 		};
-		216A1651220FCC3C00342707 /* Stuff */ = {
+		216A1651220FCC3C00342707 /* Miscalenous */ = {
 			isa = PBXGroup;
 			children = (
 				21C3335E22491F0500454CC1 /* GoogleService-Info.plist */,
@@ -270,20 +281,20 @@
 				216A1622220E203B00342707 /* Assets.xcassets */,
 				216A1627220E203B00342707 /* Info.plist */,
 			);
-			path = Stuff;
+			path = Miscalenous;
 			sourceTree = "<group>";
 		};
-		216A1654220FCDBA00342707 /* Login */ = {
+		216A1654220FCDBA00342707 /* 1.5.1 -  Login */ = {
 			isa = PBXGroup;
 			children = (
 				2173761922428F2C006279D2 /* Login.storyboard */,
 				216A1655220FCE2E00342707 /* LoginViewController.swift */,
 				21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */,
 			);
-			path = Login;
+			path = "1.5.1 -  Login";
 			sourceTree = "<group>";
 		};
-		216F3381223ECB3700E7B989 /* New Activity */ = {
+		216F3381223ECB3700E7B989 /* 1.2.2 - New Activity */ = {
 			isa = PBXGroup;
 			children = (
 				2173761C22428FB2006279D2 /* NewActivity.storyboard */,
@@ -291,7 +302,7 @@
 				212F529222569AE50072E9B4 /* Category */,
 				212F529322569B0A0072E9B4 /* Location */,
 			);
-			path = "New Activity";
+			path = "1.2.2 - New Activity";
 			sourceTree = "<group>";
 		};
 		2173761622428CA2006279D2 /* Storyboards */ = {
@@ -299,10 +310,7 @@
 			children = (
 				216A1624220E203B00342707 /* LaunchScreen.storyboard */,
 				2173761E22428FD6006279D2 /* Main.storyboard */,
-				21C33360224925F700454CC1 /* Settings.storyboard */,
 				217376262242C822006279D2 /* About.storyboard */,
-				2138A67E22542EF700AC0474 /* Instructions.storyboard */,
-				210787B822552595008E46C2 /* Users.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -318,50 +326,50 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2199A677223BEDE900037C0F /* Activity Detail */ = {
+		2199A677223BEDE900037C0F /* 1.2.1 - Activity Detail */ = {
 			isa = PBXGroup;
 			children = (
 				2199A67C223BEED100037C0F /* ActivityDetailViewController.swift */,
 				212F529422569D050072E9B4 /* Views */,
 			);
-			path = "Activity Detail";
+			path = "1.2.1 - Activity Detail";
 			sourceTree = "<group>";
 		};
-		2199A67E223C0FDF00037C0F /* Traditions */ = {
+		2199A67E223C0FDF00037C0F /* 1.2 - Traditions */ = {
 			isa = PBXGroup;
 			children = (
 				217376242242C7B7006279D2 /* Traditions.storyboard */,
 				2199A683223C40CF00037C0F /* CategoryViewController.swift */,
 				211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */,
 			);
-			path = Traditions;
+			path = "1.2 - Traditions";
 			sourceTree = "<group>";
 		};
-		21B8C981222444720037B1C5 /* Tab Bar */ = {
+		21B8C981222444720037B1C5 /* 1 - Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
 				215E4E2522491B770001D3F2 /* NavTabBarController.swift */,
 			);
-			path = "Tab Bar";
+			path = "1 - Tab Bar";
 			sourceTree = "<group>";
 		};
-		21DABC7B223AFA7000844CDF /* User Profile */ = {
+		21DABC7B223AFA7000844CDF /* 1.3.1 - User Profile */ = {
 			isa = PBXGroup;
 			children = (
 				210AA947224525A800172102 /* UserProfile.storyboard */,
 				21DABC81223B40EB00844CDF /* ProfileViewController.swift */,
 			);
-			path = "User Profile";
+			path = "1.3.1 - User Profile";
 			sourceTree = "<group>";
 		};
-		21DABC7C223AFAAA00844CDF /* Dashboard */ = {
+		21DABC7C223AFAAA00844CDF /* 1.1 - Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				210AA9452245258F00172102 /* Dashboard.storyboard */,
 				21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */,
 				21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */,
 			);
-			path = Dashboard;
+			path = "1.1 - Dashboard";
 			sourceTree = "<group>";
 		};
 		296DF8C02F69D23D43B84F0F /* Frameworks */ = {
