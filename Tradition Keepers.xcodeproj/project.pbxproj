@@ -177,6 +177,14 @@
 			path = "1.5 - Settings";
 			sourceTree = "<group>";
 		};
+		212BFAC1225E537600BDF9DA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				212BFABF225E50E000BDF9DA /* Submit.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		212F529222569AE50072E9B4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +248,7 @@
 		216A1617220E203900342707 /* Tradition Keepers */ = {
 			isa = PBXGroup;
 			children = (
+				212BFAC1225E537600BDF9DA /* View Controllers */,
 				2173761622428CA2006279D2 /* Storyboards */,
 				217652B6223C8D50006886E8 /* Model */,
 				21B8C981222444720037B1C5 /* 1 - Tab Bar */,
@@ -324,7 +333,6 @@
 				217652B7223C8D6D006886E8 /* Activity.swift */,
 				216F3388223F14FB00E7B989 /* FirebaseWrapper.swift */,
 				211745F1224D17B700BEA0C8 /* Category.swift */,
-				212BFABF225E50E000BDF9DA /* Submit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
