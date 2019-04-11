@@ -7,18 +7,73 @@
 //
 
 import UIKit
+import Firebase
 
 class CategoryTableViewController: UITableViewController {
     
-    // MARK: - Properties
-    var categories = Category.Categories
-    var cateogryTitles: [String] {
-        return categories.keys.sorted()
+    /// background to show when no data is found.
+    let backgroundView = UIImageView()
+    private var categories: [Category] = []
+    private var documents: [DocumentSnapshot] = []
+    
+    fileprivate var query: Query? {
+        didSet {
+            if let listener = listener {
+                listener.remove()
+                observeQuery()
+            }
+        }
     }
     
-    var selectedCategoryIndex: IndexPath!
+    private var listener: ListenerRegistration?
     
-    var submitted = Category(withName: "All Traditions")
+    fileprivate func observeQuery() {
+        guard let query = query else { return }
+        stopObserving()
+        
+        // Display data from Firestore, part one
+        listener = query.addSnapshotListener { [unowned self] (snapshot, error) in
+            guard let snapshot = snapshot else {
+                print("Error fetching snapshot results: \(error!)")
+                return
+            }
+            let models = snapshot.documents.map { (document) -> Category in
+                if let model = Category(dictionary: document.data()) {
+                    return model
+                } else {
+                    // Don't use fatalError here in a real app.
+                    fatalError("Unable to initialize type \(Category.self) with dictionary \(document.data())")
+                }
+            }
+            self.categories = models
+            self.documents = snapshot.documents
+            
+            if self.documents.count > 0 {
+                self.tableView.backgroundView = nil
+            } else {
+                self.tableView.backgroundView = self.backgroundView
+            }
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    fileprivate func stopObserving() {
+        listener?.remove()
+    }
+    
+    fileprivate func baseQuery() -> Query {
+        return Firestore.firestore().collection("restaurants").limit(to: 50)
+    }
+    
+//    lazy private var filters: (navigationController: UINavigationController,
+//        filtersController: FiltersViewController) = {
+//            return FiltersViewController.fromStoryboard(delegate: self)
+//    }()
+    
+    
+    // MARK: - Properties
+    var submitted = Category(name: "All Traditions", count: 0)
     
     private var sectionHeader:[String] = [
         "",
@@ -45,7 +100,12 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        categories = Category.Categories
+        observeQuery()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopObserving()
     }
     
     // MARK: - Table view data source
@@ -65,17 +125,12 @@ class CategoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch User.permission {
-        case .user:
-            return sectionHeader[section]
-        default:
-            return sectionHeader[1]
-        }
+        return sectionHeader[section]
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
-        switch User.permission {
+        switch User.current.permission {
         case .user:
             if indexPath.section == 0 {
                 cell.Title.text = submitted.name
