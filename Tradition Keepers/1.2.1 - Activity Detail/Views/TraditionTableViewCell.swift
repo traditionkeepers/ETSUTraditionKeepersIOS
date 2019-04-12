@@ -1,15 +1,22 @@
 //
-//  ActivityTableViewCell.swift
+//  TraditionTableViewCell.swift
 //  Tradition Keepers
 //
-//  Created by Ryan Thally on 3/14/19.
+//  Created by Ryan Thally on 4/12/19.
 //  Copyright © 2019 East Tennessee State Univeristy. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class ActivityTableViewCell: UITableViewCell {
+class TraditionTableViewCell: UITableViewCell {
+    
+    class func cellForTableView(tableView: UITableView, atIndex indexPath: IndexPath) -> TraditionTableViewCell {
+        let identifier = "TraditionCell"
+        tableView.register(UINib(nibName: "TraditionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: identifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TraditionTableViewCell
+        
+        return cell
+    }
     
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var SecondaryLabel: UILabel!

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yrl-5B-Ih3">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="UDj-sR-l8N">
+            <objects>
+                <navigationController id="Yrl-5B-Ih3" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bTY-LO-V5g">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hj4-8q-hqj" kind="relationship" relationship="rootViewController" id="nPN-3q-I3C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HhY-8l-gtA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1096" y="95"/>
+        </scene>
+        <!--Submissions View Controller-->
+        <scene sceneID="4WQ-bI-dpY">
+            <objects>
+                <viewController id="Hj4-8q-hqj" customClass="SubmissionsViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WxA-mH-DnH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kFE-7j-Z4B">
+                                <rect key="frame" x="0.0" y="94" width="414" height="748"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qhJ-3c-GxF">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Hj4-8q-hqj" id="xzR-rl-yxd"/>
+                                            <outlet property="delegate" destination="Hj4-8q-hqj" id="Lpw-7O-aHs"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="nYj-BE-ZV6" firstAttribute="bottom" secondItem="kFE-7j-Z4B" secondAttribute="bottom" constant="20" id="23j-d7-VHN"/>
+                            <constraint firstItem="nYj-BE-ZV6" firstAttribute="trailing" secondItem="kFE-7j-Z4B" secondAttribute="trailing" id="4SM-A0-uxG"/>
+                            <constraint firstItem="kFE-7j-Z4B" firstAttribute="top" secondItem="nYj-BE-ZV6" secondAttribute="top" constant="6" id="Ey4-tK-V46"/>
+                            <constraint firstItem="kFE-7j-Z4B" firstAttribute="leading" secondItem="nYj-BE-ZV6" secondAttribute="leading" id="xg6-rz-5Kc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nYj-BE-ZV6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dI2-WC-hm3"/>
+                    <connections>
+                        <outlet property="TableView" destination="qhJ-3c-GxF" id="xbh-67-q6E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EXc-qe-Sas" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-122" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

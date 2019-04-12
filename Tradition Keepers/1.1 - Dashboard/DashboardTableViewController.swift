@@ -155,29 +155,8 @@ extension DashboardTableViewController {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityTableViewCell
-        cell.NameLabel.text = topThree[indexPath.row].title
-        cell.SecondaryLabel.text = topThree[indexPath.row].instruction
-        
-        let status = topThree[indexPath.row].submission.status
-        switch status {
-        case .none:
-            cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
-            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU GOLD"), for: .normal)
-            cell.CompleteButtonPressed = { (cell) in
-                self.ShowAlertForRow(row: indexPath.row)
-            }
-        case .pending:
-            cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
-            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
-            cell.CompleteButtonPressed = nil
-        case .complete:
-            let date = topThree[indexPath.row].submission.completion_date
-            cell.CompleteButton.setTitle(DateFormat.string(from: date), for: .normal)
-            cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
-            cell.CompleteButtonPressed = nil
-        }
-        
+        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
+        cell.prepare(tradition: topThree[indexPath.row])
         return cell
     }
     
@@ -185,22 +164,19 @@ extension DashboardTableViewController {
         selectedIndex = indexPath.row
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
     }
-}
-
-// MARK: Firebase
-extension DashboardTableViewController {
+    
     func ShowAlertForRow(row: Int) {
         print("Complete Button Pressed")
-//        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-//        let devices = deviceDiscoverySession.devices
-//
-//        setupCaptureSession()
-//        setupDevice()
-//        if (devices.count > 0) {
-//            setupInputOutput()
-//            setupPreviewLayer()
-//            startRunningCaptureSession()
-//        }
+        //        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+        //        let devices = deviceDiscoverySession.devices
+        //
+        //        setupCaptureSession()
+        //        setupDevice()
+        //        if (devices.count > 0) {
+        //            setupInputOutput()
+        //            setupPreviewLayer()
+        //            startRunningCaptureSession()
+        //        }
         
         let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
@@ -208,7 +184,7 @@ extension DashboardTableViewController {
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
             self.topThree[row].submission.status = .pending
             self.topThree[row].submission.user_id = User.current.uid
-            self.topThree[row].submission.activity = self.topThree[row].id ?? ""
+            self.topThree[row].submission.activity = self.topThree[row].id
             self.topThree[row].submission.completion_date = Date()
             self.UpdateDatabase(activity: self.topThree[row])
         }
@@ -217,9 +193,12 @@ extension DashboardTableViewController {
         alert.addAction(submit)
         self.present(alert, animated: true, completion: nil)
     }
-    
+}
+
+// MARK: Firebase
+extension DashboardTableViewController {
     func UpdateDatabase(activity: Tradition) {
-        if activity.id != nil {
+        if activity.id != "" {
             Firestore.firestore().collection("completed_activities").document().setData(activity.submissionDictionary) { err in
                 if let err = err {
                     print("Error writing document: \(err)")

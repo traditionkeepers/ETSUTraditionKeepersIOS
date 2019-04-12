@@ -30,10 +30,10 @@ class NavTabBarController: UITabBarController {
         let usb = UIStoryboard(name: "Users", bundle: .main)
         let users = usb.instantiateInitialViewController()!
         users.tabBarItem = UITabBarItem(title: "Users", image: nil, tag: 2)
-//
-//        let subsb = UIStoryboard(name: "Submissions", bundle: .main)
-//        let submissions = subsb.instantiateInitialViewController()
-//        submissions?.tabBarItem = UITabBarItem(title: "Submissions", image: nil, tag: 3)
+
+        let subsb = UIStoryboard(name: "Submissions", bundle: .main)
+        let submissions = subsb.instantiateInitialViewController()!
+        submissions.tabBarItem = UITabBarItem(title: "Submissions", image: nil, tag: 3)
         
         // Settings
         let settings = UIStoryboard(name: "Settings", bundle: .main).instantiateInitialViewController()!
@@ -41,8 +41,8 @@ class NavTabBarController: UITabBarController {
         
         tabs[.none] = [settings]
         tabs[.user] = [dashboard, traditions, settings]
-        tabs[.staff] = [dashboard, traditions, users, settings]
-        tabs[.admin] = [dashboard, traditions, users, settings]
+        tabs[.staff] = [dashboard, traditions, users, submissions, settings]
+        tabs[.admin] = [dashboard, traditions, users, submissions, settings]
         
 //        tabs?[.staff] = [dashboard!, tradition!, users!, submissions!, settings!]
 //        tabs?[.admin] = [dashboard!, tradition!, users!, submissions!, settings!]

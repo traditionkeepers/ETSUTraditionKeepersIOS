@@ -21,19 +21,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="0fs-5T-Kdv">
-                                <rect key="frame" x="0.0" y="64" width="414" height="510.5"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="389"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xmT-wi-6Vr">
-                                        <rect key="frame" x="95.5" y="0.0" width="223.5" height="235.5"/>
+                                        <rect key="frame" x="95.5" y="0.0" width="223.5" height="174.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ETSU LOGOLayer 1" translatesAutoresizingMaskIntoConstraints="NO" id="Bng-sr-ftv">
-                                                <rect key="frame" x="21.5" y="0.0" width="180" height="180"/>
+                                                <rect key="frame" x="44" y="0.0" width="135" height="135.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Bng-sr-ftv" secondAttribute="height" multiplier="1:1" id="dA0-wl-ed1"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tradition Keepers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyS-Hp-C72">
-                                                <rect key="frame" x="0.0" y="188" width="223.5" height="47.5"/>
+                                                <rect key="frame" x="0.0" y="143.5" width="223.5" height="31"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                 <color key="textColor" name="ETSU GOLD"/>
                                                 <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y2g-K4-39v">
-                                        <rect key="frame" x="57" y="275.5" width="300" height="235"/>
+                                        <rect key="frame" x="57" y="214.5" width="300" height="174.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="EX4-Lx-fIQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -52,11 +52,11 @@
                                                         <color key="textColor" name="ETSU WHITE"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETSU Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XJm-jT-LVB">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETSU Username" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XJm-jT-LVB">
                                                         <rect key="frame" x="0.0" y="30" width="300" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="username"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -74,11 +74,11 @@
                                                         <color key="textColor" name="ETSU WHITE"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETSU Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yS1-sH-XrT">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETSU Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yS1-sH-XrT">
                                                         <rect key="frame" x="0.0" y="30" width="300" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -87,7 +87,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1O-1L-UeI">
-                                                <rect key="frame" x="0.0" y="120" width="300" height="115"/>
+                                                <rect key="frame" x="0.0" y="120" width="300" height="54.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" name="ETSU GOLD"/>
@@ -115,10 +115,10 @@
                             <constraint firstItem="0fs-5T-Kdv" firstAttribute="width" secondItem="uv1-Em-lJ3" secondAttribute="width" id="BB8-OY-AhX"/>
                             <constraint firstItem="0fs-5T-Kdv" firstAttribute="leading" secondItem="VDp-lA-ekb" secondAttribute="leading" id="Hme-AM-g4v"/>
                             <constraint firstItem="0fs-5T-Kdv" firstAttribute="centerX" secondItem="VDp-lA-ekb" secondAttribute="centerX" id="QIy-px-Gh9"/>
-                            <constraint firstItem="Bng-sr-ftv" firstAttribute="height" relation="lessThanOrEqual" secondItem="uv1-Em-lJ3" secondAttribute="height" multiplier="0.2" constant="1" id="dcI-JU-Jdc"/>
+                            <constraint firstItem="Bng-sr-ftv" firstAttribute="height" relation="lessThanOrEqual" secondItem="uv1-Em-lJ3" secondAttribute="height" multiplier="0.15" constant="1" id="dcI-JU-Jdc"/>
                             <constraint firstItem="VDp-lA-ekb" firstAttribute="bottom" secondItem="zf9-tU-ALB" secondAttribute="bottom" constant="20" id="gaI-G5-MjQ"/>
-                            <constraint firstItem="0fs-5T-Kdv" firstAttribute="top" secondItem="VDp-lA-ekb" secondAttribute="top" constant="20" id="rfR-Gk-lhO"/>
-                            <constraint firstItem="VDp-lA-ekb" firstAttribute="bottom" secondItem="0fs-5T-Kdv" secondAttribute="bottom" multiplier="1.5" id="rmT-fe-NSM"/>
+                            <constraint firstItem="0fs-5T-Kdv" firstAttribute="top" secondItem="VDp-lA-ekb" secondAttribute="top" constant="40" id="rfR-Gk-lhO"/>
+                            <constraint firstItem="VDp-lA-ekb" firstAttribute="centerY" secondItem="0fs-5T-Kdv" secondAttribute="bottom" constant="-20" id="rmT-fe-NSM"/>
                             <constraint firstItem="zf9-tU-ALB" firstAttribute="centerX" secondItem="VDp-lA-ekb" secondAttribute="centerX" id="wsc-T7-FkI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VDp-lA-ekb"/>
@@ -144,7 +144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Kje-T6-6y7">
-                                <rect key="frame" x="20" y="246" width="374" height="264.5"/>
+                                <rect key="frame" x="20" y="208.5" width="374" height="264.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bXA-X7-PhV">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="58.5"/>
@@ -155,11 +155,11 @@
                                                 <color key="textColor" name="ETSU WHITE"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kHu-v8-vsS">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kHu-v8-vsS">
                                                 <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="given-name"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -172,11 +172,11 @@
                                                 <color key="textColor" name="ETSU WHITE"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vml-6S-toO">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Vml-6S-toO">
                                                 <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="family-name"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -189,11 +189,11 @@
                                                 <color key="textColor" name="ETSU WHITE"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09j-me-Zom">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="09j-me-Zom">
                                                 <rect key="frame" x="0.0" y="28.5" width="374" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -234,7 +234,7 @@
                             <constraint firstItem="KqW-Be-bQD" firstAttribute="centerX" secondItem="11y-c4-KeV" secondAttribute="centerX" id="hB5-i8-c1k"/>
                             <constraint firstItem="11y-c4-KeV" firstAttribute="trailing" secondItem="Kje-T6-6y7" secondAttribute="trailing" constant="20" id="hJQ-KV-QFl"/>
                             <constraint firstItem="Kje-T6-6y7" firstAttribute="leading" secondItem="11y-c4-KeV" secondAttribute="leading" constant="20" id="qaX-Tx-57p"/>
-                            <constraint firstItem="Kje-T6-6y7" firstAttribute="centerY" secondItem="11y-c4-KeV" secondAttribute="centerY" constant="-75" id="rMk-Fo-60l"/>
+                            <constraint firstItem="Kje-T6-6y7" firstAttribute="bottom" secondItem="11y-c4-KeV" secondAttribute="centerY" constant="20" id="rMk-Fo-60l"/>
                             <constraint firstItem="Don-dK-x2G" firstAttribute="centerX" secondItem="11y-c4-KeV" secondAttribute="centerX" id="tHT-ID-UfJ"/>
                             <constraint firstItem="Kje-T6-6y7" firstAttribute="centerX" secondItem="11y-c4-KeV" secondAttribute="centerX" id="wUr-io-fJW"/>
                         </constraints>

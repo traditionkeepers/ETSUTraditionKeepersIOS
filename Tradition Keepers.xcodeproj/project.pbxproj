@@ -49,6 +49,10 @@
 		21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */; };
 		21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */; };
 		21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC81223B40EB00844CDF /* ProfileViewController.swift */; };
+		21F2D7DA2260B6D7000BD3AE /* SubmissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2D7D92260B6D7000BD3AE /* SubmissionsViewController.swift */; };
+		21F2D7DC2260BCBC000BD3AE /* Submissions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21F2D7DB2260BCBC000BD3AE /* Submissions.storyboard */; };
+		21F2D7DF2260C49E000BD3AE /* TraditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2D7DD2260C49E000BD3AE /* TraditionTableViewCell.swift */; };
+		21F2D7E02260C49E000BD3AE /* TraditionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21F2D7DE2260C49E000BD3AE /* TraditionTableViewCell.xib */; };
 		5DBC924EF3F416B342579341 /* Pods_Tradition_KeepersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1121B7AB89A56F7D3ADB2A /* Pods_Tradition_KeepersTests.framework */; };
 		73CAB282991311005B3EC8F1 /* Pods_Tradition_KeepersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8316737D819E520B6072977 /* Pods_Tradition_KeepersUITests.framework */; };
 		BCF3290CA7A36187B014DF55 /* Pods_Tradition_Keepers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D6A8DA6F2AF748DD83E3DB /* Pods_Tradition_Keepers.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -120,6 +124,10 @@
 		21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		21DABC81223B40EB00844CDF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		21F2D7D92260B6D7000BD3AE /* SubmissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsViewController.swift; sourceTree = "<group>"; };
+		21F2D7DB2260BCBC000BD3AE /* Submissions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Submissions.storyboard; sourceTree = "<group>"; };
+		21F2D7DD2260C49E000BD3AE /* TraditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionTableViewCell.swift; sourceTree = "<group>"; };
+		21F2D7DE2260C49E000BD3AE /* TraditionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TraditionTableViewCell.xib; sourceTree = "<group>"; };
 		2244324DF98B6D4A624B79F2 /* Pods-Tradition KeepersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition KeepersTests.debug.xcconfig"; path = "Target Support Files/Pods-Tradition KeepersTests/Pods-Tradition KeepersTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4E86EFED80C8EFD09DEF2C16 /* Pods-Tradition KeepersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition KeepersTests.release.xcconfig"; path = "Target Support Files/Pods-Tradition KeepersTests/Pods-Tradition KeepersTests.release.xcconfig"; sourceTree = "<group>"; };
 		55D14E1E7BBC2E38FD0987A1 /* Pods-Tradition Keepers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tradition Keepers.debug.xcconfig"; path = "Target Support Files/Pods-Tradition Keepers/Pods-Tradition Keepers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */,
+				21F2D7DD2260C49E000BD3AE /* TraditionTableViewCell.swift */,
+				21F2D7DE2260C49E000BD3AE /* TraditionTableViewCell.xib */,
 				2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */,
 				2199A67A223BEE2900037C0F /* MapTableViewCell.swift */,
 			);
@@ -259,6 +269,7 @@
 				216F3381223ECB3700E7B989 /* 1.2.2 - New Activity */,
 				210787BA22552ADE008E46C2 /* 1.3 - Users */,
 				21DABC7B223AFA7000844CDF /* 1.3.1 - User Profile */,
+				21F2D7D82260B6A9000BD3AE /* 1.4 - Submissions */,
 				212BFABE225E4FB700BDF9DA /* 1.5 - Settings */,
 				216A1654220FCDBA00342707 /* 1.5.1 -  Login */,
 				2138A6822254312C00AC0474 /* 1.5.1.1 - Instructions */,
@@ -381,6 +392,15 @@
 				21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */,
 			);
 			path = "1.1 - Dashboard";
+			sourceTree = "<group>";
+		};
+		21F2D7D82260B6A9000BD3AE /* 1.4 - Submissions */ = {
+			isa = PBXGroup;
+			children = (
+				21F2D7D92260B6D7000BD3AE /* SubmissionsViewController.swift */,
+				21F2D7DB2260BCBC000BD3AE /* Submissions.storyboard */,
+			);
+			path = "1.4 - Submissions";
 			sourceTree = "<group>";
 		};
 		296DF8C02F69D23D43B84F0F /* Frameworks */ = {
@@ -517,9 +537,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F2D7DC2260BCBC000BD3AE /* Submissions.storyboard in Resources */,
 				210787B922552595008E46C2 /* Users.storyboard in Resources */,
 				2173761F22428FD6006279D2 /* Main.storyboard in Resources */,
 				210AA9462245258F00172102 /* Dashboard.storyboard in Resources */,
+				21F2D7E02260C49E000BD3AE /* TraditionTableViewCell.xib in Resources */,
 				21C33361224925F700454CC1 /* Settings.storyboard in Resources */,
 				216A1626220E203B00342707 /* LaunchScreen.storyboard in Resources */,
 				2173761D22428FB2006279D2 /* NewActivity.storyboard in Resources */,
@@ -659,6 +681,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F2D7DA2260B6D7000BD3AE /* SubmissionsViewController.swift in Sources */,
 				217652B8223C8D6D006886E8 /* Tradition.swift in Sources */,
 				2199A67D223BEED100037C0F /* ActivityDetailViewController.swift in Sources */,
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
@@ -677,6 +700,7 @@
 				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
 				2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */,
 				2138A686225441C900AC0474 /* CameraViewController.swift in Sources */,
+				21F2D7DF2260C49E000BD3AE /* TraditionTableViewCell.swift in Sources */,
 				211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */,
 				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
 				2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */,

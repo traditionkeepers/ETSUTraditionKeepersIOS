@@ -86,7 +86,10 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
                 self.ActivityTable.backgroundView = self.backgroundView
             }
             
-            self.ActivityTable.reloadData()
+            DispatchQueue.main.async {
+                self.ActivityTable.reloadData()
+            }
+            
         }
     }
     
@@ -233,10 +236,14 @@ extension CategoryViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityTableViewCell
+        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
         let key = Array(groups.keys)[indexPath.section]
         let tradition = groups[key]![indexPath.row]
         cell.prepare(tradition: tradition)
+        
+        cell.CompleteButtonPressed = { (cell) in
+            self.ShowAlert(forTradition: tradition)
+        }
         
         return cell
     }
@@ -290,7 +297,7 @@ extension CategoryViewController {
                                                       user_id: User.current.uid,
                                                       completion_date: Date(),
                                                       activity: tradition.id)
-//            self.UpdateDatabase(tradition: tradition)
+            self.UpdateDatabase(tradition: tradition)
         }
         
         alert.addAction(cancel)
@@ -347,7 +354,7 @@ extension CategoryViewController: UINavigationControllerDelegate, UIImagePickerC
     }
 }
 // MARK: - Firebase
-//extension CategoryViewController {
+extension CategoryViewController {
 //
 //    /// Fetches all category information from Firestore.
 //    func FetchCategories() {
@@ -441,18 +448,18 @@ extension CategoryViewController: UINavigationControllerDelegate, UIImagePickerC
 //    }
 //
 //
-//    /// Updates the database with a new completed activity.
-//    ///
-//    /// - Parameter activity: The activity object to upload.
-//    func UpdateDatabase(activity: Activity) {
-//        if activity.id != "" {
-//            Activity.db.collection("completed_activities").document().setData(activity.Completed) { err in
-//                if let err = err {
-//                    print("Error writing document: \(err)")
-//                } else {
-//                    print("Activity successfully added to database!")
-//                }
-//            }
-//        }
-//    }
-//}
+    /// Updates the database with a new completed activity.
+    ///
+    /// - Parameter activity: The activity object to upload.
+    func UpdateDatabase(tradition: Tradition) {
+        if tradition.id != "" {
+            db.collection("submissions").document().setData(tradition.submissionDictionary) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Activity successfully added to database!")
+                }
+            }
+        }
+    }
+}

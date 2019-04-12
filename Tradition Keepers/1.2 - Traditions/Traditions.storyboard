@@ -220,65 +220,9 @@
                                             <action selector="SortByChanged:" destination="yON-Kp-9xR" eventType="valueChanged" id="SD4-pV-0mj"/>
                                         </connections>
                                     </segmentedControl>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="YFl-xn-DP3">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="YFl-xn-DP3">
                                         <rect key="frame" x="0.0" y="36" width="374" height="649"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActivityCell" rowHeight="80" id="q5s-9p-RQ6" customClass="ActivityTableViewCell" customModule="Tradition_Keepers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="55.5" width="374" height="80"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ActivityCell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q5s-9p-RQ6" id="Nh5-8y-HSA">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="79.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gbc-JU-H5h">
-                                                            <rect key="frame" x="0.0" y="6" width="374" height="67.5"/>
-                                                            <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ppa-zO-kXy">
-                                                                    <rect key="frame" x="0.0" y="14" width="287" height="39.5"/>
-                                                                    <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiS-7b-MFK">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="287" height="20.5"/>
-                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                                            <color key="textColor" name="ETSU WHITE"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZs-KV-caS">
-                                                                            <rect key="frame" x="0.0" y="21.5" width="287" height="18"/>
-                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                                            <color key="textColor" name="ETSU WHITE"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
-                                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Lu-IZ-jSg">
-                                                                    <rect key="frame" x="295" y="17" width="79" height="34"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                    <state key="normal" title="Complete">
-                                                                        <color key="titleColor" name="ETSU GOLD"/>
-                                                                    </state>
-                                                                    <connections>
-                                                                        <action selector="CompleteButtonPressed:" destination="q5s-9p-RQ6" eventType="touchUpInside" id="8mD-mF-PCY"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="gbc-JU-H5h" firstAttribute="leading" secondItem="Nh5-8y-HSA" secondAttribute="leading" id="F7r-Sa-8b0"/>
-                                                        <constraint firstItem="gbc-JU-H5h" firstAttribute="top" secondItem="Nh5-8y-HSA" secondAttribute="top" constant="6" id="f4v-ZL-pib"/>
-                                                        <constraint firstAttribute="bottom" secondItem="gbc-JU-H5h" secondAttribute="bottom" constant="6" id="m7i-Nd-PUC"/>
-                                                        <constraint firstAttribute="trailing" secondItem="gbc-JU-H5h" secondAttribute="trailing" id="pVu-rN-OEh"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <outlet property="CompleteButton" destination="0Lu-IZ-jSg" id="gr6-yi-Rqs"/>
-                                                    <outlet property="NameLabel" destination="EiS-7b-MFK" id="LJy-kC-v8h"/>
-                                                    <outlet property="SecondaryLabel" destination="HZs-KV-caS" id="IHD-xb-BUh"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="yON-Kp-9xR" id="cgV-K7-L9B"/>
                                             <outlet property="delegate" destination="yON-Kp-9xR" id="1Jt-V2-T8f"/>

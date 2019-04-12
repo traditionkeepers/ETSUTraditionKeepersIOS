@@ -32,7 +32,11 @@ struct Tradition {
     
     var submissionDictionary: [String:Any] {
         var sub = submission.dictionary
-        sub["activity_info"] = ["title": title]
+        sub["tradition_info"] = [
+            "title": title,
+            "instruction": instruction,
+            "location": location.dictionary
+        ]
         return sub
     }
 }
@@ -71,16 +75,18 @@ extension Tradition: DocumentSerializable {
 
 struct SubmittedTradition {
     var status: ActivityStatus
-    var user_id: String
+    var user: String
     var completion_date: Date
     var activity: String
+    var location: Location?
+    var image: UIImage?
     
     var dictionary: [String:Any] {
         return [
-            "user_id": user_id,
+            "user": user,
             "status": status.rawValue,
             "date": Timestamp(date: completion_date),
-            "activity": activity
+            "location": location?.dictionary ?? Location().dictionary
         ]
     }
 }
@@ -94,22 +100,24 @@ extension SubmittedTradition: DocumentSerializable {
     
     init() {
         status = .none
-        user_id = ""
+        user = ""
         completion_date = Date()
         activity = ""
     }
     
     init?(dictionary: [String : Any], id: String) {
-        guard let id = dictionary["user_id"] as? String,
+        guard let id = dictionary["user"] as? String,
         let date = (dictionary["date"] as? Timestamp)?.dateValue(),
         let status = SubmittedTradition.status[dictionary["status"] as? String ?? "none"],
-        let ref = dictionary["activity"] as? String
+        let tradition_name = dictionary["tradition_title"] as? String
         else { return nil }
         
         self.init(status: status,
-                  user_id: id,
+                  user: id,
                   completion_date: date,
-                  activity: ref)
+                  activity: tradition_name,
+                  location: nil,
+                  image: nil)
     }
 }
 
