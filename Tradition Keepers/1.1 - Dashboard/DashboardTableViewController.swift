@@ -183,8 +183,8 @@ extension DashboardTableViewController {
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
             self.topThree[row].submission.status = .pending
-            self.topThree[row].submission.user_id = User.current.uid
-            self.topThree[row].submission.activity = self.topThree[row].id
+            self.topThree[row].submission.user = User.current.name_FL
+            self.topThree[row].submission.tradition = self.topThree[row].title
             self.topThree[row].submission.completion_date = Date()
             self.UpdateDatabase(activity: self.topThree[row])
         }

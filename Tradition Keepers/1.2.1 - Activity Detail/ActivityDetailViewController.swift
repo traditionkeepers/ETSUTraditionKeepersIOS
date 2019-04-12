@@ -101,9 +101,11 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
             self.tradition.submission = SubmittedTradition(status: .pending,
-                                                             user_id: User.current.uid,
+                                                             user: User.current.name_FL,
                                                              completion_date: Date(),
-                                                             activity: self.tradition.id)
+                                                             tradition: self.tradition.id,
+                                                             location: nil,
+                                                             image: nil)
             self.UpdateDatabase(activity: self.tradition)
         }
         

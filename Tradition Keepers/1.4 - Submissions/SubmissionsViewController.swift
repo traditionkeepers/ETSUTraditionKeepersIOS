@@ -14,8 +14,8 @@ class SubmissionsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var TableView: UITableView!
     
     private var backgroundView = UIImageView()
-    private var submissions: [Tradition] = []
-    private var groups: [String:[Tradition]] = [:]
+    private var submissions: [SubmittedTradition] = []
+    private var groups: [String:[SubmittedTradition]] = [:]
     private var documents: [DocumentSnapshot] = []
     
     fileprivate var query: Query? {
@@ -40,12 +40,12 @@ class SubmissionsViewController: UIViewController, UITableViewDelegate, UITableV
                 print("Error fetching snapshot results: \(error!)")
                 return
             }
-            let models = snapshot.documents.map { (document) -> Tradition in
-                if let model = Tradition(dictionary: document.data(), id: document.documentID) {
+            let models = snapshot.documents.map { (document) -> SubmittedTradition in
+                if let model = SubmittedTradition(dictionary: document.data(), id: document.documentID) {
                     return model
                 } else {
-                    print("Unable to initialize type \(Tradition.self) with dictionary \(document.data())")
-                    return Tradition()
+                    print("Unable to initialize type \(SubmittedTradition.self) with dictionary \(document.data())")
+                    return SubmittedTradition()
                 }
             }
             self.submissions = models
@@ -94,8 +94,10 @@ class SubmissionsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
         let submission = submissions[indexPath.row]
-        cell.NameLabel.text = submission.title
-        cell.SecondaryLabel.text = "\(submission.category.name) - \(submission.date)"
+        
+        cell.NameLabel.text = submission.tradition
+        cell.SecondaryLabel.text = "\(submission.user) - "
+        cell.CompleteButton.setTitle(submission.status.rawValue, for: .normal)
         return cell
     }
     

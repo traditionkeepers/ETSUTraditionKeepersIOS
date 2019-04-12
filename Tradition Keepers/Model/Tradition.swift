@@ -31,13 +31,7 @@ struct Tradition {
     }
     
     var submissionDictionary: [String:Any] {
-        var sub = submission.dictionary
-        sub["tradition_info"] = [
-            "title": title,
-            "instruction": instruction,
-            "location": location.dictionary
-        ]
-        return sub
+        return submission.dictionary
     }
 }
 
@@ -77,7 +71,7 @@ struct SubmittedTradition {
     var status: ActivityStatus
     var user: String
     var completion_date: Date
-    var activity: String
+    var tradition: String
     var location: Location?
     var image: UIImage?
     
@@ -86,7 +80,8 @@ struct SubmittedTradition {
             "user": user,
             "status": status.rawValue,
             "date": Timestamp(date: completion_date),
-            "location": location?.dictionary ?? Location().dictionary
+            "location": location?.dictionary ?? Location().dictionary,
+            "tradition_title": tradition
         ]
     }
 }
@@ -102,7 +97,7 @@ extension SubmittedTradition: DocumentSerializable {
         status = .none
         user = ""
         completion_date = Date()
-        activity = ""
+        tradition = ""
     }
     
     init?(dictionary: [String : Any], id: String) {
@@ -115,7 +110,7 @@ extension SubmittedTradition: DocumentSerializable {
         self.init(status: status,
                   user: id,
                   completion_date: date,
-                  activity: tradition_name,
+                  tradition: tradition_name,
                   location: nil,
                   image: nil)
     }
