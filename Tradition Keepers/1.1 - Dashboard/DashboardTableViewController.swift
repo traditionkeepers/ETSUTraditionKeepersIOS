@@ -24,7 +24,6 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     
     private var submissionImage: UIImage!
     
-    private var submission: Submit
     
     private var topThree: [Activity] = [] {
         didSet {
@@ -113,9 +112,9 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     func ShowAlertForRow(row: Int) {
         print("Complete Button Pressed")
         getImage()
+        //Submit.WithCamera(self)
     }
-    
-    func getImage () {
+        func getImage () {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
