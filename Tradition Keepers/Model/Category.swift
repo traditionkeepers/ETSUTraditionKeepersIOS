@@ -10,31 +10,34 @@ import Foundation
 import Firebase
 
 struct Category {
+    var id: String
     var name: String
     var count: Int
     
     var dictionary: [String: Any] {
         return [
-            "title":name
+            "title": name
         ]
     }
 }
 
 extension Category: DocumentSerializable {
     static var categories: [String: Category] = [
-        "general": Category(name: "General", count: 0)
+        "general": Category(id: "", name: "General", count: 0)
     ]
     
     init() {
+        id = ""
         name = "New Category"
         count = 0
     }
     
-    init?(dictionary: [String : Any]) {
-        guard let name = dictionary["name"] as? String,
-        let count = dictionary["count"] as? Int
+    init?(dictionary: [String : Any], id: String) {
+        guard let name = dictionary["title"] as? String
             else { return nil }
-        self.init(name: name, count: count)
+        
+        let count = dictionary["count"] as? Int ?? 0
+        self.init(id: id, name: name, count: count)
     }
 }
 

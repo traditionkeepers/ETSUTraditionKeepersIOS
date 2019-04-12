@@ -50,9 +50,9 @@ class NavTabBarController: UITabBarController {
     }
     
     func updateTabs() {
-        self.setViewControllers(tabs[User.permission], animated: true)
+        self.setViewControllers(tabs[User.current.permission], animated: true)
         print("Updating Tabs")
-        switch User.permission {
+        switch User.current.permission {
         case .none:
             self.tabBar.isHidden = true
         default:

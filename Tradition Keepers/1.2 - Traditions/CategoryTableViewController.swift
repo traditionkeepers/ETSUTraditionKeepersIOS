@@ -11,10 +11,13 @@ import Firebase
 
 class CategoryTableViewController: UITableViewController {
     
+    weak var delegate: FiltersViewControllerDelegate?
+    
     /// background to show when no data is found.
     let backgroundView = UIImageView()
     private var categories: [Category] = []
     private var documents: [DocumentSnapshot] = []
+    var selectedCategoryIndex: IndexPath?
     
     fileprivate var query: Query? {
         didSet {
@@ -38,7 +41,7 @@ class CategoryTableViewController: UITableViewController {
                 return
             }
             let models = snapshot.documents.map { (document) -> Category in
-                if let model = Category(dictionary: document.data()) {
+                if let model = Category(dictionary: document.data(), id: "") {
                     return model
                 } else {
                     // Don't use fatalError here in a real app.
@@ -63,7 +66,7 @@ class CategoryTableViewController: UITableViewController {
     }
     
     fileprivate func baseQuery() -> Query {
-        return Firestore.firestore().collection("restaurants").limit(to: 50)
+        return Firestore.firestore().collection("categories").limit(to: 50)
     }
     
 //    lazy private var filters: (navigationController: UINavigationController,
@@ -73,7 +76,7 @@ class CategoryTableViewController: UITableViewController {
     
     
     // MARK: - Properties
-    var submitted = Category(name: "All Traditions", count: 0)
+    var submitted = Category(id: "", name: "All Traditions", count: 0)
     
     private var sectionHeader:[String] = [
         "",
@@ -91,6 +94,7 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        query = baseQuery()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -130,20 +134,13 @@ class CategoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
-        switch User.current.permission {
-        case .user:
-            if indexPath.section == 0 {
-                cell.Title.text = submitted.name
-                cell.Detail.text = submitted.count.description
-            } else {
-                cell.Title.text = categories[cateogryTitles[indexPath.row]]?.name
-                cell.Detail.text = categories[cateogryTitles[indexPath.row]]?.count.description
-            }
-        default:
-            cell.Title.text = categories[cateogryTitles[indexPath.row]]?.name
-            cell.Detail.text = categories[cateogryTitles[indexPath.row]]?.count.description
+        if indexPath.section == 0 {
+            cell.Title.text = submitted.name
+            cell.Detail.text = submitted.count.description
+        } else {
+            cell.Title.text = categories[indexPath.row].name
+            cell.Detail.text = categories[indexPath.row].count.description
         }
-
         return cell
     }
     
@@ -152,41 +149,6 @@ class CategoryTableViewController: UITableViewController {
         DismissView()
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -195,25 +157,18 @@ class CategoryTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "UnwindToActivities" {
             if let vc = segue.destination as? CategoryViewController {
-                switch User.permission {
-                case .user:
-                    if let ip = selectedCategoryIndex {
-                        if selectedCategoryIndex.section == 0 {
-                            vc.selectedCateogy = nil
-                        } else {
-                            let category = cateogryTitles[ip.row]
-                            vc.selectedCateogy = categories[category]
-                        }
-                    }
-                default:
-                    if let ip = selectedCategoryIndex {
-                        let category = cateogryTitles[ip.row]
-                        vc.selectedCateogy = categories[category]
+                if let ip = selectedCategoryIndex {
+                    if ip.section == 0 {
+                        vc.selectedCateogy = nil
+                    } else {
+                        vc.selectedCateogy = categories[ip.row]
                     }
                 }
-                
             }
         }
     }
+}
 
+protocol FiltersViewControllerDelegate: NSObjectProtocol {
+    func controller(_ controller: CategoryTableViewController, didSelectCategory category: String?)
 }

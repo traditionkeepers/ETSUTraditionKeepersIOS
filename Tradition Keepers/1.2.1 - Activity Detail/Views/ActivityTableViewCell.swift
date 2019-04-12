@@ -15,6 +15,8 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet weak var SecondaryLabel: UILabel!
     @IBOutlet weak var CompleteButton: UIButton!
     
+    private var tradition: Tradition!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +27,20 @@ class ActivityTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func prepare(tradition: Tradition) {
+        self.tradition = tradition
+        
+        NameLabel.text = tradition.title
+        SecondaryLabel.text = tradition.instruction
+        CompleteButton.setTitle(tradition.submission.status.rawValue, for: .normal)
+        
+        if tradition.submission.status == .none {
+            CompleteButton.tintColor = UIColor(named: "ETSU GOLD")
+        } else {
+            CompleteButton.tintColor = UIColor(named: "ETSU WHITE")
+        }
     }
     
     @IBAction func CompleteButtonPressed(_ sender: Any) {

@@ -11,30 +11,8 @@ import Firebase
 
 /// Class for managing the Login View Controller
 class LoginViewController: UIViewController {
+    // MARK: - Properties
     
-    /// Local property containing the current User object
-    private var user: User! {
-        didSet {
-            User.currentUser = user
-        }
-    }
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    /// Configures the destination view controllers when a segue is triggered
-    ///
-    /// - Parameters:
-    ///   - segue: The triggered segue
-    ///   - sender: The object that called the segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        if let vc = segue.destination as? NewUserViewController {
-            vc._email = emailField.text! + "@etsu.edu"
-            vc._password = passwordField.text!
-        }
-    }
     
     // MARK: - Outlets
     @IBOutlet weak var emailField: UITextField!
@@ -84,5 +62,21 @@ class LoginViewController: UIViewController {
     @IBAction func UnwindToLogin(unwindSegue: UIStoryboardSegue) {
         emailField.text = ""
         passwordField.text = ""
+    }
+    
+    // MARK: - Navigation
+    
+    /// Configures the destination view controllers when a segue is triggered
+    ///
+    /// - Parameters:
+    ///   - segue: The triggered segue
+    ///   - sender: The object that called the segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? NewUserViewController {
+            vc._email = emailField.text! + "@etsu.edu"
+            vc._password = passwordField.text!
+        }
     }
 }

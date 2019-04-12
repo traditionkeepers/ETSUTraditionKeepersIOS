@@ -11,13 +11,12 @@ import Firebase
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var completedActivities: [Activity] = [] {
+    private var completedActivities: [Tradition] = [] {
         didSet {
             TableView.reloadData()
         }
     }
     
-    private var currentUser = User.currentUser
     private var selectedActivityIndex: Int!
     
     private var DateFormat = DateFormatter()
@@ -35,8 +34,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         DateFormat.locale = Locale(identifier: "en_US")
         
         GetUserActivities()
-        UserNameLabel.text = currentUser.name_FL
-        ProgressLabel.text = "Progress: \(currentUser.uid)%"
+        UserNameLabel.text = User.current.name_FL
+        ProgressLabel.text = "Progress: \(User.current.uid)%"
     }
     
     // MARK: - Table view data source
@@ -75,7 +74,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.selectedActivity = completedActivities[selectedActivityIndex]
+                vc.tradition = completedActivities[selectedActivityIndex]
             }
         
         default:
@@ -88,14 +87,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 // MARK: Firebase
 extension ProfileViewController {
     func GetUserActivities() {
-        var compActivities : [Activity] = []
-        let docref = Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.uid).order(by: "date", descending: true)
+        var compActivities : [Tradition] = []
+        let docref = Firestore.firestore().collection("completed_activities").whereField("user_id", isEqualTo: User.current.uid).order(by: "date", descending: true)
         docref.getDocuments(completion: { (QuerySnapshot, error) in
             if let error = error {
                 print("Error retreiving documents: \(error.localizedDescription)")
             } else {
                 for doc in QuerySnapshot!.documents {
-                    compActivities.append(Activity(fromDoc: doc))
+                    compActivities.append(Tradition(dictionary: doc.data(), id: doc.documentID)!)
                 }
                 print(compActivities)
                 self.completedActivities = compActivities

@@ -21,7 +21,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     
     var camaraPreviewLayer: AVCaptureVideoPreviewLayer!
     
-    private var topThree: [Activity] = [] {
+    private var topThree: [Tradition] = [] {
         didSet {
             TopThreeTable.reloadData()
         }
@@ -101,8 +101,8 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
      }*/
     
     func SetupView(_ animated: Bool = false) {
-        usernameButton.setTitle("Welcome, \(User.currentUser.first)", for: .normal)
-        progressButton.setTitle(User.uid, for: .normal)
+        usernameButton.setTitle("Welcome, \(User.current.first)", for: .normal)
+        progressButton.setTitle(User.current.uid, for: .normal)
         if let selectionIndexPath = TopThreeTable.indexPathForSelectedRow {
             TopThreeTable.deselectRow(at: selectionIndexPath, animated: animated)
         }
@@ -133,7 +133,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.selectedActivity = topThree[selectedIndex]
+                vc.tradition = topThree[selectedIndex]
             }
         default:
             break
@@ -159,7 +159,7 @@ extension DashboardTableViewController {
         cell.NameLabel.text = topThree[indexPath.row].title
         cell.SecondaryLabel.text = topThree[indexPath.row].instruction
         
-        let status = topThree[indexPath.row].completion.status
+        let status = topThree[indexPath.row].submission.status
         switch status {
         case .none:
             cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
@@ -171,8 +171,8 @@ extension DashboardTableViewController {
             cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
             cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
             cell.CompleteButtonPressed = nil
-        case .verified:
-            let date = topThree[indexPath.row].completion.date
+        case .complete:
+            let date = topThree[indexPath.row].submission.completion_date
             cell.CompleteButton.setTitle(DateFormat.string(from: date), for: .normal)
             cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
             cell.CompleteButtonPressed = nil
@@ -206,10 +206,10 @@ extension DashboardTableViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.topThree[row].completion.status = .pending
-            self.topThree[row].completion.user_id = User.uid
-            self.topThree[row].completion.activity_ref = Activity.db.document("activities/\(self.topThree[row].id ?? "")")
-            self.topThree[row].completion.date = Date()
+            self.topThree[row].submission.status = .pending
+            self.topThree[row].submission.user_id = User.current.uid
+            self.topThree[row].submission.activity = self.topThree[row].id ?? ""
+            self.topThree[row].submission.completion_date = Date()
             self.UpdateDatabase(activity: self.topThree[row])
         }
         
@@ -218,9 +218,9 @@ extension DashboardTableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func UpdateDatabase(activity: Activity) {
+    func UpdateDatabase(activity: Tradition) {
         if activity.id != nil {
-            Activity.db.collection("completed_activities").document().setData(activity.Completed) { err in
+            Firestore.firestore().collection("completed_activities").document().setData(activity.submissionDictionary) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -231,13 +231,13 @@ extension DashboardTableViewController {
     }
     
     func GetTopThree() {
-        var activities :[Activity] = []
-        Activity.db.collection("activities").limit(to: 3).getDocuments(completion: { (QuerySnapshot, err) in
+        var activities :[Tradition] = []
+        Firestore.firestore().collection("traditions").limit(to: 3).getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
                 for doc in QuerySnapshot!.documents {
-                    activities.append(Activity(fromDoc: doc))
+                    activities.append(Tradition(dictionary: doc.data(), id: doc.documentID)!)
                 }
                 self.topThree = activities
             }

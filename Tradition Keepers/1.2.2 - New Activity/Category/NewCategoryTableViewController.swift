@@ -8,10 +8,11 @@
 //
 
 import UIKit
+import Firebase
 
 class NewCategoryTableViewController: UITableViewController {
     
-    var categories = Category.Categories {
+    var categories = Category.categories {
         didSet {
             tableView.reloadData()
         }
@@ -21,7 +22,7 @@ class NewCategoryTableViewController: UITableViewController {
         return categories.keys.sorted()
     }
     
-    var selectedCategory: Category?
+    var category: Category?
     
     @IBAction func AddNewCategory(_ sender: Any) {
         let alert = UIAlertController(title: "New Category", message: "Enter the name of the new category.", preferredStyle: .alert)
@@ -31,7 +32,7 @@ class NewCategoryTableViewController: UITableViewController {
         let submit = UIAlertAction(title: "Submit", style: .default) { (nil) in
             if let text = alert.textFields?[0].text {
                 if text.count > 0 {
-                    let newCategory = Category(withName: text)
+                    let newCategory = Category(id: "", name: text, count: 0)
                     self.categories[newCategory.name] = newCategory
                 }
             }
@@ -78,8 +79,8 @@ class NewCategoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCategory = categories[categoryTitles[indexPath.row]]!
-        Category.Categories = categories
+        category = categories[categoryTitles[indexPath.row]]!
+        Category.categories = categories
         performSegue(withIdentifier: "unwindToNewActivity", sender: nil)
     }
 }
@@ -88,15 +89,15 @@ class NewCategoryTableViewController: UITableViewController {
 extension NewCategoryTableViewController {
     func FetchCategories() {
         var temp_categories: [String:Category] = [:]
-        Activity.db.collection("categories").getDocuments(completion: { (QuerySnapshot, err) in
+        Firestore.firestore().collection("categories").getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
                 for doc in QuerySnapshot!.documents {
-                    let newCategory = Category(fromDoc: doc)
+                    let newCategory = Category(dictionary: doc.data(), id: doc.documentID)!
                     temp_categories[newCategory.name] = newCategory
                 }
-                Category.Categories = temp_categories
+                self.categories = temp_categories
             }
         })
     }

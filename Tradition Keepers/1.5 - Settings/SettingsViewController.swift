@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController {
     /// Configures the view for the current user's permissions
     private func setupView() {
         print("Updating Settings")
-        switch User.permission {
+        switch User.current.permission {
         case .none:
             LoginProfileButton?.setTitle("Login", for: .normal)
             TraditionsButton.isHidden = false
@@ -58,11 +58,9 @@ class SettingsViewController: UIViewController {
         showNavBar = false
         navigationController?.setNavigationBarHidden(!showNavBar, animated: animated)
         
-        User.onUpdate = { user in
-            self.setupView()
-            if User.permission != .none {
-                self.tabBarController?.selectedIndex = 0
-            }
+        self.setupView()
+        if User.current.permission != .none {
+            self.tabBarController?.selectedIndex = 0
         }
     }
     
@@ -92,7 +90,7 @@ class SettingsViewController: UIViewController {
     ///
     /// - Parameter sender: The object that triggered the action
     @IBAction func LoginProfileButtonPressed(_ sender: Any) {
-        switch User.permission {
+        switch User.current.permission {
         case .none:
             performSegue(withIdentifier: "Login", sender: nil)
         default:

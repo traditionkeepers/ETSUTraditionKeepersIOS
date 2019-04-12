@@ -19,7 +19,7 @@ class NewLocationViewController: UIViewController, UITableViewDataSource, UITabl
     var selectedLocation: Location?
     var searchResults: [Location] = [] {
         didSet {
-            searchResults.sort { $0.name < $1.name }
+            searchResults.sort { $0.title < $1.title }
             TableView.reloadData()
         }
     }
@@ -59,7 +59,7 @@ class NewLocationViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "LocationCell")
-        cell.textLabel?.text = self.searchResults[indexPath.row].name
+        cell.textLabel?.text = self.searchResults[indexPath.row].title
         return cell
     }
     
@@ -72,7 +72,7 @@ class NewLocationViewController: UIViewController, UITableViewDataSource, UITabl
         if searchController.searchBar.text == "" {
             searchResults = allLocations
         } else {
-            searchResults = allLocations.filter({ $0.name.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") })
+            searchResults = allLocations.filter({ $0.title.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") })
         }
     }
     
@@ -91,12 +91,12 @@ class NewLocationViewController: UIViewController, UITableViewDataSource, UITabl
 extension NewLocationViewController {
     func FetchLocations() {
         var tempLocations: [Location] = []
-        Activity.db.collection("locations").getDocuments(completion: { (QuerySnapshot, err) in
+        Firestore.firestore().collection("locations").getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
                 for doc in QuerySnapshot!.documents {
-                    let newLocation = Location(fromDoc: doc)
+                    let newLocation = Location(dictionary: doc.data(), id: doc.documentID)!
                     tempLocations.append(newLocation)
                 }
                 self.allLocations = tempLocations

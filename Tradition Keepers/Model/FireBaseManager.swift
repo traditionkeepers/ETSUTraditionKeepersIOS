@@ -9,7 +9,7 @@
 import Firebase
 
 protocol DocumentSerializable {
-    init? (dictionary: [String: Any])
+    init? (dictionary: [String: Any], id: String)
 }
 
 final class LocalCollection<T: DocumentSerializable> {
@@ -41,6 +41,7 @@ final class LocalCollection<T: DocumentSerializable> {
         }
         return nil
     }
+    
     func listen() {
         guard listener == nil else { return }
         listener = query.addSnapshotListener { [unowned self] querySnapshot, error in
@@ -49,7 +50,7 @@ final class LocalCollection<T: DocumentSerializable> {
                 return
             }
             let models = snapshot.documents.map { (document) -> T in
-                if let model = T(dictionary: document.data()) {
+                if let model = T(dictionary: document.data(), id: document.documentID) {
                     return model
                 } else {
                     // handle error

@@ -26,8 +26,6 @@ class UsersTableViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        FetchUsers()
     }
 
     /*
@@ -53,24 +51,5 @@ extension UsersTableViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = filteredUsers[indexPath.row].name_FL
         
         return cell
-    }
-}
-
-// MARK: - Firebase
-extension UsersTableViewController {
-    func FetchUsers() {
-        print("Fetching User Data")
-        var foundUsers: [User] = []
-        let docref = User.db.collection("users")
-        docref.getDocuments { (QuerySnapshot, error) in
-            if let error = error {
-                print("Error fetching user doc! \(String(describing: error))")
-            } else {
-                for doc in QuerySnapshot!.documents {
-                    let currentUser = User(fromDoc: doc)
-                    foundUsers.append(currentUser)
-                }
-            }
-        }
     }
 }

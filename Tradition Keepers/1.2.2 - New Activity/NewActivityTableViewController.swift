@@ -12,9 +12,8 @@ import Firebase
 
 class NewActivityTableViewController: UITableViewController {
     // MARK: - Properties
-    var currentUser: User!
-    private var workingActivity = Activity()
-    var selectedActivity: Activity! {
+    private var workingActivity = Tradition()
+    var selectedActivity: Tradition! {
         didSet {
             workingActivity = selectedActivity
         }
@@ -30,7 +29,7 @@ class NewActivityTableViewController: UITableViewController {
     // MARK: - Actions
     @IBAction func UnwindToNewActivity(unwindSegue: UIStoryboardSegue) {
         if let vc = unwindSegue.source as? NewCategoryTableViewController {
-            workingActivity.category = vc.selectedCategory?.name ?? "Generic"
+            workingActivity.category = vc.category!
         }
         
         if let vc = unwindSegue.source as? NewLocationViewController {
@@ -52,7 +51,7 @@ class NewActivityTableViewController: UITableViewController {
         textViewDidEndEditing(InstructionsTextBox)
         
         selectedActivity = workingActivity
-        UpdateDatabase(activity: selectedActivity)
+        UpdateDatabase(tradition: selectedActivity)
         dismiss(animated: true, completion: nil)
     }
     @IBAction func TitleDidBeginEditing(_ sender: Any) {
@@ -89,8 +88,8 @@ class NewActivityTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         TitleTextField.text = workingActivity.title
-        setLocationText(text: workingActivity.location.name)
-        CategoryLabel.text = workingActivity.category
+        setLocationText(text: workingActivity.location.title)
+        CategoryLabel.text = workingActivity.category.name
         setInstructionText(text: workingActivity.instruction)
     }
     
@@ -146,9 +145,10 @@ extension NewActivityTableViewController: UITextViewDelegate {
 //MARK: - Firebase
 extension NewActivityTableViewController {
     
-    func UpdateDatabase(activity: Activity) {
-        if let id = activity.id {
-            Activity.db.collection("activities").document(id).setData(activity.Info) { err in
+    func UpdateDatabase(tradition: Tradition) {
+        print("Submitting \(tradition)")
+        if tradition.id != "" {
+            Firestore.firestore().collection("traditions").document(tradition.id).setData(tradition.activityDictionary) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -156,7 +156,7 @@ extension NewActivityTableViewController {
                 }
             }
         } else {
-            Activity.db.collection("activities").document().setData(activity.Info) { err in
+            Firestore.firestore().collection("traditions").document().setData(tradition.activityDictionary) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -165,9 +165,9 @@ extension NewActivityTableViewController {
             }
         }
         
-        let category = activity.category
-        Activity.db.collection("categories").document( category.lowercased() ).setData([
-            "title": category
+        let category = tradition.category
+        Firestore.firestore().collection("categories").document( category.name.lowercased() ).setData([
+            "title": category.name
         ]) {err in
             if let err = err {
                 print("Error writing document: \(err.localizedDescription)")
@@ -177,8 +177,8 @@ extension NewActivityTableViewController {
         }
         
         if let location = location {
-            Activity.db.collection("locations").document(location.id).setData([
-                "title": location.name,
+            Firestore.firestore().collection("locations").document(location.id).setData([
+                "title": location.title,
                 "coordinate": location.point
             ]) { err in
                 if let err = err {

@@ -48,17 +48,70 @@ extension User: DocumentSerializable {
         permission = .none
     }
     
-    init?(dictionary: [String : Any]) {
-        guard let uid = dictionary["uid"] as? String,
-            let first = dictionary["first"] as? String,
+    init?(dictionary: [String : Any], id: String) {
+        guard let first = dictionary["first"] as? String,
             let last = dictionary["last"] as? String,
             let permission = User.permission[dictionary["permission"] as? String ?? "none"]
             else { return nil }
         
-        self.init(uid: uid,
+        self.init(uid: id,
                   first: first,
                   last: last,
                   permission: permission)
+    }
+}
+
+extension User {
+    static let query = Firestore.firestore().collection("users")
+    static func LogIn(username: String, password: String, completion: @escaping (_ success: Error?) -> Void) {
+        Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(error)
+            } else if user != nil {
+                self.FetchUserData(completion: {error in
+                    if let error = error {
+                        completion(error)
+                        print("Failure fetching data")
+                    } else {
+                        completion(nil)
+                    }
+                })
+            }
+        }
+        
+        User.current = User()
+    }
+    
+    static func LogOut() {
+        do {
+            try Auth.auth().signOut()
+            User.current = User()
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError)")
+            User.current = User()
+        }
+    }
+    
+    static func FetchUserData(completion: @escaping (_ error: Error?) -> Void) {
+        print("Fetching User Data")
+        
+        let uid = Auth.auth().currentUser?.uid ?? ""
+        
+        query.document(uid).getDocument(completion: { (document, error) in
+            if let document = document, document.exists {
+                print("User Found!")
+                if let user = User(dictionary: document.data()!, id: document.documentID) {
+                    User.current = user
+                } else {
+                    User.current = User()
+                }
+                completion(nil)
+            } else {
+                print("Error fetching user doc! \(String(describing: error))")
+                completion(error)
+            }
+        })
     }
 }
 
@@ -80,35 +133,7 @@ enum UserPermission: String {
 //        }
 //    }
 //
-//    static func LogIn(username: String, password: String, completion: @escaping (_ success: Error?) -> Void) {
-//        Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                completion(error)
-//            } else if user != nil {
-//                self.FetchUserData(completion: {error in
-//                    if let error = error {
-//                        completion(error)
-//                        print("Failure fetching data")
-//                    } else {
-//                        completion(nil)
-//                    }
-//                })
-//            }
-//        }
-//
-//        currentUser = User()
-//    }
-//
-//    func LogOut() {
-//        do {
-//            try Auth.auth().signOut()
-//            User.currentUser = User()
-//        } catch let signOutError as NSError {
-//            print("Error signing out: \(signOutError)")
-//            User.currentUser = User()
-//        }
-//    }
+
 //
 //    func FetchUserData(completion: @escaping (_ error: Error?) -> Void) {
 //        print("Fetching User Data")

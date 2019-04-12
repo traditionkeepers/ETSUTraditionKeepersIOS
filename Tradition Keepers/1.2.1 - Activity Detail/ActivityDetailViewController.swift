@@ -14,10 +14,10 @@ import CoreLocation
 class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var TableView: UITableView!
-    
-    private let currentUser = User.currentUser
-    var selectedActivity: Activity!
     private var DateFormat = DateFormatter()
+    
+    var tradition: Tradition!
+    var document: DocumentSnapshot!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -27,9 +27,9 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailCell") as! ActivityTableViewCell
-            cell.NameLabel.text = selectedActivity.title
-            cell.SecondaryLabel.text = selectedActivity.category
-            let status = selectedActivity.completion.status
+            cell.NameLabel.text = tradition.title
+            cell.SecondaryLabel.text = tradition.category.name
+            let status = tradition.submission.status
             switch status {
             case .none:
                 cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
@@ -41,8 +41,8 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
                 cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
                 cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
                 cell.CompleteButtonPressed = nil
-            case .verified:
-                let date = selectedActivity.completion.date
+            case .complete:
+                let date = tradition.submission.completion_date
                 cell.CompleteButton.setTitle(DateFormat.string(from: date), for: .normal)
                 cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
                 cell.CompleteButtonPressed = nil
@@ -50,15 +50,14 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailInstructionCell") as! InstructionsTableViewCell
-            cell.InstructionText.text = selectedActivity.instruction
+            cell.InstructionText.text = tradition.instruction
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailMapCell") as! MapTableViewCell
-            
             // Set Activity Pin Before configuring...
-            cell.MapPin = ActivityPin(title: selectedActivity.title,
-                                      locationName: selectedActivity.location.name,
-                                      coordinate: selectedActivity.location.coordinate.coordinate)
+            cell.MapPin = ActivityPin(title: tradition.title,
+                                      locationName: tradition.location.title,
+                                      coordinate: tradition.location.coordinate.coordinate)
             
             cell.Configure()
             
@@ -87,7 +86,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func PrepareView() {
-        switch User.permission {
+        switch User.current.permission {
         case .staff, .admin:
             print("Admin mode")
         default:
@@ -101,11 +100,11 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.selectedActivity.completion.status = .pending
-            self.selectedActivity.completion.user_id = User.uid
-            self.selectedActivity.completion.activity_ref = Activity.db.document("activities/\(self.selectedActivity.id ?? "")")
-            self.selectedActivity.completion.date = Date()
-            self.UpdateDatabase(activity: self.selectedActivity)
+            self.tradition.submission = SubmittedTradition(status: .pending,
+                                                             user_id: User.current.uid,
+                                                             completion_date: Date(),
+                                                             activity: self.tradition.id)
+            self.UpdateDatabase(activity: self.tradition)
         }
         
         alert.addAction(cancel)
@@ -113,9 +112,10 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
         self.present(alert, animated: true, completion: nil)
     }
     
-    func UpdateDatabase(activity: Activity) {
-        if activity.id != nil {
-            Activity.db.collection("completed_activities").document().setData(activity.Completed) { err in
+    func UpdateDatabase(activity: Tradition) {
+        if activity.id != "" {
+            let ref = Firestore.firestore().collection("completed_activities")
+            ref.document().setData(activity.submissionDictionary) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -133,14 +133,9 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
         // Pass the selected object to the new view controller.
         if let nc = segue.destination as? UINavigationController {
             if let vc = nc.topViewController as? NewActivityTableViewController {
-                vc.selectedActivity = selectedActivity
+                vc.selectedActivity = tradition
             }
         }
     }
-    
-}
-
-// MARK: - MapKit
-extension ActivityDetailViewController {
     
 }
