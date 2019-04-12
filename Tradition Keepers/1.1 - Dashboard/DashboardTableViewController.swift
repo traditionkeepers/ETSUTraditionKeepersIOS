@@ -9,19 +9,24 @@
 import UIKit
 import Firebase
 import AVFoundation
+import MobileCoreServices
 
-class DashboardTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DashboardTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    var captureSession = AVCaptureSession()
-    var backCamera: AVCaptureDevice!
-    var frontCamera: AVCaptureDevice!
-    var currentCamera: AVCaptureDevice!
+    /*  Vars for AVFoundation Implementation
+     var captureSession = AVCaptureSession()
+     var backCamera: AVCaptureDevice!
+     var frontCamera: AVCaptureDevice!
+     var currentCamera: AVCaptureDevice!
+     var photoOutput: AVCapturePhotoOutput!
+     var camaraPreviewLayer: AVCaptureVideoPreviewLayer!
+     */
     
-    var photoOutput: AVCapturePhotoOutput!
+    private var submissionImage: UIImage!
     
-    var camaraPreviewLayer: AVCaptureVideoPreviewLayer!
+    private var submission: Submit
     
-    private var topThree: [Tradition] = [] {
+    private var topThree: [Activity] = [] {
         didSet {
             TopThreeTable.reloadData()
         }
@@ -30,6 +35,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     
     private var selectedIndex: Int!
     private var DateFormat = DateFormatter()
+    private var selectedActivity: Activity!
     
     @IBOutlet weak var TopThreeTable: UITableView!
     @IBOutlet weak var usernameButton: UIButton!
@@ -47,62 +53,140 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func setupCaptureSession() {
-        captureSession.sessionPreset = AVCaptureSession.Preset.photo
-    }
     
-    func setupDevice() {
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-        let devices = deviceDiscoverySession.devices
-        
-        for device in devices {
-            if device.position == AVCaptureDevice.Position.back {
-                backCamera = device
-            } else if device.position == AVCaptureDevice.Position.front {
-                frontCamera = device
-            }
-        }
-        currentCamera = backCamera
-    }
-    
-    func setupInputOutput() {
-        do {
-            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
-            captureSession.addInput(captureDeviceInput)
-            photoOutput = AVCapturePhotoOutput()
-            photoOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
-            captureSession.addOutput(photoOutput)
-        } catch {
-            print(error)
-            return
-        }
-    }
-    
-    func setupPreviewLayer() {
-        camaraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        camaraPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        camaraPreviewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-        camaraPreviewLayer.frame = self.view.frame
-        self.view.layer.insertSublayer(camaraPreviewLayer, at: 0)
-        
-    }
-    
-    func startRunningCaptureSession() {
-        captureSession.startRunning()
-    }
-    
-    /* @IBAction func cameraButton_TouchUpInside(_ sender: Any)  {
-     let settings = AVCapturePhotoSettings()
-     photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+    /*
+     func setupCaptureSession() {
+     captureSession.sessionPreset = AVCaptureSession.Preset.photo
      }
      
-     extension ViewController: AVCapturePhotoCaptureDelegate {
+     func setupDevice() {
+     let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+     let devices = deviceDiscoverySession.devices
      
-     }*/
+     for device in devices {
+     if device.position == AVCaptureDevice.Position.back {
+     backCamera = device
+     } else if device.position == AVCaptureDevice.Position.front {
+     frontCamera = device
+     }
+     }
+     currentCamera = backCamera
+     }
+     
+     func setupInputOutput() {
+     do {
+     let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
+     captureSession.addInput(captureDeviceInput)
+     photoOutput = AVCapturePhotoOutput()
+     photoOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
+     captureSession.addOutput(photoOutput)
+     } catch {
+     print(error)
+     return
+     }
+     }
+     
+     func setupPreviewLayer() {
+     camaraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+     camaraPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+     camaraPreviewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+     camaraPreviewLayer.frame = self.view.frame
+     self.view.layer.insertSublayer(camaraPreviewLayer, at: 0)
+     
+     }
+     
+     func startRunningCaptureSession() {
+     captureSession.startRunning()
+     }
+     
+     
+     
+     func takePicture() {
+     let picker = UIImagePickerController()
+     picker.sourceType = .camera
+     picker.mediaTypes = [kUTTypeImage as String]
+     picker.allowsEditing = true
+     picker.delegate = self
+     present(picker, animated: true)
+     }
+     */
+    func ShowAlertForRow(row: Int) {
+        print("Complete Button Pressed")
+        getImage()
+    }
+    
+    func getImage () {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let actionSheet = UIAlertController(title: "Choose a source", message: "", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action:UIAlertAction) in
+            imagePickerController.sourceType = .camera
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {(action:UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    func promptForCompletion(activity: Activity) {
+        
+        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
+        
+        
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 82, width: 250, height: 187.5))
+        imageView.image = submissionImage
+        alert.view.addSubview(imageView)
+        let height = NSLayoutConstraint(item: alert.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 320)
+        let width = NSLayoutConstraint(item: alert.view!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+        alert.view.addConstraint(height)
+        alert.view.addConstraint(width)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+        }
+        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
+            self.selectedActivity.completion.status = .pending
+            self.selectedActivity.completion.user_id = User.uid
+            self.selectedActivity.completion.activity_ref = Activity.db.document("activities/\(self.selectedActivity.id ?? "")")
+            self.selectedActivity.completion.date = Date()
+            self.UpdateDatabase(activity: self.selectedActivity)
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(submit)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        let imageData = image.pngData()!
+        let options = [
+            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceCreateThumbnailFromImageAlways: true,
+            kCGImageSourceThumbnailMaxPixelSize: 300] as CFDictionary
+        let source = CGImageSourceCreateWithData(imageData as CFData, nil)!
+        let imageReference = CGImageSourceCreateThumbnailAtIndex(source, 0, options)!
+        let thumbnail = UIImage(cgImage: imageReference)
+        submissionImage = image
+        picker.dismiss(animated: true, completion: nil)
+        
+        promptForCompletion(activity: selectedActivity)
+    }
     
     func SetupView(_ animated: Bool = false) {
-        usernameButton.setTitle("Welcome, \(User.current.first)", for: .normal)
-        progressButton.setTitle(User.current.uid, for: .normal)
+        usernameButton.setTitle("Welcome, \(User.currentUser.data.first)", for: .normal)
+        progressButton.setTitle(User.uid, for: .normal)
         if let selectionIndexPath = TopThreeTable.indexPathForSelectedRow {
             TopThreeTable.deselectRow(at: selectionIndexPath, animated: animated)
         }
@@ -111,13 +195,12 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         SetupView(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     @IBAction func pressedUserButton(_ sender: Any) {
@@ -133,7 +216,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.tradition = topThree[selectedIndex]
+                vc.selectedActivity = topThree[selectedIndex]
             }
         default:
             break
@@ -159,20 +242,21 @@ extension DashboardTableViewController {
         cell.NameLabel.text = topThree[indexPath.row].title
         cell.SecondaryLabel.text = topThree[indexPath.row].instruction
         
-        let status = topThree[indexPath.row].submission.status
+        let status = topThree[indexPath.row].completion.status
         switch status {
         case .none:
             cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
             cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU GOLD"), for: .normal)
             cell.CompleteButtonPressed = { (cell) in
+                self.selectedActivity = self.topThree[indexPath.row]
                 self.ShowAlertForRow(row: indexPath.row)
             }
         case .pending:
             cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
             cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
             cell.CompleteButtonPressed = nil
-        case .complete:
-            let date = topThree[indexPath.row].submission.completion_date
+        case .verified:
+            let date = topThree[indexPath.row].completion.date
             cell.CompleteButton.setTitle(DateFormat.string(from: date), for: .normal)
             cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
             cell.CompleteButtonPressed = nil
@@ -187,40 +271,13 @@ extension DashboardTableViewController {
     }
 }
 
+
 // MARK: Firebase
 extension DashboardTableViewController {
-    func ShowAlertForRow(row: Int) {
-        print("Complete Button Pressed")
-//        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-//        let devices = deviceDiscoverySession.devices
-//
-//        setupCaptureSession()
-//        setupDevice()
-//        if (devices.count > 0) {
-//            setupInputOutput()
-//            setupPreviewLayer()
-//            startRunningCaptureSession()
-//        }
-        
-        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
-        }
-        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.topThree[row].submission.status = .pending
-            self.topThree[row].submission.user_id = User.current.uid
-            self.topThree[row].submission.activity = self.topThree[row].id ?? ""
-            self.topThree[row].submission.completion_date = Date()
-            self.UpdateDatabase(activity: self.topThree[row])
-        }
-        
-        alert.addAction(cancel)
-        alert.addAction(submit)
-        self.present(alert, animated: true, completion: nil)
-    }
     
-    func UpdateDatabase(activity: Tradition) {
+    func UpdateDatabase(activity: Activity) {
         if activity.id != nil {
-            Firestore.firestore().collection("completed_activities").document().setData(activity.submissionDictionary) { err in
+            Activity.db.collection("completed_activities").document().setData(activity.Completed) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -231,16 +288,17 @@ extension DashboardTableViewController {
     }
     
     func GetTopThree() {
-        var activities :[Tradition] = []
-        Firestore.firestore().collection("traditions").limit(to: 3).getDocuments(completion: { (QuerySnapshot, err) in
+        var activities :[Activity] = []
+        Activity.db.collection("activities").limit(to: 3).getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
                 print("Error retreiving documents: \(err)")
             } else {
                 for doc in QuerySnapshot!.documents {
-                    activities.append(Tradition(dictionary: doc.data(), id: doc.documentID)!)
+                    activities.append(Activity(fromDoc: doc))
                 }
                 self.topThree = activities
             }
         })
     }
 }
+
