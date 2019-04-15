@@ -12,6 +12,7 @@ import Firebase
 
 class NewActivityTableViewController: UITableViewController {
     // MARK: - Properties
+    private let db = Firestore.firestore()
     private var workingActivity = Tradition()
     var selectedActivity: Tradition! {
         didSet {
@@ -47,6 +48,7 @@ class NewActivityTableViewController: UITableViewController {
     
     @IBAction func SaveButtonPressed(_ sender: Any)
     {
+        print("Save Button Pressed!")
         TitleDidEndEditing(TitleTextField!)
         textViewDidEndEditing(InstructionsTextBox)
         
@@ -147,46 +149,83 @@ extension NewActivityTableViewController {
     
     func UpdateDatabase(tradition: Tradition) {
         print("Submitting \(tradition)")
+        let batch = db.batch()
+        
+        // Add tradition
         if tradition.id != "" {
-            Firestore.firestore().collection("traditions").document(tradition.id).setData(tradition.activityDictionary) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Activity successfully added to database!")
-                }
-            }
+            let traditionRef = db.collection("traditions").document(tradition.id)
+            batch.setData(tradition.activityDictionary, forDocument: traditionRef)
         } else {
-            Firestore.firestore().collection("traditions").document().setData(tradition.activityDictionary) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Activity successfully added to database!")
-                }
-            }
+            let traditionRef = db.collection("traditions").document()
+            batch.setData(tradition.activityDictionary, forDocument: traditionRef)
         }
         
-        let category = tradition.category
-        Firestore.firestore().collection("categories").document( category.name.lowercased() ).setData([
-            "title": category.name
-        ]) {err in
-            if let err = err {
-                print("Error writing document: \(err.localizedDescription)")
+        // Add/Increment counter for category
+        let categoryRef = db.collection("categories").document(tradition.category.name.lowercased())
+        batch.setData(tradition.category.dictionary, forDocument: categoryRef, merge: true)
+        categoryRef.updateData([
+            "count": FieldValue.increment(Int64(1))
+        ]) { error in
+            if let error = error {
+                print("Error incrimenting count: \(error)")
             } else {
-                print("Successfully add category")
+                print("Count successfully incremented!")
             }
         }
         
-        if let location = location {
-            Firestore.firestore().collection("locations").document(location.id).setData([
-                "title": location.title,
-                "coordinate": location.point
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err.localizedDescription)")
-                } else {
-                    print("Successfully add location")
-                }
+        let locationRef = db.collection("locations").document(tradition.location.id)
+        batch.setData(tradition.location.dictionary, forDocument: locationRef)
+        
+        // Commit changes
+        batch.commit { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Tradition successfully added to database!")
             }
         }
+        
+//        if tradition.id != "" {
+//            Firestore.firestore().collection("traditions").document(tradition.
+//                id).setData(tradition.activityDictionary) { err in
+//                if let err = err {
+//                    print("Error writing document: \(err)")
+//                } else {
+//
+//                }
+//            }
+//        } else {
+//            Firestore.firestore().collection("traditions").document().setData(tradition.activityDictionary) { err in
+//                if let err = err {
+//                    print("Error writing document: \(err)")
+//                } else {
+//                    print("Activity successfully added to database!")
+//                }
+//            }
+//        }
+//
+//        let category = tradition.category
+//        Firestore.firestore().collection("categories").document( category.name.lowercased() ).setData([
+//            "title": category.name
+//        ]) {err in
+//            if let err = err {
+//                print("Error writing document: \(err.localizedDescription)")
+//            } else {
+//                print("Successfully add category")
+//            }
+//        }
+//
+//        if let location = location {
+//            Firestore.firestore().collection("locations").document(location.id).setData([
+//                "title": location.title,
+//                "coordinate": location.point
+//            ]) { err in
+//                if let err = err {
+//                    print("Error writing document: \(err.localizedDescription)")
+//                } else {
+//                    print("Successfully add location")
+//                }
+//            }
+//        }
     }
 }

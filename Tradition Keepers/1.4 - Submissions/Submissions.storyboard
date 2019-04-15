@@ -37,10 +37,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kFE-7j-Z4B">
-                                <rect key="frame" x="0.0" y="94" width="414" height="748"/>
+                                <rect key="frame" x="6" y="94" width="402" height="748"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qhJ-3c-GxF">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="402" height="748"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="Hj4-8q-hqj" id="xzR-rl-yxd"/>
@@ -53,9 +53,9 @@
                         <color key="backgroundColor" name="ETSU NAVY"/>
                         <constraints>
                             <constraint firstItem="nYj-BE-ZV6" firstAttribute="bottom" secondItem="kFE-7j-Z4B" secondAttribute="bottom" constant="20" id="23j-d7-VHN"/>
-                            <constraint firstItem="nYj-BE-ZV6" firstAttribute="trailing" secondItem="kFE-7j-Z4B" secondAttribute="trailing" id="4SM-A0-uxG"/>
+                            <constraint firstItem="nYj-BE-ZV6" firstAttribute="trailing" secondItem="kFE-7j-Z4B" secondAttribute="trailing" constant="6" id="4SM-A0-uxG"/>
                             <constraint firstItem="kFE-7j-Z4B" firstAttribute="top" secondItem="nYj-BE-ZV6" secondAttribute="top" constant="6" id="Ey4-tK-V46"/>
-                            <constraint firstItem="kFE-7j-Z4B" firstAttribute="leading" secondItem="nYj-BE-ZV6" secondAttribute="leading" id="xg6-rz-5Kc"/>
+                            <constraint firstItem="kFE-7j-Z4B" firstAttribute="leading" secondItem="nYj-BE-ZV6" secondAttribute="leading" constant="6" id="xg6-rz-5Kc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nYj-BE-ZV6"/>
                     </view>

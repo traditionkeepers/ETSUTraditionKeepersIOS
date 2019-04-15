@@ -101,16 +101,20 @@ extension SubmittedTradition: DocumentSerializable {
     }
     
     init?(dictionary: [String : Any], id: String) {
-        guard let id = dictionary["user"] as? String,
-        let date = (dictionary["date"] as? Timestamp)?.dateValue(),
-        let status = SubmittedTradition.status[dictionary["status"] as? String ?? "none"],
-        let tradition_name = dictionary["tradition_title"] as? String
+        print(dictionary)
+        guard let user = dictionary["user"] as? String,
+        let date = dictionary["date"] as? Timestamp,
+        let status = dictionary["status"] as? String,
+        let tradition_title = dictionary["tradition_title"] as? String
         else { return nil }
         
-        self.init(status: status,
-                  user: id,
-                  completion_date: date,
-                  tradition: tradition_name,
+        let dateVal = date.dateValue()
+        let statusVal = SubmittedTradition.status[status] ?? .none
+        
+        self.init(status: statusVal,
+                  user: user,
+                  completion_date: dateVal,
+                  tradition: tradition_title,
                   location: nil,
                   image: nil)
     }

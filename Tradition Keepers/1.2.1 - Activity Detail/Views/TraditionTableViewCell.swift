@@ -10,19 +10,23 @@ import UIKit
 
 class TraditionTableViewCell: UITableViewCell {
     
-    class func cellForTableView(tableView: UITableView, atIndex indexPath: IndexPath) -> TraditionTableViewCell {
-        let identifier = "TraditionCell"
-        tableView.register(UINib(nibName: "TraditionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: identifier)
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TraditionTableViewCell
-        
-        return cell
-    }
-    
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var SecondaryLabel: UILabel!
     @IBOutlet weak var CompleteButton: UIButton!
     
-    private var tradition: Tradition!
+    var tradition: Tradition! {
+        didSet {
+            NameLabel.text = tradition.title
+            SecondaryLabel.text = tradition.instruction
+            CompleteButton.setTitle(tradition.submission.status.rawValue, for: .normal)
+            
+            if tradition.submission.status == .none {
+                CompleteButton.tintColor = UIColor(named: "ETSU GOLD")
+            } else {
+                CompleteButton.tintColor = UIColor(named: "ETSU WHITE")
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,18 +40,12 @@ class TraditionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func prepare(tradition: Tradition) {
-        self.tradition = tradition
+    class func cellForTableView(tableView: UITableView, atIndex indexPath: IndexPath) -> TraditionTableViewCell {
+        let identifier = "TraditionCell"
+        tableView.register(UINib(nibName: "TraditionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: identifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TraditionTableViewCell
         
-        NameLabel.text = tradition.title
-        SecondaryLabel.text = tradition.instruction
-        CompleteButton.setTitle(tradition.submission.status.rawValue, for: .normal)
-        
-        if tradition.submission.status == .none {
-            CompleteButton.tintColor = UIColor(named: "ETSU GOLD")
-        } else {
-            CompleteButton.tintColor = UIColor(named: "ETSU WHITE")
-        }
+        return cell
     }
     
     @IBAction func CompleteButtonPressed(_ sender: Any) {
