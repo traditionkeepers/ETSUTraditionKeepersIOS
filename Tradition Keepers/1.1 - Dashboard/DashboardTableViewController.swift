@@ -134,7 +134,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    func promptForCompletion(activity: Activity) {
+    func promptForCompletion(tradition: Tradition) {
         
         let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
         
@@ -150,11 +150,14 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.selectedActivity.completion.status = .pending
-            self.selectedActivity.completion.user_id = User.uid
-            self.selectedActivity.completion.activity_ref = Activity.db.document("activities/\(self.selectedActivity.id ?? "")")
-            self.selectedActivity.completion.date = Date()
-            self.UpdateDatabase(activity: self.selectedActivity)
+            tradition.submission = SubmittedTradition(status: .pending,
+                                                user: User.current.uid,
+                                                completion_date: Date(),
+                                                tradition: tradition.title,
+                                                location: nil,
+                                                image: nil)
+            
+            self.UpdateDatabase(activity: tradition)
         }
         
         alert.addAction(cancel)
@@ -238,7 +241,7 @@ extension DashboardTableViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
-        cell.prepare(tradition: topThree[indexPath.row])
+        cell.tradition = topThree[indexPath.row]
         return cell
     }
     
@@ -247,34 +250,34 @@ extension DashboardTableViewController {
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
     }
     
-    func ShowAlertForRow(row: Int) {
-        print("Complete Button Pressed")
-        //        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-        //        let devices = deviceDiscoverySession.devices
-        //
-        //        setupCaptureSession()
-        //        setupDevice()
-        //        if (devices.count > 0) {
-        //            setupInputOutput()
-        //            setupPreviewLayer()
-        //            startRunningCaptureSession()
-        //        }
-        
-        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
-        }
-        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            self.topThree[row].submission.status = .pending
-            self.topThree[row].submission.user = User.current.name_FL
-            self.topThree[row].submission.tradition = self.topThree[row].title
-            self.topThree[row].submission.completion_date = Date()
-            self.UpdateDatabase(activity: self.topThree[row])
-        }
-        
-        alert.addAction(cancel)
-        alert.addAction(submit)
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func ShowAlertForRow(row: Int) {
+//        print("Complete Button Pressed")
+//        //        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+//        //        let devices = deviceDiscoverySession.devices
+//        //
+//        //        setupCaptureSession()
+//        //        setupDevice()
+//        //        if (devices.count > 0) {
+//        //            setupInputOutput()
+//        //            setupPreviewLayer()
+//        //            startRunningCaptureSession()
+//        //        }
+//
+//        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
+//        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+//        }
+//        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
+//            self.topThree[row].submission.status = .pending
+//            self.topThree[row].submission.user = User.current.name_FL
+//            self.topThree[row].submission.tradition = self.topThree[row].title
+//            self.topThree[row].submission.completion_date = Date()
+//            self.UpdateDatabase(activity: self.topThree[row])
+//        }
+//
+//        alert.addAction(cancel)
+//        alert.addAction(submit)
+//        self.present(alert, animated: true, completion: nil)
+//    }
 }
 
 // MARK: Firebase

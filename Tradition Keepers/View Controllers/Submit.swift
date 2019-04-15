@@ -33,7 +33,7 @@ class Submit: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     }
     
     /// Shows an Alert prompting for submission. Shows optional UIImage if WithCamera() is used.
-    private static func ShowPrompt(selectedActivity: Activity, activity: Activity) {
+    private static func ShowPrompt(selectedActivity: Tradition, activity: Tradition) {
         // TO DO: if submission image is set, format alert without image
         let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
         let imageView = UIImageView(frame: CGRect(x: 10, y: 82, width: 250, height: 187.5))
