@@ -239,10 +239,10 @@ extension CategoryViewController {
         let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
         let key = Array(groups.keys)[indexPath.section]
         let tradition = groups[key]![indexPath.row]
-        cell.prepare(tradition: tradition)
+        cell.tradition = tradition
         
-        cell.CompleteButtonPressed = { (cell) in
-            self.ShowAlert(forTradition: tradition)
+        cell.CompleteButtonPressed = { (sender) in
+            Submit.WithCamera(callingView: self, tradition: tradition)
         }
         
         return cell
@@ -285,27 +285,27 @@ extension CategoryViewController {
         return true
     }
     
-    func ShowAlert(forTradition tradition: Tradition) {
-        print("Complete Button Pressed")
-        
-        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
-        }
-        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            var tradition = tradition
-            tradition.submission = SubmittedTradition(status: .pending,
-                                                      user: User.current.name_FL,
-                                                      completion_date: Date(),
-                                                      tradition: tradition.title,
-                                                      location: nil,
-                                                      image: nil)
-            self.UpdateDatabase(tradition: tradition)
-        }
-        
-        alert.addAction(cancel)
-        alert.addAction(submit)
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func ShowAlert(forTradition tradition: Tradition) {
+//        print("Complete Button Pressed")
+//
+//        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
+//        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+//        }
+//        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
+//            var tradition = tradition
+//            tradition.submission = SubmittedTradition(status: .pending,
+//                                                      user: User.current.name_FL,
+//                                                      completion_date: Date(),
+//                                                      tradition: tradition.title,
+//                                                      location: nil,
+//                                                      image: nil)
+//            self.UpdateDatabase(tradition: tradition)
+//        }
+//
+//        alert.addAction(cancel)
+//        alert.addAction(submit)
+//        self.present(alert, animated: true, completion: nil)
+//    }
 }
 
 extension CategoryViewController: FiltersViewControllerDelegate {
@@ -345,18 +345,18 @@ extension CategoryViewController: FiltersViewControllerDelegate {
     }
 }
 
-extension CategoryViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[.editedImage] as? UIImage
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-}
+//extension CategoryViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        let image = info[.editedImage] as? UIImage
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        picker.dismiss(animated: true, completion: nil)
+//    }
+//}
 // MARK: - Firebase
-extension CategoryViewController {
+//extension CategoryViewController {
 //
 //    /// Fetches all category information from Firestore.
 //    func FetchCategories() {
@@ -453,15 +453,15 @@ extension CategoryViewController {
     /// Updates the database with a new completed activity.
     ///
     /// - Parameter activity: The activity object to upload.
-    func UpdateDatabase(tradition: Tradition) {
-        if tradition.id != "" {
-            db.collection("submissions").document().setData(tradition.submissionDictionary) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Activity successfully added to database!")
-                }
-            }
-        }
-    }
-}
+//    func UpdateDatabase(tradition: Tradition) {
+//        if tradition.id != "" {
+//            db.collection("submissions").document().setData(tradition.submissionDictionary) { err in
+//                if let err = err {
+//                    print("Error writing document: \(err)")
+//                } else {
+//                    print("Activity successfully added to database!")
+//                }
+//            }
+//        }
+//    }
+//}

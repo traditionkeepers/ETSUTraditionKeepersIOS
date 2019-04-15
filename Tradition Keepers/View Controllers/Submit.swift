@@ -12,29 +12,28 @@ import Foundation
 import MobileCoreServices
 
 /// Provides functions for submitting traditions.
-class Submit: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
+class Submit: UIView, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
     /// Submits a tradition using the camera for verification.
-    
     private static var sender: UIViewController!
-    
     private static var submissionImage: UIImage!
     
-    static func SetSender(callingView: UIViewController) {
+    static func WithCamera(callingView: UIViewController, tradition: Tradition) {
         sender = callingView
-    }
-    
-    static func WithCamera(callingView: UIViewController) {
         getImage()
+        ShowPrompt(tradition: tradition)
     }
     
     /// Submits a tradition using a prompt for verification.
-    static func WithPrompt() {
-        
+    class func WithPrompt(callingView: UIViewController, tradition: Tradition) {
+        sender = callingView
+        ShowPrompt(tradition: tradition)
     }
     
+    private static let db = Firestore.firestore()
+    
     /// Shows an Alert prompting for submission. Shows optional UIImage if WithCamera() is used.
-    private static func ShowPrompt(selectedActivity: Tradition, activity: Tradition) {
-        // TO DO: if submission image is set, format alert without image
+    private static func ShowPrompt(tradition: Tradition) {
+        // TODO: if submission image is set, format alert without image
         let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
         let imageView = UIImageView(frame: CGRect(x: 10, y: 82, width: 250, height: 187.5))
         imageView.image = submissionImage
@@ -45,17 +44,24 @@ class Submit: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         alert.view.addConstraint(width)
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
         }
+        
         let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-            selectedActivity.completion.status = .pending
-            selectedActivity.completion.user_id = User.uid
-            selectedActivity.completion.activity_ref = Activity.db.document("activities/\(selectedActivity.id ?? "")")
-            selectedActivity.completion.date = Date()
-            UpdateDatabase(activity: selectedActivity)
+            var tradition = tradition
+            tradition.submission = SubmittedTradition(status: .pending,
+                                                             user: User.current.uid,
+                                                             completion_date: Date(),
+                                                             tradition: tradition.title,
+                                                             location: nil,
+                                                             image: nil)
+            //self.submit(tradition)
+            alert.dismiss(animated: true, completion: nil)
         }
         
         alert.addAction(cancel)
         alert.addAction(submit)
+        print("Showing Prompt For Submission!")
         sender.present(alert, animated: true, completion: nil)
     }
     
@@ -76,6 +82,7 @@ class Submit: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        sender.present(actionSheet, animated: true, completion: nil)
     }
     
 
@@ -89,5 +96,24 @@ class Submit: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         submissionImage = image
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    private class func submit(_ tradition: Tradition){
+        if tradition.id != "" {
+            let batch = db.batch()
+            let submissionRef = db.collection("submissions").document()
+            batch.setData(tradition.submissionDictionary, forDocument: submissionRef)
+            
+            let userRef = db.collection("users").document(User.current.uid)
+            batch.updateData([tradition.category.name: FieldValue.increment(Int64(1))], forDocument: userRef)
+            
+            batch.commit { (error) in
+                if let error = error {
+                    print("Error writing document: \(error)")
+                } else {
+                    print("Activity successfully added to database!")
+                }
+            }
+        }
     }
 }
