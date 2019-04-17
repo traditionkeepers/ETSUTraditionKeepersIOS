@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubmitViewController: UIViewController {
+class SubmitViewController: UITableViewController {
     @IBOutlet weak var TraditionNameLabel: UILabel!
     @IBOutlet weak var TraditionRequirementLabel: UILabel!
     @IBOutlet weak var ApproveButton: UIButton!

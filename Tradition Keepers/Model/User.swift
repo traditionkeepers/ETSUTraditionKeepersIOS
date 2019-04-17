@@ -12,7 +12,11 @@ struct User {
     var uid: String
     var first: String
     var last: String
-    var permission: UserPermission
+    var permission: UserPermission {
+        didSet {
+            Permission.configure(user: permission)
+        }
+    }
     
     var name_FL: String {
         return first + " " + last
@@ -63,6 +67,7 @@ extension User: DocumentSerializable {
 
 extension User {
     static let query = Firestore.firestore().collection("users")
+    
     static func LogIn(username: String, password: String, completion: @escaping (_ success: Error?) -> Void) {
         Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
             if let error = error {

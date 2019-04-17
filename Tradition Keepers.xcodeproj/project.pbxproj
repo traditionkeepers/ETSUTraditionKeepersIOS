@@ -21,6 +21,8 @@
 		2138A686225441C900AC0474 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A685225441C900AC0474 /* CameraViewController.swift */; };
 		2138A688225456BD00AC0474 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A687225456BD00AC0474 /* NewLocationViewController.swift */; };
 		2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A6892254679A00AC0474 /* LocationMapViewController.swift */; };
+		2156CAC62267B0EB004C7777 /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2156CAC52267B0EB004C7777 /* Permission.swift */; };
+		2156CAC92267C3E7004C7777 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2156CAC82267C3E7004C7777 /* AuthViewController.swift */; };
 		215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E4E2522491B770001D3F2 /* NavTabBarController.swift */; };
 		216A1619220E203900342707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1618220E203900342707 /* AppDelegate.swift */; };
 		216A1623220E203B00342707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216A1622220E203B00342707 /* Assets.xcassets */; };
@@ -93,6 +95,8 @@
 		2138A685225441C900AC0474 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2138A687225456BD00AC0474 /* NewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
 		2138A6892254679A00AC0474 /* LocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewController.swift; sourceTree = "<group>"; };
+		2156CAC52267B0EB004C7777 /* Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
+		2156CAC82267C3E7004C7777 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		215E4E2522491B770001D3F2 /* NavTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
 		216A1615220E203900342707 /* Tradition Keepers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tradition Keepers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216A1618220E203900342707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +244,14 @@
 			path = "1.5.1.1 - Instructions";
 			sourceTree = "<group>";
 		};
+		2156CAC72267C3C4004C7777 /* 0 - Initial Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2156CAC82267C3E7004C7777 /* AuthViewController.swift */,
+			);
+			path = "0 - Initial Auth";
+			sourceTree = "<group>";
+		};
 		216A160C220E203900342707 = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +279,7 @@
 			children = (
 				2173761622428CA2006279D2 /* Storyboards */,
 				217652B6223C8D50006886E8 /* Model */,
+				2156CAC72267C3C4004C7777 /* 0 - Initial Auth */,
 				21B8C981222444720037B1C5 /* 1 - Tab Bar */,
 				21DABC7C223AFAAA00844CDF /* 1.1 - Dashboard */,
 				2199A67E223C0FDF00037C0F /* 1.2 - Traditions */,
@@ -353,6 +366,7 @@
 				216F3388223F14FB00E7B989 /* FireBaseManager.swift */,
 				211745F1224D17B700BEA0C8 /* Category.swift */,
 				21CED7222266276D006D1EDC /* Requirement.swift */,
+				2156CAC52267B0EB004C7777 /* Permission.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -707,6 +721,7 @@
 				21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */,
 				216F3385223ED1A000E7B989 /* NewCategoryTableViewController.swift in Sources */,
 				215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */,
+				2156CAC62267B0EB004C7777 /* Permission.swift in Sources */,
 				2199A686223C75D500037C0F /* User.swift in Sources */,
 				2138A688225456BD00AC0474 /* NewLocationViewController.swift in Sources */,
 				216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */,
@@ -720,6 +735,7 @@
 				2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */,
 				2138A686225441C900AC0474 /* CameraViewController.swift in Sources */,
 				21F2D7DF2260C49E000BD3AE /* TraditionTableViewCell.swift in Sources */,
+				2156CAC92267C3E7004C7777 /* AuthViewController.swift in Sources */,
 				211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */,
 				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
 				2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */,

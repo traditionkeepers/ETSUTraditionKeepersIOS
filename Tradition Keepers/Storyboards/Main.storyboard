@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7YP-lH-RPh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZzB-Hk-CtY">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,6 +33,73 @@
             </objects>
             <point key="canvasLocation" x="-1054" y="-451"/>
         </scene>
+        <!--Auth View Controller-->
+        <scene sceneID="u6m-HE-m94">
+            <objects>
+                <viewController id="ZzB-Hk-CtY" customClass="AuthViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2t5-J0-m9X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TYD-Id-hPV">
+                                <rect key="frame" x="20" y="94" width="374" height="718"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Om1-cX-SH4" userLabel="Logo">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="231"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ETSU LOGOLayer 1" translatesAutoresizingMaskIntoConstraints="NO" id="YEE-Iq-6dE">
+                                                <rect key="frame" x="93.5" y="0.0" width="187" height="187"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="YEE-Iq-6dE" secondAttribute="height" multiplier="1:1" id="r9d-Dc-ott"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Tradition Keepers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fId-9H-DHn">
+                                                <rect key="frame" x="75.5" y="195" width="223.5" height="36"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <color key="textColor" name="ETSU GOLD"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="247" verticalHuggingPriority="247" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KPo-4x-Bey" userLabel="Padding">
+                                        <rect key="frame" x="0.0" y="239" width="374" height="422.5"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ias-i5-gXz" userLabel="Activity">
+                                        <rect key="frame" x="0.0" y="669.5" width="374" height="48.5"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="feY-oz-SsS">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Preparing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6a-oq-bg2">
+                                                <rect key="frame" x="0.0" y="28" width="374" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" name="ETSU WHITE"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="YEE-Iq-6dE" firstAttribute="width" secondItem="Om1-cX-SH4" secondAttribute="width" multiplier="0.5" id="FSQ-qY-aez"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="TYD-Id-hPV" secondAttribute="bottom" constant="50" id="OMu-zw-eP9"/>
+                            <constraint firstItem="TYD-Id-hPV" firstAttribute="leading" secondItem="2t5-J0-m9X" secondAttribute="leadingMargin" id="Q9k-12-1L0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TYD-Id-hPV" secondAttribute="trailing" id="Z6D-Df-2KR"/>
+                            <constraint firstItem="TYD-Id-hPV" firstAttribute="top" secondItem="3ci-Sz-Vfv" secondAttribute="top" constant="50" id="b7g-g1-EeR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3ci-Sz-Vfv"/>
+                    </view>
+                    <connections>
+                        <outlet property="ActivityStackView" destination="ias-i5-gXz" id="Bid-Y1-71t"/>
+                        <segue destination="7YP-lH-RPh" kind="show" identifier="ContinueToApplication" id="pr6-Oy-22M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IXO-6q-mrL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2849" y="-451"/>
+        </scene>
         <!--Nav Tab Bar Controller-->
         <scene sceneID="wjN-vn-VgG">
             <objects>
@@ -49,4 +119,16 @@
             <point key="canvasLocation" x="-1772" y="-451"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ETSU LOGOLayer 1" width="521" height="576"/>
+        <namedColor name="ETSU GOLD">
+            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU WHITE">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

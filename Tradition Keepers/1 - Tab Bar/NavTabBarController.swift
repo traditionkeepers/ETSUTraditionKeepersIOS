@@ -11,70 +11,50 @@ import UIKit
 class NavTabBarController: UITabBarController {
     
     private var initialLoad = true
-    private var tabs: [ UserPermission:[UIViewController] ] = [:]
+    private var tabs: [UIViewController] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTabs()
-        updateTabs()
-        // Do any additional setup after loading the view.
     }
     
     func configureTabs() {
-        let dashboard = UIStoryboard(name: "Dashboard", bundle: .main).instantiateInitialViewController()!
-        dashboard.tabBarItem = UITabBarItem(title: "Dashboard", image: nil, tag: 0)
-            
-        let traditions = UIStoryboard(name: "Traditions", bundle: .main).instantiateInitialViewController()!
-        traditions.tabBarItem = UITabBarItem(title: "Traditions", image: nil, tag: 1)
+        if let dashboard = Permission.dashboard ? UIStoryboard(name: "Dashboard", bundle: .main).instantiateInitialViewController()! : nil {
+            dashboard.tabBarItem = UITabBarItem(title: "Dashboard", image: nil, tag: 0)
+            tabs.append(dashboard)
+        }
         
-        let usb = UIStoryboard(name: "Users", bundle: .main)
-        let users = usb.instantiateInitialViewController()!
-        users.tabBarItem = UITabBarItem(title: "Users", image: nil, tag: 2)
-
-        let subsb = UIStoryboard(name: "Submissions", bundle: .main)
-        let submissions = subsb.instantiateInitialViewController()!
-        submissions.tabBarItem = UITabBarItem(title: "Submissions", image: nil, tag: 3)
+        if let traditions = Permission.traditions ? UIStoryboard(name: "Traditions", bundle: .main).instantiateInitialViewController()! : nil {
+            traditions.tabBarItem = UITabBarItem(title: "Traditions", image: nil, tag: 1)
+            tabs.append(traditions)
+        }
+        
+        if let users = Permission.users ? UIStoryboard(name: "Users", bundle: .main).instantiateInitialViewController()! : nil {
+            users.tabBarItem = UITabBarItem(title: "Users", image: nil, tag: 2)
+            tabs.append(users)
+        }
+        
+        if let submissions = Permission.submissions ? UIStoryboard(name: "Submissions", bundle: .main).instantiateInitialViewController()! : nil {
+            submissions.tabBarItem = UITabBarItem(title: "Submissions", image: nil, tag: 3)
+            tabs.append(submissions)
+        }
         
         // Settings
-        let settings = UIStoryboard(name: "Settings", bundle: .main).instantiateInitialViewController()!
-        settings.tabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 4)
-        
-        tabs[.none] = [settings]
-        tabs[.user] = [dashboard, traditions, settings]
-        tabs[.staff] = [dashboard, traditions, users, submissions, settings]
-        tabs[.admin] = [dashboard, traditions, users, submissions, settings]
-        
-//        tabs?[.staff] = [dashboard!, tradition!, users!, submissions!, settings!]
-//        tabs?[.admin] = [dashboard!, tradition!, users!, submissions!, settings!]
-        
+        if let settings = Permission.settings ? UIStoryboard(name: "Settings", bundle: .main).instantiateInitialViewController()! : nil {
+            settings.tabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 4)
+            tabs.append(settings)
+        }
+        print("Tabs: \(tabs)")
     }
     
     func updateTabs() {
-        self.setViewControllers(tabs[User.current.permission], animated: true)
+        configureTabs()
+        self.setViewControllers(tabs, animated: true)
+        self.tabBar.isHidden = tabs.count < 2
         print("Updating Tabs")
-        switch User.current.permission {
-        case .none:
-            self.tabBar.isHidden = true
-        default:
-            self.tabBar.isHidden = false
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        User.onUpdate = { user in
-            self.updateTabs()
-//        }
+        self.updateTabs()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
