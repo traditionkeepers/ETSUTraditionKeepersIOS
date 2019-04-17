@@ -40,38 +40,3 @@ extension Category: DocumentSerializable {
         self.init(id: id, name: name, count: count)
     }
 }
-
-
-//class Category: Equatable, Comparable {
-//    static var onUpdate: ((_ categories: [String:Category])-> ())?
-//    static var Categories: [String:Category] = [:] {
-//        didSet {
-//            onUpdate?(Categories)
-//        }
-//    }
-//
-//
-//
-//    init() {
-//        name = "General"
-//        count = 0
-//    }
-//
-//    init(fromDoc: DocumentSnapshot) {
-//        name = fromDoc.get("title") as! String
-//        count = fromDoc.get("count") as? Int ?? 0
-//    }
-//
-//    init(withName: String, ofCount: Int = 0) {
-//        name = withName
-//        count = ofCount
-//    }
-//
-//    static func == (lhs: Category, rhs: Category) -> Bool {
-//        return lhs.name == rhs.name
-//    }
-//
-//    static func < (lhs: Category, rhs: Category) -> Bool {
-//        return lhs.name < rhs.name
-//    }
-//}

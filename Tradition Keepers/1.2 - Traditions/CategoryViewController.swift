@@ -24,7 +24,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func SortByChanged(_ sender: Any) {
         if SortSelector.selectedSegmentIndex == 0 {
-            sort = .category
+            sort = .requirement
         } else if SortSelector.selectedSegmentIndex == 1 {
             sort = .alphebetical
         }
@@ -72,8 +72,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
             self.traditions = models
-            if self.sort == .category {
-                self.groups = Dictionary(grouping: models, by: { $0.category.name })
+            if self.sort == .requirement {
+                self.groups = Dictionary(grouping: models, by: { $0.requirement.id })
             } else {
                 self.groups = Dictionary(grouping: models, by: { $0.title.first?.description ?? "" })
             }
@@ -111,12 +111,12 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     /// - alphebetical: Sort table by activity name (A- > Z).
     /// - timeline: Sort table by order of activities.
     internal enum SortBy: String {
-        case category = "category"
+        case requirement = "category"
         case alphebetical = "title"
     }
     
     /// Enumerated value for the table sort order.
-    private var sort = SortBy.category
+    private var sort = SortBy.requirement
     
     /// The currently logged in user.
     private let currentUser = User.current
@@ -223,7 +223,7 @@ extension CategoryViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        let key = Array(groups.keys)[section]
+        let key = sort == .alphebetical ? Array(groups.keys).sorted()[section] : Array(groups.keys).sorted().reversed()[section]
         return groups[key]!.count
     }
     
@@ -231,18 +231,19 @@ extension CategoryViewController {
         if selectedCateogy != nil {
             return ""
         } else {
-            return Array(groups.keys)[section]
+            return sort == .alphebetical ? Array(groups.keys).sorted()[section] : Array(groups.keys).sorted().reversed()[section]
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
-        let key = Array(groups.keys)[indexPath.section]
+        let key = sort == .alphebetical ? Array(groups.keys).sorted()[indexPath
+            .section] : Array(groups.keys).sorted().reversed()[indexPath.section]
         let tradition = groups[key]![indexPath.row]
         cell.tradition = tradition
         
         cell.CompleteButtonPressed = { (sender) in
-            Submit.WithCamera(callingView: self, tradition: tradition)
+            
         }
         
         return cell
@@ -284,36 +285,14 @@ extension CategoryViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    
-//    func ShowAlert(forTradition tradition: Tradition) {
-//        print("Complete Button Pressed")
-//
-//        let alert = UIAlertController(title: "Complete Event", message: "Would you like to submit this activity for verification?", preferredStyle: .alert)
-//        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
-//        }
-//        let submit = UIAlertAction(title: "Submit", style: .default) { (UIAlertAction) in
-//            var tradition = tradition
-//            tradition.submission = SubmittedTradition(status: .pending,
-//                                                      user: User.current.name_FL,
-//                                                      completion_date: Date(),
-//                                                      tradition: tradition.title,
-//                                                      location: nil,
-//                                                      image: nil)
-//            self.UpdateDatabase(tradition: tradition)
-//        }
-//
-//        alert.addAction(cancel)
-//        alert.addAction(submit)
-//        self.present(alert, animated: true, completion: nil)
-//    }
 }
 
 extension CategoryViewController: FiltersViewControllerDelegate {
-    func query(withCategory category: String?, sortBy sort: String?) -> Query {
+    func query(withRequirement requirement: String?, sortBy sort: String?) -> Query {
         var filtered = baseQuery()
         
-        if let category = category, !category.isEmpty, category != "All Traditions" {
-            filtered = filtered.whereField("category", isEqualTo: category)
+        if let requirement = requirement, !requirement.isEmpty, requirement != "All Traditions" {
+            filtered = filtered.whereField("requirement", isEqualTo: requirement)
             filtered = filtered.order(by: "title")
         } else {
             if let sort = sort, !sort.isEmpty {
@@ -323,145 +302,22 @@ extension CategoryViewController: FiltersViewControllerDelegate {
             }
         }
         
-        
-        
         return filtered
     }
     
-    func controller(_ controller: CategoryTableViewController, didSelectCategory category: String?) {
-        let filtered = query(withCategory: category, sortBy: self.sort.rawValue)
+    func controller(_ controller: CategoryTableViewController, didSelectFilter filter: String?) {
+        let filtered = query(withRequirement: filter, sortBy: self.sort.rawValue)
         
-        if let category = category, !category.isEmpty {
-            if category == "All Traditions" {
+        if let filter = filter, !filter.isEmpty {
+            if filter == "All Traditions" {
                 SortSelector.isHidden = false
             } else {
                 SortSelector.isHidden = true
             }
-            self.title = category
+            self.title = filter
         }
         
         self.query = filtered
         observeQuery()
     }
 }
-
-//extension CategoryViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        let image = info[.editedImage] as? UIImage
-//        dismiss(animated: true, completion: nil)
-//    }
-//
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        picker.dismiss(animated: true, completion: nil)
-//    }
-//}
-// MARK: - Firebase
-//extension CategoryViewController {
-//
-//    /// Fetches all category information from Firestore.
-//    func FetchCategories() {
-//        var tempCategories:[String:Category] = [:]
-//        Activity.db.collection("categories").order(by: "title").getDocuments(completion: { (QuerySnapshot, err) in
-//            if let err = err {
-//                print("Error retreiving documents: \(err)")
-//            } else {
-//                self.categories.removeAll()
-//                for doc in QuerySnapshot!.documents {
-//                    let new = Category(fromDoc: doc)
-//                    tempCategories[new.name] = new
-//                }
-//                Category.Categories = tempCategories
-//            }
-//        })
-//    }
-//
-//
-//    /// Fetches all activities, grouped by first title character.
-//    func FetchAllActivitiesByTitle() {
-//        var activities: [Activity] = []
-//        Activity.db.collection("activities").order(by: "title").getDocuments(completion: { (QuerySnapshot, err) in
-//            if let err = err {
-//                print("Error retreiving documents: \(err)")
-//            } else {
-//                for doc in QuerySnapshot!.documents {
-//                    activities.append(Activity(fromDoc: doc))
-//                }
-//                self.AllActivities = Dictionary(grouping: activities, by: { $0.title.first?.description ?? "" })
-//            }
-//        })
-//    }
-//
-//
-//    /// Fetches all activities, grouped by category.
-//    func FetchAllActivitiesByCategory() {
-//        var activities: [Activity] = []
-//        Activity.db.collection("activities").order(by: "category").getDocuments(completion: { (QuerySnapshot
-//            , err) in
-//            if let err = err {
-//                print("Error retreiving documents: \(err)")
-//            } else {
-//                for doc in QuerySnapshot!.documents {
-//                    activities.append(Activity(fromDoc: doc))
-//                }
-//                activities.sort(by: {
-//                    if $0.category == $1.category {
-//                        return $0.title < $1.title
-//                    } else {
-//                        return $0.category < $1.category
-//                    }
-//                })
-//                self.AllActivities = Dictionary(grouping: activities, by: { $0.category })
-//            }
-//        })
-//    }
-//
-//
-//    /// Fetches all activities in the specified category.
-//    ///
-//    /// - Parameter category: The desired category to fetch
-//    func FetchAllActivitiesForCategory(_ category: String = "General") {
-//        var activities: [Activity] = []
-//        Activity.db.collection("activities").whereField("category", isEqualTo: category).getDocuments(completion: { (QuerySnapshot, err) in
-//            if let err = err {
-//                print("Error retreiving documents: \(err)")
-//            } else {
-//                for doc in QuerySnapshot!.documents {
-//                    activities.append(Activity(fromDoc: doc))
-//                }
-//                self.AllActivities = [category: activities]
-//            }
-//        })
-//    }
-//
-//
-//    /// Fetches all activities completed by the user
-//    func FetchCompletedActivities() {
-//        var compActivities: [Activity] = []
-//        Activity.db.collection("completed_activities").whereField("user_id", isEqualTo: currentUser.uid).getDocuments(completion: { (QuerySnapshot, err) in
-//            if let err = err {
-//                print("Error retreiving documents: \(err)")
-//            } else {
-//                for activity in QuerySnapshot!.documents {
-//                    compActivities.append(Activity(fromDoc: activity))
-//                }
-//                self.completedActivities = compActivities
-//            }
-//        })
-//    }
-//
-//
-    /// Updates the database with a new completed activity.
-    ///
-    /// - Parameter activity: The activity object to upload.
-//    func UpdateDatabase(tradition: Tradition) {
-//        if tradition.id != "" {
-//            db.collection("submissions").document().setData(tradition.submissionDictionary) { err in
-//                if let err = err {
-//                    print("Error writing document: \(err)")
-//                } else {
-//                    print("Activity successfully added to database!")
-//                }
-//            }
-//        }
-//    }
-//}

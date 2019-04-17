@@ -14,7 +14,7 @@
 		210AA948224525A800172102 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210AA947224525A800172102 /* UserProfile.storyboard */; };
 		211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */; };
 		211745F2224D17B700BEA0C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745F1224D17B700BEA0C8 /* Category.swift */; };
-		212BFAC0225E50E000BDF9DA /* Submit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212BFABF225E50E000BDF9DA /* Submit.swift */; };
+		212BFAC0225E50E000BDF9DA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212BFABF225E50E000BDF9DA /* ImagePicker.swift */; };
 		2138A67F22542EF700AC0474 /* Instructions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2138A67E22542EF700AC0474 /* Instructions.storyboard */; };
 		2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A6802254312700AC0474 /* InstructionsViewController.swift */; };
 		2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A68322543B8200AC0474 /* LocationViewController.swift */; };
@@ -46,6 +46,9 @@
 		21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */; };
 		21C3335F22491F0500454CC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21C3335E22491F0500454CC1 /* GoogleService-Info.plist */; };
 		21C33361224925F700454CC1 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21C33360224925F700454CC1 /* Settings.storyboard */; };
+		21CED7232266276D006D1EDC /* Requirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CED7222266276D006D1EDC /* Requirement.swift */; };
+		21CED72522675F3A006D1EDC /* Submit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21CED72422675F3A006D1EDC /* Submit.storyboard */; };
+		21CED727226772CA006D1EDC /* SubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CED726226772CA006D1EDC /* SubmitViewController.swift */; };
 		21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */; };
 		21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */; };
 		21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC81223B40EB00844CDF /* ProfileViewController.swift */; };
@@ -83,7 +86,7 @@
 		210AA947224525A800172102 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		211745ED224CFC1C00BEA0C8 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		211745F1224D17B700BEA0C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		212BFABF225E50E000BDF9DA /* Submit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submit.swift; sourceTree = "<group>"; };
+		212BFABF225E50E000BDF9DA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2138A67E22542EF700AC0474 /* Instructions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Instructions.storyboard; sourceTree = "<group>"; };
 		2138A6802254312700AC0474 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		2138A68322543B8200AC0474 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +124,9 @@
 		21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		21C3335E22491F0500454CC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		21C33360224925F700454CC1 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		21CED7222266276D006D1EDC /* Requirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirement.swift; sourceTree = "<group>"; };
+		21CED72422675F3A006D1EDC /* Submit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Submit.storyboard; sourceTree = "<group>"; };
+		21CED726226772CA006D1EDC /* SubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitViewController.swift; sourceTree = "<group>"; };
 		21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		21DABC81223B40EB00844CDF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -185,12 +191,14 @@
 			path = "1.5 - Settings";
 			sourceTree = "<group>";
 		};
-		212BFAC1225E537600BDF9DA /* View Controllers */ = {
+		212BFAC1225E537600BDF9DA /* 3.0 - Submit */ = {
 			isa = PBXGroup;
 			children = (
-				212BFABF225E50E000BDF9DA /* Submit.swift */,
+				212BFABF225E50E000BDF9DA /* ImagePicker.swift */,
+				21CED72422675F3A006D1EDC /* Submit.storyboard */,
+				21CED726226772CA006D1EDC /* SubmitViewController.swift */,
 			);
-			path = "View Controllers";
+			path = "3.0 - Submit";
 			sourceTree = "<group>";
 		};
 		212F529222569AE50072E9B4 /* Category */ = {
@@ -215,8 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */,
-				21F2D7DD2260C49E000BD3AE /* TraditionTableViewCell.swift */,
-				21F2D7DE2260C49E000BD3AE /* TraditionTableViewCell.xib */,
 				2199A678223BEE1B00037C0F /* InstructionsTableViewCell.swift */,
 				2199A67A223BEE2900037C0F /* MapTableViewCell.swift */,
 			);
@@ -259,20 +265,21 @@
 		216A1617220E203900342707 /* Tradition Keepers */ = {
 			isa = PBXGroup;
 			children = (
-				212BFAC1225E537600BDF9DA /* View Controllers */,
 				2173761622428CA2006279D2 /* Storyboards */,
 				217652B6223C8D50006886E8 /* Model */,
 				21B8C981222444720037B1C5 /* 1 - Tab Bar */,
 				21DABC7C223AFAAA00844CDF /* 1.1 - Dashboard */,
 				2199A67E223C0FDF00037C0F /* 1.2 - Traditions */,
-				2199A677223BEDE900037C0F /* 1.2.1 - Activity Detail */,
-				216F3381223ECB3700E7B989 /* 1.2.2 - New Activity */,
+				2199A677223BEDE900037C0F /* 1.2.1 - Tradition Detail */,
+				216F3381223ECB3700E7B989 /* 1.2.2 - New Tradition */,
 				210787BA22552ADE008E46C2 /* 1.3 - Users */,
 				21DABC7B223AFA7000844CDF /* 1.3.1 - User Profile */,
 				21F2D7D82260B6A9000BD3AE /* 1.4 - Submissions */,
 				212BFABE225E4FB700BDF9DA /* 1.5 - Settings */,
 				216A1654220FCDBA00342707 /* 1.5.1 -  Login */,
 				2138A6822254312C00AC0474 /* 1.5.1.1 - Instructions */,
+				21CED72122661A36006D1EDC /* 2.0 - Tradition Cell */,
+				212BFAC1225E537600BDF9DA /* 3.0 - Submit */,
 				216A1651220FCC3C00342707 /* Miscalenous */,
 			);
 			path = "Tradition Keepers";
@@ -317,7 +324,7 @@
 			path = "1.5.1 -  Login";
 			sourceTree = "<group>";
 		};
-		216F3381223ECB3700E7B989 /* 1.2.2 - New Activity */ = {
+		216F3381223ECB3700E7B989 /* 1.2.2 - New Tradition */ = {
 			isa = PBXGroup;
 			children = (
 				2173761C22428FB2006279D2 /* NewActivity.storyboard */,
@@ -325,7 +332,7 @@
 				212F529222569AE50072E9B4 /* Category */,
 				212F529322569B0A0072E9B4 /* Location */,
 			);
-			path = "1.2.2 - New Activity";
+			path = "1.2.2 - New Tradition";
 			sourceTree = "<group>";
 		};
 		2173761622428CA2006279D2 /* Storyboards */ = {
@@ -345,17 +352,18 @@
 				217652B7223C8D6D006886E8 /* Tradition.swift */,
 				216F3388223F14FB00E7B989 /* FireBaseManager.swift */,
 				211745F1224D17B700BEA0C8 /* Category.swift */,
+				21CED7222266276D006D1EDC /* Requirement.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2199A677223BEDE900037C0F /* 1.2.1 - Activity Detail */ = {
+		2199A677223BEDE900037C0F /* 1.2.1 - Tradition Detail */ = {
 			isa = PBXGroup;
 			children = (
 				2199A67C223BEED100037C0F /* ActivityDetailViewController.swift */,
 				212F529422569D050072E9B4 /* Views */,
 			);
-			path = "1.2.1 - Activity Detail";
+			path = "1.2.1 - Tradition Detail";
 			sourceTree = "<group>";
 		};
 		2199A67E223C0FDF00037C0F /* 1.2 - Traditions */ = {
@@ -374,6 +382,15 @@
 				215E4E2522491B770001D3F2 /* NavTabBarController.swift */,
 			);
 			path = "1 - Tab Bar";
+			sourceTree = "<group>";
+		};
+		21CED72122661A36006D1EDC /* 2.0 - Tradition Cell */ = {
+			isa = PBXGroup;
+			children = (
+				21F2D7DD2260C49E000BD3AE /* TraditionTableViewCell.swift */,
+				21F2D7DE2260C49E000BD3AE /* TraditionTableViewCell.xib */,
+			);
+			path = "2.0 - Tradition Cell";
 			sourceTree = "<group>";
 		};
 		21DABC7B223AFA7000844CDF /* 1.3.1 - User Profile */ = {
@@ -549,6 +566,7 @@
 				217376272242C822006279D2 /* About.storyboard in Resources */,
 				2138A67F22542EF700AC0474 /* Instructions.storyboard in Resources */,
 				217376252242C7B7006279D2 /* Traditions.storyboard in Resources */,
+				21CED72522675F3A006D1EDC /* Submit.storyboard in Resources */,
 				21C3335F22491F0500454CC1 /* GoogleService-Info.plist in Resources */,
 				2173761A22428F2C006279D2 /* Login.storyboard in Resources */,
 				210AA948224525A800172102 /* UserProfile.storyboard in Resources */,
@@ -682,6 +700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F2D7DA2260B6D7000BD3AE /* SubmissionsViewController.swift in Sources */,
+				21CED7232266276D006D1EDC /* Requirement.swift in Sources */,
 				217652B8223C8D6D006886E8 /* Tradition.swift in Sources */,
 				2199A67D223BEED100037C0F /* ActivityDetailViewController.swift in Sources */,
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
@@ -694,7 +713,7 @@
 				210AA94422451C7700172102 /* SettingsViewController.swift in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
 				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
-				212BFAC0225E50E000BDF9DA /* Submit.swift in Sources */,
+				212BFAC0225E50E000BDF9DA /* ImagePicker.swift in Sources */,
 				2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */,
 				211745F2224D17B700BEA0C8 /* Category.swift in Sources */,
 				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
@@ -706,6 +725,7 @@
 				2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
 				216F3389223F14FB00E7B989 /* FireBaseManager.swift in Sources */,
+				21CED727226772CA006D1EDC /* SubmitViewController.swift in Sources */,
 				2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */,
 				2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */,
 				210787BC22552B16008E46C2 /* UsersTableViewController.swift in Sources */,

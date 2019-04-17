@@ -11,19 +11,32 @@ import UIKit
 class TraditionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var NameLabel: UILabel!
-    @IBOutlet weak var SecondaryLabel: UILabel!
-    @IBOutlet weak var CompleteButton: UIButton!
+    @IBOutlet weak var RequirementLabel: UILabel!
+    @IBOutlet weak var SubmitButton: UIButton!
     
     var tradition: Tradition! {
         didSet {
             NameLabel.text = tradition.title
-            SecondaryLabel.text = tradition.instruction
-            CompleteButton.setTitle(tradition.submission.status.rawValue, for: .normal)
+            RequirementLabel.text = tradition.requirement.title
+            SubmitButton.setTitle(tradition.submission.status.rawValue, for: .normal)
+            
+            if tradition.isRequired {
+                RequirementLabel.textColor = UIColor(named: "ETSU GOLD")
+            } else {
+                RequirementLabel.textColor = UIColor(named: "ETSU WHITE")
+            }
+            
+            switch User.current.permission {
+            case .none:
+                SubmitButton.isHidden = true
+            default:
+                SubmitButton.isHidden = false
+            }
             
             if tradition.submission.status == .none {
-                CompleteButton.tintColor = UIColor(named: "ETSU GOLD")
+                SubmitButton.tintColor = UIColor(named: "ETSU GOLD")
             } else {
-                CompleteButton.tintColor = UIColor(named: "ETSU WHITE")
+                SubmitButton.tintColor = UIColor(named: "ETSU WHITE")
             }
         }
     }

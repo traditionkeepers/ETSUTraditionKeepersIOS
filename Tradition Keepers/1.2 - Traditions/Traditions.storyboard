@@ -24,60 +24,8 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActivityDetailCell" rowHeight="80" id="r4H-s9-Jj4" customClass="ActivityTableViewCell" customModule="Tradition_Keepers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ActivityCell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r4H-s9-Jj4" id="dXc-th-siB">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KY2-bo-QiI">
-                                                    <rect key="frame" x="20" y="6" width="374" height="67.5"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Veb-u2-9Ha">
-                                                            <rect key="frame" x="0.0" y="6" width="287" height="56"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Activity Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soX-qT-d6n">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="36"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                                                    <color key="textColor" name="ETSU WHITE"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWs-v4-sTE">
-                                                                    <rect key="frame" x="0.0" y="38" width="287" height="18"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                                    <color key="textColor" name="ETSU WHITE"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0RN-na-N1P">
-                                                            <rect key="frame" x="295" y="17" width="79" height="34"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                            <state key="normal" title="Complete"/>
-                                                            <connections>
-                                                                <action selector="CompleteButtonPressed:" destination="r4H-s9-Jj4" eventType="touchUpInside" id="fGY-yC-J5C"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="KY2-bo-QiI" secondAttribute="bottom" constant="6" id="1ul-Uf-C0S"/>
-                                                <constraint firstItem="KY2-bo-QiI" firstAttribute="top" secondItem="dXc-th-siB" secondAttribute="top" constant="6" id="4Q2-sw-PjE"/>
-                                                <constraint firstAttribute="trailing" secondItem="KY2-bo-QiI" secondAttribute="trailing" constant="20" id="oCe-8U-U4G"/>
-                                                <constraint firstItem="KY2-bo-QiI" firstAttribute="leading" secondItem="dXc-th-siB" secondAttribute="leading" constant="20" id="tmn-6S-rJf"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="CompleteButton" destination="0RN-na-N1P" id="Zwn-lc-L6q"/>
-                                            <outlet property="NameLabel" destination="soX-qT-d6n" id="hJ4-tf-UTl"/>
-                                            <outlet property="SecondaryLabel" destination="pWs-v4-sTE" id="Acj-mx-9OV"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityDetailInstructionCell" rowHeight="238" id="w2Y-p5-IIi" customClass="InstructionsTableViewCell" customModule="Tradition_Keepers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="108" width="414" height="238"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="238"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w2Y-p5-IIi" id="2zA-yi-yUg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="237.5"/>
@@ -116,7 +64,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityDetailMapCell" rowHeight="436" id="vfI-0x-CxF" customClass="MapTableViewCell" customModule="Tradition_Keepers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="346" width="414" height="436"/>
+                                        <rect key="frame" x="0.0" y="266" width="414" height="436"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vfI-0x-CxF" id="kf1-a9-rNX">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="435.5"/>
@@ -212,7 +160,7 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u1A-39-5Ww">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="29"/>
                                         <segments>
-                                            <segment title="Category"/>
+                                            <segment title="Requirement"/>
                                             <segment title="Alphebetical"/>
                                         </segments>
                                         <color key="tintColor" name="ETSU GOLD"/>

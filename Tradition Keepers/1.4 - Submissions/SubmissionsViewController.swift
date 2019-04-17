@@ -97,8 +97,8 @@ class SubmissionsViewController: UIViewController, UITableViewDelegate, UITableV
         let submission = submissions[indexPath.row]
         print(submission)
         cell.NameLabel.text = submission.tradition
-        cell.SecondaryLabel.text = "\(submission.user) - \(DateFormat.string(from: submission.completion_date))"
-        cell.CompleteButton.setTitle(submission.status.rawValue, for: .normal)
+        cell.RequirementLabel.text = "\(submission.user) - \(DateFormat.string(from: submission.completion_date))"
+        cell.SubmitButton.setTitle(submission.status.rawValue, for: .normal)
         return cell
     }
     

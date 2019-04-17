@@ -15,7 +15,11 @@ struct Tradition {
     var id: String
     var title: String
     var instruction: String
-    var category: Category
+    var requirement: Requirement
+    var isRequired: Bool {
+        return requirement.id == "required"
+    }
+    
     var date: Date
     var location: Location
     var submission: SubmittedTradition
@@ -25,7 +29,7 @@ struct Tradition {
             "title": title,
             "instruction": instruction,
             "date": Timestamp(date: date),
-            "category": category.name,
+            "requirement": requirement.id,
             "location": location.dictionary
         ]
     }
@@ -41,7 +45,7 @@ extension Tradition: DocumentSerializable {
         title = "New Tradition"
         instruction = "Empty"
         date = Date()
-        category = Category.categories["general"] ?? Category(id: "", name: "General", count: 0)
+        requirement = Requirement.optional
         location = Location()
         submission = SubmittedTradition()
     }
@@ -49,18 +53,18 @@ extension Tradition: DocumentSerializable {
     init?(dictionary: [String : Any], id: String) {
         guard let title = dictionary["title"] as? String,
         let instruction = dictionary["instruction"] as? String,
-        let catname = dictionary["category"] as? String,
         let date = (dictionary["date"] as? Timestamp)?.dateValue(),
         let geo = dictionary["location"] as? [String: Any]
             else { return nil }
         
-        let category = Category.categories[catname] ?? Category(id: "", name: catname, count: 1)
+        let req = dictionary["requirement"] as? String ?? "optional"
+        let required = (req == "required" ? Requirement.required : Requirement.optional)
         let location = Location(dictionary: geo, id: "")!
         
         self.init(id: id,
                   title: title,
                   instruction: instruction,
-                  category: category,
+                  requirement: required,
                   date: date,
                   location: location,
                   submission: SubmittedTradition())
@@ -161,7 +165,7 @@ struct Location {
 
 extension Location: DocumentSerializable {
     init() {
-        self.title = "Default"
+        self.title = "Set"
         self.coordinate = CLLocation(latitude: 36.323675, longitude: -82.346314)
     }
     

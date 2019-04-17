@@ -170,5 +170,5 @@ class CategoryTableViewController: UITableViewController {
 }
 
 protocol FiltersViewControllerDelegate: NSObjectProtocol {
-    func controller(_ controller: CategoryTableViewController, didSelectCategory category: String?)
+    func controller(_ controller: CategoryTableViewController, didSelectFilter filter: String?)
 }

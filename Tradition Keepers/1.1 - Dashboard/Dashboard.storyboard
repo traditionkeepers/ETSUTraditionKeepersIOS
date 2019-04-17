@@ -37,7 +37,7 @@
                                                     <action selector="pressedUserButton:" destination="xYT-w6-0Ll" eventType="touchUpInside" id="hat-M0-hvF"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPp-iK-3NB">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPp-iK-3NB">
                                                 <rect key="frame" x="0.0" y="36" width="374" height="22.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <state key="normal" title="Progress: XXX%">
@@ -78,6 +78,7 @@
                         <outlet property="usernameButton" destination="pX0-I6-k8W" id="dvO-Hs-qMb"/>
                         <segue destination="i6K-VO-3yU" kind="show" identifier="ShowUserDetail" id="ysy-xb-S47"/>
                         <segue destination="OgS-VQ-HbX" kind="show" identifier="ShowActivityDetail" id="zY0-ih-sia"/>
+                        <segue destination="bGR-93-95Y" kind="presentation" identifier="Submit" id="dqc-Ds-FIy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTA-F0-XBT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,6 +118,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5A-QL-eRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5779.7101449275369" y="-899.33035714285711"/>
+        </scene>
+        <!--Submit-->
+        <scene sceneID="Bsb-AH-PLE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Submit" id="bGR-93-95Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpD-Iz-lf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7540" y="-1081"/>
         </scene>
     </scenes>
     <resources>

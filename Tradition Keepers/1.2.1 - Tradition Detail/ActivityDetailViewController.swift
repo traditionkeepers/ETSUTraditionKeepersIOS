@@ -26,31 +26,14 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailCell") as! ActivityTableViewCell
-            cell.NameLabel.text = tradition.title
-            cell.SecondaryLabel.text = tradition.category.name
-            let status = tradition.submission.status
-            switch status {
-            case .none:
-                cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
-                cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU GOLD"), for: .normal)
-                cell.CompleteButtonPressed = { (cell) in
-                    self.ShowAlertForRow(row: indexPath.row)
-                }
-            case .pending:
-                cell.CompleteButton.setTitle(status.rawValue, for: UIControl.State.normal)
-                cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
-                cell.CompleteButtonPressed = nil
-            case .complete:
-                let date = tradition.submission.completion_date
-                cell.CompleteButton.setTitle(DateFormat.string(from: date), for: .normal)
-                cell.CompleteButton.setTitleColor(UIColor.init(named: "ETSU WHITE"), for: .normal)
-                cell.CompleteButtonPressed = nil
-            }
+            let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
+            cell.tradition = tradition
+            cell.NameLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailInstructionCell") as! InstructionsTableViewCell
             cell.InstructionText.text = tradition.instruction
+            cell.InstructionText.font = UIFont.preferredFont(forTextStyle: .subheadline)
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailMapCell") as! MapTableViewCell

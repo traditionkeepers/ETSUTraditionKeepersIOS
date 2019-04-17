@@ -24,15 +24,11 @@ class NewActivityTableViewController: UITableViewController {
     // MARK: - Outlets
     @IBOutlet weak var TitleTextField: UITextField!
     @IBOutlet weak var LocationLabel: UILabel!
-    @IBOutlet weak var CategoryLabel: UILabel!
     @IBOutlet weak var InstructionsTextBox: UITextView!
+    @IBOutlet var RequiredSwitch: UISwitch!
     
     // MARK: - Actions
     @IBAction func UnwindToNewActivity(unwindSegue: UIStoryboardSegue) {
-        if let vc = unwindSegue.source as? NewCategoryTableViewController {
-            workingActivity.category = vc.category!
-        }
-        
         if let vc = unwindSegue.source as? NewLocationViewController {
             self.location = vc.selectedLocation
             if let point = self.location {
@@ -52,10 +48,14 @@ class NewActivityTableViewController: UITableViewController {
         TitleDidEndEditing(TitleTextField!)
         textViewDidEndEditing(InstructionsTextBox)
         
-        selectedActivity = workingActivity
-        UpdateDatabase(tradition: selectedActivity)
+        UpdateDatabase(tradition: workingActivity)
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func requiredChanged(_ sender: UISwitch) {
+        workingActivity.requirement = (sender.isOn ? Requirement.required : Requirement.optional)
+    }
+    
     @IBAction func TitleDidBeginEditing(_ sender: Any) {
         guard let textField = sender as? UITextField else {
             return
@@ -77,6 +77,7 @@ class NewActivityTableViewController: UITableViewController {
             textField.textColor = UIColor.lightGray
         } else {
             workingActivity.title = textField.text ?? ""
+            self.title = textField.text ?? "New Activity"
         }
     }
     
@@ -91,7 +92,7 @@ class NewActivityTableViewController: UITableViewController {
         
         TitleTextField.text = workingActivity.title
         setLocationText(text: workingActivity.location.title)
-        CategoryLabel.text = workingActivity.category.name
+        RequiredSwitch.isOn = workingActivity.isRequired
         setInstructionText(text: workingActivity.instruction)
     }
     
@@ -148,7 +149,7 @@ extension NewActivityTableViewController: UITextViewDelegate {
 extension NewActivityTableViewController {
     
     func UpdateDatabase(tradition: Tradition) {
-        print("Submitting \(tradition)")
+        print("Updating \(tradition)")
         let batch = db.batch()
         
         // Add tradition
@@ -161,17 +162,9 @@ extension NewActivityTableViewController {
         }
         
         // Add/Increment counter for category
-        let categoryRef = db.collection("categories").document(tradition.category.name.lowercased())
-        batch.setData(tradition.category.dictionary, forDocument: categoryRef, merge: true)
-        categoryRef.updateData([
-            "count": FieldValue.increment(Int64(1))
-        ]) { error in
-            if let error = error {
-                print("Error incrimenting count: \(error)")
-            } else {
-                print("Count successfully incremented!")
-            }
-        }
+        let reqRef = db.collection("requirement").document(tradition.requirement.id)
+        batch.setData(tradition.requirement.dictionary, forDocument: reqRef, merge: true)
+        batch.updateData(["count": FieldValue.increment(Int64(1))], forDocument: reqRef)
         
         let locationRef = db.collection("locations").document(tradition.location.id)
         batch.setData(tradition.location.dictionary, forDocument: locationRef)
@@ -184,48 +177,5 @@ extension NewActivityTableViewController {
                 print("Tradition successfully added to database!")
             }
         }
-        
-//        if tradition.id != "" {
-//            Firestore.firestore().collection("traditions").document(tradition.
-//                id).setData(tradition.activityDictionary) { err in
-//                if let err = err {
-//                    print("Error writing document: \(err)")
-//                } else {
-//
-//                }
-//            }
-//        } else {
-//            Firestore.firestore().collection("traditions").document().setData(tradition.activityDictionary) { err in
-//                if let err = err {
-//                    print("Error writing document: \(err)")
-//                } else {
-//                    print("Activity successfully added to database!")
-//                }
-//            }
-//        }
-//
-//        let category = tradition.category
-//        Firestore.firestore().collection("categories").document( category.name.lowercased() ).setData([
-//            "title": category.name
-//        ]) {err in
-//            if let err = err {
-//                print("Error writing document: \(err.localizedDescription)")
-//            } else {
-//                print("Successfully add category")
-//            }
-//        }
-//
-//        if let location = location {
-//            Firestore.firestore().collection("locations").document(location.id).setData([
-//                "title": location.title,
-//                "coordinate": location.point
-//            ]) { err in
-//                if let err = err {
-//                    print("Error writing document: \(err.localizedDescription)")
-//                } else {
-//                    print("Successfully add location")
-//                }
-//            }
-//        }
     }
 }

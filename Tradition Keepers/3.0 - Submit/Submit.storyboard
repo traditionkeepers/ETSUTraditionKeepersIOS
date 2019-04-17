@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HOp-pe-6yz">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Submit View Controller-->
+        <scene sceneID="oiA-eq-rKt">
+            <objects>
+                <viewController id="SnM-C0-cIx" customClass="SubmitViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PdI-sU-yCC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="csP-BT-NOm">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <sections>
+                                    <tableViewSection headerTitle="Submission Information" id="M8V-aw-vx9" userLabel="Tradition Information">
+                                        <cells>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="95" id="b5X-Mq-BXk">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="95"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b5X-Mq-BXk" id="rPw-Oy-z3r">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oGP-Sw-sWb">
+                                                            <rect key="frame" x="20" y="11" width="374" height="73"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WlJ-dy-Twa">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="310" height="73"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Tradition Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1k2-XS-1Vh">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="36"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Tradition Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncv-8i-r4h">
+                                                                            <rect key="frame" x="0.0" y="38" width="310" height="18"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Tradition Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsA-54-kSd">
+                                                                            <rect key="frame" x="0.0" y="58" width="310" height="15"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVF-Si-jIQ">
+                                                                    <rect key="frame" x="318" y="0.0" width="56" height="73"/>
+                                                                    <state key="normal" title="Pending">
+                                                                        <color key="titleColor" name="ETSU GOLD"/>
+                                                                    </state>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="oGP-Sw-sWb" firstAttribute="top" secondItem="rPw-Oy-z3r" secondAttribute="topMargin" id="Diy-OU-2oA"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="oGP-Sw-sWb" secondAttribute="bottom" id="KM7-jC-yIQ"/>
+                                                        <constraint firstItem="oGP-Sw-sWb" firstAttribute="leading" secondItem="rPw-Oy-z3r" secondAttribute="leadingMargin" id="mfQ-Ny-Cvr"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="oGP-Sw-sWb" secondAttribute="trailing" id="qX6-yB-1Eh"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" name="ETSU NAVY"/>
+                                            </tableViewCell>
+                                        </cells>
+                                    </tableViewSection>
+                                    <tableViewSection id="TOR-Om-302">
+                                        <cells>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ERh-y0-J6K">
+                                                <rect key="frame" x="0.0" y="123" width="414" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ERh-y0-J6K" id="va5-3R-aZb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tqN-N4-Igl">
+                                                            <rect key="frame" x="0.0" y="11" width="414" height="22"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NsH-1n-jWl">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="22"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="tqN-N4-Igl" firstAttribute="leading" secondItem="va5-3R-aZb" secondAttribute="leading" id="Ifu-zu-KRH"/>
+                                                        <constraint firstAttribute="trailing" secondItem="tqN-N4-Igl" secondAttribute="trailing" id="TEt-si-Wzv"/>
+                                                        <constraint firstItem="tqN-N4-Igl" firstAttribute="top" secondItem="va5-3R-aZb" secondAttribute="topMargin" id="n0L-4V-75K"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="tqN-N4-Igl" secondAttribute="bottom" id="rqD-7c-BTK"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" name="ETSU NAVY"/>
+                                            </tableViewCell>
+                                        </cells>
+                                    </tableViewSection>
+                                </sections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="r2P-cj-ar6" firstAttribute="bottom" secondItem="csP-BT-NOm" secondAttribute="bottom" id="47B-RJ-JYt"/>
+                            <constraint firstItem="csP-BT-NOm" firstAttribute="top" secondItem="r2P-cj-ar6" secondAttribute="top" id="8AE-1c-OBs"/>
+                            <constraint firstItem="r2P-cj-ar6" firstAttribute="trailing" secondItem="csP-BT-NOm" secondAttribute="trailing" id="8W9-2j-FIz"/>
+                            <constraint firstItem="csP-BT-NOm" firstAttribute="leading" secondItem="r2P-cj-ar6" secondAttribute="leading" id="PPZ-Q8-cvd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="r2P-cj-ar6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="a0V-KQ-kQI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4o5-ef-ZK3"/>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="i4y-gb-kTr">
+                            <color key="tintColor" name="ETSU GOLD"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9d-Jf-x53" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986.95652173913049" y="143.97321428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CyS-P6-Loc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HOp-pe-6yz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vdE-PU-GJi">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SnM-C0-cIx" kind="relationship" relationship="rootViewController" id="aOD-Mr-AZc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Otm-kw-pNd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76.811594202898561" y="143.97321428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="ETSU GOLD">
+            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU WHITE">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
