@@ -16,6 +16,8 @@ class NavTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     private func configureTabs() {

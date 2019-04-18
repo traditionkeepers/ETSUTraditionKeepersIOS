@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>FirebaseScreenReportingEnabled</key>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
@@ -20,8 +20,18 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Tradition Keeper needs access to your camera to submit traditions.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Tradition Keeper needs access to your location.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Tradition Keeper needs access to your location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Tradition Keeper needs access to your location. </string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -30,6 +40,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -41,13 +53,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Tradition Keeper needs access to your location. </string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Tradition Keeper needs access to your location.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Tradition Keeper needs access to your location.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Tradition Keeper needs access to your camera to submit traditions.</string>
 </dict>
 </plist>
