@@ -30,6 +30,7 @@ class AuthViewController: UIViewController {
             }
         } else {
             print("Not logged in!")
+            User.current = User()
             performSegue(withIdentifier: "ContinueToApplication", sender: nil)
         }
     }

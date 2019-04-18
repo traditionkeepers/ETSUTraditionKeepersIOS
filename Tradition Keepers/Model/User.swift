@@ -12,11 +12,7 @@ struct User {
     var uid: String
     var first: String
     var last: String
-    var permission: UserPermission {
-        didSet {
-            Permission.configure(user: permission)
-        }
-    }
+    var permission: UserPermission
     
     var name_FL: String {
         return first + " " + last
@@ -34,7 +30,11 @@ struct User {
         ]
     }
     
-    static var current: User = User()
+    static var current: User = User() {
+        didSet {
+            Permission.configure(user: current.permission)
+        }
+    }
 }
 
 extension User: DocumentSerializable {
@@ -89,12 +89,12 @@ extension User {
     }
     
     static func LogOut() {
+        User.current = User()
         do {
+            
             try Auth.auth().signOut()
-            User.current = User()
         } catch let signOutError as NSError {
             print("Error signing out: \(signOutError)")
-            User.current = User()
         }
     }
     

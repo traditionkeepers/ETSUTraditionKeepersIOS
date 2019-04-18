@@ -14,25 +14,37 @@ class SettingsViewController: UIViewController {
     
     /// Determines if the Navigation Bar is visible
     private var showNavBar = false
+    private var initialView = false
+    
+    private var userListener = Auth.auth().addStateDidChangeListener { (auth, user) in
+        if let user = user {
+            print("User logged in!")
+        } else {
+            print("User logged out!")
+        }
+    }
     
     @IBOutlet weak var LoginProfileButton: UIButton!
     @IBOutlet weak var LogoutButton: UIButton!
     @IBOutlet weak var TraditionsButton: UIButton!
     
     
+    
     /// Code to be executed when the view is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initialView = User.current.permission == .none
         // Do any additional setup after loading the view.
-        setupView()
     }
     
     
     /// Configures the view for the current user's permissions
-    private func setupView() {
+    fileprivate func setupView() {
         print("Updating Settings")
         switch User.current.permission {
         case .none:
+            
             LoginProfileButton?.setTitle("Login", for: .normal)
             TraditionsButton.isHidden = false
             LogoutButton.isHidden = true
@@ -43,9 +55,9 @@ class SettingsViewController: UIViewController {
             LogoutButton.isHidden = false
         }
         
-        if let tc = self.tabBarController as? NavTabBarController {
-            tc.updateTabs()
-        }
+//        if let tc = self.tabBarController as? NavTabBarController {
+//            tc.updateTabs()
+//        }
     }
     
     
@@ -59,7 +71,8 @@ class SettingsViewController: UIViewController {
         navigationController?.setNavigationBarHidden(!showNavBar, animated: animated)
         
         self.setupView()
-        if User.current.permission != .none {
+        if initialView {
+            initialView = false
             self.tabBarController?.selectedIndex = 0
         }
     }
@@ -82,7 +95,12 @@ class SettingsViewController: UIViewController {
     /// - Parameter sender: The object that triggered the action
     @IBAction func LogoutButtonPressed(_ sender: Any) {
         print("Logging Out")
+        initialView = true
         User.LogOut()
+        setupView()
+        if let tb = self.tabBarController as? NavTabBarController {
+            tb.updateTabs()
+        }
     }
     
     

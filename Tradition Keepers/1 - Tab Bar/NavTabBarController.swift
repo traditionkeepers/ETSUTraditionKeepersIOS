@@ -17,7 +17,8 @@ class NavTabBarController: UITabBarController {
         super.viewDidLoad()
     }
     
-    func configureTabs() {
+    private func configureTabs() {
+        tabs.removeAll()
         if let dashboard = Permission.dashboard ? UIStoryboard(name: "Dashboard", bundle: .main).instantiateInitialViewController()! : nil {
             dashboard.tabBarItem = UITabBarItem(title: "Dashboard", image: nil, tag: 0)
             tabs.append(dashboard)
