@@ -9,6 +9,8 @@ target 'Tradition Keepers' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'SwiftIcons', '~> 2.3.2'
+ 
   target 'Tradition KeepersTests' do
     inherit! :search_paths
     # Pods for testing
@@ -18,5 +20,4 @@ target 'Tradition Keepers' do
     inherit! :search_paths
     # Pods for testing
   end
-
 end

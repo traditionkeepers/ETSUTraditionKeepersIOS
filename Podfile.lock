@@ -101,11 +101,13 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.7.0)
+  - SwiftIcons (2.3.2)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - SwiftIcons (~> 2.3.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -125,6 +127,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - SwiftIcons
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
@@ -143,7 +146,8 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  SwiftIcons: e652cfd2676441c462ad57b6e92977faf577e590
 
-PODFILE CHECKSUM: ceb8bd8b8c7d8089112c17eb79dca2170709ce77
+PODFILE CHECKSUM: e94474923f83ab1e3ea144a025dec72ab1e75c72
 
 COCOAPODS: 1.6.1
