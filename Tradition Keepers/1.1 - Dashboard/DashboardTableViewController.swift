@@ -34,12 +34,10 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         DateFormat.locale = Locale(identifier: "en_US")
     }
     
-    
-    
-    
     func SetupView(_ animated: Bool = false) {
         usernameButton.setTitle("Welcome, \(User.current.first)", for: .normal)
-        progressButton.setTitle(User.current.uid, for: .normal)
+        let userProgress = "Required: \(User.current.requiredComplete) - Optional: \(User.current.optionalComplete)"
+        progressButton.setTitle(userProgress, for: .normal)
         if let selectionIndexPath = TopThreeTable.indexPathForSelectedRow {
             TopThreeTable.deselectRow(at: selectionIndexPath, animated: animated)
         }
@@ -99,13 +97,11 @@ extension DashboardTableViewController {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
         let tradition = topThree[indexPath.row]
-        cell.tradition = tradition
+        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: tradition)
         cell.CompleteButtonPressed = { sender in
             self.performSegue(withIdentifier: "Submit", sender: cell)
         }
-        
         return cell
     }
     

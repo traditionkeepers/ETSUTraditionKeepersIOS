@@ -26,8 +26,7 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
-            cell.tradition = tradition
+            let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: tradition)
             cell.NameLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
             return cell
         case 1:

@@ -14,37 +14,25 @@ class TraditionTableViewCell: UITableViewCell {
     @IBOutlet weak var RequirementLabel: UILabel!
     @IBOutlet weak var SubmitButton: UIButton!
     
-    var tradition: Tradition! {
-        didSet {
-            NameLabel.text = tradition.title
-            RequirementLabel.text = tradition.requirement.title
-            SubmitButton.setTitle(tradition.submission.status.rawValue, for: .normal)
-            
-            if tradition.isRequired {
-                RequirementLabel.textColor = UIColor(named: "ETSU GOLD")
-            } else {
-                RequirementLabel.textColor = UIColor(named: "ETSU WHITE")
-            }
-            
-            switch User.current.permission {
-            case .none:
-                SubmitButton.isHidden = true
-            default:
-                SubmitButton.isHidden = false
-            }
-            
-            if tradition.submission.status == .none {
-                SubmitButton.tintColor = UIColor(named: "ETSU GOLD")
-            } else {
-                SubmitButton.tintColor = UIColor(named: "ETSU WHITE")
-            }
-        }
-    }
+    var tradition: Tradition?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         sizeToFit()
+    }
+    
+    private func configureCell() {
+        guard let tradition = self.tradition else { return }
+        
+        NameLabel.text = tradition.title
+        RequirementLabel.textColor = tradition.isRequired ? UIColor(named: "ETSU GOLD") : UIColor(named: "ETSU WHITE")
+        RequirementLabel.text = tradition.requirement.title
+        
+        SubmitButton.setTitle(tradition.submission.status.rawValue, for: .normal)
+        let btnColor = tradition.submission.status == .none ? UIColor(named: "ETSU GOLD") : UIColor(named: "ETSU WHITE")
+        SubmitButton.setTitleColor(btnColor, for: .normal)
+        SubmitButton.isHidden = User.current.permission == .none
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,11 +41,13 @@ class TraditionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    class func cellForTableView(tableView: UITableView, atIndex indexPath: IndexPath) -> TraditionTableViewCell {
+    class func cellForTableView(tableView: UITableView, atIndex indexPath: IndexPath, tradition: Tradition?) -> TraditionTableViewCell {
         let identifier = "TraditionCell"
         tableView.register(UINib(nibName: "TraditionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: identifier)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TraditionTableViewCell
         
+        cell.tradition = tradition
+        cell.configureCell()
         return cell
     }
     

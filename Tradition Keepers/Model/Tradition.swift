@@ -17,7 +17,7 @@ struct Tradition {
     var instruction: String
     var requirement: Requirement
     var isRequired: Bool {
-        return requirement.id == "required"
+        return "required" == requirement.id 
     }
     
     var date: Date

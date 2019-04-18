@@ -36,7 +36,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requirement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXi-dH-c8M">
                                         <rect key="frame" x="0.0" y="21.5" width="228" height="18"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <color key="textColor" name="ETSU WHITE"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -44,9 +44,7 @@
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMc-iS-phM">
                                 <rect key="frame" x="236" y="18" width="58" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" name="ETSU GOLD"/>
-                                </state>
+                                <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="CompleteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Gb6-VB-amr"/>
                                 </connections>
@@ -72,9 +70,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <namedColor name="ETSU GOLD">
-            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="ETSU WHITE">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

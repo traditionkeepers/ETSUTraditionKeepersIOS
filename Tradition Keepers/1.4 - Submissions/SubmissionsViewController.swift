@@ -93,8 +93,8 @@ class SubmissionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
         let submission = submissions[indexPath.row]
+        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: nil)
         print(submission)
         cell.NameLabel.text = submission.tradition
         cell.RequirementLabel.text = "\(submission.user) - \(DateFormat.string(from: submission.completion_date))"

@@ -13,6 +13,12 @@ struct User {
     var first: String
     var last: String
     var permission: UserPermission
+    var requiredComplete: Int
+    var optionalComplete: Int
+    
+    var totalComplete: Int {
+        return requiredComplete + optionalComplete
+    }
     
     var name_FL: String {
         return first + " " + last
@@ -50,6 +56,8 @@ extension User: DocumentSerializable {
         first = "Anonomous"
         last = ""
         permission = .none
+        requiredComplete = 0
+        optionalComplete = 0
     }
     
     init?(dictionary: [String : Any], id: String) {
@@ -58,10 +66,16 @@ extension User: DocumentSerializable {
             let permission = User.permission[dictionary["permission"] as? String ?? "none"]
             else { return nil }
         
+        let required = dictionary["required"] as? Int ?? 0
+        let optional = dictionary["optional"] as? Int ?? 0
+        
         self.init(uid: id,
                   first: first,
                   last: last,
-                  permission: permission)
+                  permission: permission,
+                  requiredComplete: required,
+                  optionalComplete: optional
+        )
     }
 }
 

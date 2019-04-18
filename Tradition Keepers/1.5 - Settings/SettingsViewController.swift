@@ -16,14 +16,6 @@ class SettingsViewController: UIViewController {
     private var showNavBar = false
     private var initialView = false
     
-    private var userListener = Auth.auth().addStateDidChangeListener { (auth, user) in
-        if let user = user {
-            print("User logged in!")
-        } else {
-            print("User logged out!")
-        }
-    }
-    
     @IBOutlet weak var LoginProfileButton: UIButton!
     @IBOutlet weak var LogoutButton: UIButton!
     @IBOutlet weak var TraditionsButton: UIButton!

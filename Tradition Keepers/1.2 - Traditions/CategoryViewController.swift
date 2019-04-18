@@ -150,6 +150,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             self.title = "All Traditions"
             self.SortSelector.isHidden = false
         }
+        
+        self.setEditing(false, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -236,11 +238,10 @@ extension CategoryViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath)
         let key = sort == .alphebetical ? Array(groups.keys).sorted()[indexPath
             .section] : Array(groups.keys).sorted().reversed()[indexPath.section]
         let tradition = groups[key]![indexPath.row]
-        cell.tradition = tradition
+        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: tradition)
         
         cell.CompleteButtonPressed = { (sender) in
             
@@ -261,11 +262,19 @@ extension CategoryViewController {
             // Delete the row from the data source
             let key = Array(groups.keys)[indexPath.section]
             let tradition = groups[key]![indexPath.row]
-            db.collection("traditions").document(tradition.id).delete() { error in
+            let batch = db.batch()
+            
+            let traditionRef = db.collection("traditions").document(tradition.id)
+            batch.deleteDocument(traditionRef)
+            
+            let countRef = db.collection("requirement").document(tradition.requirement.id)
+            batch.updateData(["count": FieldValue.increment(Int64(-1))], forDocument: countRef)
+            
+            batch.commit { (error) in
                 if let error = error {
                     print("Error removing document: \(error)")
                 } else {
-//                    self.groups[key]!.remove(at: indexPath.row)
+                    //                    self.groups[key]!.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                     print("Document successfully removed!")
                 }
@@ -275,15 +284,13 @@ extension CategoryViewController {
          }
      }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return tableView.isEditing ? .delete : .none
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedActivityIndex = indexPath
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
-    }
-    
-    // Override to support conditional editing of the table view.
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
     }
 }
 
