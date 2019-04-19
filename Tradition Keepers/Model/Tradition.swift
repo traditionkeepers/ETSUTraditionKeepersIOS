@@ -105,7 +105,6 @@ extension SubmittedTradition: DocumentSerializable {
     }
     
     init?(dictionary: [String : Any], id: String) {
-        print(dictionary)
         guard let user = dictionary["user"] as? String,
         let date = dictionary["date"] as? Timestamp,
         let status = dictionary["status"] as? String,

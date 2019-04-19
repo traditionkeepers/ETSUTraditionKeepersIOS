@@ -14,46 +14,122 @@ import MobileCoreServices
 class DashboardTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     private var submissionImage: UIImage!
     
-    private var topThree: [Tradition] = [] {
-        didSet {
-            TopThreeTable.reloadData()
-        }
-    }
+    let backgroundView = UIImageView()
+    private var topTraditions: [Tradition] = []
+    private var topSubmissions: [SubmittedTradition] = []
+    private var documents: [DocumentSnapshot] = []
     
     private var selectedIndex: Int!
-    private var DateFormat = DateFormatter()
     
-    @IBOutlet weak var TopThreeTable: UITableView!
+    @IBOutlet weak var TopTraditionTable: UITableView!
     @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var progressButton: UIButton!
     
+    fileprivate var query: Query? {
+        didSet {
+            if let listener = listener {
+                listener.remove()
+                observeQuery()
+            }
+        }
+    }
+    
+    private var db: Firestore!
+    private var listener: ListenerRegistration?
+    
+    fileprivate func observeQuery() {
+        guard let query = query else { return }
+        stopObserving()
+        
+        // Display data from Firestore, part one
+        listener = query.addSnapshotListener { [unowned self] (snapshot, error) in
+            guard let snapshot = snapshot else {
+                print("Error fetching snapshot results: \(error!)")
+                return
+            }
+            
+            if Permission.allowSubmission {
+                print("Showing Tradions")
+                let models = snapshot.documents.map { (document) -> Tradition in
+                    if let model = Tradition(dictionary: document.data(), id: document.documentID) {
+                        return model
+                    } else {
+                        print("Unable to initialize type \(Tradition.self) with dictionary \(document.data())")
+                        return Tradition()
+                    }
+                }
+                self.topTraditions = models
+            } else if Permission.allowApproval {
+                print("Showing Submissions")
+                let models = snapshot.documents.map { (document) -> SubmittedTradition in
+                    if let model = SubmittedTradition(dictionary: document.data(), id: document.documentID) {
+                        print(model.status)
+                        return model
+                    } else {
+                        print("Unable to initialize type \(SubmittedTradition.self) with dictionary \(document.data())")
+                        return SubmittedTradition()
+                    }
+                }
+                self.topSubmissions = models
+            }
+            self.documents = snapshot.documents
+            
+            if self.documents.count > 0 {
+                self.TopTraditionTable.backgroundView = nil
+            } else {
+                self.TopTraditionTable.backgroundView = self.backgroundView
+            }
+            
+            DispatchQueue.main.async {
+                self.TopTraditionTable.reloadData()
+            }
+            
+        }
+    }
+    
+    fileprivate func stopObserving() {
+        listener?.remove()
+    }
+    
+    fileprivate func baseQuery() -> Query {
+        var query = db.collection("traditions").limit(to: 20)
+        query = Permission.allowApproval ? db.collection("submissions").limit(to: 20) : query
+        return query
+    }
+    
+    deinit {
+        listener?.remove()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        DateFormat.dateStyle = .short
-        DateFormat.timeStyle = .none
-        DateFormat.locale = Locale(identifier: "en_US")
+        db = Firestore.firestore()
+        query = baseQuery()
     }
     
     func SetupView(_ animated: Bool = false) {
         usernameButton.setTitle("Welcome, \(User.current.first)", for: .normal)
         let userProgress = "Required: \(User.current.requiredComplete) - Optional: \(User.current.optionalComplete)"
         progressButton.setTitle(userProgress, for: .normal)
-        if let selectionIndexPath = TopThreeTable.indexPathForSelectedRow {
-            TopThreeTable.deselectRow(at: selectionIndexPath, animated: animated)
+        if let selectionIndexPath = TopTraditionTable.indexPathForSelectedRow {
+            TopTraditionTable.deselectRow(at: selectionIndexPath, animated: animated)
         }
         
-        GetTopThree()
+        GetTop(n: 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         SetupView(animated)
+        observeQuery()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        stopObserving()
     }
     
     @IBAction func pressedUserButton(_ sender: Any) {
@@ -69,7 +145,7 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.tradition = topThree[selectedIndex]
+                vc.tradition = topTraditions[selectedIndex]
             }
         case "Submit":
             if let vc = segue.destination as? SubmitViewController {
@@ -92,17 +168,31 @@ extension DashboardTableViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return topThree.count
+        var count = topTraditions.count
+        count = Permission.allowApproval ? topSubmissions.count : count
+        return count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tradition = topThree[indexPath.row]
-        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: tradition)
-        cell.CompleteButtonPressed = { sender in
-            self.performSegue(withIdentifier: "Submit", sender: cell)
+        if Permission.allowSubmission {
+            print("Dequing Tradition")
+            let tradition = topTraditions[indexPath.row]
+            let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: tradition)
+            cell.CompleteButtonPressed = { sender in
+                self.performSegue(withIdentifier: "Submit", sender: cell)
+            }
+            return cell
+        } else if Permission.allowApproval {
+            print("Dequing Submission")
+            let submission = topSubmissions[indexPath.row]
+            let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, submission: submission)
+            cell.CompleteButtonPressed = { sender in
+                self.performSegue(withIdentifier: "Submit", sender: cell)
+            }
+            return cell
         }
-        return cell
+        
+        return TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: nil)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -125,7 +215,9 @@ extension DashboardTableViewController {
         }
     }
     
-    func GetTopThree() {
+    func GetTop(n: Int) {
+        
+        
         var activities :[Tradition] = []
         Firestore.firestore().collection("traditions").limit(to: 3).getDocuments(completion: { (QuerySnapshot, err) in
             if let err = err {
@@ -134,7 +226,7 @@ extension DashboardTableViewController {
                 for doc in QuerySnapshot!.documents {
                     activities.append(Tradition(dictionary: doc.data(), id: doc.documentID)!)
                 }
-                self.topThree = activities
+                self.topTraditions = activities
             }
         })
     }

@@ -12,27 +12,34 @@ class TraditionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var RequirementLabel: UILabel!
-    @IBOutlet weak var SubmitButton: UIButton!
+    @IBOutlet var SubmitButton: SubmissionButton!
     
-    var tradition: Tradition?
+    private var DateFormat = DateFormatter()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         sizeToFit()
+        
+        DateFormat.dateStyle = .short
+        DateFormat.timeStyle = .none
+        DateFormat.locale = Locale(identifier: "en_US")
     }
     
-    private func configureCell() {
-        guard let tradition = self.tradition else { return }
-        
+    private func configureCell(tradition: Tradition) {
         NameLabel.text = tradition.title
         RequirementLabel.textColor = tradition.isRequired ? UIColor(named: "ETSU GOLD") : UIColor(named: "ETSU WHITE")
         RequirementLabel.text = tradition.requirement.title
         
-        SubmitButton.setTitle(tradition.submission.status.rawValue, for: .normal)
-        let btnColor = tradition.submission.status == .none ? UIColor(named: "ETSU GOLD") : UIColor(named: "ETSU WHITE")
-        SubmitButton.setTitleColor(btnColor, for: .normal)
-        SubmitButton.isHidden = User.current.permission == .none
+        SubmitButton.configureButton(status: tradition.submission.status)
+    }
+    
+    private func configureCell(submission: SubmittedTradition) {
+        NameLabel.text = submission.tradition
+        RequirementLabel.textColor = UIColor(named: "ETSU WHITE")
+        RequirementLabel.text = "\(submission.user) - \(DateFormat.string(from: submission.completion_date))"
+        
+        SubmitButton.configureButton(status: submission.status)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,8 +53,24 @@ class TraditionTableViewCell: UITableViewCell {
         tableView.register(UINib(nibName: "TraditionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: identifier)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TraditionTableViewCell
         
-        cell.tradition = tradition
-        cell.configureCell()
+        if let data = tradition {
+            cell.configureCell(tradition: data)
+        } else {
+            print("No valid Tradition provided!")
+        }
+        return cell
+    }
+    
+    class func cellForTableView(tableView: UITableView, atIndex indexPath: IndexPath, submission: SubmittedTradition?) -> TraditionTableViewCell {
+        let identifier = "TraditionCell"
+        tableView.register(UINib(nibName: "TraditionTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: identifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TraditionTableViewCell
+        
+        if let data = submission {
+            cell.configureCell(submission: data)
+        } else {
+            print("No valid Submission provided!")
+        }
         return cell
     }
     

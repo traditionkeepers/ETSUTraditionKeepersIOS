@@ -12,8 +12,7 @@ import Firebase
 class SubmissionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var TableView: UITableView!
-    
-    private var DateFormat = DateFormatter()
+
     private var backgroundView = UIImageView()
     private var submissions: [SubmittedTradition] = []
     private var groups: [String:[SubmittedTradition]] = [:]
@@ -94,20 +93,13 @@ class SubmissionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let submission = submissions[indexPath.row]
-        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: nil)
-        print(submission)
-        cell.NameLabel.text = submission.tradition
-        cell.RequirementLabel.text = "\(submission.user) - \(DateFormat.string(from: submission.completion_date))"
-        cell.SubmitButton.setTitle(submission.status.rawValue, for: .normal)
+        let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, submission: submission)
         return cell
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        DateFormat.dateStyle = .short
-        DateFormat.timeStyle = .none
-        DateFormat.locale = Locale(identifier: "en_US")
         
         db = Firestore.firestore()
         query = baseQuery()

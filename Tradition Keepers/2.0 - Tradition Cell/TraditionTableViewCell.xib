@@ -41,7 +41,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMc-iS-phM">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMc-iS-phM" customClass="SubmissionButton" customModule="Tradition_Keepers" customModuleProvider="target">
                                 <rect key="frame" x="239" y="18.5" width="55" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Submit"/>
@@ -64,7 +64,7 @@
             <connections>
                 <outlet property="NameLabel" destination="e3D-Sf-ZEs" id="aO3-KZ-GRy"/>
                 <outlet property="RequirementLabel" destination="zXi-dH-c8M" id="wkn-bt-dSn"/>
-                <outlet property="SubmitButton" destination="GMc-iS-phM" id="lGq-7t-cg4"/>
+                <outlet property="SubmitButton" destination="GMc-iS-phM" id="19I-QO-G6W"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="154.01785714285714"/>
         </tableViewCell>

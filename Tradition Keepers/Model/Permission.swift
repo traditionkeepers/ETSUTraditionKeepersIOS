@@ -75,25 +75,25 @@ class Permission {
             allowDeletion = false
         
             // Submissions
-            allowSubmission = true
-            allowApproval = false
+            allowSubmission = false
+            allowApproval = true
     
         case .admin:
             // Tabs
             dashboard = true
             traditions = true
-            submissions = false
-            users = false
+            submissions = true
+            users = true
             settings = true
         
             // Traditions
-            allowCreation = false
-            allowEditing = false
-            allowDeletion = false
+            allowCreation = true
+            allowEditing = true
+            allowDeletion = true
         
             // Submissions
-            allowSubmission = true
-            allowApproval = false
+            allowSubmission = false
+            allowApproval = true
         }
     }
 }
