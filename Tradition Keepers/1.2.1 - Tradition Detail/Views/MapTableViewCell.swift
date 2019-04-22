@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 
 class MapTableViewCell: UITableViewCell {
-    @IBOutlet weak var LocationText: UITextField!
     @IBOutlet weak var MapView: MKMapView!
     
     let regionRadius: CLLocationDistance = 500

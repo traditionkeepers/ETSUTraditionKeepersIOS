@@ -68,6 +68,7 @@ class LocationMapViewController: UIViewController {
     
     func Configure() {
         centerMapOnLocation(location: initialLocation)
+        MapView.showsUserLocation = true
     }
     
     func centerMapOnLocation(location: CLLocation) {
