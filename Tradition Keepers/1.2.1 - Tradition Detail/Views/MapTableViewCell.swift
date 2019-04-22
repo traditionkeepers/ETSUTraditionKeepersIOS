@@ -30,6 +30,7 @@ class MapTableViewCell: UITableViewCell {
         initialLocation = CLLocation(latitude: MapPin.coordinate.latitude, longitude: MapPin.coordinate.longitude)
         centerMapOnLocation(location: initialLocation)
         MapView.addAnnotation(MapPin)
+        MapView.isUserInteractionEnabled = false
     }
     
     func centerMapOnLocation(location: CLLocation) {
