@@ -13,19 +13,21 @@ class NewUserViewController: UIViewController {
     
     var _email: String!
     var _password: String!
-    var db: Firestore!
+    var db: Firestore {
+        return Firestore.firestore()
+    }
     
     @IBOutlet weak var eNumberField: UITextField!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
+    @IBOutlet weak var SubmitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let settings = FirestoreSettings()
         Firestore.firestore().settings = settings
-        db = Firestore.firestore()
-
+        SubmitButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
     }
     @IBAction func NewUserAndLogin(_ sender: Any) {

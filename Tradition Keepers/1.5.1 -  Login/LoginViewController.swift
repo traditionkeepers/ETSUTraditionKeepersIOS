@@ -11,12 +11,11 @@ import Firebase
 
 /// Class for managing the Login View Controller
 class LoginViewController: UIViewController {
-    // MARK: - Properties
-    
-    
+
     // MARK: - Outlets
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var LoginButton: UIButton!
     
     // MARK: - Actions
     
@@ -65,6 +64,11 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Navigation
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        LoginButton.layer.cornerRadius = 10
+    }
+    
     
     /// Configures the destination view controllers when a segue is triggered
     ///
