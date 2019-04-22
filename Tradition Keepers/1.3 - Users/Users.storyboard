@@ -21,28 +21,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b4u-fM-Xyr">
-                                <rect key="frame" x="0.0" y="64" width="414" height="778"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="734"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7f-Cf-v8z">
                                         <rect key="frame" x="117.5" y="0.0" width="179" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="yOc-g0-UqM"/>
-                                        </constraints>
                                         <segments>
                                             <segment title="Alphabetical"/>
                                             <segment title="Permission"/>
                                         </segments>
                                         <color key="tintColor" name="ETSU GOLD"/>
                                     </segmentedControl>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-mT-LlF">
-                                        <rect key="frame" x="0.0" y="36" width="414" height="742"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-mT-LlF">
+                                        <rect key="frame" x="0.0" y="36" width="414" height="698"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="jQL-hm-kgP" id="6qn-cV-kVR"/>
                                             <outlet property="delegate" destination="jQL-hm-kgP" id="9fL-vp-11j"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="kZd-mT-LlF" firstAttribute="width" secondItem="b4u-fM-Xyr" secondAttribute="width" id="d7Q-QY-hvS"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" name="ETSU NAVY"/>
@@ -56,6 +56,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xfr-VO-zbc"/>
                     <connections>
+                        <outlet property="UserTable" destination="kZd-mT-LlF" id="4k8-Vh-Xvx"/>
                         <segue destination="XoK-92-e7n" kind="show" id="so6-EW-6qm"/>
                     </connections>
                 </viewController>
@@ -72,12 +73,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="jQL-hm-kgP" kind="show" id="hgz-gH-za6"/>
+                        <segue destination="jQL-hm-kgP" kind="relationship" relationship="rootViewController" id="h2i-ef-57g"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VF8-kb-bVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1081" y="-521"/>
+            <point key="canvasLocation" x="-1068" y="-522"/>
         </scene>
         <!--UserProfile-->
         <scene sceneID="hp1-0y-xWn">
