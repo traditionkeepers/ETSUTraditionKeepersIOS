@@ -13,7 +13,7 @@ class MapTableViewCell: UITableViewCell {
     @IBOutlet weak var LocationText: UITextField!
     @IBOutlet weak var MapView: MKMapView!
     
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 500
     var initialLocation: CLLocation = CLLocation()
     var MapPin: ActivityPin = ActivityPin()
     
@@ -30,6 +30,7 @@ class MapTableViewCell: UITableViewCell {
         initialLocation = CLLocation(latitude: MapPin.coordinate.latitude, longitude: MapPin.coordinate.longitude)
         centerMapOnLocation(location: initialLocation)
         MapView.addAnnotation(MapPin)
+        MapView.isUserInteractionEnabled = false
     }
     
     func centerMapOnLocation(location: CLLocation) {
