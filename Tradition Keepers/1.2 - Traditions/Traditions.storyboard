@@ -157,19 +157,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yrg-Hy-SVv">
                                 <rect key="frame" x="20" y="108" width="374" height="685"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u1A-39-5Ww">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="29"/>
-                                        <segments>
-                                            <segment title="Requirement"/>
-                                            <segment title="Alphebetical"/>
-                                        </segments>
-                                        <color key="tintColor" name="ETSU GOLD"/>
-                                        <connections>
-                                            <action selector="SortByChanged:" destination="yON-Kp-9xR" eventType="valueChanged" id="SD4-pV-0mj"/>
-                                        </connections>
-                                    </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="YFl-xn-DP3">
-                                        <rect key="frame" x="0.0" y="36" width="374" height="649"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="685"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="yON-Kp-9xR" id="cgV-K7-L9B"/>
@@ -202,7 +191,7 @@
                                 <action selector="BackPressed:" destination="yON-Kp-9xR" id="1R3-so-tek"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="EeK-V3-VNL">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="EeK-V3-VNL">
                             <connections>
                                 <segue destination="SiQ-nB-6qf" kind="popoverPresentation" popoverAnchorBarButtonItem="EeK-V3-VNL" id="ul5-xu-kqk">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -214,7 +203,7 @@
                     <connections>
                         <outlet property="ActivityTable" destination="YFl-xn-DP3" id="6Ur-xN-Ol6"/>
                         <outlet property="BackButton" destination="zBz-f6-ndB" id="k7p-Dh-7ho"/>
-                        <outlet property="SortSelector" destination="u1A-39-5Ww" id="wdD-AO-VaD"/>
+                        <outlet property="SortButton" destination="EeK-V3-VNL" id="Bab-su-ZCk"/>
                         <segue destination="wrl-Vv-5Mr" kind="show" identifier="ShowActivityDetail" id="N70-o0-B0l"/>
                     </connections>
                 </viewController>
@@ -331,9 +320,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="ETSU GOLD">
-            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="ETSU NAVY">
             <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

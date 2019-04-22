@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 /// Class for managing the Login View Controller
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Outlets
     @IBOutlet weak var emailField: UITextField!
@@ -28,13 +28,17 @@ class LoginViewController: UIViewController {
         let enteredPassword = passwordField.text!
         
         User.LogIn(username: enteredEmail, password: enteredPassword, completion: { error in
+            let green = UIColor(red: 8/255, green: 175/255, blue: 70/255, alpha: 1)
+            self.emailField.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
+            self.passwordField.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
             if let _error = error {
                 if let errorCode = AuthErrorCode(rawValue: _error._code) {
                     print(error.debugDescription)
                     switch errorCode {
                     case .wrongPassword:
-                        //Show Alert
-                        break
+                        self.passwordField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+                    case.invalidEmail:
+                        self.emailField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
                     default:
                         self.performSegue(withIdentifier: "New User", sender: nil)
                     }
@@ -61,14 +65,35 @@ class LoginViewController: UIViewController {
     @IBAction func UnwindToLogin(unwindSegue: UIStoryboardSegue) {
         emailField.text = ""
         passwordField.text = ""
+        emailField.rightView = nil
+        passwordField.rightView = nil
     }
     
     // MARK: - Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoginButton.layer.cornerRadius = 10
+        prepareView()
     }
     
+    func prepareView() {
+        LoginButton.layer.cornerRadius = 10
+        
+        emailField.delegate = self
+        emailField.returnKeyType = .next
+        passwordField.delegate = self
+        passwordField.returnKeyType = .done
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("next button should work")
+        
+        textField.resignFirstResponder()
+        
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+        }
+        return true
+    }
     
     /// Configures the destination view controllers when a segue is triggered
     ///

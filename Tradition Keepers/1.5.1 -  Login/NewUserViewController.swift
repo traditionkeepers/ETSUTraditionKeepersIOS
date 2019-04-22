@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class NewUserViewController: UIViewController {
+class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     var _email: String!
     var _password: String!
@@ -22,19 +22,45 @@ class NewUserViewController: UIViewController {
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var SubmitButton: UIButton!
     
+    func prepareView() {
+        SubmitButton.layer.cornerRadius = 10
+        firstNameField.delegate = self
+        lastNameField.delegate = self
+        eNumberField.delegate = self
+        
+        firstNameField.returnKeyType = .next
+        lastNameField.returnKeyType = .next
+        eNumberField.returnKeyType = .done
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let settings = FirestoreSettings()
         Firestore.firestore().settings = settings
-        SubmitButton.layer.cornerRadius = 10
+        prepareView()
         // Do any additional setup after loading the view.
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if textField == firstNameField {
+            lastNameField.becomeFirstResponder()
+        }
+        
+        if textField == lastNameField {
+            eNumberField.becomeFirstResponder()
+        }
+        
+        return true
+    }
+    
     @IBAction func NewUserAndLogin(_ sender: Any) {
         Auth.auth().createUser(withEmail: _email, password: _password) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
-                let alert = UIAlertController(title: "Oh Oh...",
+                let alert = UIAlertController(title: "Uh Oh...",
                                               message: "Your account could not be created at this time. Please try again.",
                                               preferredStyle: UIAlertController.Style.alert )
                 let defaultAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (_) in
@@ -45,7 +71,7 @@ class NewUserViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             else if let user = user {
-                print("Sign Up Successfully. \(user.user.uid)")
+                print("Sign Up Successful. \(user.user.uid)")
                 
                 var ref: DocumentReference? = nil
                 ref = self.db.collection("users").document(user.user.uid)

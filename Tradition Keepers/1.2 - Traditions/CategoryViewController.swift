@@ -9,13 +9,12 @@
 import UIKit
 import Firebase
 
-
 /// View Controller for managing the display of Activities in the specified category
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Outlets
     @IBOutlet var BackButton: UIBarButtonItem!
-    @IBOutlet weak var SortSelector: UISegmentedControl!
     @IBOutlet weak var ActivityTable: UITableView!
+    @IBOutlet weak var SortButton: UIBarButtonItem!
     
     // MARK: - Actions
     @IBAction func BackPressed(_ sender: Any) {
@@ -23,11 +22,11 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func SortByChanged(_ sender: Any) {
-        if SortSelector.selectedSegmentIndex == 0 {
+        //if SortSelector.selectedSegmentIndex == 0 {
             sort = .requirement
-        } else if SortSelector.selectedSegmentIndex == 1 {
+        //} else if SortSelector.selectedSegmentIndex == 1 {
             sort = .alphebetical
-        }
+        //}
         observeQuery()
     }
     
@@ -50,7 +49,10 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    private var db: Firestore!
+    private var db: Firestore {
+        return Firestore.firestore()
+    }
+    
     private var listener: ListenerRegistration?
     
     fileprivate func observeQuery() {
@@ -133,7 +135,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        db = Firestore.firestore()
         query = baseQuery()
         PrepareView()
     }
@@ -144,11 +145,11 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         
         if selectedCateogy != nil {
             self.title = selectedCateogy.name
-            self.SortSelector.isHidden = true
+            self.SortButton.isEnabled = false
             self.sort = .alphebetical
         } else {
             self.title = "All Traditions"
-            self.SortSelector.isHidden = false
+            self.SortButton.isEnabled = true
         }
         
         self.setEditing(false, animated: true)
@@ -168,7 +169,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         if let selectionIndexPath = ActivityTable.indexPathForSelectedRow {
             ActivityTable.deselectRow(at: selectionIndexPath, animated: true)
         }
-        
+    
+        SortButton.setIcon(icon: .linearIcons(.sortAmountAsc), iconSize: 20)
         switch User.current.permission {
         case .none:
             navigationItem.leftBarButtonItem = self.BackButton
@@ -200,7 +202,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.tradition = traditions[selectedActivityIndex.row]
+                let key = groups.keys.sorted()[selectedActivityIndex.section]
+                vc.tradition = groups[key]![selectedActivityIndex.row]
             }
             
         case "NewActivity":
@@ -317,9 +320,9 @@ extension CategoryViewController: FiltersViewControllerDelegate {
         
         if let filter = filter, !filter.isEmpty {
             if filter == "All Traditions" {
-                SortSelector.isHidden = false
+                SortButton.isEnabled = false
             } else {
-                SortSelector.isHidden = true
+                SortButton.isEnabled = true
             }
             self.title = filter
         }
