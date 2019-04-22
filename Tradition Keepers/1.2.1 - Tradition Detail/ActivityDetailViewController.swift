@@ -37,8 +37,8 @@ class ActivityDetailViewController: UIViewController, UITableViewDelegate, UITab
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityDetailMapCell") as! MapTableViewCell
             // Set Activity Pin Before configuring...
-            cell.MapPin = ActivityPin(title: tradition.title,
-                                      locationName: tradition.location.title,
+            cell.MapPin = ActivityPin(title: tradition.location.title,
+                                      locationName: "",
                                       coordinate: tradition.location.coordinate.coordinate)
             
             cell.Configure()
