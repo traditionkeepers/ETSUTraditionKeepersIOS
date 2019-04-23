@@ -34,7 +34,6 @@ class SubmissionButton: UIButton {
             data = "Complete"
         }
         
-        print(data)
         setTitle(data, for: .normal)
         setTitleColor(btnColor, for: .normal)
         isHidden = User.current.permission == .none

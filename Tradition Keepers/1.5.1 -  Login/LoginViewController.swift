@@ -45,6 +45,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             } else {
                 self.performSegue(withIdentifier: "Instructions", sender: nil)
+                if let tb = self.tabBarController as? NavTabBarController {
+                    tb.updateTabs()
+                }
             }
         })
     }

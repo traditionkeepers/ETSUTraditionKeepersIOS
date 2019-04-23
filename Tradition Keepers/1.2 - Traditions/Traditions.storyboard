@@ -192,9 +192,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="EeK-V3-VNL">
                             <connections>
-                                <segue destination="SiQ-nB-6qf" kind="popoverPresentation" popoverAnchorBarButtonItem="EeK-V3-VNL" id="ul5-xu-kqk">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="SortButtonPresses:" destination="yON-Kp-9xR" id="6DV-sm-3mY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -204,6 +202,7 @@
                         <outlet property="BackButton" destination="zBz-f6-ndB" id="k7p-Dh-7ho"/>
                         <outlet property="SortButton" destination="EeK-V3-VNL" id="Bab-su-ZCk"/>
                         <segue destination="wrl-Vv-5Mr" kind="show" identifier="ShowActivityDetail" id="N70-o0-B0l"/>
+                        <segue destination="SiQ-nB-6qf" kind="presentation" identifier="Filter" id="fBy-yV-di0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3O-WE-sll" userLabel="First Responder" sceneMemberID="firstResponder"/>

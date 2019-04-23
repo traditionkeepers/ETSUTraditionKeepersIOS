@@ -11,34 +11,92 @@ import Firebase
 
 /// View Controller for managing the display of Activities in the specified category
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    /// Enumertaion for the table sort order.
+    ///
+    /// - category: Sort table by activity category (A -> Z).
+    /// - alphebetical: Sort table by activity name (A- > Z).
+    /// - timeline: Sort table by order of activities.
+    internal enum SortBy: String {
+        case requirement = "category"
+        case alphebetical = "title"
+    }
+    
+    /// Enumerated value for the table sort order.
+    private var sort = SortBy.requirement
+    
+    /// The currently logged in user.
+    private let currentUser = User.current
+    
+    /// The IndexPath selected from the table.
+    private var selectedTradition: Tradition!
+    
+    /// The currently selected category for display.
+    var selectedCategory: Category! {
+        didSet {
+            if selectedCategory.id != "all" {
+                self.SortButton.isEnabled = false
+                query = baseQuery().whereField("requirement", isEqualTo: selectedCategory.id)
+                self.sort = .alphebetical
+            } else {
+                self.SortButton.isEnabled = true
+                query = baseQuery()
+            }
+        }
+    }
+    
+    /// Formats activity date parameter for display.
+    private var DateFormat = DateFormatter()
+    
+    let backgroundView = UIImageView()
+
+    private var traditions: [Tradition] = []
+    private var groups: [String:[Tradition]] = [:]
+    private var documents: [DocumentSnapshot] = []
+    
     // MARK: - Outlets
     @IBOutlet var BackButton: UIBarButtonItem!
     @IBOutlet weak var ActivityTable: UITableView!
     @IBOutlet weak var SortButton: UIBarButtonItem!
+    
+    var FilterTitleButton: UIButton {
+        let fb = UIButton(type: .custom)
+        fb.addTarget(self, action: #selector(FilterButtonPressed(_:)), for: .touchUpInside)
+//        fb.setIcon(prefixText: "All Traditions", icon: .linearIcons(.arrowDown), postfixText: "", forState: .normal)
+        fb.setIcon(prefixText: self.selectedCategory.name, prefixTextColor: .white, icon: .linearIcons(.arrowDown), iconColor: .white, postfixText: "", postfixTextColor: .white, backgroundColor: .clear, forState: .normal, textSize: nil, iconSize: nil)
+        return fb
+    }
     
     // MARK: - Actions
     @IBAction func BackPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func SortByChanged(_ sender: Any) {
-        //if SortSelector.selectedSegmentIndex == 0 {
-            sort = .requirement
-        //} else if SortSelector.selectedSegmentIndex == 1 {
-            sort = .alphebetical
-        //}
-        observeQuery()
+    @IBAction func FilterButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "Filter", sender: sender)
     }
     
-    @IBAction func UnwindToActivities(unwindSegue: UIStoryboardSegue) {
+    @IBAction func SortButtonPresses(_ sender: Any) {
+        let alert = UIAlertController(title: "Sort By", message: "Choose a parameter to sort by.", preferredStyle: .actionSheet)
+        let alphabbetical = UIAlertAction(title: "Title", style: .default) { (_) in
+            self.sort = .alphebetical
+            self.observeQuery()
+        }
         
+        let requirement = UIAlertAction(title: "Requirement", style: .default) { (_) in
+            self.sort = .requirement
+            self.observeQuery()
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(requirement)
+        alert.addAction(alphabbetical)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
     }
     
-    let backgroundView = UIImageView()
-    
-    private var traditions: [Tradition] = []
-    private var groups: [String:[Tradition]] = [:]
-    private var documents: [DocumentSnapshot] = []
+    @IBAction func UnwindToActivities(unwindSegue: UIStoryboardSegue) { }
     
     fileprivate var query: Query? {
         didSet {
@@ -107,31 +165,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         listener?.remove()
     }
     
-    /// Enumertaion for the table sort order.
-    ///
-    /// - category: Sort table by activity category (A -> Z).
-    /// - alphebetical: Sort table by activity name (A- > Z).
-    /// - timeline: Sort table by order of activities.
-    internal enum SortBy: String {
-        case requirement = "category"
-        case alphebetical = "title"
-    }
-    
-    /// Enumerated value for the table sort order.
-    private var sort = SortBy.requirement
-    
-    /// The currently logged in user.
-    private let currentUser = User.current
-    
-    /// The IndexPath selected from the table.
-    var selectedActivityIndex: IndexPath!
-    
-    /// The currently selected category for display.
-    var selectedCateogy: Category!
-    
-    /// Formats activity date parameter for display.
-    private var DateFormat = DateFormatter()
-    
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,15 +176,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         observeQuery()
         
-        if selectedCateogy != nil {
-            self.title = selectedCateogy.name
-            self.SortButton.isEnabled = false
-            self.sort = .alphebetical
-        } else {
-            self.title = "All Traditions"
-            self.SortButton.isEnabled = true
-        }
-        
+        self.navigationItem.titleView = FilterTitleButton
         self.setEditing(false, animated: true)
     }
     
@@ -169,8 +194,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         if let selectionIndexPath = ActivityTable.indexPathForSelectedRow {
             ActivityTable.deselectRow(at: selectionIndexPath, animated: true)
         }
-    
-        SortButton.setIcon(icon: .linearIcons(.sortAmountAsc), iconSize: 20)
+        
+        SortButton.setIcon(icon: .linearIcons(.sortAlphaAsc), iconSize: 20, color: .white)
         switch User.current.permission {
         case .none:
             navigationItem.leftBarButtonItem = self.BackButton
@@ -185,6 +210,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             }
             navigationItem.leftBarButtonItem = nil
         }
+        
+        selectedCategory = Category(id: "all", name: "All Traditions", count: 0)
         
         self.navigationController?.setToolbarHidden(true, animated: false)
     }
@@ -202,8 +229,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                let key = groups.keys.sorted()[selectedActivityIndex.section]
-                vc.tradition = groups[key]![selectedActivityIndex.row]
+                vc.tradition = selectedTradition
             }
             
         case "NewActivity":
@@ -233,7 +259,7 @@ extension CategoryViewController {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if selectedCateogy != nil {
+        if selectedCategory.id != "all" {
             return ""
         } else {
             return sort == .alphebetical ? Array(groups.keys).sorted()[section] : Array(groups.keys).sorted().reversed()[section]
@@ -263,6 +289,8 @@ extension CategoryViewController {
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
             let key = Array(groups.keys)[indexPath.section]
             let tradition = groups[key]![indexPath.row]
             let batch = db.batch()
@@ -278,7 +306,6 @@ extension CategoryViewController {
                     print("Error removing document: \(error)")
                 } else {
                     //                    self.groups[key]!.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
                     print("Document successfully removed!")
                 }
             }
@@ -292,7 +319,8 @@ extension CategoryViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedActivityIndex = indexPath
+        let key = sort == .alphebetical ? Array(groups.keys).sorted()[indexPath.section] : Array(groups.keys).sorted().reversed()[indexPath.section]
+        selectedTradition = groups[key]![indexPath.row]
         performSegue(withIdentifier: "ShowActivityDetail", sender: nil)
     }
 }

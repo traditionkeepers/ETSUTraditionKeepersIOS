@@ -40,3 +40,10 @@ extension Category: DocumentSerializable {
         self.init(id: id, name: name, count: count)
     }
 }
+
+
+extension Category: Equatable {}
+
+func ==(lhs: Category, rhs: Category) -> Bool {
+    return lhs.id == rhs.id
+}

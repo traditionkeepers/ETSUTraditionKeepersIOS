@@ -17,7 +17,19 @@ class CategoryTableViewController: UITableViewController {
     let backgroundView = UIImageView()
     private var categories: [Category] = []
     private var documents: [DocumentSnapshot] = []
-    var selectedCategoryIndex: IndexPath?
+    private var selectedCategory: Category? {
+        didSet {
+            print(selectedCategory?.id)
+        }
+    }
+    
+    private var allCategory: Category {
+        var total = 0
+        for cat in categories {
+            total += cat.count
+        }
+        return Category(id: "all", name: "All Categories", count: total)
+    }
     
     fileprivate var query: Query? {
         didSet {
@@ -41,7 +53,7 @@ class CategoryTableViewController: UITableViewController {
                 return
             }
             let models = snapshot.documents.map { (document) -> Category in
-                if let model = Category(dictionary: document.data(), id: "") {
+                if let model = Category(dictionary: document.data(), id: document.documentID) {
                     return model
                 } else {
                     // Don't use fatalError here in a real app.
@@ -66,7 +78,7 @@ class CategoryTableViewController: UITableViewController {
     }
     
     fileprivate func baseQuery() -> Query {
-        return Firestore.firestore().collection("categories").limit(to: 50)
+        return Firestore.firestore().collection("requirement")
     }
     
 //    lazy private var filters: (navigationController: UINavigationController,
@@ -76,11 +88,9 @@ class CategoryTableViewController: UITableViewController {
     
     
     // MARK: - Properties
-    var submitted = Category(id: "", name: "All Traditions", count: 0)
-    
     private var sectionHeader:[String] = [
         "",
-        ""
+        "Requirement"
     ]
     
     @IBAction func DonePressed(_ sender: Any) {
@@ -135,8 +145,8 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryTableViewCell
         if indexPath.section == 0 {
-            cell.Title.text = submitted.name
-            cell.Detail.text = submitted.count.description
+            cell.Title.text = allCategory.name
+            cell.Detail.text = allCategory.count.description
         } else {
             cell.Title.text = categories[indexPath.row].name
             cell.Detail.text = categories[indexPath.row].count.description
@@ -145,7 +155,13 @@ class CategoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCategoryIndex = indexPath
+        if indexPath.section == 0 {
+            selectedCategory = allCategory
+            print(selectedCategory?.id)
+        } else {
+            selectedCategory = categories[indexPath.row]
+            print(selectedCategory?.id, selectedCategory?.name)
+        }
         DismissView()
     }
     
@@ -155,15 +171,9 @@ class CategoryTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "UnwindToActivities" {
-            if let vc = segue.destination as? CategoryViewController {
-                if let ip = selectedCategoryIndex {
-                    if ip.section == 0 {
-                        vc.selectedCateogy = nil
-                    } else {
-                        vc.selectedCateogy = categories[ip.row]
-                    }
-                }
+        if let vc = segue.destination as? CategoryViewController {
+            if let category = selectedCategory {
+                vc.selectedCategory = category
             }
         }
     }

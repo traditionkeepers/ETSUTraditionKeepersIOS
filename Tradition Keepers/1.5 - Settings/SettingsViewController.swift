@@ -25,7 +25,6 @@ class SettingsViewController: UIViewController {
     /// Code to be executed when the view is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initialView = User.current.permission == .none
         // Do any additional setup after loading the view.
     }
