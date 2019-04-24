@@ -72,6 +72,10 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
             }
             else if let user = user {
                 print("Sign Up Successful. \(user.user.uid)")
+                let green = UIColor(red: 8/255, green: 175/255, blue: 70/255, alpha: 1)
+                self.firstNameField.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
+                self.lastNameField.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
+                self.eNumberField.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
                 
                 var ref: DocumentReference? = nil
                 ref = self.db.collection("users").document(user.user.uid)
