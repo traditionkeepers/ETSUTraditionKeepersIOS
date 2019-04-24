@@ -166,7 +166,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="given-name"/>
                                                 <connections>
-                                                    <action selector="checkFirstName:" destination="nE7-zv-ROu" eventType="editingDidEnd" id="eUO-ti-dbC"/>
+                                                    <action selector="firstNameDidEndEditing:" destination="nE7-zv-ROu" eventType="editingDidEnd" id="la3-8z-Ylp"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -186,7 +186,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="family-name"/>
                                                 <connections>
-                                                    <action selector="checkLastName:" destination="nE7-zv-ROu" eventType="editingDidEnd" id="AjG-RB-sWu"/>
+                                                    <action selector="lastNameDidEndEditing:" destination="nE7-zv-ROu" eventType="editingDidEnd" id="AjG-RB-sWu"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -206,7 +206,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
-                                                    <action selector="checkENumber:" destination="nE7-zv-ROu" eventType="editingDidEnd" id="7hK-r6-j4H"/>
+                                                    <action selector="eNumberDidEndEditing:" destination="nE7-zv-ROu" eventType="editingDidEnd" id="7hK-r6-j4H"/>
                                                 </connections>
                                             </textField>
                                         </subviews>

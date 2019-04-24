@@ -13,9 +13,9 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     var _email: String!
     var _password: String!
-    var _firstName: String!
-    var _lastName: String!
-    var _eNumber: String!
+    var _firstName: Bool!
+    var _lastName: Bool!
+    var _eNumber: Bool!
     var db: Firestore {
         return Firestore.firestore()
     }
@@ -59,29 +59,36 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @IBAction func checkFirstName(_ sender: Any) {
-        let fNameBool = _firstName.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+    @IBAction func firstNameDidEndEditing(_ sender: UITextField) {
+        let text = sender.text
+        _firstName = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
         
-        if fNameBool == false {
-            print("Executed Check - First Name")
-            self.firstNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        if !_firstName {
+            sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
         }
     }
     
-    @IBAction func checkLastName(_ sender: Any) {
-        let lNameBool = _lastName.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+    @IBAction func lastNameDidEndEditing(_ sender: UITextField) {
+        let text = sender.text
+        _lastName = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
         
-        if lNameBool == false {
-            print("Executed Check - Last Name")
-            self.lastNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        if !_lastName {
+            sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
         }
     }
     
-    @IBAction func checkENumber(_ sender: Any) {
+    @IBAction func eNumberDidEndEditing(_ sender: UITextField) {
+        let text = sender.text
+        _eNumber = text?.range(of: #"\AE\d{9}"#, options: .regularExpression) != nil
         
+        if !_eNumber {
+            sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        }
     }
     
     @IBAction func NewUserAndLogin(_ sender: Any) {
+        guard _firstName && _lastName && _eNumber else { return }
+        
         Auth.auth().createUser(withEmail: _email, password: _password) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
