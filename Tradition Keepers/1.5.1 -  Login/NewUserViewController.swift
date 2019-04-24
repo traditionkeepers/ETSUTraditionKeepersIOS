@@ -20,6 +20,8 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         return Firestore.firestore()
     }
     
+    let green = UIColor(red: 8/255, green: 175/255, blue: 70/255, alpha: 1)
+    
     @IBOutlet weak var eNumberField: UITextField!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -65,6 +67,8 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         
         if !_firstName {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        } else {
+            sender.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
         }
     }
     
@@ -74,15 +78,19 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         
         if !_lastName {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        } else {
+            sender.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
         }
     }
     
     @IBAction func eNumberDidEndEditing(_ sender: UITextField) {
         let text = sender.text
-        _eNumber = text?.range(of: #"\AE\d{9}"#, options: .regularExpression) != nil
+        _eNumber = text?.range(of: #"E[0-9]{8}"#, options: .regularExpression) != nil
         
         if !_eNumber {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        } else {
+            sender.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
         }
     }
     
