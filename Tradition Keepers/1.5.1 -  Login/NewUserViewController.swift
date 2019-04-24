@@ -13,6 +13,9 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     var _email: String!
     var _password: String!
+    var _firstName: String!
+    var _lastName: String!
+    var _eNumber: String!
     var db: Firestore {
         return Firestore.firestore()
     }
@@ -54,6 +57,28 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    @IBAction func checkFirstName(_ sender: Any) {
+        let decimalCharacters = CharacterSet.decimalDigits
+        let decimalRange = _firstName.rangeOfCharacter(from: decimalCharacters)
+        
+        if decimalRange != nil {
+            self.firstNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        }
+    }
+    
+    @IBAction func checkLastName(_ sender: Any) {
+        let decimalCharacters = CharacterSet.decimalDigits
+        let decimalRange = _firstName.rangeOfCharacter(from: decimalCharacters)
+        
+        if decimalRange != nil {
+            self.firstNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        }
+    }
+    
+    @IBAction func checkENumber(_ sender: Any) {
+        
     }
     
     @IBAction func NewUserAndLogin(_ sender: Any) {
