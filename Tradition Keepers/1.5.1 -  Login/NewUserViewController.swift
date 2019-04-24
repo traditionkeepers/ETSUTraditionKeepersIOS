@@ -63,7 +63,7 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func firstNameDidEndEditing(_ sender: UITextField) {
         let text = sender.text
-        _firstName = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+        _firstName = text?.range(of: "^([A-Za-z]+)[']?( ?([A-Za-z]+))*$", options: .regularExpression) != nil
         
         if !_firstName {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
@@ -74,7 +74,7 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func lastNameDidEndEditing(_ sender: UITextField) {
         let text = sender.text
-        _lastName = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+        _lastName = text?.range(of: "^([A-Za-z]+)[']?( ?([A-Za-z]+))*$", options: .regularExpression) != nil
         
         if !_lastName {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
@@ -85,7 +85,7 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func eNumberDidEndEditing(_ sender: UITextField) {
         let text = sender.text
-        _eNumber = text?.range(of: #"E[0-9]{8}"#, options: .regularExpression) != nil
+        _eNumber = text?.range(of: "E[0-9]{8}", options: .regularExpression) != nil
         
         if !_eNumber {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
