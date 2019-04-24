@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cUo-sG-5AM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--About View Controller-->
+        <scene sceneID="5Si-n5-a9R">
+            <objects>
+                <viewController storyboardIdentifier="Connect" id="wry-Es-aW9" customClass="AboutViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fbi-Yl-rCt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gpX-Oe-7HB" userLabel="Connect">
+                                <rect key="frame" x="20" y="304.5" width="335" height="78"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Connect With Us" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UcI-oa-88P">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="ETSU WHITE"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="O4R-dh-bMs">
+                                        <rect key="frame" x="0.0" y="48" width="335" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Umq-bS-44l">
+                                                <rect key="frame" x="0.0" y="0.0" width="78" height="30"/>
+                                                <state key="normal" title="Web"/>
+                                                <connections>
+                                                    <action selector="SocialButtonPressedWithSender:" destination="wry-Es-aW9" eventType="touchUpInside" id="QlO-gs-nGZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7d-R5-79I">
+                                                <rect key="frame" x="86" y="0.0" width="77.5" height="30"/>
+                                                <state key="normal" title="Facebook"/>
+                                                <connections>
+                                                    <action selector="SocialButtonPressedWithSender:" destination="wry-Es-aW9" eventType="touchUpInside" id="4Ah-SV-iSG"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kix-JU-zhk">
+                                                <rect key="frame" x="171.5" y="0.0" width="78" height="30"/>
+                                                <state key="normal" title="Instagram"/>
+                                                <connections>
+                                                    <action selector="SocialButtonPressedWithSender:" destination="wry-Es-aW9" eventType="touchUpInside" id="9cI-de-IJO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swi-94-YmP">
+                                                <rect key="frame" x="257.5" y="0.0" width="77.5" height="30"/>
+                                                <state key="normal" title="Twitter"/>
+                                                <connections>
+                                                    <action selector="SocialButtonPressedWithSender:" destination="wry-Es-aW9" eventType="touchUpInside" id="eSl-yy-EFs"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="Bdu-5r-d0Z" firstAttribute="centerY" secondItem="gpX-Oe-7HB" secondAttribute="centerY" id="mZg-Ac-3AM"/>
+                            <constraint firstItem="gpX-Oe-7HB" firstAttribute="centerX" secondItem="Bdu-5r-d0Z" secondAttribute="centerX" id="wD4-NE-1C5"/>
+                            <constraint firstItem="gpX-Oe-7HB" firstAttribute="width" secondItem="Bdu-5r-d0Z" secondAttribute="width" constant="-40" id="wk2-rx-xQA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bdu-5r-d0Z"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xqv-Mb-0ey">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="E6v-fs-w56">
+                            <connections>
+                                <action selector="DonePressed:" destination="wry-Es-aW9" id="eIs-q3-vDU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="FacebookButton" destination="b7d-R5-79I" id="Z9Q-Qg-dTm"/>
+                        <outlet property="InstagramButton" destination="kix-JU-zhk" id="dP8-zv-NL9"/>
+                        <outlet property="TwitterButton" destination="Swi-94-YmP" id="L9p-d9-fNb"/>
+                        <outlet property="WebButton" destination="Umq-bS-44l" id="BMZ-UD-fCU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="icC-Xz-TCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2602" y="-107"/>
+        </scene>
+        <!--Instructions View Controller-->
+        <scene sceneID="fur-i7-pnJ">
+            <objects>
+                <viewController id="BgA-Ry-i5s" customClass="InstructionsViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MiO-MI-l8h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z1j-nZ-cDF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SE5-NI-IaB">
+                                    <size key="itemSize" width="358" height="594"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InstructionCell" id="cqr-21-PV7" customClass="InstructionCollectionViewCell" customModule="Tradition_Keepers" customModuleProvider="target">
+                                        <rect key="frame" x="8.5" y="0.0" width="358" height="594"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="358" height="594"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mKk-Xk-EKO">
+                                                    <rect key="frame" x="20" y="20" width="318" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="ETSU WHITE"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2li-2D-viw">
+                                                    <rect key="frame" x="20" y="70" width="318" height="504"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="2li-2D-viw" firstAttribute="centerX" secondItem="cqr-21-PV7" secondAttribute="centerX" id="41W-Fk-UC8"/>
+                                            <constraint firstAttribute="bottom" secondItem="2li-2D-viw" secondAttribute="bottom" constant="20" id="AdU-8S-TlH"/>
+                                            <constraint firstItem="mKk-Xk-EKO" firstAttribute="centerX" secondItem="cqr-21-PV7" secondAttribute="centerX" id="E36-8z-2uf"/>
+                                            <constraint firstItem="2li-2D-viw" firstAttribute="width" secondItem="cqr-21-PV7" secondAttribute="width" constant="-40" id="F6e-Kl-vZ9"/>
+                                            <constraint firstItem="2li-2D-viw" firstAttribute="top" secondItem="mKk-Xk-EKO" secondAttribute="bottom" constant="10" id="HbR-fj-AxW"/>
+                                            <constraint firstItem="mKk-Xk-EKO" firstAttribute="width" secondItem="cqr-21-PV7" secondAttribute="width" constant="-40" id="bRj-j0-DMy"/>
+                                            <constraint firstItem="mKk-Xk-EKO" firstAttribute="top" secondItem="cqr-21-PV7" secondAttribute="top" constant="20" id="jys-R8-01N"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="DescriptionTextView" destination="2li-2D-viw" id="Rlt-bt-ZS5"/>
+                                            <outlet property="TitleTextField" destination="mKk-Xk-EKO" id="WZ3-uG-rAI"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BgA-Ry-i5s" id="Obv-mv-v3C"/>
+                                    <outlet property="delegate" destination="BgA-Ry-i5s" id="oq9-3a-wh6"/>
+                                </connections>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="VZ1-iB-Uy6">
+                                <rect key="frame" x="20" y="630" width="335" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" name="ETSU NAVY"/>
+                        <constraints>
+                            <constraint firstItem="VZ1-iB-Uy6" firstAttribute="width" secondItem="K46-He-lh3" secondAttribute="width" constant="-40" id="1MZ-Qi-617"/>
+                            <constraint firstItem="K46-He-lh3" firstAttribute="bottom" secondItem="z1j-nZ-cDF" secondAttribute="bottom" id="8sK-Y8-j4F"/>
+                            <constraint firstItem="K46-He-lh3" firstAttribute="centerX" secondItem="VZ1-iB-Uy6" secondAttribute="centerX" id="Hmr-F1-w1g"/>
+                            <constraint firstItem="z1j-nZ-cDF" firstAttribute="top" secondItem="K46-He-lh3" secondAttribute="top" id="MYI-D7-33A"/>
+                            <constraint firstItem="K46-He-lh3" firstAttribute="trailing" secondItem="z1j-nZ-cDF" secondAttribute="trailing" id="lfv-Kh-Eyu"/>
+                            <constraint firstItem="z1j-nZ-cDF" firstAttribute="leading" secondItem="K46-He-lh3" secondAttribute="leading" id="vxK-18-h4d"/>
+                            <constraint firstItem="VZ1-iB-Uy6" firstAttribute="bottom" secondItem="K46-He-lh3" secondAttribute="bottom" id="xOA-cN-43u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="K46-He-lh3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RdS-Sf-xlK">
+                        <barButtonItem key="leftBarButtonItem" title="Skip" id="2tZ-06-rZh">
+                            <connections>
+                                <action selector="SkipButtonPressed:" destination="BgA-Ry-i5s" id="2QF-PH-StZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="D4K-Cf-jdw">
+                            <connections>
+                                <action selector="NextButtonPressed:" destination="BgA-Ry-i5s" id="37T-qT-kwP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="InstructionsCollection" destination="z1j-nZ-cDF" id="1AR-C0-V18"/>
+                        <outlet property="PageControl" destination="VZ1-iB-Uy6" id="DC5-yD-RSZ"/>
+                        <segue destination="wry-Es-aW9" kind="show" identifier="Contact" id="MTs-V9-dak"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SPr-i8-GUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1544.8" y="-107.49625187406298"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lOJ-O0-PyE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cUo-sG-5AM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IVq-71-QHQ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BgA-Ry-i5s" kind="relationship" relationship="rootViewController" id="flF-Um-OMj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BPo-WL-JCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="605.60000000000002" y="-107.49625187406298"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="ETSU NAVY">
+            <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ETSU WHITE">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -63,11 +63,11 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZPF-IF-sHU" userLabel="Button Stack View">
-                                        <rect key="frame" x="151.5" y="208.5" width="72" height="152"/>
+                                        <rect key="frame" x="147.5" y="204.5" width="80" height="156"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOk-uN-j39">
-                                                <rect key="frame" x="0.0" y="0.0" width="72" height="32"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="33"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" name="ETSU GOLD"/>
                                                 </state>
@@ -76,8 +76,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpq-Ma-zEX">
-                                                <rect key="frame" x="0.0" y="40" width="72" height="32"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <rect key="frame" x="0.0" y="41" width="80" height="33"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <state key="normal" title="Traditions">
                                                     <color key="titleColor" name="ETSU GOLD"/>
                                                 </state>
@@ -86,18 +86,18 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvI-xZ-jet">
-                                                <rect key="frame" x="0.0" y="80" width="72" height="32"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <rect key="frame" x="0.0" y="82" width="80" height="33"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <state key="normal" title="About">
                                                     <color key="titleColor" name="ETSU GOLD"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="LTx-1K-NLl" kind="show" id="KZc-Qt-pRm"/>
+                                                    <segue destination="LTx-1K-NLl" kind="presentation" id="KZc-Qt-pRm"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sx2-dN-er8">
-                                                <rect key="frame" x="0.0" y="120" width="72" height="32"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <rect key="frame" x="0.0" y="123" width="80" height="33"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <state key="normal" title="Logout">
                                                     <color key="titleColor" name="ETSU GOLD"/>
                                                 </state>

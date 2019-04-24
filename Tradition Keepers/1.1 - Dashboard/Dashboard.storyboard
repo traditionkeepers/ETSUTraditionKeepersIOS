@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nPI-i6-neh">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,19 +17,20 @@
             <objects>
                 <viewController id="xYT-w6-0Ll" customClass="DashboardTableViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gbh-R2-8Ep">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ULm-Ol-RON">
-                                <rect key="frame" x="20" y="70" width="560" height="524"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="onu-Ja-fmt">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pX0-I6-k8W">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <inset key="contentEdgeInsets" minX="20" minY="6" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Welcome, User Name">
                                                     <color key="titleColor" name="ETSU WHITE"/>
                                                 </state>
@@ -33,9 +38,10 @@
                                                     <action selector="pressedUserButton:" destination="xYT-w6-0Ll" eventType="touchUpInside" id="hat-M0-hvF"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPp-iK-3NB">
-                                                <rect key="frame" x="0.0" y="36" width="560" height="22.5"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPp-iK-3NB">
+                                                <rect key="frame" x="0.0" y="45" width="414" height="19"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Progress: XXX%">
                                                     <color key="titleColor" name="ETSU WHITE"/>
                                                 </state>
@@ -46,7 +52,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="RHZ-An-t84">
-                                        <rect key="frame" x="0.0" y="66.5" width="560" height="457.5"/>
+                                        <rect key="frame" x="0.0" y="72" width="414" height="702"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="xYT-w6-0Ll" id="nat-GU-UbM"/>
@@ -58,10 +64,10 @@
                         </subviews>
                         <color key="backgroundColor" name="ETSU NAVY"/>
                         <constraints>
-                            <constraint firstItem="gSN-wE-9pe" firstAttribute="trailing" secondItem="ULm-Ol-RON" secondAttribute="trailing" constant="20" id="Bob-gc-Kat"/>
-                            <constraint firstItem="ULm-Ol-RON" firstAttribute="leading" secondItem="gSN-wE-9pe" secondAttribute="leading" constant="20" id="Zea-96-oyT"/>
-                            <constraint firstItem="ULm-Ol-RON" firstAttribute="top" secondItem="gSN-wE-9pe" secondAttribute="top" constant="6" id="bbR-hT-bLa"/>
-                            <constraint firstItem="gSN-wE-9pe" firstAttribute="bottom" secondItem="ULm-Ol-RON" secondAttribute="bottom" constant="6" id="e4V-Gs-KPb"/>
+                            <constraint firstItem="gSN-wE-9pe" firstAttribute="trailing" secondItem="ULm-Ol-RON" secondAttribute="trailing" id="Bob-gc-Kat"/>
+                            <constraint firstItem="ULm-Ol-RON" firstAttribute="leading" secondItem="gSN-wE-9pe" secondAttribute="leading" id="Zea-96-oyT"/>
+                            <constraint firstItem="ULm-Ol-RON" firstAttribute="top" secondItem="gSN-wE-9pe" secondAttribute="top" id="bbR-hT-bLa"/>
+                            <constraint firstItem="gSN-wE-9pe" firstAttribute="bottom" secondItem="ULm-Ol-RON" secondAttribute="bottom" id="e4V-Gs-KPb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gSN-wE-9pe"/>
                     </view>

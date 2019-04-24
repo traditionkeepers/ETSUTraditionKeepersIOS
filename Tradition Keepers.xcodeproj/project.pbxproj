@@ -17,11 +17,11 @@
 		211745F2224D17B700BEA0C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211745F1224D17B700BEA0C8 /* Category.swift */; };
 		212BFAC0225E50E000BDF9DA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212BFABF225E50E000BDF9DA /* ImagePicker.swift */; };
 		2138A67F22542EF700AC0474 /* Instructions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2138A67E22542EF700AC0474 /* Instructions.storyboard */; };
-		2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A6802254312700AC0474 /* InstructionsViewController.swift */; };
 		2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A68322543B8200AC0474 /* LocationViewController.swift */; };
 		2138A686225441C900AC0474 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A685225441C900AC0474 /* CameraViewController.swift */; };
 		2138A688225456BD00AC0474 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A687225456BD00AC0474 /* NewLocationViewController.swift */; };
 		2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138A6892254679A00AC0474 /* LocationMapViewController.swift */; };
+		2153F11D2270AF8700D8E1BA /* InstructionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2153F11C2270AF8700D8E1BA /* InstructionCollectionViewCell.swift */; };
 		2156CAC62267B0EB004C7777 /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2156CAC52267B0EB004C7777 /* Permission.swift */; };
 		2156CAC92267C3E7004C7777 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2156CAC82267C3E7004C7777 /* AuthViewController.swift */; };
 		215E4E2622491B770001D3F2 /* NavTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E4E2522491B770001D3F2 /* NavTabBarController.swift */; };
@@ -52,6 +52,9 @@
 		21CED7232266276D006D1EDC /* Requirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CED7222266276D006D1EDC /* Requirement.swift */; };
 		21CED72522675F3A006D1EDC /* Submit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21CED72422675F3A006D1EDC /* Submit.storyboard */; };
 		21CED727226772CA006D1EDC /* SubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CED726226772CA006D1EDC /* SubmitViewController.swift */; };
+		21D729A722709612008C726B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D729A622709612008C726B /* AboutViewController.swift */; };
+		21D729A922709D2E008C726B /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D729A822709D2E008C726B /* InstructionsViewController.swift */; };
+		21D729B02270A3E4008C726B /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D729AF2270A3E4008C726B /* Instruction.swift */; };
 		21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */; };
 		21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */; };
 		21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DABC81223B40EB00844CDF /* ProfileViewController.swift */; };
@@ -92,11 +95,11 @@
 		211745F1224D17B700BEA0C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		212BFABF225E50E000BDF9DA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2138A67E22542EF700AC0474 /* Instructions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Instructions.storyboard; sourceTree = "<group>"; };
-		2138A6802254312700AC0474 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		2138A68322543B8200AC0474 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2138A685225441C900AC0474 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		2138A687225456BD00AC0474 /* NewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
 		2138A6892254679A00AC0474 /* LocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewController.swift; sourceTree = "<group>"; };
+		2153F11C2270AF8700D8E1BA /* InstructionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionCollectionViewCell.swift; sourceTree = "<group>"; };
 		2156CAC52267B0EB004C7777 /* Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
 		2156CAC82267C3E7004C7777 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		215E4E2522491B770001D3F2 /* NavTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTabBarController.swift; sourceTree = "<group>"; };
@@ -133,6 +136,9 @@
 		21CED7222266276D006D1EDC /* Requirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirement.swift; sourceTree = "<group>"; };
 		21CED72422675F3A006D1EDC /* Submit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Submit.storyboard; sourceTree = "<group>"; };
 		21CED726226772CA006D1EDC /* SubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitViewController.swift; sourceTree = "<group>"; };
+		21D729A622709612008C726B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		21D729A822709D2E008C726B /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		21D729AF2270A3E4008C726B /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		21DABC7D223AFAD400844CDF /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		21DABC7F223AFB4600844CDF /* DashboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		21DABC81223B40EB00844CDF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -239,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				2138A67E22542EF700AC0474 /* Instructions.storyboard */,
-				2138A6802254312700AC0474 /* InstructionsViewController.swift */,
 				2138A68322543B8200AC0474 /* LocationViewController.swift */,
 				2138A685225441C900AC0474 /* CameraViewController.swift */,
 			);
@@ -293,6 +298,7 @@
 				212BFABE225E4FB700BDF9DA /* 1.5 - Settings */,
 				216A1654220FCDBA00342707 /* 1.5.1 -  Login */,
 				2138A6822254312C00AC0474 /* 1.5.1.1 - Instructions */,
+				21D729A5227095F1008C726B /* 1.5.2 - About */,
 				21CED72122661A36006D1EDC /* 2.0 - Tradition Cell */,
 				212BFAC1225E537600BDF9DA /* 3.0 - Submit */,
 				216A1651220FCC3C00342707 /* Miscalenous */,
@@ -355,7 +361,6 @@
 			children = (
 				216A1624220E203B00342707 /* LaunchScreen.storyboard */,
 				2173761E22428FD6006279D2 /* Main.storyboard */,
-				217376262242C822006279D2 /* About.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				211745F1224D17B700BEA0C8 /* Category.swift */,
 				21CED7222266276D006D1EDC /* Requirement.swift */,
 				2156CAC52267B0EB004C7777 /* Permission.swift */,
+				21D729AF2270A3E4008C726B /* Instruction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -408,6 +414,25 @@
 				2111A929226946DE00275D21 /* SubmissionButton.swift */,
 			);
 			path = "2.0 - Tradition Cell";
+			sourceTree = "<group>";
+		};
+		21D729A5227095F1008C726B /* 1.5.2 - About */ = {
+			isa = PBXGroup;
+			children = (
+				217376262242C822006279D2 /* About.storyboard */,
+				21D729A622709612008C726B /* AboutViewController.swift */,
+				21D729A822709D2E008C726B /* InstructionsViewController.swift */,
+				21D729AE2270A162008C726B /* Views */,
+			);
+			path = "1.5.2 - About";
+			sourceTree = "<group>";
+		};
+		21D729AE2270A162008C726B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2153F11C2270AF8700D8E1BA /* InstructionCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		21DABC7B223AFA7000844CDF /* 1.3.1 - User Profile */ = {
@@ -721,6 +746,7 @@
 				21F2D7DA2260B6D7000BD3AE /* SubmissionsViewController.swift in Sources */,
 				21CED7232266276D006D1EDC /* Requirement.swift in Sources */,
 				217652B8223C8D6D006886E8 /* Tradition.swift in Sources */,
+				21D729A722709612008C726B /* AboutViewController.swift in Sources */,
 				2199A67D223BEED100037C0F /* ActivityDetailViewController.swift in Sources */,
 				216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */,
 				21DABC7E223AFAD400844CDF /* ActivityTableViewCell.swift in Sources */,
@@ -730,11 +756,13 @@
 				2199A686223C75D500037C0F /* User.swift in Sources */,
 				2138A688225456BD00AC0474 /* NewLocationViewController.swift in Sources */,
 				216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */,
+				21D729A922709D2E008C726B /* InstructionsViewController.swift in Sources */,
 				210AA94422451C7700172102 /* SettingsViewController.swift in Sources */,
 				21DABC82223B40EB00844CDF /* ProfileViewController.swift in Sources */,
 				21DABC80223AFB4600844CDF /* DashboardTableViewController.swift in Sources */,
 				212BFAC0225E50E000BDF9DA /* ImagePicker.swift in Sources */,
 				2199A679223BEE1B00037C0F /* InstructionsTableViewCell.swift in Sources */,
+				2153F11D2270AF8700D8E1BA /* InstructionCollectionViewCell.swift in Sources */,
 				211745F2224D17B700BEA0C8 /* Category.swift in Sources */,
 				2199A67B223BEE2900037C0F /* MapTableViewCell.swift in Sources */,
 				2138A68422543B8200AC0474 /* LocationViewController.swift in Sources */,
@@ -745,10 +773,10 @@
 				211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */,
 				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
 				2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */,
+				21D729B02270A3E4008C726B /* Instruction.swift in Sources */,
 				216A1619220E203900342707 /* AppDelegate.swift in Sources */,
 				216F3389223F14FB00E7B989 /* FireBaseManager.swift in Sources */,
 				21CED727226772CA006D1EDC /* SubmitViewController.swift in Sources */,
-				2138A6812254312700AC0474 /* InstructionsViewController.swift in Sources */,
 				2199A684223C40CF00037C0F /* CategoryViewController.swift in Sources */,
 				210787BC22552B16008E46C2 /* UsersTableViewController.swift in Sources */,
 				21B8C9802224445A0037B1C5 /* NewUserViewController.swift in Sources */,
