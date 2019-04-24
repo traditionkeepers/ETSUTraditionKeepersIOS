@@ -20,6 +20,8 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         return Firestore.firestore()
     }
     
+    let green = UIColor(red: 8/255, green: 175/255, blue: 70/255, alpha: 1)
+    
     @IBOutlet weak var eNumberField: UITextField!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
@@ -60,29 +62,37 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func firstNameDidEndEditing(_ sender: UITextField) {
-        let text = sender.text
-        _firstNameCorrect = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+        var text = sender.text
+        text = text?.trimmingCharacters(in: CharacterSet(charactersIn: " "))
+        _firstName = text?.range(of: "^([A-Za-z]+)[']?( ?([A-Za-z]+))*$", options: .regularExpression) != nil
         
         if !_firstNameCorrect {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        } else {
+            sender.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
         }
     }
     
     @IBAction func lastNameDidEndEditing(_ sender: UITextField) {
-        let text = sender.text
-        _lastNameCorrect = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+        var text = sender.text
+        text = text?.trimmingCharacters(in: CharacterSet(charactersIn: " "))
+        _lastName = text?.range(of: "^([A-Za-z]+)[']?( ?([A-Za-z]+))*$", options: .regularExpression) != nil
         
         if !_lastNameCorrect {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        } else {
+            sender.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
         }
     }
     
     @IBAction func eNumberDidEndEditing(_ sender: UITextField) {
         let text = sender.text
-        _eNumberCorrect = text?.range(of: #"\AE\d{9}"#, options: .regularExpression) != nil
+        _eNumber = text?.range(of: "E[0-9]{8}", options: .regularExpression) != nil
         
         if !_eNumberCorrect {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        } else {
+            sender.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
         }
     }
     
