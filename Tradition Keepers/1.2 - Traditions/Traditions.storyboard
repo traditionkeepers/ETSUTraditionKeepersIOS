@@ -154,10 +154,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yrg-Hy-SVv">
-                                <rect key="frame" x="20" y="108" width="374" height="685"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="YFl-xn-DP3">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="685"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="yON-Kp-9xR" id="cgV-K7-L9B"/>
@@ -169,10 +169,10 @@
                         </subviews>
                         <color key="backgroundColor" name="ETSU NAVY"/>
                         <constraints>
-                            <constraint firstItem="yrg-Hy-SVv" firstAttribute="leading" secondItem="jpe-mn-2lz" secondAttribute="leading" constant="20" id="4oZ-KN-zFa"/>
-                            <constraint firstItem="jpe-mn-2lz" firstAttribute="bottom" secondItem="yrg-Hy-SVv" secondAttribute="bottom" constant="20" id="IbU-Y1-WnG"/>
-                            <constraint firstItem="jpe-mn-2lz" firstAttribute="trailing" secondItem="yrg-Hy-SVv" secondAttribute="trailing" constant="20" id="oXg-p3-v4z"/>
-                            <constraint firstItem="yrg-Hy-SVv" firstAttribute="top" secondItem="jpe-mn-2lz" secondAttribute="top" constant="20" id="prJ-4g-rfG"/>
+                            <constraint firstItem="yrg-Hy-SVv" firstAttribute="leading" secondItem="jpe-mn-2lz" secondAttribute="leading" id="4oZ-KN-zFa"/>
+                            <constraint firstItem="jpe-mn-2lz" firstAttribute="bottom" secondItem="yrg-Hy-SVv" secondAttribute="bottom" id="IbU-Y1-WnG"/>
+                            <constraint firstItem="jpe-mn-2lz" firstAttribute="trailing" secondItem="yrg-Hy-SVv" secondAttribute="trailing" id="oXg-p3-v4z"/>
+                            <constraint firstItem="yrg-Hy-SVv" firstAttribute="top" secondItem="jpe-mn-2lz" secondAttribute="top" id="prJ-4g-rfG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jpe-mn-2lz"/>
                     </view>

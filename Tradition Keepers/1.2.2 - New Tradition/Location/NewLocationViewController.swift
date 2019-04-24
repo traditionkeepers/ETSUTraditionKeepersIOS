@@ -14,7 +14,11 @@ import Firebase
 class NewLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     
     @IBOutlet var TableView: UITableView!
-    let searchController = UISearchController(searchResultsController: nil)
+    var searchController: UISearchController {
+        let search = UISearchController(searchResultsController: nil)
+        search.searchBar.barTintColor = UIColor(named: "ETSU NAVY")
+        return search
+    }
     
     var selectedLocation: Location?
     var searchResults: [Location] = [] {

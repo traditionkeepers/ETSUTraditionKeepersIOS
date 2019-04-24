@@ -266,6 +266,14 @@ extension CategoryViewController {
         }
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.backgroundView?.backgroundColor = .clear
+        header.textLabel?.textColor = .white
+        header.textLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let key = sort == .alphebetical ? Array(groups.keys).sorted()[indexPath
             .section] : Array(groups.keys).sorted().reversed()[indexPath.section]

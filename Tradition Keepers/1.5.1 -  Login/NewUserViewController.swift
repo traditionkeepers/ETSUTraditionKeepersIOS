@@ -56,6 +56,8 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    
+    
     @IBAction func NewUserAndLogin(_ sender: Any) {
         Auth.auth().createUser(withEmail: _email, password: _password) { (user, error) in
             if let error = error {

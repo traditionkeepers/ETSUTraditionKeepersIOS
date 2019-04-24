@@ -342,24 +342,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1u8-px-Bdr">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="61d-lY-0c5" appends="YES" id="PaT-5w-NVc"/>
                                 </connections>
                             </mapView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the desired location by long pressing on the map." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYn-36-yGT">
+                                <rect key="frame" x="20" y="825" width="374" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cP4-dF-2OK" firstAttribute="bottom" secondItem="1u8-px-Bdr" secondAttribute="bottom" id="2EM-pn-sbo"/>
+                            <constraint firstAttribute="bottom" secondItem="1u8-px-Bdr" secondAttribute="bottom" id="2EM-pn-sbo"/>
+                            <constraint firstItem="cP4-dF-2OK" firstAttribute="bottom" secondItem="wYn-36-yGT" secondAttribute="bottom" constant="20" id="Ef5-iC-4co"/>
+                            <constraint firstItem="wYn-36-yGT" firstAttribute="leading" secondItem="cP4-dF-2OK" secondAttribute="leading" constant="20" id="ZA4-pS-vi8"/>
                             <constraint firstItem="cP4-dF-2OK" firstAttribute="trailing" secondItem="1u8-px-Bdr" secondAttribute="trailing" id="a0C-dQ-wiE"/>
+                            <constraint firstItem="cP4-dF-2OK" firstAttribute="trailing" secondItem="wYn-36-yGT" secondAttribute="trailing" constant="20" id="ccI-l2-Dx0"/>
                             <constraint firstItem="1u8-px-Bdr" firstAttribute="top" secondItem="cP4-dF-2OK" secondAttribute="top" id="xWa-PW-3PB"/>
                             <constraint firstItem="1u8-px-Bdr" firstAttribute="leading" secondItem="cP4-dF-2OK" secondAttribute="leading" id="z8X-45-hLL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cP4-dF-2OK"/>
                     </view>
-                    <navigationItem key="navigationItem" id="id2-R3-NN2"/>
+                    <navigationItem key="navigationItem" id="id2-R3-NN2">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="vAL-gA-hU9">
+                            <connections>
+                                <action selector="DropPinPressed:" destination="SVs-HR-70H" id="HUz-ye-ALF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="DropPinButton" destination="vAL-gA-hU9" id="GUh-r4-NTe"/>
+                        <outlet property="DropPinInstruction" destination="wYn-36-yGT" id="S2h-it-ah7"/>
                         <outlet property="LongPressGesture" destination="61d-lY-0c5" id="ylY-iv-cFc"/>
                         <outlet property="MapView" destination="1u8-px-Bdr" id="CcO-Ad-koK"/>
                     </connections>
