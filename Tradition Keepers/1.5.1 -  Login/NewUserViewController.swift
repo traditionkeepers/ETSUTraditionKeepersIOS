@@ -60,20 +60,20 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func checkFirstName(_ sender: Any) {
-        let decimalCharacters = CharacterSet.decimalDigits
-        let decimalRange = _firstName.rangeOfCharacter(from: decimalCharacters)
+        let fNameBool = _firstName.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
         
-        if decimalRange != nil {
+        if fNameBool == false {
+            print("Executed Check - First Name")
             self.firstNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
         }
     }
     
     @IBAction func checkLastName(_ sender: Any) {
-        let decimalCharacters = CharacterSet.decimalDigits
-        let decimalRange = _firstName.rangeOfCharacter(from: decimalCharacters)
+        let lNameBool = _lastName.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
         
-        if decimalRange != nil {
-            self.firstNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        if lNameBool == false {
+            print("Executed Check - Last Name")
+            self.lastNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
         }
     }
     
