@@ -13,6 +13,9 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     var _email: String!
     var _password: String!
+    var _firstName: String!
+    var _lastName: String!
+    var _eNumber: String!
     var db: Firestore {
         return Firestore.firestore()
     }
@@ -56,7 +59,27 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @IBAction func checkFirstName(_ sender: Any) {
+        let fNameBool = _firstName.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+        
+        if fNameBool == false {
+            print("Executed Check - First Name")
+            self.firstNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        }
+    }
     
+    @IBAction func checkLastName(_ sender: Any) {
+        let lNameBool = _lastName.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+        
+        if lNameBool == false {
+            print("Executed Check - Last Name")
+            self.lastNameField.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
+        }
+    }
+    
+    @IBAction func checkENumber(_ sender: Any) {
+        
+    }
     
     @IBAction func NewUserAndLogin(_ sender: Any) {
         Auth.auth().createUser(withEmail: _email, password: _password) { (user, error) in
@@ -74,6 +97,10 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
             }
             else if let user = user {
                 print("Sign Up Successful. \(user.user.uid)")
+                let green = UIColor(red: 8/255, green: 175/255, blue: 70/255, alpha: 1)
+                self.firstNameField.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
+                self.lastNameField.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
+                self.eNumberField.setRightViewIcon(icon: .linearIcons(.checkmarkCircle), rightViewMode: .always, textColor: green, backgroundColor: .clear, size: nil)
                 
                 var ref: DocumentReference? = nil
                 ref = self.db.collection("users").document(user.user.uid)
