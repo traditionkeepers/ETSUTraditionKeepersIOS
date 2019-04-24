@@ -13,9 +13,9 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     var _email: String!
     var _password: String!
-    var _firstName: Bool!
-    var _lastName: Bool!
-    var _eNumber: Bool!
+    var _firstNameCorrect: Bool!
+    var _lastNameCorrect: Bool!
+    var _eNumberCorrect: Bool!
     var db: Firestore {
         return Firestore.firestore()
     }
@@ -61,33 +61,33 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func firstNameDidEndEditing(_ sender: UITextField) {
         let text = sender.text
-        _firstName = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+        _firstNameCorrect = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
         
-        if !_firstName {
+        if !_firstNameCorrect {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
         }
     }
     
     @IBAction func lastNameDidEndEditing(_ sender: UITextField) {
         let text = sender.text
-        _lastName = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
+        _lastNameCorrect = text?.range(of: #"\A\D+\b"#, options: .regularExpression) != nil
         
-        if !_lastName {
+        if !_lastNameCorrect {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
         }
     }
     
     @IBAction func eNumberDidEndEditing(_ sender: UITextField) {
         let text = sender.text
-        _eNumber = text?.range(of: #"\AE\d{9}"#, options: .regularExpression) != nil
+        _eNumberCorrect = text?.range(of: #"\AE\d{9}"#, options: .regularExpression) != nil
         
-        if !_eNumber {
+        if !_eNumberCorrect {
             sender.setRightViewIcon(icon: .linearIcons(.crossCircle), rightViewMode: .always, textColor: .red, backgroundColor: .clear, size: nil)
         }
     }
     
     @IBAction func NewUserAndLogin(_ sender: Any) {
-        guard _firstName && _lastName && _eNumber else { return }
+        guard _firstNameCorrect && _lastNameCorrect && _eNumberCorrect else { return }
         
         Auth.auth().createUser(withEmail: _email, password: _password) { (user, error) in
             if let error = error {

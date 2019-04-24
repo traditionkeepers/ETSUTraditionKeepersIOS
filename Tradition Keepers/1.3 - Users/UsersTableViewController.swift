@@ -15,6 +15,7 @@ class UsersTableViewController: UIViewController {
     
     let backgroundView = UIImageView()
     
+    private var selectedUser: User?
     private var users: [User] = []
     private var groups: [String:[User]] = [:]
     private var documents: [DocumentSnapshot] = []
@@ -54,7 +55,7 @@ class UsersTableViewController: UIViewController {
             }
             
             self.users = models
-            self.groups = Dictionary(grouping: models, by: { $0.last.first!.description })
+            self.groups = Dictionary(grouping: models, by: { $0.last.first!.uppercased().description })
             self.documents = snapshot.documents
             
             if self.documents.count > 0 {
@@ -99,15 +100,17 @@ class UsersTableViewController: UIViewController {
         super.viewWillDisappear(animated)
         stopObserving()
     }
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if let vc = segue.destination as? ProfileViewController {
+            vc.selectedUser = selectedUser
+        }
     }
-    */
 
 }
 
@@ -136,12 +139,12 @@ extension UsersTableViewController: UITableViewDelegate, UITableViewDataSource {
         
         let firstAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 18),
-            .foregroundColor: UIColor(named: "ETSU WHITE")
+            .foregroundColor: UIColor(named: "ETSU WHITE")!
         ]
         
         let lastAttributes: [NSAttributedString.Key: Any] = [
             .font:UIFont.boldSystemFont(ofSize: 18),
-            .foregroundColor: UIColor(named: "ETSU WHITE")
+            .foregroundColor: UIColor(named: "ETSU WHITE")!
         ]
         
         let nameString = NSMutableAttributedString(string: user.first + " ", attributes: firstAttributes)
@@ -151,5 +154,12 @@ extension UsersTableViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.attributedText = nameString
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let key = groups.keys.sorted()[indexPath.section]
+        self.selectedUser = groups[key]![indexPath.row]
+        
+        performSegue(withIdentifier: "Profile", sender: nil)
     }
 }

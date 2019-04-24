@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Users Table View Controller-->
+        <!--Users-->
         <scene sceneID="HfZ-z7-gad">
             <objects>
                 <viewController id="jQL-hm-kgP" customClass="UsersTableViewController" customModule="Tradition_Keepers" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,18 +21,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b4u-fM-Xyr">
-                                <rect key="frame" x="0.0" y="108" width="414" height="734"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7f-Cf-v8z">
-                                        <rect key="frame" x="117.5" y="0.0" width="179" height="29"/>
-                                        <segments>
-                                            <segment title="Alphabetical"/>
-                                            <segment title="Permission"/>
-                                        </segments>
-                                        <color key="tintColor" name="ETSU GOLD"/>
-                                    </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-mT-LlF">
-                                        <rect key="frame" x="0.0" y="36" width="414" height="698"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="jQL-hm-kgP" id="6qn-cV-kVR"/>
@@ -49,15 +41,15 @@
                         <constraints>
                             <constraint firstItem="bGF-AS-6qE" firstAttribute="trailing" secondItem="b4u-fM-Xyr" secondAttribute="trailing" id="EPe-eD-1dB"/>
                             <constraint firstItem="b4u-fM-Xyr" firstAttribute="leading" secondItem="bGF-AS-6qE" secondAttribute="leading" id="YH8-2N-CDW"/>
-                            <constraint firstItem="bGF-AS-6qE" firstAttribute="bottom" secondItem="b4u-fM-Xyr" secondAttribute="bottom" constant="20" id="h8Z-aN-v8s"/>
-                            <constraint firstItem="b4u-fM-Xyr" firstAttribute="top" secondItem="bGF-AS-6qE" secondAttribute="top" constant="20" id="yf9-NX-CrA"/>
+                            <constraint firstItem="bGF-AS-6qE" firstAttribute="bottom" secondItem="b4u-fM-Xyr" secondAttribute="bottom" id="h8Z-aN-v8s"/>
+                            <constraint firstItem="b4u-fM-Xyr" firstAttribute="top" secondItem="bGF-AS-6qE" secondAttribute="top" id="yf9-NX-CrA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bGF-AS-6qE"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xfr-VO-zbc"/>
+                    <navigationItem key="navigationItem" title="Users" id="xfr-VO-zbc"/>
                     <connections>
                         <outlet property="UserTable" destination="kZd-mT-LlF" id="4k8-Vh-Xvx"/>
-                        <segue destination="XoK-92-e7n" kind="show" id="so6-EW-6qm"/>
+                        <segue destination="XoK-92-e7n" kind="show" identifier="Profile" id="so6-EW-6qm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVG-jp-BIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -90,9 +82,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="ETSU GOLD">
-            <color red="1" green="0.7803921568627451" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="ETSU NAVY">
             <color red="0.016000000759959221" green="0.11800000071525574" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

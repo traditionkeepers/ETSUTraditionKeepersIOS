@@ -269,8 +269,7 @@ extension CategoryViewController {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
         header.backgroundView?.backgroundColor = .clear
-        header.textLabel?.textColor = .white
-        header.textLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        header.textLabel?.textColor = .lightGray
         
     }
     
