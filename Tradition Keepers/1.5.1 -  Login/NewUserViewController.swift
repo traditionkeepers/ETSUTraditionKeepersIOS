@@ -62,7 +62,8 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func firstNameDidEndEditing(_ sender: UITextField) {
-        let text = sender.text
+        var text = sender.text
+        text = text?.trimmingCharacters(in: CharacterSet(charactersIn: " "))
         _firstName = text?.range(of: "^([A-Za-z]+)[']?( ?([A-Za-z]+))*$", options: .regularExpression) != nil
         
         if !_firstName {
@@ -73,7 +74,8 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func lastNameDidEndEditing(_ sender: UITextField) {
-        let text = sender.text
+        var text = sender.text
+        text = text?.trimmingCharacters(in: CharacterSet(charactersIn: " "))
         _lastName = text?.range(of: "^([A-Za-z]+)[']?( ?([A-Za-z]+))*$", options: .regularExpression) != nil
         
         if !_lastName {
