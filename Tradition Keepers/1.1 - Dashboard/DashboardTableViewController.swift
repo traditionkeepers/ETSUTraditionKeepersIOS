@@ -92,8 +92,8 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     fileprivate func baseQuery() -> Query {
-        var query = db.collection("traditions").limit(to: 20)
-        query = Permission.allowApproval ? db.collection("submissions").limit(to: 20) : query
+        var query = db.collection("traditions").limit(to: 5)
+        query = Permission.allowApproval ? db.collection("submissions").limit(to: 5) : query
         return query
     }
     

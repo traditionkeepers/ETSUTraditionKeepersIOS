@@ -123,6 +123,10 @@ class SettingsViewController: UIViewController {
         if segue.identifier != "Login" {
             showNavBar = true
         }
+        
+        if let vc = segue.destination as? ProfileViewController {
+            vc.selectedUser = User.current
+        }
     }
 
 }
