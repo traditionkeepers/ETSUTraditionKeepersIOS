@@ -15,8 +15,10 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     private var submissionImage: UIImage!
     
     let backgroundView = UIImageView()
-    private var topTraditions: [Tradition] = []
-    private var topSubmissions: [SubmittedTradition] = []
+//    private var addedData: [Tradition] = []
+//    private var modifiedData: [Tradition] = []
+//    private var removedData: [Tradition] = []
+    private var data: [Any] = []
     private var documents: [DocumentSnapshot] = []
     
     private var selectedIndex: Int!
@@ -48,43 +50,29 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
                 return
             }
             
-            snapshot.documentChanges.forEach({ (diff) in
-                switch diff.type {
-                case .added:
-                    print("Added")
-                case .modified:
-                    print("Modified")
-                case .removed:
-                    print("Removed")
-                default:
-                    print("NaN")
-                }
-            })
+//            snapshot.documentChanges.forEach({ (diff) in
+//                switch diff.type {
+//                case .added:
+//                    self.addedData.append(Tradition(dictionary: diff.document.data(), id: diff.document.documentID)!)
+//                case .modified:
+//                    self.modifiedData.append(Tradition(dictionary: diff.document.data(), id: diff.document.documentID)!)
+//                case .removed:
+//                    self.removedData.append(Tradition(dictionary: diff.document.data(), id: diff.document.documentID)!)
+//                default:
+//                    print("Unable to initialize type \(Tradition.self) with dictionary \(diff.document.data())")
+//                }
+//            })
             
-            if Permission.allowSubmission {
-                print("Showing Tradions")
-                let models = snapshot.documents.map { (document) -> Tradition in
-                    if let model = Tradition(dictionary: document.data(), id: document.documentID) {
-                        return model
-                    } else {
-                        print("Unable to initialize type \(Tradition.self) with dictionary \(document.data())")
-                        return Tradition()
-                    }
+            let models = snapshot.documents.map { (document) -> Tradition in
+                if let model = Tradition(dictionary: document.data(), id: document.documentID) {
+                    return model
+                } else {
+                    print("Unable to initialize type \(Tradition.self) with dictionary \(document.data())")
+                    return Tradition()
                 }
-                self.topTraditions = models
-            } else if Permission.allowApproval {
-                print("Showing Submissions")
-                let models = snapshot.documents.map { (document) -> SubmittedTradition in
-                    if let model = SubmittedTradition(dictionary: document.data(), id: document.documentID) {
-                        print(model.status)
-                        return model
-                    } else {
-                        print("Unable to initialize type \(SubmittedTradition.self) with dictionary \(document.data())")
-                        return SubmittedTradition()
-                    }
-                }
-                self.topSubmissions = models
             }
+            
+            self.data = models
             self.documents = snapshot.documents
             
             if self.documents.count > 0 {
@@ -94,9 +82,12 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             DispatchQueue.main.async {
-                self.TopTraditionTable.reloadData()
+                self.TopTraditionTable.beginUpdates()
+                let range = IndexSet(arrayLiteral: 0, self.TopTraditionTable.numberOfSections)
+                self.TopTraditionTable.reloadSections(range, with: .automatic)
+                self.TopTraditionTable.endUpdates()
+//                self.TopTraditionTable.reloadData()
             }
-            
         }
     }
     
@@ -157,7 +148,9 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
         switch segue.identifier {
         case "ShowActivityDetail":
             if let vc = segue.destination as? ActivityDetailViewController {
-                vc.tradition = topTraditions[selectedIndex]
+                if let tradition = data[selectedIndex] as? Tradition {
+                    vc.tradition = tradition
+                }
             }
         case "Submit":
             if let vc = segue.destination as? SubmitViewController {
@@ -180,15 +173,13 @@ extension DashboardTableViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        var count = topTraditions.count
-        count = Permission.allowApproval ? topSubmissions.count : count
-        return count
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if Permission.allowSubmission {
             print("Dequing Tradition")
-            let tradition = topTraditions[indexPath.row]
+            let tradition = data[indexPath.row] as! Tradition
             let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, tradition: tradition)
             cell.CompleteButtonPressed = { sender in
                 self.performSegue(withIdentifier: "Submit", sender: cell)
@@ -196,7 +187,7 @@ extension DashboardTableViewController {
             return cell
         } else if Permission.allowApproval {
             print("Dequing Submission")
-            let submission = topSubmissions[indexPath.row]
+            let submission = data[indexPath.row] as! SubmittedTradition
             let cell = TraditionTableViewCell.cellForTableView(tableView: tableView, atIndex: indexPath, submission: submission)
             cell.CompleteButtonPressed = { sender in
                 self.performSegue(withIdentifier: "Submit", sender: cell)

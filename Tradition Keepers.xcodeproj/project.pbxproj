@@ -31,6 +31,7 @@
 		216A1631220E203B00342707 /* Tradition_KeepersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1630220E203B00342707 /* Tradition_KeepersTests.swift */; };
 		216A163C220E203B00342707 /* Tradition_KeepersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */; };
 		216A1656220FCE2E00342707 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A1655220FCE2E00342707 /* LoginViewController.swift */; };
+		216BA5DC2271ECA0009FB838 /* QueryListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216BA5DB2271ECA0009FB838 /* QueryListener.swift */; };
 		216F3383223ECB5100E7B989 /* NewActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */; };
 		216F3385223ED1A000E7B989 /* NewCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */; };
 		216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */; };
@@ -115,6 +116,7 @@
 		216A163B220E203B00342707 /* Tradition_KeepersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradition_KeepersUITests.swift; sourceTree = "<group>"; };
 		216A163D220E203B00342707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216A1655220FCE2E00342707 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		216BA5DB2271ECA0009FB838 /* QueryListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryListener.swift; sourceTree = "<group>"; };
 		216F3382223ECB5100E7B989 /* NewActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityTableViewController.swift; sourceTree = "<group>"; };
 		216F3384223ED1A000E7B989 /* NewCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryTableViewController.swift; sourceTree = "<group>"; };
 		216F3386223ED1CD00E7B989 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		216A1617220E203900342707 /* Tradition Keepers */ = {
 			isa = PBXGroup;
 			children = (
+				216BA5DA2271EC3E009FB838 /* Services */,
 				2173761622428CA2006279D2 /* Storyboards */,
 				217652B6223C8D50006886E8 /* Model */,
 				2156CAC72267C3C4004C7777 /* 0 - Initial Auth */,
@@ -343,6 +346,14 @@
 				21B8C97F2224445A0037B1C5 /* NewUserViewController.swift */,
 			);
 			path = "1.5.1 -  Login";
+			sourceTree = "<group>";
+		};
+		216BA5DA2271EC3E009FB838 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				216BA5DB2271ECA0009FB838 /* QueryListener.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		216F3381223ECB3700E7B989 /* 1.2.2 - New Tradition */ = {
@@ -771,6 +782,7 @@
 				2156CAC92267C3E7004C7777 /* AuthViewController.swift in Sources */,
 				2111A92A226946DE00275D21 /* SubmissionButton.swift in Sources */,
 				211745EE224CFC1C00BEA0C8 /* CategoryTableViewController.swift in Sources */,
+				216BA5DC2271ECA0009FB838 /* QueryListener.swift in Sources */,
 				216F3387223ED1CD00E7B989 /* CategoryTableViewCell.swift in Sources */,
 				2138A68A2254679A00AC0474 /* LocationMapViewController.swift in Sources */,
 				21D729B02270A3E4008C726B /* Instruction.swift in Sources */,
