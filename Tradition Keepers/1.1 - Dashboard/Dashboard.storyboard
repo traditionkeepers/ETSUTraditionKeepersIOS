@@ -20,14 +20,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ULm-Ol-RON">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ULm-Ol-RON">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="onu-Ja-fmt">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="298" height="64"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pX0-I6-k8W">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="298" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                 <inset key="contentEdgeInsets" minX="20" minY="6" maxX="0.0" maxY="0.0"/>
@@ -39,7 +39,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPp-iK-3NB">
-                                                <rect key="frame" x="0.0" y="45" width="414" height="19"/>
+                                                <rect key="frame" x="0.0" y="45" width="298" height="19"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Progress: XXX%">
@@ -51,20 +51,37 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="RHZ-An-t84">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="702"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNz-vA-Qea">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="7jU-Aw-mfl"/>
+                                        </constraints>
+                                    </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Recommended" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3QZ-xJ-WBK">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="116"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="ETSU WHITE"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RHZ-An-t84">
+                                        <rect key="frame" x="0.0" y="224" width="414" height="550"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="xYT-w6-0Ll" id="nat-GU-UbM"/>
                                             <outlet property="delegate" destination="xYT-w6-0Ll" id="aGO-La-6Dc"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="3QZ-xJ-WBK" firstAttribute="width" secondItem="RHZ-An-t84" secondAttribute="width" id="NtK-gv-V33"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" name="ETSU NAVY"/>
                         <constraints>
                             <constraint firstItem="gSN-wE-9pe" firstAttribute="trailing" secondItem="ULm-Ol-RON" secondAttribute="trailing" id="Bob-gc-Kat"/>
+                            <constraint firstItem="RHZ-An-t84" firstAttribute="width" secondItem="gSN-wE-9pe" secondAttribute="width" id="WDW-Xe-rbi"/>
                             <constraint firstItem="ULm-Ol-RON" firstAttribute="leading" secondItem="gSN-wE-9pe" secondAttribute="leading" id="Zea-96-oyT"/>
                             <constraint firstItem="ULm-Ol-RON" firstAttribute="top" secondItem="gSN-wE-9pe" secondAttribute="top" id="bbR-hT-bLa"/>
                             <constraint firstItem="gSN-wE-9pe" firstAttribute="bottom" secondItem="ULm-Ol-RON" secondAttribute="bottom" id="e4V-Gs-KPb"/>

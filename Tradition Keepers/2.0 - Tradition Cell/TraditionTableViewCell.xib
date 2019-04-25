@@ -22,19 +22,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Cwo-UH-d2z">
-                        <rect key="frame" x="20" y="0.0" width="294" height="69.5"/>
+                        <rect key="frame" x="32" y="0.0" width="278" height="69.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-L1-CI6">
-                                <rect key="frame" x="0.0" y="15" width="231" height="39.5"/>
+                                <rect key="frame" x="0.0" y="15" width="199" height="39.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tradition Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3D-Sf-ZEs">
-                                        <rect key="frame" x="0.0" y="0.0" width="231" height="20.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="199" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <color key="textColor" name="ETSU WHITE"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requirement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXi-dH-c8M">
-                                        <rect key="frame" x="0.0" y="21.5" width="231" height="18"/>
+                                        <rect key="frame" x="0.0" y="21.5" width="199" height="18"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -42,8 +42,9 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMc-iS-phM" customClass="SubmissionButton" customModule="Tradition_Keepers" customModuleProvider="target">
-                                <rect key="frame" x="239" y="18.5" width="55" height="33"/>
+                                <rect key="frame" x="207" y="16.5" width="71" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="CompleteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Gb6-VB-amr"/>
@@ -53,10 +54,10 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Cwo-UH-d2z" secondAttribute="trailing" constant="6" id="BCt-Pj-esF"/>
+                    <constraint firstAttribute="trailing" secondItem="Cwo-UH-d2z" secondAttribute="trailing" constant="10" id="BCt-Pj-esF"/>
                     <constraint firstAttribute="bottom" secondItem="Cwo-UH-d2z" secondAttribute="bottom" id="GvV-GR-9ky"/>
                     <constraint firstItem="Cwo-UH-d2z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jNl-qo-6Av"/>
-                    <constraint firstItem="Cwo-UH-d2z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="pv2-rM-au9"/>
+                    <constraint firstItem="Cwo-UH-d2z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="pv2-rM-au9"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

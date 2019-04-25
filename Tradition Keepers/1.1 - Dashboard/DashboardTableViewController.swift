@@ -48,6 +48,19 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
                 return
             }
             
+            snapshot.documentChanges.forEach({ (diff) in
+                switch diff.type {
+                case .added:
+                    print("Added")
+                case .modified:
+                    print("Modified")
+                case .removed:
+                    print("Removed")
+                default:
+                    print("NaN")
+                }
+            })
+            
             if Permission.allowSubmission {
                 print("Showing Tradions")
                 let models = snapshot.documents.map { (document) -> Tradition in
@@ -109,14 +122,13 @@ class DashboardTableViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func SetupView(_ animated: Bool = false) {
+        TopTraditionTable.backgroundColor = .clear
         usernameButton.setTitle("Welcome, \(User.current.first)", for: .normal)
         let userProgress = "Required: \(User.current.requiredComplete) - Optional: \(User.current.optionalComplete)"
         progressButton.setTitle(userProgress, for: .normal)
         if let selectionIndexPath = TopTraditionTable.indexPathForSelectedRow {
             TopTraditionTable.deselectRow(at: selectionIndexPath, animated: animated)
         }
-        
-        GetTop(n: 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -213,21 +225,5 @@ extension DashboardTableViewController {
                 }
             }
         }
-    }
-    
-    func GetTop(n: Int) {
-        
-        
-        var activities :[Tradition] = []
-        Firestore.firestore().collection("traditions").limit(to: 3).getDocuments(completion: { (QuerySnapshot, err) in
-            if let err = err {
-                print("Error retreiving documents: \(err)")
-            } else {
-                for doc in QuerySnapshot!.documents {
-                    activities.append(Tradition(dictionary: doc.data(), id: doc.documentID)!)
-                }
-                self.topTraditions = activities
-            }
-        })
     }
 }

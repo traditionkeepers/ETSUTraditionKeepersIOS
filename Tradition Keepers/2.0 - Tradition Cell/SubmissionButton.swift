@@ -19,23 +19,29 @@ class SubmissionButton: UIButton {
     */
     
     func configureButton(status: ActivityStatus) {
-        var data = ""
-        var btnColor = UIColor(named: "ETSU WHITE")
+        var titleText = ""
+        var textColor = UIColor(named: "ETSU NAVY")
+        var backgroundColor = UIColor(named: "ETSU WHITE")
         switch status {
         case .none:
-            data = Permission.allowSubmission ? "Submit" : data
-            btnColor = Permission.allowSubmission ? UIColor(named: "ETSU GOLD") : btnColor
+            titleText = Permission.allowSubmission ? "Submit" : titleText
+//            textColor = Permission.allowSubmission ? UIColor(named: "ETSU GOLD") : textColor
+            backgroundColor = Permission.allowSubmission ? UIColor(named: "ETSU GOLD") : backgroundColor
         case .pending:
-            data = Permission.allowSubmission ? "Pending" : data
-            data = Permission.allowApproval ? "Verify" : data
-            
-            btnColor = Permission.allowApproval ? UIColor(named: "ETSU GOLD") : btnColor
+            titleText = Permission.allowSubmission ? "Pending" : titleText
+            titleText = Permission.allowApproval ? "Verify" : titleText
+//            textColor = Permission.allowApproval ? UIColor(named: "ETSU GOLD") : textColor
+            backgroundColor = Permission.allowApproval ? UIColor(named: "ETSU GOLD") : backgroundColor
         case .complete:
-            data = "Complete"
+            titleText = "Complete"
+            textColor = UIColor(named: "ETSU WHITE")
+            backgroundColor = .clear
         }
         
-        setTitle(data, for: .normal)
-        setTitleColor(btnColor, for: .normal)
+        setTitle(titleText, for: .normal)
+        setTitleColor(textColor, for: .normal)
+        self.backgroundColor = backgroundColor
+        layer.cornerRadius = 10
         isHidden = User.current.permission == .none
     }
 }

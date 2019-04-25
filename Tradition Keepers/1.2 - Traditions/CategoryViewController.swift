@@ -62,7 +62,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         let fb = UIButton(type: .custom)
         fb.addTarget(self, action: #selector(FilterButtonPressed(_:)), for: .touchUpInside)
 //        fb.setIcon(prefixText: "All Traditions", icon: .linearIcons(.arrowDown), postfixText: "", forState: .normal)
-        fb.setIcon(prefixText: self.selectedCategory.name, prefixTextColor: .white, icon: .linearIcons(.arrowDown), iconColor: .white, postfixText: "", postfixTextColor: .white, backgroundColor: .clear, forState: .normal, textSize: nil, iconSize: nil)
+        fb.setIcon(prefixText: self.selectedCategory.name + " ", prefixTextColor: .white, icon: .linearIcons(.funnel), iconColor: .white, postfixText: "", postfixTextColor: .white, backgroundColor: .clear, forState: .normal, textSize: nil, iconSize: nil)
         return fb
     }
     
