@@ -26,13 +26,13 @@ class SubmitViewController: UITableViewController {
     
     var imagePicker: ImagePicker!
     var tradition: Tradition!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imagePicker = ImagePicker(presentationController: self, delegate: self)
-       
+        
         // Do any additional setup after loading the view.
     }
     
@@ -42,7 +42,7 @@ class SubmitViewController: UITableViewController {
         TraditionNameLabel.text = tradition.title
         TraditionRequirementLabel.text = tradition.requirement.title
         UserNameLabel.text = User.current.name_FL
-
+        
         
         // check for denial
         
@@ -112,9 +112,9 @@ class SubmitViewController: UITableViewController {
             }
         }
     }
-
+    
     @IBAction func CameraButtonTouchUpInside(_ sender: Any) {
-         imagePicker.present(from: UIView())
+        imagePicker.present(from: UIView())
     }
     
     @IBAction func SubmitButtonPressed(_ sender: Any) {
@@ -131,34 +131,34 @@ class SubmitViewController: UITableViewController {
     
     @IBAction func CancelButtonPressed(_ sender: Any) {
         
-    switch User.current.permission {
-    case .staff, .admin:
-        if (tradition.submission.status == .complete) {
+        switch User.current.permission {
+        case .staff, .admin:
+            if (tradition.submission.status == .complete) {
+                self.dismiss(animated: true, completion: nil)
+                
+            }
+            
+            print("Complete Button Pressed")
+            let alert = UIAlertController(title: "Deny Submission", message: "Would you like to deny verification?", preferredStyle: .alert)
+            let deny = UIAlertAction(title: "Yes", style: .cancel) { (UIAlertAction) in
+                alert.dismiss(animated: true, completion: nil)
+                let denialReason = self.promptForDenialReason()
+            }
+            let cancel = UIAlertAction(title: "No", style: .default) { (UIAlertAction) in
+                self.dismiss(animated: true, completion: nil)
+                // return to caller
+            }
+            
+            alert.addAction(deny)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
             self.dismiss(animated: true, completion: nil)
-
-        }
-        
-        print("Complete Button Pressed")
-        let alert = UIAlertController(title: "Deny Submission", message: "Would you like to deny verification?", preferredStyle: .alert)
-        let deny = UIAlertAction(title: "Yes", style: .cancel) { (UIAlertAction) in
-            alert.dismiss(animated: true, completion: nil)
-            let denialReason = self.promptForDenialReason()
-        }
-        let cancel = UIAlertAction(title: "No", style: .default) { (UIAlertAction) in
+        default:
             self.dismiss(animated: true, completion: nil)
             // return to caller
+            
         }
         
-        alert.addAction(deny)
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
-        self.dismiss(animated: true, completion: nil)
-    default:
-        self.dismiss(animated: true, completion: nil)
-        // return to caller
-    
-        }
-    
     }
     
     func promptForDenialReason() {
@@ -170,7 +170,7 @@ class SubmitViewController: UITableViewController {
             let textField = alert.textFields![0]
             // add reason for denial
             self.UpdateDatabase(activity: self.tradition)
-
+            
         }
         let cancel = UIAlertAction(title: "Cancel", style: .default) { (UIAlertAction) in
             self.dismiss(animated: true, completion: nil)
