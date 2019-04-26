@@ -21,63 +21,45 @@ class SubmitViewController: UITableViewController {
     @IBOutlet weak var UserDateLabel: UILabel!
     @IBOutlet weak var ApprovalLabel: UILabel!
     @IBOutlet weak var ApprovalDateLabel: UILabel!
-    @IBOutlet weak var CancelBarButton: UIBarButtonItem!
-    @IBOutlet weak var SubmitBarButton: UIBarButtonItem!
     
     var imagePicker: ImagePicker!
     var tradition: Tradition!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imagePicker = ImagePicker(presentationController: self, delegate: self)
-        
+        prepareView()
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.rightBarButtonItem?.isEnabled =  tradition.submission.image != nil
+        
+        self.CameraButton.isHidden = tradition.submission.image == nil
+    }
+    
     private func prepareView() {
-        //CameraButton.setIcon(icon: .linearIcons(.camera), forState: .normal)
+        let leftButton = Permission.allowApproval ? UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil) : UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil)
+        
+        let rightButton = Permission.allowApproval ? UIBarButtonItem(title: "Approve", style: .plain, target: self, action: nil) : UIBarButtonItem(title: "Submit", style: .plain, target: self, action: nil)
+        
+        rightButton.tintColor = UIColor(named: "ETSU GOLD")
+    
+        self.navigationItem.leftBarButtonItem = leftButton
+        self.navigationItem.rightBarButtonItem = rightButton
+        
         CameraButton.setIcon(icon: .linearIcons(.camera), iconSize: 50, color: UIColor(named: "ETSU GOLD")!, backgroundColor: UIColor(named: "ETSU GOLD")!, forState: .normal)
+        
         TraditionNameLabel.text = tradition.title
         TraditionRequirementLabel.text = tradition.requirement.title
+        TraditionRequirementLabel.textColor = tradition.isRequired ? UIColor(named: "ETSU GOLD") : UIColor(named: "ETSU WHITE")
         UserNameLabel.text = User.current.name_FL
         
-        
-        // check for denial
-        
-        switch User.current.permission {
-        case .staff, .admin:
-            CancelBarButton.isEnabled = true
-            SubmitBarButton.title = "Verify"
-            SubmitBarButton.isEnabled = true
-        default:
-            UserNameLabel.text = User.current.name_FL
-            //UserDateLabel.text = tradition.submission.completion_date
-            CancelBarButton.isEnabled = true
-            SubmitBarButton.title = "Save"
-            SubmitBarButton.isEnabled = false
-        }
-        
-        ApprovalLabel.isHidden = true
-        ApprovalDateLabel.isHidden = true
-        
-        // Only show button for .pending and .complete state
-        switch tradition.submission.status {
-        case .pending:
-            ApprovalLabel.isHidden = false
-            ApprovalDateLabel.isHidden = false
-            ApprovalLabel.text = "Awaiting Approval"
-            
-        case .complete:
-            ApprovalDateLabel.isHidden = false
-            ApprovalLabel.text = "Approved by"
-            ApprovalDateLabel.text = ""
-            
-        default:
-            ApprovalLabel.isHidden = true
-            ApprovalDateLabel.isHidden = true
-        }
+        ApprovalLabel.isHidden = tradition.submission.status != .complete
+        ApprovalDateLabel.isHidden = tradition.submission.status != .complete
     }
     
     func showAlertForSubmission () {
@@ -117,48 +99,43 @@ class SubmitViewController: UITableViewController {
         imagePicker.present(from: UIView())
     }
     
-    @IBAction func SubmitButtonPressed(_ sender: Any) {
-        switch User.current.permission {
-        case .staff, .admin:
-            tradition.submission.status = .complete
-            let alert = UIAlertController(title: "Verify Submission", message: "Submission Verified", preferredStyle: .alert)
-            self.present(alert, animated: true, completion: nil)
-            CancelBarButton.title = "Done"
-        default:
-            showAlertForSubmission()
-        }
+    private func SubmitButtonPressed(_ sender: Any) {
+        print("Submit Pressed")
     }
     
-    @IBAction func CancelButtonPressed(_ sender: Any) {
-        
-        switch User.current.permission {
-        case .staff, .admin:
-            if (tradition.submission.status == .complete) {
-                self.dismiss(animated: true, completion: nil)
-                
-            }
-            
-            print("Complete Button Pressed")
-            let alert = UIAlertController(title: "Deny Submission", message: "Would you like to deny verification?", preferredStyle: .alert)
-            let deny = UIAlertAction(title: "Yes", style: .cancel) { (UIAlertAction) in
-                alert.dismiss(animated: true, completion: nil)
-                let denialReason = self.promptForDenialReason()
-            }
-            let cancel = UIAlertAction(title: "No", style: .default) { (UIAlertAction) in
-                self.dismiss(animated: true, completion: nil)
-                // return to caller
-            }
-            
-            alert.addAction(deny)
-            alert.addAction(cancel)
-            self.present(alert, animated: true, completion: nil)
-            self.dismiss(animated: true, completion: nil)
-        default:
-            self.dismiss(animated: true, completion: nil)
-            // return to caller
-            
-        }
-        
+    private func VerifyButtonPressed(_ sender: Any) {
+        print("Verify Pressed")
+    }
+    
+    private func CancelButtonPressed(_ sender: Any) {
+        print("Cancel Pressed")
+//        switch User.current.permission {
+//        case .staff, .admin:
+//            if (tradition.submission.status == .complete) {
+//                self.dismiss(animated: true, completion: nil)
+//
+//            }
+//
+//            print("Complete Button Pressed")
+//            let alert = UIAlertController(title: "Deny Submission", message: "Would you like to deny verification?", preferredStyle: .alert)
+//            let deny = UIAlertAction(title: "Yes", style: .cancel) { (UIAlertAction) in
+//                alert.dismiss(animated: true, completion: nil)
+//                let denialReason = self.promptForDenialReason()
+//            }
+//            let cancel = UIAlertAction(title: "No", style: .default) { (UIAlertAction) in
+//                self.dismiss(animated: true, completion: nil)
+//                // return to caller
+//            }
+//
+//            alert.addAction(deny)
+//            alert.addAction(cancel)
+//            self.present(alert, animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
+//        default:
+//            self.dismiss(animated: true, completion: nil)
+//            // return to caller
+//
+//        }
     }
     
     func promptForDenialReason() {
@@ -169,6 +146,7 @@ class SubmitViewController: UITableViewController {
         let ok = UIAlertAction(title: "OK", style: .cancel) { (UIAlertAction) in
             let textField = alert.textFields![0]
             // add reason for denial
+            let reason = textField.text
             self.UpdateDatabase(activity: self.tradition)
             
         }
@@ -185,8 +163,6 @@ class SubmitViewController: UITableViewController {
 
 extension SubmitViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
-        print("Image Selected")
-        SubmissionImage.image = image
-        SubmitBarButton.isEnabled = true
+        tradition.submission.image = image
     }
 }

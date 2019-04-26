@@ -20,61 +20,84 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="ETSU NAVY"/>
                         <sections>
-                            <tableViewSection headerTitle="Submission" id="M8V-aw-vx9" userLabel="Tradition Information">
+                            <tableViewSection id="M8V-aw-vx9" userLabel="Tradition Information">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="161" id="b5X-Mq-BXk" userLabel="General">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="161"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="128" id="b5X-Mq-BXk" userLabel="General">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b5X-Mq-BXk" id="rPw-Oy-z3r">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="160.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="127.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oGP-Sw-sWb">
-                                                    <rect key="frame" x="20" y="11" width="374" height="139"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oGP-Sw-sWb" userLabel="Header Stack">
+                                                    <rect key="frame" x="20" y="11" width="374" height="106"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NsH-1n-jWl">
-                                                            <rect key="frame" x="0.0" y="0.0" width="105" height="139"/>
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NsH-1n-jWl">
+                                                            <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="NsH-1n-jWl" secondAttribute="height" id="g9E-xv-q7X"/>
+                                                            </constraints>
                                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                            <connections>
+                                                                <outletCollection property="gestureRecognizers" destination="UjM-xE-JgT" appends="YES" id="Q5I-gM-RQb"/>
+                                                            </connections>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WlJ-dy-Twa">
-                                                            <rect key="frame" x="113" y="0.0" width="261" height="139"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WlJ-dy-Twa" userLabel="Label Stack">
+                                                            <rect key="frame" x="114" y="0.0" width="260" height="106"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Tradition Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1k2-XS-1Vh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="261" height="36"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" text="Tradition Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1k2-XS-1Vh">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="36"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                                     <color key="textColor" name="ETSU WHITE"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Requirement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncv-8i-r4h">
-                                                                    <rect key="frame" x="0.0" y="38" width="261" height="101"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="Requirement" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncv-8i-r4h">
+                                                                    <rect key="frame" x="0.0" y="38" width="260" height="18"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <color key="textColor" name="ETSU WHITE"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ase-0S-p1s" userLabel="User Info">
+                                                                    <rect key="frame" x="0.0" y="57.5" width="260" height="19.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" text="User: First Last" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o02-gr-0eQ">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="192" height="19.5"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-4z-uKU">
+                                                                            <rect key="frame" x="200" y="0.0" width="60" height="19.5"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DvZ-Td-h42" userLabel="Approval Info">
+                                                                    <rect key="frame" x="0.0" y="68.5" width="260" height="37.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Approval: First Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXR-iy-J7b">
+                                                                            <rect key="frame" x="0.0" y="9" width="192" height="19.5"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBg-Fd-qu1">
+                                                                            <rect key="frame" x="200" y="9" width="60" height="19.5"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                            <color key="textColor" name="ETSU WHITE"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="oGP-Sw-sWb" firstAttribute="top" secondItem="rPw-Oy-z3r" secondAttribute="topMargin" id="Diy-OU-2oA"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="oGP-Sw-sWb" secondAttribute="bottom" id="KM7-jC-yIQ"/>
-                                                <constraint firstItem="oGP-Sw-sWb" firstAttribute="leading" secondItem="rPw-Oy-z3r" secondAttribute="leadingMargin" id="mfQ-Ny-Cvr"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="oGP-Sw-sWb" secondAttribute="trailing" id="qX6-yB-1Eh"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" id="lzC-MU-swZ">
-                                        <rect key="frame" x="0.0" y="189" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lzC-MU-swZ" id="PZI-Ve-AYd">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vec-aW-3sW">
-                                                    <rect key="frame" x="180" y="6" width="54" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vec-aW-3sW">
+                                                    <rect key="frame" x="20" y="11" width="106" height="106"/>
+                                                    <gestureRecognizers/>
                                                     <color key="tintColor" name="ETSU GOLD"/>
                                                     <state key="normal" title="Camera">
                                                         <color key="titleColor" name="ETSU GOLD"/>
@@ -84,74 +107,28 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="69" id="2Ev-xW-fHp" userLabel="Detail">
-                                        <rect key="frame" x="0.0" y="233" width="414" height="69"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Ev-xW-fHp" id="IZf-YU-yu5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="68.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nPf-aj-Tos">
-                                                    <rect key="frame" x="20" y="11" width="374" height="47"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ase-0S-p1s" userLabel="User Info">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="19.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="User: First Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o02-gr-0eQ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="303" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" name="ETSU WHITE"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-4z-uKU">
-                                                                    <rect key="frame" x="311" y="0.0" width="63" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" name="ETSU WHITE"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DvZ-Td-h42" userLabel="Approval Info">
-                                                            <rect key="frame" x="0.0" y="27.5" width="374" height="19.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Approval: First Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXR-iy-J7b">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="303" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" name="ETSU WHITE"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBg-Fd-qu1">
-                                                                    <rect key="frame" x="311" y="0.0" width="63" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" name="ETSU WHITE"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="nPf-aj-Tos" secondAttribute="bottom" id="CJu-wv-eOz"/>
-                                                <constraint firstItem="nPf-aj-Tos" firstAttribute="top" secondItem="IZf-YU-yu5" secondAttribute="topMargin" id="JBo-HM-HxV"/>
-                                                <constraint firstItem="nPf-aj-Tos" firstAttribute="leading" secondItem="IZf-YU-yu5" secondAttribute="leadingMargin" id="L0j-Pg-wy9"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="nPf-aj-Tos" secondAttribute="trailing" id="S8c-Oa-qKX"/>
+                                                <constraint firstItem="oGP-Sw-sWb" firstAttribute="top" secondItem="rPw-Oy-z3r" secondAttribute="topMargin" id="Diy-OU-2oA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="oGP-Sw-sWb" secondAttribute="bottom" id="KM7-jC-yIQ"/>
+                                                <constraint firstItem="vec-aW-3sW" firstAttribute="top" secondItem="NsH-1n-jWl" secondAttribute="top" id="bpV-k4-1MT"/>
+                                                <constraint firstItem="vec-aW-3sW" firstAttribute="trailing" secondItem="NsH-1n-jWl" secondAttribute="trailing" id="cW6-91-xyo"/>
+                                                <constraint firstItem="vec-aW-3sW" firstAttribute="leading" secondItem="NsH-1n-jWl" secondAttribute="leading" id="i3Z-FH-1bY"/>
+                                                <constraint firstItem="oGP-Sw-sWb" firstAttribute="leading" secondItem="rPw-Oy-z3r" secondAttribute="leadingMargin" id="mfQ-Ny-Cvr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oGP-Sw-sWb" secondAttribute="trailing" id="qX6-yB-1Eh"/>
+                                                <constraint firstItem="vec-aW-3sW" firstAttribute="bottom" secondItem="NsH-1n-jWl" secondAttribute="bottom" id="uwN-re-aaE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="xfM-vn-G0b" rowHeight="30" style="IBUITableViewCellStyleDefault" id="fdq-hN-ln0" userLabel="Location">
-                                        <rect key="frame" x="0.0" y="302" width="414" height="30"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="xfM-vn-G0b" rowHeight="43" style="IBUITableViewCellStyleDefault" id="fdq-hN-ln0" userLabel="Location">
+                                        <rect key="frame" x="0.0" y="128" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fdq-hN-ln0" id="X3d-zP-uv0">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="29.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="42.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xfM-vn-G0b">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="29.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="356" height="42.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" name="ETSU WHITE"/>
@@ -171,25 +148,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Submission" id="VNV-5E-jBK">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="Gjy-jS-NeV"/>
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="xXV-ju-XAt">
-                            <connections>
-                                <action selector="CancelButtonPressed:" destination="9EO-Bz-XrI" id="GcC-5D-inM"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="sN8-Lh-uzO">
-                            <connections>
-                                <action selector="SubmitButtonPressed:" destination="9EO-Bz-XrI" id="8iw-rs-RPB"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="ApprovalDateLabel" destination="nBg-Fd-qu1" id="Bd8-8x-MWK"/>
                         <outlet property="ApprovalLabel" destination="hXR-iy-J7b" id="CcW-p0-6yy"/>
                         <outlet property="CameraButton" destination="vec-aW-3sW" id="g18-GV-eTO"/>
-                        <outlet property="CancelBarButton" destination="xXV-ju-XAt" id="3ir-HQ-NNW"/>
                         <outlet property="LocationLabel" destination="xfM-vn-G0b" id="lca-jw-ChP"/>
                         <outlet property="SubmissionImage" destination="NsH-1n-jWl" id="hgY-hw-D0n"/>
-                        <outlet property="SubmitBarButton" destination="sN8-Lh-uzO" id="4dz-S3-k7E"/>
                         <outlet property="TraditionNameLabel" destination="1k2-XS-1Vh" id="O84-Fn-uFM"/>
                         <outlet property="TraditionRequirementLabel" destination="Ncv-8i-r4h" id="Q9Y-Sr-QbO"/>
                         <outlet property="UserDateLabel" destination="yHA-4z-uKU" id="LDR-ys-iVC"/>
@@ -197,6 +162,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xhm-Sc-cBs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="UjM-xE-JgT"/>
             </objects>
             <point key="canvasLocation" x="708.69565217391312" y="143.97321428571428"/>
         </scene>
